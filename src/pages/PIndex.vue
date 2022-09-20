@@ -9,7 +9,25 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 import Icon from "@/components/Icon/Icon.vue";
+
+const drag = ref(false);
+const myArray = ref([
+  {
+    name: "John",
+    id: 0,
+  },
+  {
+    name: "Joao",
+    id: 1,
+  },
+  {
+    name: "Jean",
+    id: 2,
+  },
+]);
 </script>
 
 <style lang="scss" scoped></style>
