@@ -19,7 +19,7 @@ module.exports = {
   plugins: ["simple-import-sort", "import"],
   rules: {
     "no-console": "warn",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "error",
     eqeqeq: "off",
     curly: "error",
     "simple-import-sort/imports": "error",

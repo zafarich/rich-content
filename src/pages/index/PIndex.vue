@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- <DragTest /> -->
     <div class="grid grid-cols-12 my-10 gap-5">
       <PCBlocks class="col-span-3" />
       <PCDropZone class="col-span-9" />
@@ -8,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+import DragTest from "@/components/DragTest.vue";
 import Icon from "@/components/Icon/Icon.vue";
 
 import PCBlocks from "./components/PCBlocks.vue";
@@ -16,8 +18,9 @@ import PCDropZone from "./components/PCDropZone.vue";
 // TODO:
 // 1. block style. !!!
 // 2. drop zone !!!
-// 3. structure of block's json
-// 4. drag and drop
+// 3. structure of block's json !!
+// 4. drag and drop !!
+//  show brand new json with default items, by type
 // 5. json each template
 // 6. styles in tailwind
 // 7. Gloal types

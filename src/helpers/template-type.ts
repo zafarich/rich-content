@@ -3,12 +3,13 @@ export interface TemplateTypes {
 }
 
 export interface Content {
-  widgetName: "raShowcase" | "raVideo";
-  type: string;
+  widgetName: WidgetType;
+  type: ContentType;
   blocks: Block[];
 }
 
 export type WidgetType = "raShowcase" | "raVideo";
+export type ContentType = "roll" | "billboard";
 
 export interface Block {
   imgLink: string;
