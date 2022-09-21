@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="grid grid-cols-12 my-10 gap-5">
-      <PCBlocks class="col-span-3 " />
-      <div class="col-span-9">b</div>
+      <PCBlocks class="col-span-3" />
+      <PCDropZone class="col-span-9" />
     </div>
   </div>
 </template>
@@ -11,6 +11,7 @@
 import Icon from "@/components/Icon/Icon.vue";
 
 import PCBlocks from "./components/PCBlocks.vue";
+import PCDropZone from "./components/PCDropZone.vue";
 
 // TODO:
 //  1. block style.
