@@ -5,11 +5,11 @@
       <div class="col-span-3">
         <div class="bg-[#001a34] p-4">
           <h2 class="font-semibold text-[25px] text-white">Блоки</h2>
-          <CEditBlock v-if="step" />
-          <CBlocks v-else @back="step = 0" />
+          <CBlockEdit v-if="step" />
+          <CBlockList v-else @back="step = 0" />
         </div>
       </div>
-      <CDropZone class="col-span-9" />
+      <CPreviewContent class="col-span-9" />
     </div>
   </div>
 </template>
@@ -17,9 +17,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import CBlocks from "@/components/CBlocks.vue";
-import CDropZone from "@/components/CDropZone.vue";
-import CEditBlock from "@/components/CEditBlock.vue";
+import CBlockEdit from "@/components/CBlockEdit.vue";
+import CBlockList from "@/components/CBlockList.vue";
+import CPreviewContent from "@/components/CPreviewContent.vue";
 import DragTest from "@/components/DragTest.vue";
 import Icon from "@/components/Icon/Icon.vue";
 
