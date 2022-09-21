@@ -6,8 +6,6 @@
       :list="templates"
       :group="{ name: 'people', pull: 'clone', put: false }"
       :sort="false"
-      @change="log"
-      :move="checkMove"
     >
       <div
         v-for="(item, index) in templates"
@@ -31,20 +29,6 @@
 import { VueDraggableNext } from "vue-draggable-next";
 
 import templates from "../datas/template";
-
-function checkMove(event) {
-  console.log("checkMove", event.draggedContext);
-  console.log("Future index: " + event.draggedContext.futureIndex);
-}
-function log(event) {
-  const { moved, added } = event;
-  if (moved) {
-    console.log("moved", moved);
-  }
-  if (added) {
-    console.log("added", added, added.element);
-  }
-}
 </script>
 
 <style scoped></style>
