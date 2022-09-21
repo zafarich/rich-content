@@ -9,25 +9,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 import Icon from "@/components/Icon/Icon.vue";
 
-const drag = ref(false);
-const myArray = ref([
-  {
-    name: "John",
-    id: 0,
-  },
-  {
-    name: "Joao",
-    id: 1,
-  },
-  {
-    name: "Jean",
-    id: 2,
-  },
-]);
+// TODO:
+//  1. block style.
+// 2. drop zone
+// 3. structure of block's json
+// 4. drag and drop
+// 5. json each template
 </script>
 
 <style lang="scss" scoped></style>
