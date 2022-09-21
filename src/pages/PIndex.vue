@@ -20,23 +20,20 @@ import { ref } from "vue";
 import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
-import DragTest from "@/components/DragTest.vue";
 import Icon from "@/components/Icon/Icon.vue";
 
 const step = ref(0);
 
 // TODO:
-// 1. block style. !!!
-// 2. drop zone !!!
-// 3. structure of block's json !!
-// 4. drag and drop !!
 // style edit left
 //  show brand new json with default items, by type
 // 5. json each template
 // 6. styles in tailwind
-// 7. Gloal types
+// 7. Gloal type
 // 8. Attach json to each blocks
 // 9. composable drag and drop
+
+//
 </script>
 
 <style lang="scss" scoped></style>
