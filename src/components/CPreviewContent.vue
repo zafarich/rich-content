@@ -5,6 +5,8 @@
       class="dragArea list-group w-full flex flex-col gap-5 mt-8"
       v-bind="dragOptions"
       tag="div"
+      :list="blocks"
+      @add="handleAdd"
     >
       <template v-if="blocks?.length">
         <transition-group type="transition" name="flip-list">
@@ -42,24 +44,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import Icon from "@/components/Icon/Icon.vue";
 
-const blocks = ref([]);
+console.log(VueDraggableNext, " VueDraggableNext");
 
 const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
-  list: blocks,
 });
+
+const blocks = ref([]);
 
 function deleteTemplate(index: number) {
   blocks.value.splice(index, 1);
 }
+
+function handleAdd(event) {
+  console.log(event, "evemt");
+}
+
+// const handleBlock = computed({
+//   get() {
+//     return blocks.value;
+//   },
+//   set(value) {
+//     blocks.value.push(value[0]);
+//     console.log(value);
+//   },
+// });
 </script>
 
 <style scoped>
