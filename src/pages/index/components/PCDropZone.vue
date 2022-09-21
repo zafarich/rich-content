@@ -4,11 +4,15 @@
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-5"
       v-bind="dragOptions"
-      @change="log"
+      tag="div"
     >
       <template v-if="templates?.length">
         <transition-group type="transition" name="flip-list">
-          <div v-for="(item, index) in templates" :key="index" class="">
+          <div
+            class="list-group-item"
+            v-for="(item, index) in templates"
+            :key="index"
+          >
             <img
               class="w-full h-[708px] object-cover select-none"
               :src="item.image"
@@ -36,30 +40,15 @@ import { VueDraggableNext } from "vue-draggable-next";
 const templates = ref([]);
 
 const dragOptions = ref({
-  animation: 0,
+  animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
   list: templates,
-  move: checkMove,
 });
-
-function checkMove(event) {
-  console.log("checkMove", event.draggedContext);
-  console.log("Future index: " + event.draggedContext.futureIndex);
-}
-function log(event) {
-  const { moved, added } = event;
-  if (moved) {
-    console.log("moved", moved);
-  }
-  if (added) {
-    console.log("added", added, added.element);
-  }
-}
 </script>
 
-<style>
+<style scoped>
 .flip-list-move {
   transition: transform 0.5s;
 }
@@ -73,19 +62,11 @@ function log(event) {
 .list-group {
   min-height: 20px;
 }
+
 .list-group-item {
   cursor: move;
 }
 .list-group-item i {
   cursor: pointer;
-}
-.btn {
-  @apply font-bold py-2 px-4 rounded;
-}
-.btn-blue {
-  @apply bg-blue-500 text-white;
-}
-.btn-blue:hover {
-  @apply bg-blue-700;
 }
 </style>

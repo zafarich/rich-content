@@ -2,18 +2,27 @@
   <div class="container">
     <!-- <DragTest /> -->
     <div class="grid grid-cols-12 my-10 gap-5">
-      <PCBlocks class="col-span-3" />
+      <div class="col-span-3 bg-[#001a34] h-full p-4">
+        <h2 class="font-semibold text-[25px] text-white">Блоки</h2>
+        <PCEditBlock v-if="step" />
+        <PCBlocks v-else @back="step = 0" />
+      </div>
       <PCDropZone class="col-span-9" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 import DragTest from "@/components/DragTest.vue";
 import Icon from "@/components/Icon/Icon.vue";
 
 import PCBlocks from "./components/PCBlocks.vue";
 import PCDropZone from "./components/PCDropZone.vue";
+import PCEditBlock from "./components/PCEditBlock.vue";
+
+const step = ref(0);
 
 // TODO:
 // 1. block style. !!!
