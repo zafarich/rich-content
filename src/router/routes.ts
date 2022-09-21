@@ -7,6 +7,6 @@ export default [
   {
     path: "/",
     meta: { title: "Home" },
-    component: () => import("@/pages/PIndex.vue"),
+    component: () => import("@/pages/index/PIndex.vue"),
   },
 ];

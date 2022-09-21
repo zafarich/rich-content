@@ -1,15 +1,16 @@
 <template>
-  <div>
-    <p class="text-green-700">
-      Blank template, write your code here.
-      <a href="https://github.com/UIC-Group/vue3-powerbuild">GitHub repo</a>
-      <Icon name="logout" />
-    </p>
+  <div class="container">
+    <div class="grid grid-cols-12 my-10 gap-5">
+      <PCBlocks class="col-span-3 " />
+      <div class="col-span-9">b</div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import Icon from "@/components/Icon/Icon.vue";
+
+import PCBlocks from "./components/PCBlocks.vue";
 
 // TODO:
 //  1. block style.
