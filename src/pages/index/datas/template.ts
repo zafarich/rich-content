@@ -7,6 +7,7 @@ interface TTypes {
 }
 
 const templates: TTypes[] = [
+  
   {
     image: "/src/assets/images/templates/template1.png",
     desc: "Изображение без отступов",
