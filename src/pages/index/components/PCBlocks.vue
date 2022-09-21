@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import CTemplates from "@/components/templates/CTemplates.vue";
 
-import { templates } from "../datas";
+import templates from "../datas/template";
 </script>
 
 <style scoped></style>
