@@ -6,11 +6,11 @@
       v-bind="dragOptions"
       tag="div"
     >
-      <template v-if="templates?.length">
+      <template v-if="blocks?.length">
         <transition-group type="transition" name="flip-list">
           <div
             class="list-group-item flex gap-5"
-            v-for="(item, index) in templates"
+            v-for="(item, index) in blocks"
             :key="index"
           >
             <img
@@ -37,7 +37,7 @@
         </div>
       </div>
     </VueDraggableNext>
-    <pre>{{ templates }}</pre>
+    <pre>{{ blocks }}</pre>
   </div>
 </template>
 
@@ -47,18 +47,18 @@ import { VueDraggableNext } from "vue-draggable-next";
 
 import Icon from "@/components/Icon/Icon.vue";
 
-const templates = ref([]);
+const blocks = ref([]);
 
 const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
-  list: templates,
+  list: blocks,
 });
 
 function deleteTemplate(index: number) {
-  templates.value.splice(index, 1);
+  blocks.value.splice(index, 1);
 }
 </script>
 

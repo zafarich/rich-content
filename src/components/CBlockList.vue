@@ -1,11 +1,11 @@
 <template>
   <VueDraggableNext
     class="dragArea list-group w-full flex flex-col gap-8 mt-8"
-    :list="templates"
+    :list="blocks"
     :group="{ name: 'people', pull: 'clone', put: false }"
     :sort="false"
   >
-    <div v-for="(item, index) in templates" :key="index" class="selectDisable">
+    <div v-for="(item, index) in blocks" :key="index" class="selectDisable">
       <img
         draggable="true"
         :src="item.image"
@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { VueDraggableNext } from "vue-draggable-next";
 
-import templates from "@/helpers/templates";
+import blocks from "@/helpers/blocks";
 </script>
 
 <style scoped></style>

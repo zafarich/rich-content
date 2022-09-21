@@ -35,7 +35,7 @@ const step = ref(0);
 // 5. json each template
 // 6. styles in tailwind
 // 7. Gloal types
-// 8. Attach json to each templates
+// 8. Attach json to each blocks
 // 9. composable drag and drop
 </script>
 

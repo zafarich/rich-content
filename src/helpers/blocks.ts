@@ -1,4 +1,4 @@
-import TemplateTypes, { Content } from "@/helpers/scheme.ts";
+import SchemeTypes, { Content } from "@/helpers/scheme_types.ts";
 
 interface TTypes {
   image: string;
@@ -6,9 +6,9 @@ interface TTypes {
   content: Partial<Content>;
 }
 
-const templates: TTypes[] = [
+const blocks: TTypes[] = [
   {
-    image: "/src/assets/images/templates/template1.png",
+    image: "/src/assets/images/blocks/template1.png",
     desc: "Изображение без отступов",
     content: {
       widgetName: "raShowcase",
@@ -16,7 +16,7 @@ const templates: TTypes[] = [
     },
   },
   {
-    image: "/src/assets/images/templates/template2.png",
+    image: "/src/assets/images/blocks/template2.png",
     desc: "Изображение с текстом",
     content: {
       widgetName: "raShowcase",
@@ -24,21 +24,21 @@ const templates: TTypes[] = [
     },
   },
   // {
-  //   image: "/src/assets/images/templates/template3.png",
+  //   image: "/src/assets/images/blocks/template3.png",
   //   desc: "Изображение и текст справа",
   // },
   // {
-  //   image: "/src/assets/images/templates/template4.png",
+  //   image: "/src/assets/images/blocks/template4.png",
   //   desc: "Изображение и текст слева",
   // },
   // {
-  //   image: "/src/assets/images/templates/template5.png",
+  //   image: "/src/assets/images/blocks/template5.png",
   //   desc: "Две карточки с фото",
   // },
   // {
-  //   image: "/src/assets/images/templates/template6.png",
+  //   image: "/src/assets/images/blocks/template6.png",
   //   desc: "Три карточки с фото",
   // },
 ];
 
-export default templates;
+export default blocks;
