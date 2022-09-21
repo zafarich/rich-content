@@ -20,6 +20,7 @@ import PCDropZone from "./components/PCDropZone.vue";
 // 2. drop zone !!!
 // 3. structure of block's json !!
 // 4. drag and drop !!
+// style edit left
 //  show brand new json with default items, by type
 // 5. json each template
 // 6. styles in tailwind

@@ -19,7 +19,7 @@
 
       <div v-else>
         <div
-          class="border-2 border-[#ccc] border-dotted mt-8 h-[700px] flex-center-center"
+          class="border-2 select-none border-[#ccc] border-dotted mt-8 h-[700px] flex-center-center"
         >
           <p class="text-[20px] font-semibold">Drop Here</p>
         </div>
