@@ -1,8 +1,6 @@
 const icons: { [key: string]: string } = {
-  logout: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M15.2904 7.88118V7.09704C15.2904 5.38673 13.9037 4 12.1934 4H8.0962C6.38673 4 5 5.38673 5 7.09704V16.4512C5 18.1615 6.38673 19.5482 8.0962 19.5482H12.2018C13.9071 19.5482 15.2904 18.1657 15.2904 16.4604V15.6679" stroke="#FF7474" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
-  <path d="M20.9999 11.774H10.8801" stroke="#FF7474" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
-  <path d="M18.5391 9.3241L20.9999 11.774L18.5391 14.2247" stroke="#FF7474" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>`,
+  arrow_back: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ra-f3"><path fill="currentColor" d="M5.415 11H21a1 1 0 1 1 0 2H5.413l6.294 6.293a1 1 0 1 1-1.414 1.414l-8-7.999a1 1 0 0 1 0-1.414l8-8.001a1 1 0 1 1 1.414 1.414L5.415 11Z"></path></svg>`,
+  trash_bin: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ui-f0"><path fill="currentColor" d="M8.995 4.002a1 1 0 0 0-1 1v1h5a1 1 0 1 1 0 2h-7v11a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-11h-1a1 1 0 0 1-1-1v-2a1 1 0 0 0-1-1h-6Zm11 4v11a3 3 0 0 1-3 3h-10a3 3 0 0 1-3-3v-11h-1a1 1 0 0 1 0-2h3v-1a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v1h3a1 1 0 1 1 0 2h-1Zm-10 3a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1Zm4 0a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1Z"></path></svg>`,
 };
 
 export default icons;

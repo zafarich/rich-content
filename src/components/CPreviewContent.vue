@@ -1,31 +1,43 @@
 <template>
   <div class="">
-    <h2 class="font-bold text-[30px]">Конструктор рич-контента</h2>
+    <h2 class="font-bold text-[30px]">Рич контент</h2>
     <VueDraggableNext
-      class="dragArea list-group w-full flex flex-col gap-5"
+      class="dragArea list-group w-full flex flex-col gap-5 mt-8"
       v-bind="dragOptions"
-      @change="log"
+      tag="div"
     >
-      <template v-if="templates?.length">
+      <template v-if="blocks?.length">
         <transition-group type="transition" name="flip-list">
-          <div v-for="(item, index) in templates" :key="index" class="">
+          <div
+            class="list-group-item flex gap-5"
+            v-for="(item, index) in blocks"
+            :key="index"
+          >
             <img
               class="w-full h-[708px] object-cover select-none"
               :src="item.image"
             />
+            <div class="inline">
+              <Icon
+                @click="deleteTemplate(index)"
+                name="trash_bin"
+                color="#001a34"
+                class="w-8 h-8 hover:opacity-75 transition"
+              />
+            </div>
           </div>
         </transition-group>
       </template>
 
       <div v-else>
         <div
-          class="border-2 border-[#ccc] border-dotted mt-8 h-[700px] flex-center-center"
+          class="border-2 select-none border-[#ccc] border-dotted h-[708px] flex-center-center"
         >
           <p class="text-[20px] font-semibold">Drop Here</p>
         </div>
       </div>
     </VueDraggableNext>
-    <pre>{{ templates }}</pre>
+    <pre>{{ blocks }}</pre>
   </div>
 </template>
 
@@ -33,33 +45,24 @@
 import { ref } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
-const templates = ref([]);
+import Icon from "@/components/Icon/Icon.vue";
+
+const blocks = ref([]);
 
 const dragOptions = ref({
-  animation: 0,
+  animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
-  list: templates,
-  move: checkMove,
+  list: blocks,
 });
 
-function checkMove(event) {
-  console.log("checkMove", event.draggedContext);
-  console.log("Future index: " + event.draggedContext.futureIndex);
-}
-function log(event) {
-  const { moved, added } = event;
-  if (moved) {
-    console.log("moved", moved);
-  }
-  if (added) {
-    console.log("added", added, added.element);
-  }
+function deleteTemplate(index: number) {
+  blocks.value.splice(index, 1);
 }
 </script>
 
-<style>
+<style scoped>
 .flip-list-move {
   transition: transform 0.5s;
 }
@@ -73,19 +76,11 @@ function log(event) {
 .list-group {
   min-height: 20px;
 }
+
 .list-group-item {
   cursor: move;
 }
 .list-group-item i {
   cursor: pointer;
-}
-.btn {
-  @apply font-bold py-2 px-4 rounded;
-}
-.btn-blue {
-  @apply bg-blue-500 text-white;
-}
-.btn-blue:hover {
-  @apply bg-blue-700;
 }
 </style>

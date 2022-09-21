@@ -27,7 +27,7 @@ const Template: Story<Props> = (args) => ({
 
 export const Icon = Template.bind({});
 Icon.args = {
-  name: "logout",
+  name: "arrow_back",
 };
 
 export const AllIcons = () => ({

@@ -5,7 +5,7 @@ export interface TemplateTypes {
 export interface Content {
   widgetName: WidgetType;
   type: ContentType;
-  blocks: Block[];
+  blocks?: Block[];
 }
 
 export type WidgetType = "raShowcase" | "raVideo";
