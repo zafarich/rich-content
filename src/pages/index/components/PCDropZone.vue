@@ -3,10 +3,8 @@
     <h2 class="font-bold text-[30px]">Конструктор рич-контента</h2>
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-5"
-      :list="templates"
-      group="people"
+      v-bind="dragOptions"
       @change="log"
-      :move="checkMove"
     >
       <template v-if="templates?.length">
         <transition-group type="transition" name="flip-list">
@@ -37,6 +35,15 @@ import { VueDraggableNext } from "vue-draggable-next";
 
 const templates = ref([]);
 
+const dragOptions = ref({
+  animation: 0,
+  disabled: false,
+  ghostClass: "ghost",
+  group: "people",
+  list: templates,
+  move: checkMove,
+});
+
 function checkMove(event) {
   console.log("checkMove", event.draggedContext);
   console.log("Future index: " + event.draggedContext.futureIndex);
@@ -52,7 +59,7 @@ function log(event) {
 }
 </script>
 
-<style scoped>
+<style>
 .flip-list-move {
   transition: transform 0.5s;
 }
