@@ -1,21 +1,25 @@
 <template>
   <div class="">
+    <h2 class="font-bold text-[30px]">Конструктор рич-контента</h2>
     <VueDraggableNext
-      class="dragArea list-group w-full"
+      class="dragArea list-group w-full flex flex-col gap-5"
       :list="templates"
       group="people"
       @change="log"
       :move="checkMove"
     >
-      <div class="flex flex-col gap-5" v-if="templates?.length">
-        <div v-for="(item, index) in templates" :key="index" class="">
-          <img class="w-full h-[708px] object-cover" :src="item.image" />
-        </div>
-      </div>
+      <template v-if="templates?.length">
+        <transition-group type="transition" name="flip-list">
+          <div v-for="(item, index) in templates" :key="index" class="">
+            <img
+              class="w-full h-[708px] object-cover select-none"
+              :src="item.image"
+            />
+          </div>
+        </transition-group>
+      </template>
 
       <div v-else>
-        <h2 class="font-bold text-[30px]">Конструктор рич-контента</h2>
-
         <div
           class="border-2 border-[#ccc] border-dotted mt-8 h-[700px] flex-center-center"
         >
@@ -48,4 +52,33 @@ function log(event) {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+.list-group {
+  min-height: 20px;
+}
+.list-group-item {
+  cursor: move;
+}
+.list-group-item i {
+  cursor: pointer;
+}
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+</style>
