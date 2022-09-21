@@ -1,4 +1,4 @@
-import TemplateTypes, { Content } from "@/helpers/template-types.ts";
+import TemplateTypes, { Content } from "@/helpers/scheme.ts";
 
 interface TTypes {
   image: string;
