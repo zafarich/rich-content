@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h2 class="font-bold text-[30px]">Конструктор рич-контента</h2>
+    <h2 class="font-bold text-[30px]">Рич контент</h2>
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-5 mt-8"
       v-bind="dragOptions"
@@ -17,7 +17,7 @@
               class="w-full h-[708px] object-cover select-none"
               :src="item.image"
             />
-            <div class="">
+            <div class="inline">
               <Icon
                 @click="deleteTemplate(index)"
                 name="trash_bin"
