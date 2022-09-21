@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { VueDraggableNext } from "vue-draggable-next";
 
-import templates from "../datas/template";
+import templates from "@/helpers/templates";
 </script>
 
 <style scoped></style>

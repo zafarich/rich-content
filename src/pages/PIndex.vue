@@ -5,11 +5,11 @@
       <div class="col-span-3">
         <div class="bg-[#001a34] p-4">
           <h2 class="font-semibold text-[25px] text-white">Блоки</h2>
-          <PCEditBlock v-if="step" />
-          <PCBlocks v-else @back="step = 0" />
+          <CEditBlock v-if="step" />
+          <CBlocks v-else @back="step = 0" />
         </div>
       </div>
-      <PCDropZone class="col-span-9" />
+      <CDropZone class="col-span-9" />
     </div>
   </div>
 </template>
@@ -17,12 +17,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import CBlocks from "@/components/CBlocks.vue";
+import CDropZone from "@/components/CDropZone.vue";
+import CEditBlock from "@/components/CEditBlock.vue";
 import DragTest from "@/components/DragTest.vue";
 import Icon from "@/components/Icon/Icon.vue";
-
-import PCBlocks from "./components/PCBlocks.vue";
-import PCDropZone from "./components/PCDropZone.vue";
-import PCEditBlock from "./components/PCEditBlock.vue";
 
 const step = ref(0);
 
