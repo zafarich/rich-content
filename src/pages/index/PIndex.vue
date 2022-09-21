@@ -2,10 +2,12 @@
   <div class="container">
     <!-- <DragTest /> -->
     <div class="grid grid-cols-12 my-10 gap-5">
-      <div class="col-span-3 bg-[#001a34] h-full p-4">
-        <h2 class="font-semibold text-[25px] text-white">Блоки</h2>
-        <PCEditBlock v-if="step" />
-        <PCBlocks v-else @back="step = 0" />
+      <div class="col-span-3">
+        <div class="bg-[#001a34] p-4">
+          <h2 class="font-semibold text-[25px] text-white">Блоки</h2>
+          <PCEditBlock v-if="step" />
+          <PCBlocks v-else @back="step = 0" />
+        </div>
       </div>
       <PCDropZone class="col-span-9" />
     </div>
