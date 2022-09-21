@@ -1,7 +1,6 @@
 import { ref, watch } from "vue";
 
 export default function useContent(): object {
-  const blocks = ref([]);
   const content = ref([]);
 
   function hello() {
@@ -13,7 +12,7 @@ export default function useContent(): object {
   })
   
   return {
+    content,
     hello,
-    blocks,
   };
 }
