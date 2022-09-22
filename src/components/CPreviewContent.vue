@@ -9,7 +9,7 @@
       фото.
     </p>
     <VueDraggableNext
-      class="dragArea list-group w-full flex flex-col gap-5 mt-8"
+      class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
       v-bind="dragOptions"
       tag="div"
       :list="content"
@@ -18,7 +18,7 @@
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
           <div
-            class="list-group-item flex gap-5"
+            class="list-group-item flex bg-white border-grey border-[1px] rounded-[12px] p-6"
             v-for="(item, index) in content"
             :key="index"
           >
@@ -39,10 +39,14 @@
       </template>
 
       <div v-else>
-        <div
-          class="border-2 select-none border-[#ccc] border-dotted h-[708px] flex-center-center"
-        >
-          <p class="text-[20px] font-semibold">Drop Here</p>
+        <div class="rounded-[12px] preview__drop p-6">
+          <div
+            class="border-2 select-none border-grey border-dashed rounded-[10px] h-[708px] flex-center-center"
+          >
+            <p class="text-[20px] font-medium leading-[28px] text-black-grey">
+              Перетащите блок сюда
+            </p>
+          </div>
         </div>
       </div>
     </VueDraggableNext>
@@ -87,5 +91,10 @@ const { content, deleteContent } = useContent();
 }
 .list-group-item i {
   cursor: pointer;
+}
+
+.preview__drop {
+  background: linear-gradient(0deg, #ffffff, #ffffff), #f7f7f7;
+  box-shadow: 0px 4px 24px 1px rgba(0, 0, 0, 0.08);
 }
 </style>
