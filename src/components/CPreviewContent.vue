@@ -89,7 +89,6 @@ const dragOptions = ref({
   disabled: false,
   ghostClass: "ghost",
   group: "people",
-  sort: false,
 });
 
 const { content, deleteContent } = useContent();
