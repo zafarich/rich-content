@@ -4,8 +4,8 @@ function useActions(): object {
   const step = ref<"edit" | "drop">("edit");
 
   return {
-    step
+    step,
   };
 }
 
-export default useActions()
+export default useActions();
