@@ -8,11 +8,11 @@
     <div v-for="(item, index) in blocks" :key="index" class="selectDisable">
       <img
         draggable="true"
-        :src="item.image"
+        :src="item.block_img"
         class="!max-w-full !w-full select-none"
       />
       <p class="mt-2 text-white text-[14px] leading-[18px]">
-        {{ item.desc }}
+        {{ item.block_text }}
       </p>
     </div>
   </VueDraggableNext>

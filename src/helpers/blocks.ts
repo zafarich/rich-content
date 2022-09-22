@@ -1,27 +1,22 @@
-import SchemeTypes, { Content } from "@/helpers/scheme_types.ts";
+import Scheme from "@/helpers/scheme";
+import { Content } from "@/helpers/scheme_types";
 
 interface TTypes {
-  image: string;
-  desc: string;
+  block_img: string;
+  block_text: string;
   content: Partial<Content>;
 }
 
 const blocks: TTypes[] = [
   {
-    image: "/src/assets/images/blocks/template1.png",
-    desc: "Изображение без отступов",
-    content: {
-      widgetName: "raShowcase",
-      type: "roll",
-    },
+    block_img: "/src/assets/images/blocks/template1.png",
+    block_text: "Изображение без отступов",
+    content: Scheme["roll"],
   },
   {
-    image: "/src/assets/images/blocks/template2.png",
-    desc: "Изображение с текстом",
-    content: {
-      widgetName: "raShowcase",
-      type: "billboard",
-    },
+    block_img: "/src/assets/images/blocks/template2.png",
+    block_text: "Изображение с текстом",
+    content: Scheme["billboard"],
   },
   // {
   //   image: "/src/assets/images/blocks/template3.png",

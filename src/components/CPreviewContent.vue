@@ -5,23 +5,23 @@
       class="dragArea list-group w-full flex flex-col gap-5 mt-8"
       v-bind="dragOptions"
       tag="div"
-      :list="blocks"
-      @add="handleAdd"
+      :list="content"
     >
-      <template v-if="blocks?.length">
+      <!-- :list="handleContent.value" -->
+      <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
           <div
             class="list-group-item flex gap-5"
-            v-for="(item, index) in blocks"
+            v-for="(item, index) in content"
             :key="index"
           >
             <img
               class="w-full h-[708px] object-cover select-none"
-              :src="item.image"
+              :src="item.content.block.img.src"
             />
             <div class="inline">
               <Icon
-                @click="deleteTemplate(index)"
+                @click="deleteContent(index)"
                 name="trash_bin"
                 color="#001a34"
                 class="w-8 h-8 hover:opacity-75 transition"
@@ -39,7 +39,7 @@
         </div>
       </div>
     </VueDraggableNext>
-    <pre>{{ blocks }}</pre>
+    <pre>{{ content }}</pre>
   </div>
 </template>
 
@@ -48,8 +48,7 @@ import { computed, ref } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import Icon from "@/components/Icon/Icon.vue";
-
-console.log(VueDraggableNext, " VueDraggableNext");
+import useContent from "@/composables/useContent";
 
 const dragOptions = ref({
   animation: 500,
@@ -58,25 +57,7 @@ const dragOptions = ref({
   group: "people",
 });
 
-const blocks = ref([]);
-
-function deleteTemplate(index: number) {
-  blocks.value.splice(index, 1);
-}
-
-function handleAdd(event) {
-  console.log(event, "evemt");
-}
-
-// const handleBlock = computed({
-//   get() {
-//     return blocks.value;
-//   },
-//   set(value) {
-//     blocks.value.push(value[0]);
-//     console.log(value);
-//   },
-// });
+const { content, deleteContent } = useContent();
 </script>
 
 <style scoped>
