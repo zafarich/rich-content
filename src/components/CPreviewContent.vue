@@ -14,7 +14,7 @@
       tag="div"
       :list="content"
     >
-      <!-- :list="handleContent.value" -->
+      <!-- TODO: use meta component by type of content -->
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
           <div
@@ -25,9 +25,11 @@
             <div
               class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content"
             >
-              <img
-                class="w-full h-[708px] object-cover select-none"
-                :src="item.content.block.img.src"
+              <component
+                :is="ContentComponents[item.content.type]"
+                v-bind="{
+                  content: item.content,
+                }"
               />
             </div>
             <div class="w-8 flex flex-col gap-[18px] cursor-default">
@@ -69,17 +71,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
+import CBillboard from "@/components/Content/CBillboard.vue";
+import CRoll from "@/components/Content/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import useContent from "@/composables/useContent";
+
+const ContentComponents = {
+  roll: CRoll,
+  billboard: CBillboard,
+};
 
 const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
+  sort: false,
 });
 
 const { content, deleteContent } = useContent();
