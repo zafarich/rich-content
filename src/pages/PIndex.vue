@@ -6,8 +6,8 @@
         <div
           class="bg-[#001a34] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks"
         >
-          <CBlockEdit v-if="step" />
-          <CBlockList v-else @back="step = 0" />
+          <CBlockList v-if="step == 'drop'" />
+          <CBlockEdit v-else-if="step == 'edit'" @back="step = 'drop'" />
         </div>
         <CPreviewContent class="preview-content" />
       </div>
@@ -23,9 +23,9 @@ import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
 import Icon from "@/components/Icon/Icon.vue";
-import useContent from "@/composables/useContent";
+import useActions from "@/composables/useActions";
 
-const step = ref(0);
+const { step } = useActions;
 
 // TODO:
 // style edit left
@@ -35,8 +35,7 @@ const step = ref(0);
 // 7. Gloal type
 // 8. Attach json to each blocks
 // 9. composable drag and drop
-
-//
+// 10. storybook
 </script>
 
 <style scoped>

@@ -2,7 +2,6 @@ import { ref } from "vue";
 
 export default function useContent(): object {
   const content = ref([]);
-  const step = ref(0)
 
   function addContent(item: object) {
     content.value.push(item);
@@ -13,17 +12,13 @@ export default function useContent(): object {
   }
 
   function upContent(index: number): void {
-    const spliced = content.value.splice(index, 1)
-    content.value.splice(index - 1, 0, spliced[0])
-    console.log(spliced, 'spliced')
-    console.log("hello");
+    const spliced = content.value.splice(index, 1);
+    content.value.splice(index - 1, 0, spliced[0]);
   }
 
   function downContent(index: number): void {
-    const spliced = content.value.splice(index, 1)
-    content.value.splice(index + 1, 0, spliced[0])
-        console.log(spliced, 'spliced')
-    console.log("hello");
+    const spliced = content.value.splice(index, 1);
+    content.value.splice(index + 1, 0, spliced[0]);
   }
 
   return {
@@ -32,6 +27,5 @@ export default function useContent(): object {
     deleteContent,
     upContent,
     downContent,
-    step
   };
 }

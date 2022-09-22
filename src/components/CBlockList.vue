@@ -1,13 +1,13 @@
 <template>
   <div class="">
-    <h2 class="text-[24px] text-black-grey font-bold leading-[32px]">Блоки</h2>
+    <h2 class="text-[24px]  font-bold leading-[32px]">Блоки</h2>
 
     <div
       class="border-[2px] border-[#ECECEC] rounded-[8px] py-2 pr-2 pl-[10px] flex mt-5 mb-6 gap-[10px] w-full"
     >
       <Icon name="alert" class="!w-6 !h-6" />
       <p
-        class="text-[12px] leading-[20px] text-black-grey block-list__text font-normal"
+        class="text-[12px] leading-[20px]  block-list__text font-normal"
       >
         Перетащите блок на страницу рич-контента, зажав левую кнопку мыши
       </p>
@@ -26,7 +26,7 @@
           class="!max-w-full !w-full select-none"
         />
         <p
-          class="mt-[10px] text-[14px] leading-[20px] font-medium text-black-grey"
+          class="mt-[10px] text-[14px] leading-[20px] font-medium "
         >
           {{ item.block_text }}
         </p>

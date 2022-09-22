@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <h2 class="font-bold text-[24px] leading-[32px] text-black-grey mb-3">
+    <h2 class="font-bold text-[24px] leading-[32px] mb-3">
       Конструктор контента
     </h2>
-    <p class="text-[14px] leading-[24px] text-black-grey mb-8">
+    <p class="text-[14px] leading-[24px] mb-8">
       Соберите свой рич-контент из готовых секций. Меняйте их местами,
       редактируйте текст и содержание каждой секции, а также загружайте свои
       фото.
@@ -84,9 +84,7 @@
           <div
             class="border-2 border-grey border-dashed rounded-[10px] h-[708px] flex-center-center select-none"
           >
-            <p
-              class="text-[20px] font-medium leading-[28px] text-black-grey select-none"
-            >
+            <p class="text-[20px] font-medium leading-[28px] select-none">
               Перетащите блок сюда
             </p>
           </div>

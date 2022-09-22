@@ -8,13 +8,13 @@
     <CInput
       placeholder="Заголовок"
       v-model="title"
-      class="mb-2 font-medium text-[20px] leading-[28px] text-black-grey cursor-text"
+      class="mb-2 font-medium text-[20px] leading-[28px] cursor-text"
     />
 
     <CInput
       placeholder="Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке."
       v-model="desc"
-      class="text-black-grey font-normal text-[14px] leading-[24px] cursor-text"
+      class="font-normal text-[14px] leading-[24px] cursor-text"
     />
   </div>
 </template>

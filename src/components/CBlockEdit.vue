@@ -1,11 +1,17 @@
 <template>
-  <div class="text-white">
+  <div class="">
     <div
       @click="$emit('back')"
-      class="flex-center gap-3 hover:opacity-80 transition cursor-pointer"
+      class="flex-center gap-3 hover:opacity-80 transition cursor-pointer mb-8"
     >
       <Icon name="arrow_back" />
-      <span class="text-[25px]">Назад</span>
+      <span
+        class="tracking-[0.2px] font-medium text-[16px] leading-[24px] "
+        >Назад</span
+      >
+    </div>
+    <div class="">
+      <h6>Изображения</h6>
     </div>
   </div>
 </template>
