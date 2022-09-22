@@ -2,14 +2,19 @@ export interface TemplateTypes {
   content: Content[];
 }
 
+export type WidgetType = "raShowcase" | "raVideo";
+export type ContentType = "roll" | "billboard";
+export type ImgPosition =
+  | "width_full"
+  | "width_one_fourth"
+  | "width_one_third"
+  | "width_half";
+
 export interface Content {
   widgetName: WidgetType;
   type: ContentType;
   blocks?: Block[];
 }
-
-export type WidgetType = "raShowcase" | "raVideo";
-export type ContentType = "roll" | "billboard";
 
 export interface Block {
   imgLink: string;
@@ -26,6 +31,7 @@ export interface Img {
   height: number;
   widthMobile: number;
   heightMobile: number;
+  position?: string;
 }
 
 export interface Text {

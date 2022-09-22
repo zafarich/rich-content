@@ -1,21 +1,46 @@
 @import url("_tailwind.css");
+@import url("_font.css");
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #333;
+  background-color: #fff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .container {
-  max-width: 1400px;
+  max-width: 1600px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .transition,
+.transition:focus,
 .transition:hover {
   transition: all 0.3s;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  display: none;
 }
