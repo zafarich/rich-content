@@ -1,8 +1,21 @@
 @import url("_tailwind.css");
 @import url("_font.css");
 
+html {
+  font-family: "Roboto", sans-serif;
+}
 body {
   font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #333;
+  background-color: #fff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container {

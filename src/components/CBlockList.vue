@@ -3,10 +3,14 @@
     <h2 class="text-[24px] text-black-grey font-bold leading-[32px]">Блоки</h2>
 
     <div
-      class="border-[2px] border-[#ECECEC] rounded-[8px] py-2 pr-2 pl-[10px] flex mt-5 mb-6 gap-[10px]"
+      class="border-[2px] border-[#ECECEC] rounded-[8px] py-2 pr-2 pl-[10px] flex mt-5 mb-6 gap-[10px] w-full"
     >
       <Icon name="alert" class="!w-6 !h-6" />
-      <p>Перетащите блок на страницу рич-контента, зажав левую кнопку мыши</p>
+      <p
+        class="text-[12px] leading-[20px] text-black-grey block-list__text font-normal"
+      >
+        Перетащите блок на страницу рич-контента, зажав левую кнопку мыши
+      </p>
     </div>
 
     <VueDraggableNext
@@ -36,4 +40,8 @@ import Icon from "@/components/Icon/Icon.vue";
 import blocks from "@/helpers/blocks";
 </script>
 
-<style scoped></style>
+<style scoped>
+.block-list__text {
+  width: calc(100% - 24px);
+}
+</style>

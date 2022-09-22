@@ -2,17 +2,14 @@
   <div class="">
     <CHeader />
     <div class="container">
-      <div class="grid grid-cols-12 my-10 gap-5">
-        <div class="col-span-3">
-          <div
-            class="bg-[#001a34] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks"
-          >
-           
-            <CBlockEdit v-if="step" />
-            <CBlockList v-else @back="step = 0" />
-          </div>
+      <div class="my-10 flex gap-8 w-full">
+        <div
+          class="bg-[#001a34] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks"
+        >
+          <CBlockEdit v-if="step" />
+          <CBlockList v-else @back="step = 0" />
         </div>
-        <CPreviewContent class="col-span-9" />
+        <CPreviewContent class="preview-content" />
       </div>
     </div>
   </div>
@@ -45,5 +42,9 @@ const step = ref(0);
 .blocks {
   box-shadow: 0px 4px 30px 1px rgba(0, 0, 0, 0.08);
   background: linear-gradient(0deg, #ffffff, #ffffff), #f7f7f7;
+}
+
+.preview-content {
+  width: calc(100% - 322px) !important;
 }
 </style>
