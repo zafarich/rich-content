@@ -1,4 +1,9 @@
 @import url("_tailwind.css");
+@import url("_font.css");
+
+body {
+  font-family: "Roboto", sans-serif;
+}
 
 .container {
   max-width: 1600px;
