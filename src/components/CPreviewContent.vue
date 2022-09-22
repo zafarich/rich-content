@@ -1,6 +1,13 @@
 <template>
   <div class="">
-    <h2 class="font-bold text-[30px]">Рич контент</h2>
+    <h2 class="font-bold text-[24px] leading-[32px] text-black-grey mb-3">
+      Конструктор контента
+    </h2>
+    <p class="text-[14px] leading-[24px] text-black-grey mb-8">
+      Соберите свой рич-контент из готовых секций. Меняйте их местами,
+      редактируйте текст и содержание каждой секции, а также загружайте свои
+      фото.
+    </p>
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-5 mt-8"
       v-bind="dragOptions"
