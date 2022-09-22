@@ -23,6 +23,7 @@ import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
 import Icon from "@/components/Icon/Icon.vue";
+import useContent from "@/composables/useContent";
 
 const step = ref(0);
 

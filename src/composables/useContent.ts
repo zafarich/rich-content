@@ -2,6 +2,7 @@ import { ref } from "vue";
 
 export default function useContent(): object {
   const content = ref([]);
+  const step = ref(0)
 
   function addContent(item: object) {
     content.value.push(item);
@@ -31,5 +32,6 @@ export default function useContent(): object {
     deleteContent,
     upContent,
     downContent,
+    step
   };
 }

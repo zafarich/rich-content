@@ -20,8 +20,8 @@
             v-for="(item, index) in content"
             :key="index"
             class="list-group-item flex gap-[10px] w-full"
-            @click="activeIndex = index"
           >
+            <!-- @click="activeIndex = index" -->
             <div
               class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content transition"
               :class="{ 'border-yellow transition': index == activeIndex }"
@@ -35,7 +35,7 @@
             </div>
             <div class="w-8 flex flex-col gap-[18px] cursor-default">
               <div
-                class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-75 transition"
+                class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-75 transition cursor-pointer"
               >
                 <Icon
                   @click="deleteContent(index)"
