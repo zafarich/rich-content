@@ -25,6 +25,7 @@ body {
 }
 
 .transition,
+.transition:focus,
 .transition:hover {
   transition: all 0.3s;
 }
