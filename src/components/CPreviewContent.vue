@@ -14,7 +14,6 @@
       tag="div"
       :list="content"
     >
-      <!-- TODO: use meta component by type of content -->
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
           <div
@@ -41,13 +40,33 @@
                   class="w-5 h-5 hover:opacity-75 transition"
                 />
               </div>
-              <div class="bg-white-100 rounded w-8 h-8 flex-center-center">
-                <Icon
-                  @click="deleteContent(index)"
-                  name="arrow_down"
-                  color="#001a34"
-                  class="w-5 h-5 hover:opacity-75 transition"
-                />
+              <div class="flex flex-col gap-1">
+                <transition-group name="fade">
+                  <div
+                    v-if="index"
+                    :key="index"
+                    class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-60 transition"
+                  >
+                    <Icon
+                      @click="upContent(index)"
+                      name="arrow_down"
+                      color="#001a34"
+                      class="w-5 h-5 rotate-[180deg]"
+                    />
+                  </div>
+                  <div
+                    v-if="content.length - 1 != index"
+                    :key="index"
+                    class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-60 transition"
+                  >
+                    <Icon
+                      @click="downContent(index)"
+                      name="arrow_down"
+                      color="#001a34"
+                      class="w-5 h-5"
+                    />
+                  </div>
+                </transition-group>
               </div>
             </div>
           </div>
@@ -55,11 +74,15 @@
       </template>
 
       <div v-else>
-        <div class="rounded-[12px] preview__drop p-6">
+        <div
+          class="rounded-[12px] preview__drop p-6 !select-none cursor-default"
+        >
           <div
-            class="border-2 select-none border-grey border-dashed rounded-[10px] h-[708px] flex-center-center"
+            class="border-2 border-grey border-dashed rounded-[10px] h-[708px] flex-center-center select-none"
           >
-            <p class="text-[20px] font-medium leading-[28px] text-black-grey">
+            <p
+              class="text-[20px] font-medium leading-[28px] text-black-grey select-none"
+            >
               Перетащите блок сюда
             </p>
           </div>
@@ -84,14 +107,15 @@ const ContentComponents = {
   billboard: CBillboard,
 };
 
+const { content, deleteContent, upContent, downContent } = useContent();
+
 const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
+  sort: !content.value.length,
 });
-
-const { content, deleteContent } = useContent();
 </script>
 
 <style scoped>
