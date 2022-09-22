@@ -30,7 +30,7 @@ Icon.args = {
   name: "arrow_back",
 };
 
-export const AllIcons = () => ({
+export const AllIcons = (): any => ({
   components: { Icons },
   setup() {
     return { icons: Object.keys(icons) };

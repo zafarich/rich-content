@@ -1,15 +1,19 @@
 <template>
-  <div class="container">
-    <!-- <DragTest /> -->
-    <div class="grid grid-cols-12 my-10 gap-5">
-      <div class="col-span-3">
-        <div class="bg-[#001a34] p-4">
-          <h2 class="font-semibold text-[25px] text-white">Блоки</h2>
-          <CBlockEdit v-if="step" />
-          <CBlockList v-else @back="step = 0" />
+  <div class="">
+    <CHeader />
+    <div class="container">
+      <div class="grid grid-cols-12 my-10 gap-5">
+        <div class="col-span-3">
+          <div
+            class="bg-[#001a34] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks"
+          >
+           
+            <CBlockEdit v-if="step" />
+            <CBlockList v-else @back="step = 0" />
+          </div>
         </div>
+        <CPreviewContent class="col-span-9" />
       </div>
-      <CPreviewContent class="col-span-9" />
     </div>
   </div>
 </template>
@@ -20,6 +24,7 @@ import { ref } from "vue";
 import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
+import CHeader from "@/components/Header/CHeader.vue";
 import Icon from "@/components/Icon/Icon.vue";
 
 const step = ref(0);
@@ -36,4 +41,9 @@ const step = ref(0);
 //
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.blocks {
+  box-shadow: 0px 4px 30px 1px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(0deg, #ffffff, #ffffff), #f7f7f7;
+}
+</style>
