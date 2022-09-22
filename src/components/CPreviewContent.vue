@@ -32,12 +32,14 @@
               />
             </div>
             <div class="w-8 flex flex-col gap-[18px] cursor-default">
-              <div class="bg-white-100 rounded w-8 h-8 flex-center-center">
+              <div
+                class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-75 transition"
+              >
                 <Icon
                   @click="deleteContent(index)"
                   name="trash_bin"
                   color="#001a34"
-                  class="w-5 h-5 hover:opacity-75 transition"
+                  class="w-5 h-5"
                 />
               </div>
               <div class="flex flex-col gap-1">
