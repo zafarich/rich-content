@@ -42,17 +42,5 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 0;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0px grey;
-  border-radius: 4px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #fbc100;
-  border-radius: 4px;
+  display: none;
 }

@@ -16,6 +16,9 @@ module.exports = {
           100: "#F5F7F9",
           200: "#EFF3F6",
         },
+        yellow: {
+          DEFAULT: "#FBC100",
+        },
       },
 
       borderRadius: {

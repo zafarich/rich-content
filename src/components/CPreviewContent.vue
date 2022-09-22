@@ -17,12 +17,14 @@
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
           <div
-            class="list-group-item flex gap-[10px] w-full"
             v-for="(item, index) in content"
             :key="index"
+            class="list-group-item flex gap-[10px] w-full"
+            @click="activeIndex = index"
           >
             <div
-              class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content"
+              class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content transition"
+              :class="{ 'border-yellow transition': index == activeIndex }"
             >
               <component
                 :is="ContentComponents[item.content.type]"
@@ -110,7 +112,7 @@ const ContentComponents = {
 };
 
 const { content, deleteContent, upContent, downContent } = useContent();
-
+let activeIndex = ref<null | number>(null);
 const dragOptions = ref({
   animation: 500,
   disabled: false,
@@ -118,6 +120,10 @@ const dragOptions = ref({
   group: "people",
   sort: !content.value.length,
 });
+
+function handleItem(index: number) {
+  console.log(index);
+}
 </script>
 
 <style scoped>
