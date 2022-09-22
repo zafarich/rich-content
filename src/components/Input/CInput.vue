@@ -32,7 +32,7 @@ interface Emits {
 }
 
 const props = defineProps<Props>();
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const editable = ref<boolean>(false);
 const textbox = ref<HTMLParagraphElement>();
