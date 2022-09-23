@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div
-      @click="$emit('back')"
+      @click="handleBack"
       class="flex-center gap-3 hover:opacity-80 transition cursor-pointer mb-8"
     >
       <Icon name="arrow_back" />
@@ -14,21 +14,27 @@
       {{ tab }}
       <CTab @change="tab = $event" />
     </div>
+    {{ activeIndex }}
   </div>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
+import useStore from "@/store/index";
 
-interface Emits {
-  (e: "back"): void;
-}
+const store = useStore();
+const { step, activeIndex } = storeToRefs(store);
 
-const $emit = defineEmits<Emits>();
 const tab = ref<"pc" | "phone">("");
+
+function handleBack() {
+  step.value = "drop";
+  activeIndex.value = null;
+}
 </script>
 
 <style scoped></style>

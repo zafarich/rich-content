@@ -8,7 +8,7 @@
         >
           <transition name="fade" mode="out-in">
             <CBlockList v-if="step == 'drop'" />
-            <CBlockEdit v-else-if="step == 'edit'" @back="handleBack" />
+            <CBlockEdit v-else-if="step == 'edit'" />
           </transition>
         </div>
         <CPreviewContent class="preview-content" />
@@ -31,10 +31,6 @@ import useStore from "@/store/index";
 const store = useStore();
 const { step, activeIndex } = storeToRefs(store);
 
-function handleBack() {
-  step.value = "drop";
-  activeIndex.value = null;
-}
 
 // TODO:
 // style edit left

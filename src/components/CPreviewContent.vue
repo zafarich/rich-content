@@ -14,6 +14,7 @@
       tag="div"
       :list="content"
       @change="handleDragChange"
+      @add="handleAdd"
     >
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
@@ -131,14 +132,16 @@ watch(activeIndex, (v) => {
   }
 });
 
+function handleAdd(e): void {
+  activeIndex.value = e.newIndex;
+}
+
 function handleDragChange(e): void {
   if (!e.moved) {
     return;
   }
   const { newIndex: n, oldIndex: o } = e.moved;
   let active = activeIndex.value;
-
-  console.log("news", n, "old:", o);
 
   if (active === o) {
     active = n;
