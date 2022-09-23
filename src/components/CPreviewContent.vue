@@ -13,6 +13,7 @@
       v-bind="dragOptions"
       tag="div"
       :list="content"
+      @change="handleDragChange"
     >
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
@@ -21,10 +22,10 @@
             :key="index"
             class="list-group-item flex gap-[10px] w-full"
           >
-            <!-- @click="activeIndex = index" -->
             <div
               class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content transition"
               :class="{ 'border-yellow transition': index == activeIndex }"
+              @click="activeIndex = index"
             >
               <component
                 :is="ContentComponents[item.content.type]"
@@ -109,8 +110,8 @@ const ContentComponents = {
   billboard: CBillboard,
 };
 
-const { content, deleteContent, upContent, downContent } = useContent();
-let activeIndex = ref<null | number>(null);
+const { content, deleteContent, upContent, downContent, activeIndex } =
+  useContent();
 const dragOptions = ref({
   animation: 500,
   disabled: false,
@@ -119,8 +120,20 @@ const dragOptions = ref({
   sort: !content.value.length,
 });
 
-function handleItem(index: number) {
-  console.log(index);
+function handleDragChange(e): void {
+  if (!e.moved) {
+    return;
+  }
+  const { newIndex: n, oldIndex: o } = e.moved;
+  let active = activeIndex.value;
+
+  console.log("news", n, "old:", o);
+
+  if (active === o) {
+    active = n;
+  }
+
+  activeIndex.value = active;
 }
 </script>
 
