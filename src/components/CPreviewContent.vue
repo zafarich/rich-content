@@ -122,7 +122,7 @@ const dragOptions = ref({
   disabled: false,
   ghostClass: "ghost",
   group: "people",
-  sort: !content.value.length,
+  sort: false,
 });
 
 watch(activeIndex, (v) => {

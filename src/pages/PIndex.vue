@@ -31,10 +31,7 @@ import useStore from "@/store/index";
 const store = useStore();
 const { step, activeIndex } = storeToRefs(store);
 
-console.log(step.value);
-console.log(step.value);
-
-async function handleBack() {
+function handleBack() {
   step.value = "drop";
   activeIndex.value = null;
 }

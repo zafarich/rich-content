@@ -1,9 +1,6 @@
 <template>
   <div>
-    <img
-      class="w-full h-[708px] object-cover select-none"
-      :src="content.block.img.src"
-    />
+    <img class="w-full h-[708px] object-cover" :src="content.block.img.src" />
   </div>
 </template>
 
