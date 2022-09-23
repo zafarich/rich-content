@@ -31,7 +31,6 @@ import useStore from "@/store/index";
 const store = useStore();
 const { step, activeIndex } = storeToRefs(store);
 
-
 // TODO:
 // style edit left
 //  show brand new json with default items, by type

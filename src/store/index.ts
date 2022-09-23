@@ -7,9 +7,7 @@ export const useStore = defineStore("main", {
     step: ref<"edit" | "drop">("drop"),
   }),
 
-  actions: {
-    
-  },
+  actions: {},
 });
 
 export default useStore;

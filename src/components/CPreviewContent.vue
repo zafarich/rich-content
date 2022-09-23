@@ -102,8 +102,8 @@ import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
-import CBillboard from "@/components/Content/CBillboard.vue";
-import CRoll from "@/components/Content/CRoll.vue";
+import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
+import CRoll from "@/components/Content/Roll/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import useContent from "@/composables/useContent";
 import useStore from "@/store/index";

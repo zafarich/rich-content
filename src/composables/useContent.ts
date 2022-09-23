@@ -17,7 +17,7 @@ export default function useContent(): object {
     content.value.splice(index, 1);
     if (activeIndex.value == index) {
       activeIndex.value = null;
-      step.value = 'drop'
+      step.value = "drop";
     }
   }
 
