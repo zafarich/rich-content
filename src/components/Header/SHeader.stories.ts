@@ -3,7 +3,7 @@ import { Story } from "@storybook/vue3";
 import CHeader from "./CHeader.vue";
 
 export default {
-  title: "layout/CHeader",
+  title: "layout",
   component: CHeader,
 };
 

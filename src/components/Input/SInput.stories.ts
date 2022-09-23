@@ -20,5 +20,5 @@ const Template: Story = (args) => ({
     `,
 });
 
-export const Roll = Template.bind({});
-Roll.args = {};
+export const Input = Template.bind({});
+Input.args = {};
