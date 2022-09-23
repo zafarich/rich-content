@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@storybook/addon-docs": "^6.5.9",
+    "pinia": "^2.0.22",
     "vue": "^3.2.16",
     "vue-draggable-next": "^2.1.1",
     "vue-router": "4",

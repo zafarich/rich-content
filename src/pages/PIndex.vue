@@ -8,7 +8,7 @@
         >
           <transition name="fade" mode="out-in">
             <CBlockList v-if="step == 'drop'" />
-            <CBlockEdit v-else-if="step == 'edit'" @back="step = 'drop'" />
+            <CBlockEdit v-else-if="step == 'edit'" @back="handleBack" />
           </transition>
         </div>
         <CPreviewContent class="preview-content" />
@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
 import CBlockEdit from "@/components/CBlockEdit.vue";
@@ -25,9 +26,18 @@ import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
 import Icon from "@/components/Icon/Icon.vue";
-import useActions from "@/composables/useActions";
+import useStore from "@/store/index";
 
-const { step } = useActions;
+const store = useStore();
+const { step, activeIndex } = storeToRefs(store);
+
+console.log(step.value);
+console.log(step.value);
+
+async function handleBack() {
+  step.value = "drop";
+  activeIndex.value = null;
+}
 
 // TODO:
 // style edit left

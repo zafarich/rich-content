@@ -97,27 +97,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import CBillboard from "@/components/Content/CBillboard.vue";
 import CRoll from "@/components/Content/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import useContent from "@/composables/useContent";
+import useStore from "@/store/index";
 
 const ContentComponents = {
   roll: CRoll,
   billboard: CBillboard,
 };
 
-const { content, deleteContent, upContent, downContent, activeIndex } =
-  useContent();
+const { content, deleteContent, upContent, downContent } = useContent();
+
+const store = useStore();
+const { step, activeIndex } = storeToRefs(store);
+
 const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
   sort: !content.value.length,
+});
+
+watch(activeIndex, (v) => {
+  if (v != null) {
+    step.value = "edit";
+  }
 });
 
 function handleDragChange(e): void {

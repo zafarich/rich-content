@@ -1,8 +1,13 @@
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
+import useStore from "@/store/index";
+
 export default function useContent(): object {
+  const store = useStore();
+
   const content = ref([]);
-  const activeIndex = ref(null);
+  const { activeIndex } = storeToRefs(store);
 
   function addContent(item: object): void {
     content.value.push(item);
@@ -37,6 +42,5 @@ export default function useContent(): object {
     deleteContent,
     upContent,
     downContent,
-    activeIndex,
   };
 }
