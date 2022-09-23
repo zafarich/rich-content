@@ -19,7 +19,7 @@ Change config at `.prettierrc`
 
 ```js
 yarn // installs packages
-yarn vite // starts the dev server
+yarn dev // starts the dev server
 yarn build // run build
 yarn serve // preview build
 yarn storybook // starts storybook
