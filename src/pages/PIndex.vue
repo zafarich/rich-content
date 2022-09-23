@@ -4,7 +4,7 @@
     <div class="container">
       <div class="my-10 flex gap-8 w-full">
         <div
-          class="bg-[#001a34] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks"
+          class="bg-[#001a34] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks sticky h-screen overflow-auto top-0"
         >
           <transition name="fade" mode="out-in">
             <CBlockList v-if="step == 'drop'" />

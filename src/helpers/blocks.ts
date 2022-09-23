@@ -18,6 +18,26 @@ const blocks: TTypes[] = [
     block_text: "Изображение с текстом",
     content: Scheme["billboard"],
   },
+  {
+    block_img: "/src/assets/images/blocks/block1.png",
+    block_text: "Изображение без отступов",
+    content: Scheme["roll"],
+  },
+  {
+    block_img: "/src/assets/images/blocks/block2.png",
+    block_text: "Изображение с текстом",
+    content: Scheme["billboard"],
+  },
+  {
+    block_img: "/src/assets/images/blocks/block1.png",
+    block_text: "Изображение без отступов",
+    content: Scheme["roll"],
+  },
+  {
+    block_img: "/src/assets/images/blocks/block2.png",
+    block_text: "Изображение с текстом",
+    content: Scheme["billboard"],
+  },
   // {
   //   image: "/src/assets/images/blocks/block3.png",
   //   desc: "Изображение и текст справа",
