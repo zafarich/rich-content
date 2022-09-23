@@ -7,7 +7,7 @@ export default function useContent(): object {
   const store = useStore();
 
   const content = ref([]);
-  const { activeIndex } = storeToRefs(store);
+  const { activeIndex, step } = storeToRefs(store);
 
   function addContent(item: object): void {
     content.value.push(item);
@@ -17,6 +17,7 @@ export default function useContent(): object {
     content.value.splice(index, 1);
     if (activeIndex.value == index) {
       activeIndex.value = null;
+      step.value = 'drop'
     }
   }
 
