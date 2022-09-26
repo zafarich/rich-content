@@ -5,6 +5,7 @@ export interface TemplateTypes {
 export type WidgetType = "raShowcase" | "raVideo";
 export type ContentType = "roll" | "billboard";
 export type ImgPosition = "w-full" | "w-3/4" | "w-2/4" | "w-1/4";
+export type TextColors = "#F7F7F7" | "#333333" | "#BABAC0" | "#767676";
 
 export interface Content {
   widgetName: WidgetType;
@@ -33,7 +34,7 @@ export interface Img {
 export interface Text {
   size: string;
   align: string;
-  color: string;
+  color: TextColors;
   content: string[];
 }
 

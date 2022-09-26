@@ -16,5 +16,4 @@ const Template: Story = (args) => ({
 });
 
 export const ImageView = Template.bind({});
-ImageView.args = {
-};
+ImageView.args = {};

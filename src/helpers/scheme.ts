@@ -8,8 +8,7 @@ const roll: Content = {
       imgLink: "",
       img: {
         src: "/src/assets/images/default/1416x708.png",
-        srcMobile:
-          "/src/assets/images/default/640x640.png",
+        srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,
         height: 708,
@@ -29,8 +28,7 @@ const billboard: Content = {
       imgLink: "",
       img: {
         src: "/src/assets/images/default/1416x708.png",
-        srcMobile:
-          "/src/assets/images/default/640x640.png",
+        srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,
         height: 708,
