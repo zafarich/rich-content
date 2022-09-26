@@ -12,7 +12,7 @@
       >
         <div
           :class="{
-            'border-yellow transition': activePosition == item.position,
+            '!border-yellow transition': activePosition == item.position,
           }"
           class="flex-center-center rounded border-[1px] border-solid border-grey w-14 h-14 transition"
         >
