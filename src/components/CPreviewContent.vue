@@ -20,6 +20,7 @@
       v-bind="dragOptions"
       tag="div"
       :list="content"
+      @add="handleAdd"
     >
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
@@ -135,6 +136,10 @@ watch(activeIndex, (v) => {
     step.value = "edit";
   }
 });
+
+function handleAdd(e): void {
+  activeIndex.value = e.newIndex;
+}
 </script>
 
 <style scoped>
