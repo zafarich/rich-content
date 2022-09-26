@@ -121,8 +121,8 @@ const ContentComponents = {
 };
 
 const store = useStore();
-const { step, activeIndex, content, deleteContent, upContent, downContent } =
-  storeToRefs(store);
+const { deleteContent, upContent, downContent } = store;
+const { step, activeIndex, content } = storeToRefs(store);
 
 const dragOptions = ref({
   animation: 500,
