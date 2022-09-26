@@ -3,7 +3,7 @@ import { Story } from "@storybook/vue3";
 import CTab from "./CTab.vue";
 
 export default {
-  title: "Common/Tab",
+  title: "UI/Tab",
   component: CTab,
 };
 
