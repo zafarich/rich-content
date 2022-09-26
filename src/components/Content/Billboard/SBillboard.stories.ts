@@ -18,10 +18,12 @@ const Template: Story = (args) => ({
 export const Billboard = Template.bind({});
 Billboard.args = {
   content: {
-    block: {
-      img: {
-        src: "/src/assets/images/blocks/block2.png",
+    block: [
+      {
+        img: {
+          src: "/src/assets/images/blocks/block2.png",
+        },
       },
-    },
+    ],
   },
 };

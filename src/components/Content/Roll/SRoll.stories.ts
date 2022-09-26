@@ -18,10 +18,12 @@ const Template: Story = (args) => ({
 export const Roll = Template.bind({});
 Roll.args = {
   content: {
-    block: {
-      img: {
-        src: "/src/assets/images/blocks/block1.png",
+    block: [
+      {
+        img: {
+          src: "/src/assets/images/blocks/block1.png",
+        },
       },
-    },
+    ],
   },
 };
