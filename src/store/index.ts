@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 export const useStore = defineStore("main", {
   state: () => ({
-    activeIndex: ref<null | numbwe>(null),
+    activeIndex: ref<null | number>(null),
     step: ref<"edit" | "drop">("drop"),
     content: ref([]),
   }),
