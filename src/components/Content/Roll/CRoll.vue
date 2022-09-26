@@ -1,6 +1,11 @@
 <template>
   <div>
-    <img class="w-full h-[708px] object-cover" :src="content.block.img.src" />
+    <img
+      v-for="(item, index) in content.block"
+      :key="index"
+      class="w-full h-[708px] object-cover"
+      :src="item.img.src"
+    />
   </div>
 </template>
 
