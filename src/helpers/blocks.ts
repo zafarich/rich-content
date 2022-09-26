@@ -12,7 +12,6 @@ const blocks: TTypes[] = [
   {
     block_img: "/src/assets/images/blocks/block1.png",
     block_text: "Изображение без отступов",
-    edit: [],
     content: Scheme["roll"],
   },
   {

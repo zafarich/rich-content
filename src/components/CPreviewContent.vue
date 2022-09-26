@@ -8,6 +8,13 @@
       редактируйте текст и содержание каждой секции, а также загружайте свои
       фото.
     </p>
+    <div class="flex flex-center-between">
+      <CButton
+        text="Предпросмотр"
+        class="px-4 !bg-white border-2 border-yellow"
+      />
+      <CButton text="Сохранить" class="px-4" />
+    </div>
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
       v-bind="dragOptions"
@@ -105,6 +112,7 @@ import { VueDraggableNext } from "vue-draggable-next";
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
+import CButton from "@/components/UI/Button/Cbutton.vue";
 import useContent from "@/composables/useContent";
 import useStore from "@/store/index";
 
