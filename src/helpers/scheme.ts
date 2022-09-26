@@ -7,15 +7,15 @@ const roll: Content = {
     {
       imgLink: "",
       img: {
-        src: "https://cdn1.ozone.ru/s3/rich-content/placeholder/1416x708.png",
+        src: "/src/assets/images/default/1416x708.png",
         srcMobile:
-          "https://cdn1.ozone.ru/s3/rich-content/placeholder/640x640.png",
+          "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,
         height: 708,
         widthMobile: 640,
         heightMobile: 640,
-        position: "width_full",
+        position: "w-full",
       },
     },
   ],
@@ -28,9 +28,9 @@ const billboard: Content = {
     {
       imgLink: "",
       img: {
-        src: "https://cdn1.ozone.ru/s3/rich-content/placeholder/1416x708.png",
+        src: "/src/assets/images/default/1416x708.png",
         srcMobile:
-          "https://cdn1.ozone.ru/s3/rich-content/placeholder/640x640.png",
+          "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,
         height: 708,

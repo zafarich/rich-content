@@ -4,11 +4,7 @@ export interface TemplateTypes {
 
 export type WidgetType = "raShowcase" | "raVideo";
 export type ContentType = "roll" | "billboard";
-export type ImgPosition =
-  | "width_full"
-  | "width_one_fourth"
-  | "width_one_third"
-  | "width_half";
+export type ImgPosition = "w-full" | "w-3/4" | "w-2/4" | "w-1/4";
 
 export interface Content {
   widgetName: WidgetType;
@@ -31,7 +27,7 @@ export interface Img {
   height: number;
   widthMobile: number;
   heightMobile: number;
-  position?: string;
+  position?: ImgPosition;
 }
 
 export interface Text {
