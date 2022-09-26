@@ -38,13 +38,13 @@ const billboard: Content = {
       title: {
         content: ["Заголовок"],
         size: "size4",
-        align: "left",
-        color: "color1",
+        align: "text-left",
+        color: "#F7F7F7",
       },
       text: {
         size: "size2",
-        align: "left",
-        color: "color1",
+        align: "text-left",
+        color: "#F7F7F7",
         content: [
           "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.",
         ],
