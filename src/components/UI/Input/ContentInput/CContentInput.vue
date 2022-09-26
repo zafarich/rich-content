@@ -37,7 +37,9 @@ const $emit = defineEmits<Emits>();
 
 const editable = ref<boolean>(false);
 const textbox = ref<HTMLParagraphElement>();
-const inputText = ref<string>(props.placeholder);
+const inputText = ref<string>(
+  props.modelValue ? props.modelValue : props.placeholder
+);
 
 function makeEditable(): void {
   editable.value = true;

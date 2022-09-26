@@ -10,12 +10,13 @@
         placeholder="Заголовок"
         class="mb-2 font-medium text-[20px] leading-[28px] cursor-text"
         @updateText="updateText($event, 'title', index)"
+        :model-value="item.title.value"
       />
 
       <CContentInput
         placeholder="Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке."
-        v-model="desc"
         class="font-normal text-[14px] leading-[24px] cursor-text"
+        :model-value="item.text.value"
         @updateText="updateText($event, 'text', index)"
       />
     </div>
