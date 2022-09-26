@@ -36,18 +36,16 @@ const billboard: Content = {
         heightMobile: 640,
       },
       title: {
-        content: ["Заголовок"],
+        value: "",
         size: "size4",
         align: "text-left",
         color: "#F7F7F7",
       },
       text: {
+        value: "",
         size: "size2",
         align: "text-left",
         color: "#F7F7F7",
-        content: [
-          "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.",
-        ],
       },
     },
   ],

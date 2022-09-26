@@ -14,7 +14,9 @@
       {{ tab }}
       <CTab @change="tab = $event" />
     </div>
-    {{ activeIndex }}
+    <pre>
+        {{ content[activeIndex] }}
+    </pre>
   </div>
 </template>
 
@@ -27,7 +29,7 @@ import CTab from "@/components/Tab/CTab.vue";
 import useStore from "@/store/index";
 
 const store = useStore();
-const { step, activeIndex } = storeToRefs(store);
+const { step, activeIndex, content } = storeToRefs(store);
 
 const tab = ref<"pc" | "phone">("");
 

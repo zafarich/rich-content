@@ -11,9 +11,9 @@
     <div class="flex flex-center-between">
       <CButton
         text="Предпросмотр"
-        class="px-4 !bg-white border-2 border-yellow"
+        class="px-4 !bg-white border-2 border-yellow rounded"
       />
-      <CButton text="Сохранить" class="px-4" />
+      <CButton text="Сохранить" class="px-4 rounded" />
     </div>
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
@@ -121,8 +121,8 @@ const ContentComponents = {
 };
 
 const store = useStore();
-const { deleteContent, upContent, downContent } = store;
 const { step, activeIndex, content } = storeToRefs(store);
+const { deleteContent, upContent, downContent } = store;
 
 const dragOptions = ref({
   animation: 500,

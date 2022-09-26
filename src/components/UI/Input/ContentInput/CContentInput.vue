@@ -9,7 +9,7 @@
       class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none break-words"
       ref="textbox"
       :contenteditable="editable"
-      @input="$emit('update:modelValue', $event.target.innerText)"
+      @input="handleInput($event)"
       :value="props.modelValue"
       v-text="inputText"
       @blur="makeNormal"
@@ -29,6 +29,7 @@ export interface Props {
 
 interface Emits {
   (e: "update:modelValue", modelValue: string): void;
+  (e: "updateText", v: string): void;
 }
 
 const props = defineProps<Props>();
@@ -49,9 +50,15 @@ function makeEditable(): void {
 
 function makeNormal(): void {
   editable.value = false;
+
   inputText.value =
     props.modelValue == ""
       ? preventXXS(props.placeholder)
       : preventXXS(props.modelValue);
+}
+
+function handleInput(event) {
+  $emit("update:modelValue", event.target.innerText);
+  $emit("updateText", event.target.innerText);
 }
 </script>
