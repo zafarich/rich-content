@@ -1,4 +1,4 @@
-import SchemeType, { Content } from "@/helpers/scheme_types";
+import { Content } from "@/helpers/scheme_types";
 
 const roll: Content = {
   widgetName: "raShowcase",
