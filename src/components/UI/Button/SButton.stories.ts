@@ -17,5 +17,5 @@ const Template: Story = (args) => ({
 
 export const Button = Template.bind({});
 Button.args = {
-  text: 'Hello',
+  text: "Hello",
 };

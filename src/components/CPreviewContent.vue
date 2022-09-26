@@ -113,7 +113,6 @@ import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
-import useContent from "@/composables/useContent";
 import useStore from "@/store/index";
 
 const ContentComponents = {
@@ -121,10 +120,9 @@ const ContentComponents = {
   billboard: CBillboard,
 };
 
-const { content, deleteContent, upContent, downContent } = useContent();
-
 const store = useStore();
-const { step, activeIndex } = storeToRefs(store);
+const { step, activeIndex, content, deleteContent, upContent, downContent } =
+  storeToRefs(store);
 
 const dragOptions = ref({
   animation: 500,
