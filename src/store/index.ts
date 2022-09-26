@@ -30,6 +30,9 @@ export const useStore = defineStore("main", {
         this.activeIndex++;
       }
     },
+    updateText(value: string, type: "title" | "text", index: number) {
+      this.content[this.activeIndex].content.block[index][type].value = value;
+    },
   },
 });
 
