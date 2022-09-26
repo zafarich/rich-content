@@ -20,8 +20,6 @@
       v-bind="dragOptions"
       tag="div"
       :list="content"
-      @change="handleDragChange"
-      @add="handleAdd"
     >
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
@@ -32,7 +30,7 @@
           >
             <div
               class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content transition"
-              :class="{ 'border-yellow transition': index == activeIndex }"
+              :class="{ '!border-yellow transition': index == activeIndex }"
               @click="activeIndex = index"
             >
               <component
@@ -137,24 +135,6 @@ watch(activeIndex, (v) => {
     step.value = "edit";
   }
 });
-
-function handleAdd(e): void {
-  activeIndex.value = e.newIndex;
-}
-
-function handleDragChange(e): void {
-  if (!e.moved) {
-    return;
-  }
-  const { newIndex: n, oldIndex: o } = e.moved;
-  let active = activeIndex.value;
-
-  if (active === o) {
-    active = n;
-  }
-
-  activeIndex.value = active;
-}
 </script>
 
 <style scoped>
