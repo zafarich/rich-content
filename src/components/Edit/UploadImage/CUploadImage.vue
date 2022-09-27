@@ -42,16 +42,13 @@ const handleFile = (event: any) => {
 
   image.file = event.target.files[0];
   imageName.value = image.file.name;
-  console.log(image.file, "file name check");
   const reader = new FileReader();
   if (event.target.files[0]) {
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (e) => {
       image.url = e.target?.result;
-      console.log(image.url, "urlllllll");
     };
     send();
-    // console.log(image.value)
   }
 };
 const getFile = () => {
@@ -61,13 +58,12 @@ const getFile = () => {
 const removeImage = () => {
   image.file = null;
   image.url = null;
-  console.log(image, "remove");
   send();
 };
 const send = () => {
   emit("upload", image);
-  // console.log(image.value, 'emit image')
 };
+
 onMounted(() => {
   if (props.item) {
     image.url = props.item;
