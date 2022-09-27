@@ -11,19 +11,37 @@
     </div>
     <div class="">
       <h6 class="font-bold text-[20px] leading-[28px] mb-5">Изображения</h6>
-      {{ tab }}
       <CTab @change="tab = $event" />
     </div>
-    <pre>
+    <pre v-if="false">
         {{ content[activeIndex] }}
     </pre>
+    <div class="mt-8">
+      <div class="flex-center-between mb-8">
+        <div class="flex-center gap-[10px]">
+          <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
+            Карточка #1
+          </h6>
+          <Icon name="arrow_down" />
+        </div>
+        <Icon name="trash_bin" color="#BABAC0" />
+      </div>
+
+      <div class="flex flex-col gap-6">
+        <CUploadImage />
+        <CImageView />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { CollapseTransition } from "@ivanv/vue-collapse-transition";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
+import CImageView from "@/components/Edit/ImageView/CImageView.vue";
+import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import useStore from "@/store/index";

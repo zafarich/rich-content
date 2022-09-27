@@ -1,18 +1,21 @@
 <template>
-  <div class="h-[44px] rounded relative border-2 border-yellow">
-    <input
-      id="file"
-      type="file"
-      name="file"
-      class="w-0 h-0 absolute"
-      @change="handleFile"
-    />
-    <div
-      class="w-full h-full flex-center-center gap-2 cursor-pointer"
-      @click="getFile"
-    >
-      <Icon name="add_photo" />
-      <p class="font-medium text-[14px] leading-[20px]">Добавить фото</p>
+  <div class="">
+    <h6 class="mb-2 font-medium text-[14px] leading-[20px]">Изображение</h6>
+    <div class="h-[44px] rounded relative border-2 border-yellow">
+      <input
+        id="file"
+        type="file"
+        name="file"
+        class="w-0 h-0 absolute"
+        @change="handleFile"
+      />
+      <div
+        class="w-full h-full flex-center-center gap-2 cursor-pointer"
+        @click="getFile"
+      >
+        <Icon name="add_photo" />
+        <p class="font-medium text-[14px] leading-[20px]">Добавить фото</p>
+      </div>
     </div>
   </div>
 </template>
