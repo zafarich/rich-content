@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import {ref} from 'vue'
+import { ref } from "vue";
 
 import CUploadImage from "./CUploadImage.vue";
 
@@ -11,9 +11,9 @@ export default {
 const Template: Story = (args) => ({
   components: { CUploadImage },
   setup() {
-    const image = ref('')
+    const image = ref("");
     function handleUpload(e) {
-      image.value = e.url
+      image.value = e.url;
     }
     return { args, handleUpload, image };
   },
