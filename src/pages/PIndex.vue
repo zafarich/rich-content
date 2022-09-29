@@ -30,6 +30,13 @@ import useStore from "@/store/index";
 
 const store = useStore();
 const { step, activeIndex } = storeToRefs(store);
+
+// TODO:
+// 1. fix text update reactive
+// 2. select
+// 3. show if block has fields
+// 4. update edits
+// 5. all styles in tailwind classess
 </script>
 
 <style scoped>
