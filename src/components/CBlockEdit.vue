@@ -17,17 +17,29 @@
         {{ content[activeIndex] }}
     </pre>
     <div class="mt-8">
-      <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-10" v-if="isContentValid">
         <!-- V_FOR -->
-        <div class="">
+        <div
+          class=""
+          v-for="(item, index) in content[activeIndex].content.block"
+          :key="index"
+        >
           <div class="flex-center-between mb-8">
             <div class="flex-center gap-[10px]">
               <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
-                Карточка #1
+                Карточка # {{ index + 1 }}
               </h6>
               <Icon name="arrow_down" />
             </div>
-            <Icon name="trash_bin" color="#BABAC0" />
+            <transition name="fade">
+              <Icon
+                v-if="content[activeIndex]?.content?.block?.length != 1"
+                @click="deleteBlock(index)"
+                class="cursor-pointer hover:opacity-70 transition"
+                name="trash_bin"
+                color="#BABAC0"
+              />
+            </transition>
           </div>
 
           <div class="flex flex-col gap-6">
@@ -48,7 +60,10 @@
           </div>
         </div>
 
-        <CButton class="bg-[#FBC1004D] !px-4 flex-center gap-2">
+        <CButton
+          @click="addBlock"
+          class="!bg-[#FBC1004D] !px-4 flex-center gap-2"
+        >
           <Icon name="add" />
           <span
             class="text-black-grey delay-100 font-medium tracking-[0.5px] !leading-sm text-[14px] select-none"
@@ -65,7 +80,7 @@
 <script setup lang="ts">
 import { CollapseTransition } from "@ivanv/vue-collapse-transition";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import CChooseColor from "@/components/Edit/ChooseColor/CChooseColor.vue";
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
@@ -75,6 +90,7 @@ import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
+import Scheme from "@/helpers/scheme";
 import useStore from "@/store/index";
 
 const store = useStore();
@@ -82,9 +98,39 @@ const { step, activeIndex, content } = storeToRefs(store);
 
 const tab = ref<"pc" | "phone">("");
 
+const isContentValid = computed(() => {
+  if (activeIndex.value == null) {
+    return false;
+  }
+
+  if (!content.value[activeIndex.value].content.block.length) {
+    return false;
+  }
+
+  return true;
+});
+
 function handleBack() {
   step.value = "drop";
   activeIndex.value = null;
+}
+
+function addBlock(): void {
+  let current = content.value[activeIndex.value].content;
+  let add = Scheme[current.type].block[0];
+  current.block.push(add);
+}
+
+function deleteBlock(index: number): void {
+  const length = content.value[activeIndex.value].content.block.length;
+  if (length > 1) {
+    content.value[activeIndex.value].content.block.splice(index, 1);
+  }
+  if (!length) {
+    content.value.splice(activeIndex.value, 1);
+    activeIndex.value = null;
+    step.value = "drop";
+  }
 }
 </script>
 
