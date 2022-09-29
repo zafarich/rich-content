@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col gap-6">
+  <div
+    v-if="objectHas(item, 'title') || objectHas(item, 'text')"
+    class="flex flex-col gap-6"
+  >
     <div v-for="(el, idx) in elements" :key="idx" class="">
       <div v-if="objectHas(item, el.type)" class="flex flex-col gap-4">
         <h4 class="font-medium text-[18px] leading-[20px] mb-2">
