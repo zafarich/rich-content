@@ -52,27 +52,13 @@
               }"
             />
             <CInput
-              v-if="objectHas(item, 'img')"
+              v-if="objectHas(item, 'alt')"
               v-bind="{
                 label: 'Текстовое описание изображения(Alt)',
               }"
             />
 
-            <div v-if="objectHas(item, 'title')" class="flex flex-col gap-3">
-              <h4 class="font-medium text-[18px] leading-[20px] mb-2">
-                Заголовок
-              </h4>
-              <CChooseColor />
-              <CTextAlignment />
-            </div>
-
-            <div v-if="objectHas(item, 'text')" class="flex flex-col gap-5">
-              <h4 class="font-medium text-[18px] leading-[20px] mb-2">
-                Основной текст
-              </h4>
-              <CChooseColor />
-              <CTextAlignment />
-            </div>
+            <CTextDetails v-bind="{ item }" />
           </div>
         </div>
 
@@ -101,6 +87,7 @@ import { computed, ref } from "vue";
 import CChooseColor from "@/components/Edit/ChooseColor/CChooseColor.vue";
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CTextAlignment from "@/components/Edit/TextAlignment/CTextAlignment.vue";
+import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
