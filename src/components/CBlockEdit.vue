@@ -99,10 +99,6 @@ const { step, activeIndex, content } = storeToRefs(store);
 const tab = ref<"pc" | "phone">("");
 
 const isContentValid = computed(() => {
-  if (activeIndex.value == null) {
-    return false;
-  }
-
   if (!content.value[activeIndex.value].content.block.length) {
     return false;
   }
