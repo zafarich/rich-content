@@ -50,12 +50,25 @@ import { storeToRefs } from "pinia";
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
+import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
 import useStore from "@/store/index";
 
 const store = useStore();
 const { step, activeIndex, content } = storeToRefs(store);
+
+function deleteBlock(index: number): void {
+  const length = content.value[activeIndex.value].content.block.length;
+  if (length > 1) {
+    content.value[activeIndex.value].content.block.splice(index, 1);
+  }
+  if (!length) {
+    content.value.splice(activeIndex.value, 1);
+    activeIndex.value = null;
+    step.value = "drop";
+  }
+}
 </script>
 
 <style scoped></style>

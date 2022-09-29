@@ -14,7 +14,7 @@
       <CTab @change="tab = $event" />
     </div>
     <div class="mt-8">
-      <div class="flex flex-col gap-10" v-if="isContentValid">
+      <div class="flex flex-col gap-10">
         <RenderElements />
         <CButton
           @click="addBlock"
@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 import RenderElements from "@/components/Edit/RenderElements.vue";
 import Icon from "@/components/Icon/Icon.vue";
@@ -49,14 +49,6 @@ const { step, activeIndex, content } = storeToRefs(store);
 
 const tab = ref<"pc" | "phone">("");
 
-const isContentValid = computed(() => {
-  if (!content?.value[activeIndex.value]?.content?.block?.length) {
-    return false;
-  }
-
-  return true;
-});
-
 function handleBack() {
   step.value = "drop";
   activeIndex.value = null;
@@ -66,18 +58,6 @@ function addBlock(): void {
   let current = content.value[activeIndex.value].content;
   let add = Scheme[current.type].block[0];
   current.block.push(add);
-}
-
-function deleteBlock(index: number): void {
-  const length = content.value[activeIndex.value].content.block.length;
-  if (length > 1) {
-    content.value[activeIndex.value].content.block.splice(index, 1);
-  }
-  if (!length) {
-    content.value.splice(activeIndex.value, 1);
-    activeIndex.value = null;
-    step.value = "drop";
-  }
 }
 </script>
 
