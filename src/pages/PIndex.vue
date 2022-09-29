@@ -30,16 +30,6 @@ import useStore from "@/store/index";
 
 const store = useStore();
 const { step, activeIndex } = storeToRefs(store);
-
-// TODO:
-// style edit left
-//  show brand new json with default items, by type
-// 5. json each template
-// 6. styles in tailwind
-// 7. Gloal type
-// 8. Attach json to each blocks
-// 9. composable drag and drop
-// 10. storybook
 </script>
 
 <style scoped>

@@ -19,7 +19,7 @@
       class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
       v-bind="dragOptions"
       tag="div"
-      :list="content"
+      v-model="handleContent"
       @add="handleAdd"
     >
       <template v-if="content?.length">
@@ -105,7 +105,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
@@ -131,10 +131,20 @@ const dragOptions = ref({
   sort: false,
 });
 
-watch(activeIndex, (v) => {
+watch(activeIndex, (v): void => {
   if (v != null) {
     step.value = "edit";
   }
+});
+
+const handleContent = computed({
+  get() {
+    return content.value;
+  },
+  set(v) {
+    content.value.length = 0;
+    content.value = JSON.parse(JSON.stringify(v));
+  },
 });
 
 function handleAdd(e): void {
