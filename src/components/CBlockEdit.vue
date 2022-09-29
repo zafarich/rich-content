@@ -84,9 +84,7 @@ import { CollapseTransition } from "@ivanv/vue-collapse-transition";
 import { storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 
-import CChooseColor from "@/components/Edit/ChooseColor/CChooseColor.vue";
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
-import CTextAlignment from "@/components/Edit/TextAlignment/CTextAlignment.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import Icon from "@/components/Icon/Icon.vue";
