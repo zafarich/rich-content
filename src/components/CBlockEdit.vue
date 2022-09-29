@@ -43,20 +43,36 @@
           </div>
 
           <div class="flex flex-col gap-6">
-            <CUploadImage />
-            <CImageView />
+            <CUploadImage v-if="objectHas(item, 'img')" />
+            <CImageView v-if="objectHas(item, 'img')" />
             <CInput
+              v-if="objectHas(item, 'imgLink')"
               v-bind="{
                 label: 'Ссылка по клику на изображение',
               }"
             />
             <CInput
+              v-if="objectHas(item, 'img')"
               v-bind="{
                 label: 'Текстовое описание изображения(Alt)',
               }"
             />
-            <CChooseColor />
-            <CTextAlignment />
+
+            <div v-if="objectHas(item, 'title')" class="flex flex-col gap-3">
+              <h4 class="font-medium text-[18px] leading-[20px] mb-2">
+                Заголовок
+              </h4>
+              <CChooseColor />
+              <CTextAlignment />
+            </div>
+
+            <div v-if="objectHas(item, 'text')" class="flex flex-col gap-5">
+              <h4 class="font-medium text-[18px] leading-[20px] mb-2">
+                Основной текст
+              </h4>
+              <CChooseColor />
+              <CTextAlignment />
+            </div>
           </div>
         </div>
 
@@ -90,6 +106,7 @@ import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
+import { objectHas } from "@/helpers/global";
 import Scheme from "@/helpers/scheme";
 import useStore from "@/store/index";
 
