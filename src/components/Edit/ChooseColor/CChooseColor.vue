@@ -26,7 +26,7 @@ interface Emits {
 }
 
 const $emit = defineEmits<Emits>();
-const colors = ["#F7F7F7", "#333333", "#BABAC0", "#767676"];
+const colors = ["#333333", "#F7F7F7", "#BABAC0", "#767676"];
 const activeColor = ref<TextColors>("#F7F7F7");
 
 function handleColor(color: TextColors): void {
