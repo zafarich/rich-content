@@ -44,13 +44,9 @@
             <div class="w-8 flex flex-col gap-[18px] cursor-default">
               <div
                 class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-75 transition cursor-pointer"
+                @click="deleteContent(index)"
               >
-                <Icon
-                  @click="deleteContent(index)"
-                  name="trash_bin"
-                  color="#001a34"
-                  class="w-5 h-5"
-                />
+                <Icon name="trash_bin" color="#001a34" class="w-5 h-5" />
               </div>
               <div class="flex flex-col gap-1">
                 <transition-group name="fade">
@@ -58,9 +54,9 @@
                     v-if="index"
                     :key="index"
                     class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-60 transition"
+                    @click="upContent(index)"
                   >
                     <Icon
-                      @click="upContent(index)"
                       name="arrow_down"
                       color="#001a34"
                       class="w-5 h-5 rotate-[180deg]"
@@ -70,13 +66,9 @@
                     v-if="content.length - 1 != index"
                     :key="index"
                     class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-60 transition"
+                    @click="downContent(index)"
                   >
-                    <Icon
-                      @click="downContent(index)"
-                      name="arrow_down"
-                      color="#001a34"
-                      class="w-5 h-5"
-                    />
+                    <Icon name="arrow_down" color="#001a34" class="w-5 h-5" />
                   </div>
                 </transition-group>
               </div>
