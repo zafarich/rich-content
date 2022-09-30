@@ -1,3 +1,5 @@
+import "vue-select/dist/vue-select.css";
+
 import { createPinia } from "pinia";
 import { App } from "vue";
 import draggable from "vuedraggable";

@@ -47,3 +47,16 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.vs__dropdown-toggle {
+  border: 2px solid #fbc100 !important;
+  height: 44px;
+  border-radius: 8px !important;
+}
+
+.vs__dropdown-option:hover,
+.vs__dropdown-option:focus {
+  background-color: #e9ebef !important;
+  color: black;
+  font-size: 14px;
+}

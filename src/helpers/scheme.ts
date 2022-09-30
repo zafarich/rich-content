@@ -38,13 +38,13 @@ const billboard: Content = {
       },
       title: {
         value: "",
-        size: "size4",
+        size: "text-lg",
         align: "text-left",
         color: "#F7F7F7",
       },
       text: {
         value: "",
-        size: "size2",
+        size: "text-sm",
         align: "text-left",
         color: "#F7F7F7",
       },
