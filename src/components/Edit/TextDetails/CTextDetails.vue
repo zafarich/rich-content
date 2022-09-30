@@ -8,7 +8,7 @@
         <h4 class="font-medium text-[18px] leading-[20px] mb-2">
           {{ el.label }}
         </h4>
-        {{ selected }}
+        {{ elements[idx].size }}
         <v-select
           class="mb-2"
           :searchable="false"
@@ -45,8 +45,7 @@ export interface Props {
 
 withDefaults(defineProps<Props>(), {});
 
-const selected = ref("");
-const elements = [
+const elements = ref([
   {
     type: "title",
     label: "Заголовок",
@@ -57,7 +56,7 @@ const elements = [
     label: "Основной текст",
     size: "text-sm",
   },
-];
+]);
 
 const sizeClasses = [
   "text-xs",

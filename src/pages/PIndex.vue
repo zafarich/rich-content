@@ -33,6 +33,7 @@ const { step, activeIndex } = storeToRefs(store);
 
 // TODO:
 // 1. fix text update reactive
+// 2. text size
 // 4. update edits
 </script>
 
