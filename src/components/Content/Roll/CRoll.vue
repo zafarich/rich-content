@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="flex-center-center">
     <img
       v-for="(item, index) in content.block"
       :key="index"
       class="w-full h-[708px] object-cover"
       :src="item.img.src"
+      :class="item.img.position"
     />
   </div>
 </template>

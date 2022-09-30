@@ -1,10 +1,13 @@
 <template>
   <div class="flex flex-col gap-12">
     <div v-for="(item, index) in content.block" :key="index">
-      <img
-        class="w-full h-[708px] object-cover select-none mb-4"
-        :src="item.img.src"
-      />
+      <div class="flex-center-center">
+        <img
+          class="w-full h-[708px] object-cover select-none mb-4"
+          :src="item.img.src"
+          :class="item.img.position"
+        />
+      </div>
 
       <CContentInput
         placeholder="Заголовок"

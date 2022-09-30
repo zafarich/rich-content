@@ -16,13 +16,10 @@
       :list="blocks"
       :group="{ name: 'people', pull: 'clone', put: false }"
       :sort="false"
+      :clone="clone"
     >
       <div v-for="(item, index) in blocks" :key="index" class="selectDisable">
-        <img
-          draggable="true"
-          :src="item.block_img"
-          class="!max-w-full !w-full select-none"
-        />
+        <img :src="item.block_img" class="!max-w-full !w-full select-none" />
         <p class="mt-[10px] text-[14px] leading-[20px] font-medium">
           {{ item.block_text }}
         </p>
@@ -36,6 +33,10 @@ import { VueDraggableNext } from "vue-draggable-next";
 
 import Icon from "@/components/Icon/Icon.vue";
 import blocks from "@/helpers/blocks";
+
+function clone(e) {
+  return JSON.parse(JSON.stringify(e));
+}
 </script>
 
 <style scoped>

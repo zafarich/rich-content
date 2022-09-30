@@ -14,7 +14,7 @@ const roll: Content = {
         height: 708,
         widthMobile: 640,
         heightMobile: 640,
-        position: "w-full",
+        position: "w-full h-full",
       },
     },
   ],
@@ -34,7 +34,7 @@ const billboard: Content = {
         height: 708,
         widthMobile: 640,
         heightMobile: 640,
-        position: "w-full",
+        position: "w-full w-full",
       },
       title: {
         value: "",

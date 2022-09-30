@@ -18,8 +18,7 @@
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
       v-bind="dragOptions"
-      tag="div"
-      v-model="handleContent"
+      v-model="content"
       @add="handleAdd"
     >
       <template v-if="content?.length">
@@ -97,7 +96,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { computed, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
@@ -113,13 +112,14 @@ const ContentComponents = {
 
 const store = useStore();
 const { step, activeIndex, content } = storeToRefs(store);
-const { deleteContent, upContent, downContent, updateText } = store;
+const { deleteContent, upContent, downContent } = store;
 
 const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
   group: "people",
+  pull: "clone",
   sort: false,
 });
 
@@ -127,16 +127,6 @@ watch(activeIndex, (v): void => {
   if (v != null) {
     step.value = "edit";
   }
-});
-
-const handleContent = computed({
-  get() {
-    return content.value;
-  },
-  set(v) {
-    content.value.length = 0;
-    content.value = JSON.parse(JSON.stringify(v));
-  },
 });
 
 function handleAdd(e): void {
