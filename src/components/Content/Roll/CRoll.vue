@@ -16,7 +16,7 @@ export interface Props {
   content: Content;
 }
 
-const props = withDefaults(defineProps<Props>(), {});
+withDefaults(defineProps<Props>(), {});
 </script>
 
 <style scoped></style>
