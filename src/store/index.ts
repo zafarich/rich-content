@@ -31,7 +31,6 @@ export const useStore = defineStore("main", {
       }
     },
     updateText(value: string, type: "title" | "text", index: number): void {
-      console.log("updated");
       this.content[this.activeIndex].content.block[index][type].value = value;
     },
   },
