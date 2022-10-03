@@ -10,6 +10,7 @@
     </p>
     <div class="flex flex-center-between">
       <CButton
+        @click="store.toggleIsFullScreen()"
         text="Предпросмотр"
         class="px-4 !bg-white border-2 border-yellow rounded"
       />
