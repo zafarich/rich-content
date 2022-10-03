@@ -3,7 +3,7 @@
     <div :key="activeIndex" class="">
       <div
         class=""
-        v-for="(item, index) in content[activeIndex]?.content?.block"
+        v-for="(item, index) in content[activeIndex].content.block"
         :key="index"
       >
         <div class="flex-center-between mb-8">

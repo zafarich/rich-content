@@ -17,8 +17,11 @@
           label="title"
           :reduce="(item) => item.size"
           v-model="elements[idx].size"
+          @option:selected="emitValue(idx, 'size', $event.size)"
         >
-          <template #no-options> Voy, matn o'lchamlari topilmadi :( </template>
+          <template #no-options>
+            Ooops, matn o'lchamlari topilmadi :(
+          </template>
           <template #option="{ title, size }">
             <h3 :class="size">{{ title }}</h3>
           </template>
@@ -54,7 +57,7 @@ const elements = ref([
   {
     type: "title",
     label: "Заголовок",
-    size: "text-lg",
+    size: "text-xl",
   },
   {
     type: "text",

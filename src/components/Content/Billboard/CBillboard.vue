@@ -16,7 +16,7 @@
         @updateText="updateText($event, 'title', index)"
         :model-value="item?.title?.value"
         :style="`color: ${item.title.color}`"
-        :class="[item.title.align]"
+        :class="[item.title.align, item.title.size]"
       />
 
       <CContentInput
@@ -25,7 +25,7 @@
         :model-value="item?.text?.value"
         @updateText="updateText($event, 'text', index)"
         :style="`color: ${item.text.color}`"
-        :class="[item.text.align]"
+        :class="[item.text.align, item.text.size]"
       />
     </div>
   </div>
