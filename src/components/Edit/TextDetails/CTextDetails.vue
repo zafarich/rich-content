@@ -23,9 +23,7 @@
             <h3 :class="size">{{ title }}</h3>
           </template>
         </v-select>
-        {{ color }}
         <CChooseColor @color="emitValue(idx, 'color', $event)" />
-        {{ align }}
         <CTextAlignment @align="emitValue(idx, 'align', $event)" />
       </div>
     </div>
@@ -52,8 +50,6 @@ interface Emits {
 withDefaults(defineProps<Props>(), {});
 const $emit = defineEmits<Emits>();
 
-const color = ref("");
-const align = ref("");
 const elements = ref([
   {
     type: "title",
