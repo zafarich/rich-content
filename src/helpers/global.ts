@@ -8,6 +8,6 @@ export function preventXXS(str: string): string {
     .replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gim, "");
 }
 
-export function objectHas(obj: object, item: string): void {
+export function objectHas(obj: object, item: string): any {
   return item in obj;
 }

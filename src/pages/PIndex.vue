@@ -4,7 +4,8 @@
     <div class="container">
       <div class="my-10 flex gap-8 w-full">
         <div
-          class="bg-[#001a34] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks sticky h-screen overflow-auto top-0"
+          v-if="!isFullScreen"
+          class="bg-[#001a34] min-w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks sticky h-screen overflow-auto top-0"
         >
           <transition name="fade" mode="out-in">
             <CBlockList v-if="step == 'drop'" />
@@ -29,7 +30,7 @@ import Icon from "@/components/Icon/Icon.vue";
 import useStore from "@/store/index";
 
 const store = useStore();
-const { step, activeIndex } = storeToRefs(store);
+const { step, activeIndex, isFullScreen } = storeToRefs(store);
 
 // TODO:
 // 1. fix text update reactive
@@ -43,6 +44,7 @@ const { step, activeIndex } = storeToRefs(store);
 }
 
 .preview-content {
-  width: calc(100% - 322px) !important;
+  /* width: calc(100% - 322px) !important; */
+  width: 100%;
 }
 </style>

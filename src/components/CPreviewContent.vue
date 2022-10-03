@@ -1,19 +1,26 @@
 <template>
   <div class="">
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
-      Конструктор контента
+      {{ isFullScreen ? "Предпросмотр рич-контента" : "Конструктор контента" }}
     </h2>
-    <p class="text-[14px] leading-[24px] mb-8">
+    <p class="text-[14px] leading-[24px]" v-show="!isFullScreen">
       Соберите свой рич-контент из готовых секций. Меняйте их местами,
       редактируйте текст и содержание каждой секции, а также загружайте свои
       фото.
     </p>
-    <div class="flex flex-center-between">
+    <div class="flex flex-center-between mt-8">
       <CButton
+        @click="store.toggleIsFullScreen()"
         text="Предпросмотр"
         class="px-4 !bg-white border-2 border-yellow rounded"
       />
-      <CButton text="Сохранить" class="px-4 rounded" />
+      <CButton v-if="!isFullScreen" text="Сохранить" class="px-4 rounded" />
+      <CButton
+        @click="store.toggleIsFullScreen()"
+        v-else
+        text="Назад"
+        class="px-4 rounded min-w-[106px]"
+      />
     </div>
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
@@ -111,7 +118,7 @@ const ContentComponents = {
 };
 
 const store = useStore();
-const { step, activeIndex, content } = storeToRefs(store);
+const { step, activeIndex, content, isFullScreen } = storeToRefs(store);
 const { deleteContent, upContent, downContent } = store;
 
 const dragOptions = ref({
