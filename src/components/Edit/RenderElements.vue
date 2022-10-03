@@ -96,8 +96,6 @@ function updateImgAlt(e: any, index: number): void {
 function updateTextDetails(index: number, e: any): void {
   content.value[activeIndex.value].content.block[index][e.type][e.item] =
     e.value;
-  // console.log(index);
-  console.log(e);
 }
 </script>
 

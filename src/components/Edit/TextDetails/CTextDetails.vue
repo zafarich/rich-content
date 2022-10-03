@@ -26,7 +26,7 @@
         {{ color }}
         <CChooseColor @color="emitValue(idx, 'color', $event)" />
         {{ align }}
-        <!-- <CTextAlignment @align="emitValue(idx, 'align', $event)" /> -->
+        <CTextAlignment @align="emitValue(idx, 'align', $event)" />
       </div>
     </div>
   </div>
