@@ -28,7 +28,7 @@
           <CUploadImage v-if="objectHas(item, 'img')" @upload="hanldeUpload" />
           <CImageView
             v-if="objectHas(item, 'img')"
-            @position="handlePosition(index, $event)"
+            @position="updateImgPosition(index, $event)"
             v-bind="{
               currentPosition: getPosition(index),
               currentImage: item?.img?.src,
@@ -41,6 +41,8 @@
             }"
           />
           <CInput
+            :model-value="item.img.alt"
+            @input="updateImgAlt($event, index)"
             v-if="objectHas(item, 'img')"
             v-bind="{
               label: 'Текстовое описание изображения(Alt)',
@@ -57,7 +59,7 @@
 <script setup lang="ts">
 import { CollapseTransition } from "@ivanv/vue-collapse-transition";
 import { storeToRefs } from "pinia";
-import { inject, ref } from "vue";
+import { computed, inject, ref } from "vue";
 
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
@@ -76,27 +78,16 @@ function getPosition(index: number): void {
 }
 
 function deleteBlock(index: number): void {
-  const length = content.value[activeIndex.value].content.block.length;
-  if (length > 1) {
-    content.value[activeIndex.value].content.block.splice(index, 1);
-  }
+  content.value[activeIndex.value].content.block.splice(index, 1);
 }
 
-function handlePosition(index, event) {
+function updateImgPosition(index, event) {
   content.value[activeIndex.value].content.block[index].img.position = event;
 }
 
-async function hanldeUpload(e) {
-  const formData = new FormData();
-  console.log(e, "ee");
-
-  // formData.append("file", e?.file);
-  // formData.append("file_type", "image");
-  // formData.append("category", "blog");
-  // formData.append("itemId", 23);
-
-  const uploaded = await $axios.post("/files", formData);
-  console.log(uploaded, "respomn");
+function updateImgAlt(e: any, index: number) {
+  content.value[activeIndex.value].content.block[index].img.alt =
+    e.target.value;
 }
 </script>
 
