@@ -123,6 +123,7 @@ const ContentComponents = {
 const store = useStore();
 const { step, activeIndex, content, isFullScreen } = storeToRefs(store);
 const { deleteContent, upContent, downContent } = store;
+const deviceType = ref("deviceType");
 
 const dragOptions = ref({
   animation: 500,
@@ -144,7 +145,8 @@ function handleAdd(e): void {
 }
 
 function handleDeviceSizeChange(e): void {
-  console.log(e);
+  deviceType.value = e;
+  console.log(deviceType);
 }
 </script>
 
