@@ -7,7 +7,8 @@ const roll: Content = {
     {
       imgLink: "",
       img: {
-        src: "/src/assets/images/default/1416x708.png",
+        src: "https://images7.alphacoders.com/321/321911.jpg",
+        // src: "/src/assets/images/default/1416x708.png",
         srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,
