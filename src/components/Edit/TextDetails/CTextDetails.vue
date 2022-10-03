@@ -18,7 +18,7 @@
           :reduce="(item) => item.size"
           v-model="elements[idx].size"
         >
-          <template #no-options> This is the no options slot. </template>
+          <template #no-options> Voy, matn o'lchamlari topilmadi :( </template>
           <template #option="{ title, size }">
             <h3 :class="size">{{ title }}</h3>
           </template>
