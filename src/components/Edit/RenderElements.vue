@@ -3,7 +3,7 @@
     <div :key="activeIndex" class="">
       <div
         class=""
-        v-for="(item, index) in content[activeIndex].content.block"
+        v-for="(item, index) in content[activeIndex]?.content?.block"
         :key="index"
       >
         <div class="flex-center-between mb-8">
@@ -49,7 +49,10 @@
             }"
           />
 
-          <CTextDetails v-bind="{ item }" />
+          <CTextDetails
+            @update-text="updateTextDetails(index, $event)"
+            v-bind="{ item }"
+          />
         </div>
       </div>
     </div>
@@ -81,13 +84,20 @@ function deleteBlock(index: number): void {
   content.value[activeIndex.value].content.block.splice(index, 1);
 }
 
-function updateImgPosition(index, event) {
+function updateImgPosition(index, event): void {
   content.value[activeIndex.value].content.block[index].img.position = event;
 }
 
-function updateImgAlt(e: any, index: number) {
+function updateImgAlt(e: any, index: number): void {
   content.value[activeIndex.value].content.block[index].img.alt =
     e.target.value;
+}
+
+function updateTextDetails(index: number, e: any): void {
+  content.value[activeIndex.value].content.block[index][e.type][e.item] =
+    e.value;
+  // console.log(index);
+  console.log(e);
 }
 </script>
 

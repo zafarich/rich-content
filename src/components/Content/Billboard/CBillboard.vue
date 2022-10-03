@@ -10,11 +10,14 @@
         />
       </div>
 
+      {{ item.title.color }}
+
       <CContentInput
         placeholder="Заголовок"
         class="mb-2 font-medium text-[20px] leading-[28px] cursor-text"
         @updateText="updateText($event, 'title', index)"
         :model-value="item?.title?.value"
+        :style="`color: ${item.title.color}`"
       />
 
       <CContentInput
@@ -22,6 +25,7 @@
         class="font-normal text-[14px] leading-[24px] cursor-text"
         :model-value="item?.text?.value"
         @updateText="updateText($event, 'text', index)"
+        :style="`color: ${item.text.color}`"
       />
     </div>
   </div>
