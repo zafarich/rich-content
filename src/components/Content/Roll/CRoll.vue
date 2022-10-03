@@ -5,6 +5,7 @@
       :key="index"
       class="w-full h-[708px] object-cover"
       :src="item.img.src"
+      :alt="item.img.alt"
       :class="item.img.position"
     />
   </div>
