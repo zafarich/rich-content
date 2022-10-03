@@ -9,18 +9,20 @@
       фото.
     </p>
     <div class="flex flex-center-between mt-8">
+      <CTab
+        v-if="isFullScreen"
+        class="min-w-[100px]"
+        @change="handleDeviceSizeChange"
+      />
       <CButton
         @click="store.toggleIsFullScreen()"
-        text="Предпросмотр"
-        class="px-4 !bg-white border-2 border-yellow rounded"
+        :text="isFullScreen ? 'Назад' : 'Предпросмотр'"
+        :class="[
+          'px-4  border-2 rounded min-w-[106px]',
+          isFullScreen ? 'border-transparent ' : '!bg-white border-yellow',
+        ]"
       />
       <CButton v-if="!isFullScreen" text="Сохранить" class="px-4 rounded" />
-      <CButton
-        @click="store.toggleIsFullScreen()"
-        v-else
-        text="Назад"
-        class="px-4 rounded min-w-[106px]"
-      />
     </div>
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
@@ -109,6 +111,7 @@ import { VueDraggableNext } from "vue-draggable-next";
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
+import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
 import useStore from "@/store/index";
 
@@ -138,6 +141,10 @@ watch(activeIndex, (v): void => {
 
 function handleAdd(e): void {
   activeIndex.value = e.newIndex;
+}
+
+function handleDeviceSizeChange(e): void {
+  console.log(e);
 }
 </script>
 
