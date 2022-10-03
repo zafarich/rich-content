@@ -8,7 +8,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Icon from "@/components/Icon/Icon.vue";
+</script>
 
 <style scoped>
 .header {
