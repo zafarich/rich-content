@@ -25,12 +25,13 @@
         </div>
 
         <div class="flex flex-col gap-6">
-          <CUploadImage v-if="objectHas(item, 'img')" />
+          <CUploadImage v-if="objectHas(item, 'img')" @upload="hanldeUpload" />
           <CImageView
             v-if="objectHas(item, 'img')"
             @position="handlePosition(index, $event)"
             v-bind="{
               currentPosition: getPosition(index),
+              currentImage: item?.img?.src,
             }"
           />
           <CInput
@@ -85,13 +86,17 @@ function handlePosition(index, event) {
   content.value[activeIndex.value].content.block[index].img.position = event;
 }
 
-fetchCatFacts();
+async function hanldeUpload(e) {
+  const formData = new FormData();
+  console.log(e, "ee");
 
-async function fetchCatFacts() {
-  const catFactsResponse = await $axios.get(
-    "/files?file_type=image&category=slider&itemId=3&lang=cr&limit=3"
-  );
-  console.log(catFactsResponse, "respomn");
+  // formData.append("file", e?.file);
+  // formData.append("file_type", "image");
+  // formData.append("category", "blog");
+  // formData.append("itemId", 23);
+
+  const uploaded = await $axios.post("/files", formData);
+  console.log(uploaded, "respomn");
 }
 </script>
 

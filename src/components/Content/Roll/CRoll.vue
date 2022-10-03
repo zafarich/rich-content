@@ -3,7 +3,7 @@
     <img
       v-for="(item, index) in content.block"
       :key="index"
-      class="w-full h-[708px] object-cover"
+      class="w-full !h-[708px] object-cover"
       :src="item.img.src"
       :alt="item.img.alt"
       :class="item.img.position"

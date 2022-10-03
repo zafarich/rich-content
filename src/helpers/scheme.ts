@@ -34,7 +34,7 @@ const billboard: Content = {
         height: 708,
         widthMobile: 640,
         heightMobile: 640,
-        position: "w-full w-full",
+        position: "w-full h-full",
       },
       title: {
         value: "",
