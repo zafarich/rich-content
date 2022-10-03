@@ -1,8 +1,8 @@
 <template>
   <div
-    class="bg-white border-b-[1px] border-b-[#ECECEC] border-solid header !h-[78px]"
+    class="bg-white border-b-[1px] border-b-[#ECECEC] border-solid header !h-[78px] pt-3 pb-6"
   >
-    <div class="container pt-3 pb-6">
+    <div class="container">
       <Icon name="texnomart_logo" />
     </div>
   </div>
