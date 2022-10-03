@@ -24,15 +24,16 @@ import Icon from "@/components/Icon/Icon.vue";
 import { TextAlignment } from "@/helpers/scheme_types";
 
 interface Emits {
-  (e: "alignment", v: TextAlignment): void;
+  (e: "align", v: TextAlignment): void;
 }
 const $emit = defineEmits<Emits>();
 const alignments = ["text-left", "text-center", "text-right"];
 const activeAlign = ref<TextAlignment>("text-left");
 
+$emit("align", activeAlign.value);
 function handleAlignment(alignment: TextAlignment) {
   activeAlign.value = alignment;
-  $emit("alignment", alignment);
+  $emit("align", alignment);
 }
 </script>
 

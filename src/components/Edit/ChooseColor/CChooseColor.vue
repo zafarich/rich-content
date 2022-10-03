@@ -29,6 +29,7 @@ const $emit = defineEmits<Emits>();
 const colors = ["#F7F7F7", "#333333", "#BABAC0", "#767676"];
 const activeColor = ref<TextColors>("#333333");
 
+$emit("color", activeColor.value);
 function handleColor(color: TextColors): void {
   activeColor.value = color;
   $emit("color", color);

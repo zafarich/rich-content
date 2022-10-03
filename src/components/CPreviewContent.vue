@@ -90,7 +90,7 @@
           class="rounded-[12px] preview__drop p-6 !select-none cursor-default"
         >
           <div
-            class="border-2 border-grey border-dashed rounded-[10px] h-[708px] flex-center-center select-none"
+            class="border-2 border-grey border-dashed rounded-[10px] h-[708px]  flex-center-center select-none"
           >
             <p class="text-[20px] font-medium leading-[28px] select-none">
               Перетащите блок сюда

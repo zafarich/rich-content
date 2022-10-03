@@ -23,8 +23,8 @@
             <h3 :class="size">{{ title }}</h3>
           </template>
         </v-select>
-        <CChooseColor />
-        <CTextAlignment />
+        <CChooseColor @color="emitValue(idx, 'color', $event)" />
+        <CTextAlignment @align="emitValue(idx, 'align', $event)" />
       </div>
     </div>
   </div>
@@ -43,7 +43,12 @@ export interface Props {
   item: object;
 }
 
+interface Emits {
+  (e: "update-text", v: { type: string; item: string; value: string }): void;
+}
+
 withDefaults(defineProps<Props>(), {});
+const $emit = defineEmits<Emits>();
 
 const elements = ref([
   {
@@ -73,6 +78,15 @@ let i = 0;
 while (i < 7) {
   sizes.push({ title: `Размер ${i + 1}`, size: sizeClasses[i] });
   i++;
+}
+
+function emitValue(idx: number, item: string, e: any): void {
+  const obj = {
+    type: elements.value[idx].type,
+    item,
+    value: e,
+  };
+  $emit("update-text", obj);
 }
 </script>
 
