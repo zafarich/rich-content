@@ -37,13 +37,14 @@ const billboard: Content = {
         position: "w-full h-full",
       },
       title: {
-        value: "",
+        value: "Заголовок",
         size: "text-lg",
         align: "text-left",
         color: "#F7F7F7",
       },
       text: {
-        value: "",
+        value:
+          "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.",
         size: "text-sm",
         align: "text-left",
         color: "#F7F7F7",

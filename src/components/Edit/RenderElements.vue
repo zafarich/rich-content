@@ -1,6 +1,10 @@
 <template>
   <transition mode="out-in" name="fade" tag="div" class="flex flex-col gap-10">
-    <div :key="activeIndex" class="">
+    <div
+      :key="activeIndex"
+      class=""
+      v-if="content[activeIndex]?.content?.block.length"
+    >
       <div
         class=""
         v-for="(item, index) in content[activeIndex].content.block"

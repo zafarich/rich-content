@@ -44,6 +44,7 @@
             >
               <component
                 :is="ContentComponents[item.content.type]"
+                @updateData="handleDynamicComponentEvents($event)"
                 v-bind="{
                   content: item.content,
                 }"
@@ -145,6 +146,21 @@ function handleAdd(e): void {
 
 function handleDeviceSizeChange(e): void {
   console.log(e);
+}
+
+function handleDynamicComponentEvents(event: any) {
+  switch (event.content_type) {
+    case "billboard":
+      billboardEvent(event);
+      break;
+    default:
+      break;
+  }
+}
+
+function billboardEvent(e) {
+  content.value[activeIndex.value].content.block[e.idx][e.target][e.item] =
+    e.value;
 }
 </script>
 

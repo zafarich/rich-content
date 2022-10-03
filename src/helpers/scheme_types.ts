@@ -45,6 +45,7 @@ export interface Img {
 }
 
 export interface Text {
+  value: string;
   size: TextSizes;
   align: TextAlignment;
   color: TextColors;
