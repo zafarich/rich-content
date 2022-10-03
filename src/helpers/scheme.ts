@@ -27,7 +27,7 @@ const billboard: Content = {
     {
       imgLink: "",
       img: {
-        src: "/src/assets/images/default/1416x708.png",
+        src: "https://i.pinimg.com/originals/66/44/b3/6644b34c91f57f8d40a4eaa94e3cb797.png",
         srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,

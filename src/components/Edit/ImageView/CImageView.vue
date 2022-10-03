@@ -14,7 +14,7 @@
           :class="{
             '!border-yellow transition': activePosition == item.position,
           }"
-          class="flex-center-center rounded border-[2px] border-solid border-grey w-14 h-14 transition"
+          class="flex-center-center rounded border-[2px] border-solid border-grey w-14 h-14 transition !overflow-hidden"
         >
           <img :class="item.position" class="transition" :src="currentImage" />
         </div>

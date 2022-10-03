@@ -8,7 +8,6 @@
         <h4 class="font-medium text-[18px] leading-[20px] mb-2">
           {{ el.label }}
         </h4>
-        {{ elements[idx].size }}
         <v-select
           class="mb-2"
           :searchable="false"

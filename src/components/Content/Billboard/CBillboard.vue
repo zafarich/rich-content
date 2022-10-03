@@ -3,7 +3,7 @@
     <div v-for="(item, index) in content.block" :key="index">
       <div class="flex-center-center">
         <img
-          class="w-full max-h-[708px] h-full object-cover select-none mb-4"
+          class="w-full h-full object-cover select-none mb-4"
           :src="item.img.src"
           :alt="item.img.alt"
           :class="item.img.position"
