@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import { CollapseTransition } from "@ivanv/vue-collapse-transition";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { inject, ref } from "vue";
 
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
@@ -68,6 +68,7 @@ import useStore from "@/store/index";
 
 const store = useStore();
 const { activeIndex, content } = storeToRefs(store);
+const $axios: any = inject("axios");
 
 function getPosition(index: number): void {
   return content.value[activeIndex.value].content.block[index].img.position;
@@ -82,6 +83,15 @@ function deleteBlock(index: number): void {
 
 function handlePosition(index, event) {
   content.value[activeIndex.value].content.block[index].img.position = event;
+}
+
+fetchCatFacts();
+
+async function fetchCatFacts() {
+  const catFactsResponse = await $axios.get(
+    "/files?file_type=image&category=slider&itemId=3&lang=cr&limit=3"
+  );
+  console.log(catFactsResponse, "respomn");
 }
 </script>
 
