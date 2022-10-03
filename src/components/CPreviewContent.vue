@@ -15,7 +15,10 @@
         @change="handleDeviceSizeChange"
       />
       <CButton
-        @click="store.toggleIsFullScreen()"
+        @click="
+          store.toggleIsFullScreen();
+          handleDeviceSizeChange('pc');
+        "
         :text="isFullScreen ? 'Назад' : 'Предпросмотр'"
         :class="[
           'px-4  border-2 rounded min-w-[106px]',
@@ -25,7 +28,10 @@
       <CButton v-if="!isFullScreen" text="Сохранить" class="px-4 rounded" />
     </div>
     <VueDraggableNext
-      class="dragArea list-group w-full flex flex-col gap-[40px] mt-8"
+      :class="[
+        'dragArea list-group w-full flex flex-col gap-[40px] mt-8',
+        deviceType === 'phone' ? '!max-w-[380px] mx-auto' : 'stuff',
+      ]"
       v-bind="dragOptions"
       v-model="content"
       @add="handleAdd"
@@ -85,7 +91,7 @@
         </transition-group>
       </template>
 
-      <div v-else>
+      <div v-else-if="!isFullScreen">
         <div
           class="rounded-[12px] preview__drop p-6 !select-none cursor-default"
         >
@@ -146,7 +152,6 @@ function handleAdd(e): void {
 
 function handleDeviceSizeChange(e): void {
   deviceType.value = e;
-  console.log(deviceType);
 }
 </script>
 
