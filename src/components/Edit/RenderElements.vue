@@ -1,5 +1,5 @@
 <template>
-  <transition mode="out-in" name="fade">
+  <transition mode="out-in" name="fade" tag="div" class="flex flex-col gap-10">
     <div :key="activeIndex" class="">
       <div
         class=""

@@ -14,11 +14,11 @@
       <CTab @change="tab = $event" />
     </div>
     <div class="mt-8">
-      <div class="flex flex-col gap-10">
+      <div class="">
         <RenderElements />
         <CButton
           @click="addBlock"
-          class="!bg-[#FBC1004D] !px-4 flex-center gap-2"
+          class="!bg-[#FBC1004D] !px-4 flex-center gap-2 mt-10"
         >
           <Icon name="add" />
           <span

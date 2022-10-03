@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-center-center">
+  <div class="flex-center-center flex-col">
     <img
       v-for="(item, index) in content.block"
       :key="index"
