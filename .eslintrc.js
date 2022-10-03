@@ -20,6 +20,12 @@ module.exports = {
   rules: {
     "no-console": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     eqeqeq: "off",
     curly: "error",
     "simple-import-sort/imports": "error",
