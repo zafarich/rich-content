@@ -4,6 +4,7 @@
     <div class="h-[44px] rounded relative border-2 border-yellow">
       <input
         id="file"
+        accept="image/*"
         type="file"
         name="file"
         class="w-0 h-0 absolute"
