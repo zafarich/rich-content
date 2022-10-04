@@ -122,10 +122,11 @@ function updateTextDetails(index: number, e: any): void {
 }
 
 function updateImage(index: number, e: any): void {
-  if (e.file.size > 1024000) {
+  if (e?.file?.size > 1024000) {
     invalidSize.value = true;
     return;
   }
+
   invalidSize.value = false;
   const formData = new FormData();
   formData.append("upload", e?.file);
