@@ -5,7 +5,7 @@ import axios from "@/plugins/axios";
 
 export const useImageStore = defineStore("image", {
   state: () => ({
-    imageDeleteIds: ref<number[]>([]),
+    imageDeleteIds: ref<number[]>([24]),
   }),
 
   actions: {

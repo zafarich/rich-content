@@ -31,7 +31,6 @@ import useStore from "@/store/index";
 
 const store = useStore();
 const { step, activeIndex, isFullScreen } = storeToRefs(store);
-
 // TODO:
 // 1. fix text update reactive
 // 4. update edits
