@@ -10,6 +10,7 @@
         />
       </div>
 
+      {{ item?.title?.value }}
       <CContentInput
         class="mb-2 font-medium text-[20px] leading-[28px] cursor-text whitespace-pre"
         @updateText="handleText($event, 'title', index)"
@@ -18,6 +19,7 @@
         :class="[item.title.align, item.title.size]"
       />
 
+      {{ item?.text?.value }}
       <CContentInput
         class="font-normal text-[14px] leading-[24px] cursor-text whitespace-pre"
         :model-value="item?.text?.value"

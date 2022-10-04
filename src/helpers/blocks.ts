@@ -12,12 +12,12 @@ const blocks: TTypes[] = [
   {
     block_img: "/src/assets/images/blocks/block1.png",
     block_text: "Изображение без отступов",
-    content: Scheme["roll"],
+    content: JSON.parse(JSON.stringify(Scheme["roll"])),
   },
   {
     block_img: "/src/assets/images/blocks/block2.png",
     block_text: "Изображение с текстом",
-    content: Scheme["billboard"],
+    content: JSON.parse(JSON.stringify(Scheme["billboard"])),
   },
   // {
   //   image: "/src/assets/images/blocks/block3.png",

@@ -56,6 +56,7 @@
               }"
               @click="!isFullScreen && (activeIndex = index)"
             >
+              {{ index }}
               <component
                 :is="ContentComponents[item.content.type]"
                 @updateData="handleDynamicComponentEvents($event)"
@@ -177,7 +178,8 @@ function handleDynamicComponentEvents(event: any) {
 }
 
 function billboardEvent(e) {
-  content.value[activeIndex.value].content.block[e.idx][e.target][e.item] =
+  console.log(e, "ee");
+  content.value[activeIndex.value].content.block[e.idx][e.target].value =
     e.value;
 }
 </script>
