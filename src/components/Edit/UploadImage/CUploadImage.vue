@@ -45,7 +45,7 @@ const handleFile = (event: any) => {
   }
 
   image.file = event.target.files[0];
-  imageName.value = image.file.name;
+  imageName.value = image.file?.name;
   const reader = new FileReader();
   if (event.target.files[0]) {
     reader.readAsDataURL(event.target.files[0]);

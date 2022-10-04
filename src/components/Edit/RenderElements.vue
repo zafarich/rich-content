@@ -10,6 +10,7 @@
         v-for="(item, index) in content[activeIndex].content.block"
         :key="index"
       >
+        {{ imageDeleteIds }}
         <div class="flex-center-between mb-8">
           <div class="flex-center gap-[10px]">
             <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
@@ -29,7 +30,10 @@
         </div>
 
         <div class="flex flex-col gap-6">
-          <CUploadImage v-if="objectHas(item, 'img')" @upload="hanldeUpload" />
+          <CUploadImage
+            v-if="objectHas(item, 'img')"
+            @upload="updateImage(index, $event)"
+          />
           <CImageView
             v-if="objectHas(item, 'img')"
             @position="updateImgPosition(index, $event)"
@@ -74,10 +78,13 @@ import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
+import useImageStore from "@/store/image";
 import useStore from "@/store/index";
 
 const store = useStore();
+const imageStore = useImageStore();
 const { activeIndex, content } = storeToRefs(store);
+const { imageDeleteIds } = storeToRefs(imageStore);
 const $axios: any = inject("axios");
 
 function getPosition(index: number): void {
@@ -100,6 +107,25 @@ function updateImgAlt(e: any, index: number): void {
 function updateTextDetails(index: number, e: any): void {
   content.value[activeIndex.value].content.block[index][e.type][e.item] =
     e.value;
+}
+
+function updateImage(index: number, e: any): void {
+  const formData = new FormData();
+  formData.append("upload", e?.file);
+  let id = 16;
+  imageStore
+    .postImage(formData)
+    .then((res) => {
+      // res.data.data.path
+      if (res.data.success) {
+        content.value[activeIndex.value].content.block[index].img.src =
+          "https://files.techno-mart.uz/storage/" + res.data.data.path;
+      }
+      console.log(res, "res");
+    })
+    .catch((err) => {
+      console.log("ERROR is occured while uploading:", err);
+    });
 }
 </script>
 
