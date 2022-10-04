@@ -54,7 +54,7 @@
                 '!border-yellow transition':
                   index == activeIndex && !isFullScreen,
               }"
-              @click="activeIndex = index"
+              @click="!isFullScreen && (activeIndex = index)"
             >
               <component
                 :is="ContentComponents[item.content.type]"
@@ -117,7 +117,6 @@
         </div>
       </div>
     </VueDraggableNext>
-    <pre>{{ content }}</pre>
   </div>
 </template>
 
