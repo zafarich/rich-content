@@ -29,10 +29,18 @@
         </div>
 
         <div class="flex flex-col gap-6">
-          <CUploadImage
-            v-if="objectHas(item, 'img')"
-            @upload="updateImage(index, $event)"
-          />
+          <div class="">
+            <CUploadImage
+              v-if="objectHas(item, 'img')"
+              @upload="updateImage(index, $event)"
+            />
+            <transition name="fade">
+              <p v-if="invalidSize" class="mt-1.5 text-xs text-red">
+                Размер файла должен быть меньше 1мб
+              </p>
+            </transition>
+          </div>
+
           <CImageView
             v-if="objectHas(item, 'img')"
             @position="updateImgPosition(index, $event)"
@@ -87,6 +95,7 @@ const store = useStore();
 const imageStore = useImageStore();
 const { activeIndex, content } = storeToRefs(store);
 const { imageDeleteIds } = storeToRefs(imageStore);
+const invalidSize = ref(false);
 const $axios: any = inject("axios");
 const ENV_CDN = import.meta.env.VITE_CDN;
 
@@ -113,8 +122,14 @@ function updateTextDetails(index: number, e: any): void {
 }
 
 function updateImage(index: number, e: any): void {
+  if (e.file.size > 1024000) {
+    invalidSize.value = true;
+    return;
+  }
+  invalidSize.value = false;
   const formData = new FormData();
   formData.append("upload", e?.file);
+
   imageStore
     .postImage(formData)
     .then((res) => {
