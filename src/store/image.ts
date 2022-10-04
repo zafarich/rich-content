@@ -5,7 +5,7 @@ import axios from "@/plugins/axios";
 
 export const useImageStore = defineStore("image", {
   state: () => ({
-    imageDeleteIds: ref<number[]>([24]),
+    imageDeleteIds: ref<number[]>([]),
   }),
 
   actions: {
@@ -14,9 +14,7 @@ export const useImageStore = defineStore("image", {
         axios
           .post("/files/rich-upload", data)
           .then((res) => {
-            console.log(res, "res");
             res?.data?.success && this.imageDeleteIds.push(res?.data?.data?.id);
-            console.log(this.imageDeleteIds, "imageDeleteIds");
             resolve(res);
           })
           .catch((err) => {
@@ -30,7 +28,6 @@ export const useImageStore = defineStore("image", {
         axios
           .delete(`/files/rich-upload/${id}`)
           .then((res) => {
-            console.log(res, "res");
             resolve(res);
           })
           .catch((err) => {
@@ -42,10 +39,9 @@ export const useImageStore = defineStore("image", {
     async deleteAllImage() {
       let i = 0;
       while (i < this.imageDeleteIds.length) {
-        this.deleteImage(this.imageDeleteIds[i]);
+        await this.deleteImage(this.imageDeleteIds[i]);
         i++;
       }
-      console.log(this.imageDeleteIds);
     },
   },
 });

@@ -10,7 +10,6 @@
         v-for="(item, index) in content[activeIndex].content.block"
         :key="index"
       >
-        {{ imageDeleteIds }}
         <div class="flex-center-between mb-8">
           <div class="flex-center gap-[10px]">
             <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
@@ -133,16 +132,6 @@ function updateImageInput(event: any, index: number): void {
   if (isValidURL(event?.target?.value)) {
     content.value[activeIndex.value].content.block[index].img.src =
       event.target.value;
-  }
-}
-
-imageStore.deleteAllImage();
-
-function dektat() {
-  let i = 37;
-  while (i < 38) {
-    imageStore.deleteImage(i);
-    i++;
   }
 }
 

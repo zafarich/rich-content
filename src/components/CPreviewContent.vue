@@ -125,7 +125,6 @@ import CRoll from "@/components/Content/Roll/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
-import useStoreImage from "@/store/image";
 import useStore from "@/store/index";
 
 const ContentComponents = {
@@ -134,9 +133,7 @@ const ContentComponents = {
 };
 
 const store = useStore();
-const storeImage = useStoreImage();
 const { step, activeIndex, content, isFullScreen } = storeToRefs(store);
-const { imageDeleteIds } = storeToRefs(storeImage);
 const { deleteContent, upContent, downContent } = store;
 const deviceType = ref("deviceType");
 

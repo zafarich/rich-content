@@ -20,20 +20,39 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 
 import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
 import Icon from "@/components/Icon/Icon.vue";
+import useStoreImage from "@/store/image";
 import useStore from "@/store/index";
 
 const store = useStore();
+const storeImage = useStoreImage();
+const { imageDeleteIds } = storeToRefs(storeImage);
 const { step, activeIndex, isFullScreen } = storeToRefs(store);
-// TODO:
-// 1. fix text update reactive
-// 4. update edits
+
+onMounted(() => {
+  window.addEventListener("beforeunload", removeImagesBeforeUnload);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("beforeunload", removeImagesBeforeUnload);
+});
+
+function removeImagesBeforeUnload(evt) {
+  evt.preventDefault();
+
+  if (imageDeleteIds.value.length) {
+    storeImage.deleteAllImage();
+  }
+
+  evt.returnValue = "";
+  return null;
+}
 </script>
 
 <style scoped>
