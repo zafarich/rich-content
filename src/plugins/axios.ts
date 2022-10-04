@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const ENV_BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const $axios = axios.create({
-  baseURL: "https://files.techno-mart.uz/api",
+  baseURL: ENV_BASE_URL,
 });
 
 export default $axios;

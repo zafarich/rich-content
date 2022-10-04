@@ -24,7 +24,8 @@ export const useImageStore = defineStore("image", {
           });
       });
     },
-    async deleteImages(id) {
+
+    async deleteImage(id) {
       return await new Promise((resolve, reject) => {
         axios
           .delete(`/files/rich-upload/${id}`)
@@ -36,6 +37,15 @@ export const useImageStore = defineStore("image", {
             reject(err);
           });
       });
+    },
+
+    async deleteAllImage() {
+      let i = 0;
+      while (i < this.imageDeleteIds.length) {
+        this.deleteImage(this.imageDeleteIds[i]);
+        i++;
+      }
+      console.log(this.imageDeleteIds);
     },
   },
 });

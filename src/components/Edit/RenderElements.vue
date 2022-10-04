@@ -44,10 +44,13 @@
           />
           <CInput
             v-if="objectHas(item, 'imgLink')"
+            :model-value="content[activeIndex].content.block[index].img.src"
+            @input="updateImageInput($event, index)"
             v-bind="{
               label: 'Ссылка по клику на изображение',
             }"
           />
+
           <CInput
             :model-value="item.img.alt"
             @input="updateImgAlt($event, index)"
@@ -86,6 +89,7 @@ const imageStore = useImageStore();
 const { activeIndex, content } = storeToRefs(store);
 const { imageDeleteIds } = storeToRefs(imageStore);
 const $axios: any = inject("axios");
+const ENV_CDN = import.meta.env.VITE_CDN;
 
 function getPosition(index: number): void {
   return content.value[activeIndex.value].content.block[index].img.position;
@@ -112,20 +116,43 @@ function updateTextDetails(index: number, e: any): void {
 function updateImage(index: number, e: any): void {
   const formData = new FormData();
   formData.append("upload", e?.file);
-  let id = 16;
   imageStore
     .postImage(formData)
     .then((res) => {
-      // res.data.data.path
       if (res.data.success) {
         content.value[activeIndex.value].content.block[index].img.src =
-          "https://files.techno-mart.uz/storage/" + res.data.data.path;
+          ENV_CDN + res.data.data.path;
       }
-      console.log(res, "res");
     })
     .catch((err) => {
       console.log("ERROR is occured while uploading:", err);
     });
+}
+
+function updateImageInput(event: any, index: number): void {
+  if (isValidURL(event?.target?.value)) {
+    content.value[activeIndex.value].content.block[index].img.src =
+      event.target.value;
+  }
+}
+
+imageStore.deleteAllImage();
+
+function dektat() {
+  let i = 37;
+  while (i < 38) {
+    imageStore.deleteImage(i);
+    i++;
+  }
+}
+
+function isValidURL(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 </script>
 

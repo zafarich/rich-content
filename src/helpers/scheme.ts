@@ -7,7 +7,7 @@ const roll: Content = {
     {
       imgLink: "",
       img: {
-        src: "https://images7.alphacoders.com/321/321911.jpg",
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633bcc064709f.png",
         // src: "/src/assets/images/default/1416x708.png",
         srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
@@ -28,7 +28,7 @@ const billboard: Content = {
     {
       imgLink: "",
       img: {
-        src: "https://i.pinimg.com/originals/66/44/b3/6644b34c91f57f8d40a4eaa94e3cb797.png",
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633bcc064709f.png",
         srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,
