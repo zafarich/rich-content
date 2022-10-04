@@ -58,6 +58,7 @@ function removeImagesBeforeUnload(evt) {
 // toggle cards in BlockEdit
 // custom input to textaria
 // delete img if user cancels reload
+// nested items mutating each other
 </script>
 
 <style scoped>

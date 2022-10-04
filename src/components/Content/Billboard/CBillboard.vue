@@ -46,12 +46,12 @@ interface Emits {
 withDefaults(defineProps<Props>(), {});
 const $emit = defineEmits<Emits>();
 
-function handleText(e: any, target: string, idx: number): void {
+function handleText(e: any, target: string, index: number): void {
   const data = {
     content_type: "billboard",
     value: e,
     target,
-    idx,
+    index,
   };
   $emit("updateData", data);
 }
