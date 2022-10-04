@@ -33,7 +33,7 @@
           <div class="">
             <CUploadImage
               v-if="objectHas(item, 'img')"
-              @upload="updateImage(index, $event)"
+              @upload="updateImage($event, index)"
             />
             <transition name="fade">
               <p v-if="invalidSize" class="mt-1.5 text-xs text-red">
@@ -119,7 +119,7 @@ function updateTextDetails(index: number, e: any): void {
     e.value;
 }
 
-function updateImage(index: number, e: any): void {
+function updateImage(e: any, index: number): void {
   if (e?.file?.size > 1024000) {
     invalidSize.value = true;
     return;
