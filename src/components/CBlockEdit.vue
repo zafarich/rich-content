@@ -56,7 +56,7 @@ function handleBack() {
 
 function addBlock(): void {
   let current = content.value[activeIndex.value].content;
-  let add = Scheme[current.type].block[0];
+  let add = JSON.parse(JSON.stringify(Scheme[current.type].block[0]));
   current.block.push(add);
 }
 </script>

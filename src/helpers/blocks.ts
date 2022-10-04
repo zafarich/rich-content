@@ -12,29 +12,13 @@ const blocks: TTypes[] = [
   {
     block_img: "/src/assets/images/blocks/block1.png",
     block_text: "Изображение без отступов",
-    content: JSON.parse(JSON.stringify(Scheme["roll"])),
+    content: Scheme["roll"],
   },
   {
     block_img: "/src/assets/images/blocks/block2.png",
     block_text: "Изображение с текстом",
-    content: JSON.parse(JSON.stringify(Scheme["billboard"])),
+    content: Scheme["billboard"],
   },
-  // {
-  //   image: "/src/assets/images/blocks/block3.png",
-  //   desc: "Изображение и текст справа",
-  // },
-  // {
-  //   image: "/src/assets/images/blocks/block4.png",
-  //   desc: "Изображение и текст слева",
-  // },
-  // {
-  //   image: "/src/assets/images/blocks/block5.png",
-  //   desc: "Две карточки с фото",
-  // },
-  // {
-  //   image: "/src/assets/images/blocks/block6.png",
-  //   desc: "Три карточки с фото",
-  // },
 ];
 
 export default blocks;

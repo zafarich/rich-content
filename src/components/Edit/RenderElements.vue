@@ -79,9 +79,8 @@
 </template>
 
 <script setup lang="ts">
-import { CollapseTransition } from "@ivanv/vue-collapse-transition";
 import { storeToRefs } from "pinia";
-import { computed, inject, ref } from "vue";
+import { ref } from "vue";
 
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
@@ -95,9 +94,7 @@ import useStore from "@/store/index";
 const store = useStore();
 const imageStore = useImageStore();
 const { activeIndex, content } = storeToRefs(store);
-const { imageDeleteIds } = storeToRefs(imageStore);
 const invalidSize = ref(false);
-const $axios: any = inject("axios");
 const ENV_CDN = import.meta.env.VITE_CDN;
 
 function getPosition(index: number): void {
