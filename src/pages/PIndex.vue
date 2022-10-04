@@ -52,6 +52,12 @@ function removeImagesBeforeUnload(evt) {
   evt.returnValue = "";
   return null;
 }
+
+// TODO:
+// title text mutating original
+// toggle cards in BlockEdit
+// custom input to textaria
+// delete img if user cancels reload
 </script>
 
 <style scoped>
