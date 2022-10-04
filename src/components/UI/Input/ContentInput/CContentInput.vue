@@ -6,7 +6,7 @@
   >
     <p
       :class="style"
-      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none break-words"
+      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-normal"
       ref="textbox"
       :contenteditable="editable"
       @input="handleInput($event)"
