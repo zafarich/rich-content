@@ -50,7 +50,10 @@
           >
             <div
               class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content transition"
-              :class="{ '!border-yellow transition': index == activeIndex }"
+              :class="{
+                '!border-yellow transition':
+                  index == activeIndex && !isFullScreen,
+              }"
               @click="activeIndex = index"
             >
               <component
@@ -61,7 +64,10 @@
                 }"
               />
             </div>
-            <div class="w-8 flex flex-col gap-[18px] cursor-default">
+            <div
+              v-if="!isFullScreen"
+              class="w-8 flex flex-col gap-[18px] cursor-default"
+            >
               <div
                 class="bg-white-100 rounded w-8 h-8 flex-center-center hover:opacity-75 transition cursor-pointer"
                 @click="deleteContent(index)"
