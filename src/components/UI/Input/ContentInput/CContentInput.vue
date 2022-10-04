@@ -9,7 +9,7 @@
       class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-normal"
       ref="textbox"
       :contenteditable="editable"
-      @input="handleInput($event)"
+      @input="handleInput"
       :value="props.modelValue"
       v-text="inputText"
       @blur="makeNormal"
@@ -18,12 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 import { preventXXS } from "@/helpers/global";
 
 export interface Props {
-  placeholder: string;
   modelValue: string;
 }
 
@@ -37,8 +36,14 @@ const $emit = defineEmits<Emits>();
 
 const editable = ref<boolean>(false);
 const textbox = ref<HTMLParagraphElement>();
-const inputText = ref<string>(
-  props.modelValue ? props.modelValue : props.placeholder
+const inputText = ref<string>("");
+inputText.value = preventXXS(props.modelValue) || "";
+
+watch(
+  () => props.modelValue,
+  (e) => {
+    inputText.value = e;
+  }
 );
 
 function makeEditable(): void {
@@ -52,11 +57,7 @@ function makeEditable(): void {
 
 function makeNormal(): void {
   editable.value = false;
-
-  inputText.value =
-    props.modelValue == ""
-      ? preventXXS(props.placeholder)
-      : preventXXS(props.modelValue);
+  inputText.value = preventXXS(props.modelValue);
 }
 
 function handleInput(event) {

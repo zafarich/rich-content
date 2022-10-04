@@ -179,7 +179,7 @@ function handleDynamicComponentEvents(event: any) {
 
 function billboardEvent(e) {
   console.log(e, "ee");
-  content.value[activeIndex.value].content.block[e.idx][e.target].value =
+  content.value[activeIndex.value].content.block[e.index][e.target].value =
     e.value;
 }
 </script>
