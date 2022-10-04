@@ -20,20 +20,19 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { onBeforeUnmount, onMounted } from "vue";
 
 import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
-import Icon from "@/components/Icon/Icon.vue";
 import useStoreImage from "@/store/image";
 import useStore from "@/store/index";
 
 const store = useStore();
 const storeImage = useStoreImage();
 const { imageDeleteIds } = storeToRefs(storeImage);
-const { step, activeIndex, isFullScreen } = storeToRefs(store);
+const { step, isFullScreen } = storeToRefs(store);
 
 onMounted(() => {
   window.addEventListener("beforeunload", removeImagesBeforeUnload);
