@@ -11,7 +11,9 @@
         v-for="(item, index) in content[activeIndex].content.block"
         :key="index"
       >
-        <div class="flex-center-between mb-8">
+        <div
+          class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
+        >
           <div class="flex-center gap-[10px]">
             <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
               Карточка # {{ index + 1 }}
@@ -29,7 +31,7 @@
           </transition>
         </div>
 
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6 transition">
           <div class="">
             <CUploadImage
               v-if="objectHas(item, 'img')"
@@ -97,7 +99,7 @@ import useStore from "@/store/index";
 const store = useStore();
 const imageStore = useImageStore();
 const { activeIndex, content } = storeToRefs(store);
-const invalidSize = ref(false);
+const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
 function getPosition(index: number): void {

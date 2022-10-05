@@ -55,6 +55,7 @@ function removeImagesBeforeUnload(evt) {
 
 // TODO:
 // toggle cards in BlockEdit
+// img size errors image input invalid error
 // delete img if user cancels reload save ids in localstorage and delete when mounted
 </script>
 
