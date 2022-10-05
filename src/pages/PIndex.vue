@@ -57,6 +57,8 @@ function removeImagesBeforeUnload(evt) {
 // toggle cards in BlockEdit
 // img size errors image input invalid error
 // delete img if user cancels reload save ids in localstorage and delete when mounted
+// prevent img input pasting base64
+// preview corner cases
 </script>
 
 <style scoped>
