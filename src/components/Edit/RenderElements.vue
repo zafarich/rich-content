@@ -33,8 +33,10 @@
           <div class="">
             <CUploadImage
               v-if="objectHas(item, 'img')"
-              @upload="updateImage($event, index)"
+              @uploaded="updateImage(index, $event)"
+              :index="index"
             />
+
             <transition name="fade">
               <p v-if="invalidSize" class="mt-1.5 text-xs text-red">
                 Размер файла должен быть меньше 1мб
@@ -50,6 +52,7 @@
               currentImage: item?.img?.src,
             }"
           />
+
           <CInput
             v-if="objectHas(item, 'imgLink')"
             :model-value="content[activeIndex].content.block[index].img.src"
@@ -119,7 +122,7 @@ function updateTextDetails(index: number, e: any): void {
     e.value;
 }
 
-function updateImage(e: any, index: number): void {
+function updateImage(index: number, e: any): void {
   if (e?.file?.size > 1024000) {
     invalidSize.value = true;
     return;
@@ -138,6 +141,7 @@ function updateImage(e: any, index: number): void {
       }
     })
     .catch((err) => {
+      // eslint-disable-next-line
       console.log("ERROR is occured while uploading:", err);
     });
 }

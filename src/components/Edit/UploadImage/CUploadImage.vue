@@ -3,7 +3,7 @@
     <h6 class="mb-2 font-medium text-[14px] leading-[20px]">Изображение</h6>
     <div class="h-[44px] rounded relative border-2 border-yellow">
       <input
-        id="file"
+        :id="'file' + index"
         accept="image/*"
         type="file"
         name="file"
@@ -12,7 +12,7 @@
       />
       <div
         class="w-full h-full flex-center-center gap-2 cursor-pointer"
-        @click="getFile"
+        @click="getFile(index)"
       >
         <Icon name="add_photo" />
         <p class="font-medium text-[14px] leading-[20px]">Добавить фото</p>
@@ -21,17 +21,20 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 
 import Icon from "@/components/Icon/Icon.vue";
 
-const emit = defineEmits(["upload"]);
-export interface Props {
-  item: any;
+interface Emits {
+  (e: "uploaded", v: string): void;
 }
-const props = withDefaults(defineProps<Props>(), {
-  item: "",
-});
+export interface Props {
+  index: number;
+}
+
+const $emit = defineEmits<Emits>();
+withDefaults(defineProps<Props>(), {});
+
 const image = reactive({
   url: null,
   file: null,
@@ -52,25 +55,11 @@ const handleFile = (event: any) => {
     reader.onload = (e) => {
       image.url = e.target?.result;
     };
-    send();
+    $emit("uploaded", image);
   }
 };
-const getFile = () => {
-  const input = document.getElementById("file");
+const getFile = (index: number): void => {
+  const input = document.getElementById(`file${index}`);
   input?.click();
 };
-const removeImage = () => {
-  image.file = null;
-  image.url = null;
-  send();
-};
-const send = () => {
-  emit("upload", image);
-};
-
-onMounted(() => {
-  if (props.item) {
-    image.url = props.item;
-  }
-});
 </script>

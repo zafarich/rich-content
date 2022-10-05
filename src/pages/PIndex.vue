@@ -54,11 +54,8 @@ function removeImagesBeforeUnload(evt) {
 }
 
 // TODO:
-// title text mutating original
 // toggle cards in BlockEdit
-// custom input to textaria
-// delete img if user cancels reload
-// nested items mutating each other
+// delete img if user cancels reload save ids in localstorage and delete when mounted
 </script>
 
 <style scoped>

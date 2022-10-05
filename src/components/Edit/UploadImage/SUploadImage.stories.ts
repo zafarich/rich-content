@@ -24,4 +24,6 @@ const Template: Story = (args) => ({
 });
 
 export const UploadImage = Template.bind({});
-UploadImage.args = {};
+UploadImage.args = {
+  index: 23
+};
