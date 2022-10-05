@@ -8,7 +8,6 @@ const roll: Content = {
       imgLink: "",
       img: {
         src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633bcc064709f.png",
-        // src: "/src/assets/images/default/1416x708.png",
         srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,

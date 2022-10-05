@@ -4,9 +4,7 @@ import { ref } from "vue";
 import axios from "@/plugins/axios";
 
 export const useImageStore = defineStore("image", {
-  state: () => ({
-    imageDeleteIds: ref<number[]>([]),
-  }),
+  state: () => ({}),
 
   actions: {
     async postImage(data) {
@@ -14,7 +12,8 @@ export const useImageStore = defineStore("image", {
         axios
           .post("/files/rich-upload", data)
           .then((res) => {
-            res?.data?.success && this.imageDeleteIds.push(res?.data?.data?.id);
+            const result = res?.data;
+            result?.success && this.setImgIdToLocalStorage(result?.data?.id);
             resolve(res);
           })
           .catch((err) => {
@@ -36,12 +35,22 @@ export const useImageStore = defineStore("image", {
       });
     },
 
-    async deleteAllImage() {
-      let i = 0;
-      while (i < this.imageDeleteIds.length) {
-        await this.deleteImage(this.imageDeleteIds[i]);
-        i++;
+    async deleteAllImage(): void {
+      const ids = JSON.parse(await localStorage.getItem("delete")) || 0;
+      if (ids) {
+        let i = 0;
+        while (i < ids.length) {
+          await this.deleteImage(ids[i]);
+          i++;
+        }
+        await localStorage.removeItem("delete");
       }
+    },
+
+    async setImgIdToLocalStorage(id: number): void {
+      const ids = JSON.parse(await localStorage.getItem("delete")) || [];
+      ids.push(id);
+      await localStorage.setItem("delete", JSON.stringify(ids));
     },
   },
 });

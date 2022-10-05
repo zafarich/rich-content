@@ -26,7 +26,7 @@
         ]"
       />
       <CButton
-        @click="imageDeleteIds.length = 0"
+        @click="deleteLocalStorageIds"
         v-if="!isFullScreen"
         text="Сохранить"
         class="px-4 rounded"
@@ -117,7 +117,8 @@
         </div>
       </div>
     </VueDraggableNext>
-    <pre>{{ content }}</pre>
+    <!-- <pre>{{ content }}</pre> -->
+    <pre>{{ getIds() }}</pre>
   </div>
 </template>
 
@@ -158,6 +159,14 @@ watch(activeIndex, (v): void => {
   }
 });
 
+async function deleteLocalStorageIds() {
+  await localStorage.removeItem("delete");
+}
+
+function getIds() {
+  return JSON.parse(localStorage.getItem("delete"));
+}
+
 function handleAdd(e): void {
   activeIndex.value = e.newIndex;
 }
@@ -177,8 +186,6 @@ function handleDynamicComponentEvents(event: any) {
 }
 
 function billboardEvent(e) {
-  console.log(e.index, "ee");
-  console.log(activeIndex.value);
   content.value[activeIndex.value].content.block[e.index][e.target].value =
     e.value;
 }

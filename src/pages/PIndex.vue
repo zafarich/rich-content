@@ -26,12 +26,9 @@ import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
-import useStoreImage from "@/store/image";
 import useStore from "@/store/index";
 
 const store = useStore();
-const storeImage = useStoreImage();
-const { imageDeleteIds } = storeToRefs(storeImage);
 const { step, isFullScreen } = storeToRefs(store);
 
 onMounted(() => {
@@ -44,11 +41,6 @@ onBeforeUnmount(() => {
 
 function removeImagesBeforeUnload(evt) {
   evt.preventDefault();
-
-  if (imageDeleteIds.value.length) {
-    storeImage.deleteAllImage();
-  }
-
   evt.returnValue = "";
   return null;
 }
@@ -59,6 +51,11 @@ function removeImagesBeforeUnload(evt) {
 // delete img if user cancels reload save ids in localstorage and delete when mounted
 // prevent img input pasting base64
 // preview corner cases
+
+// delete ids when:
+// 1. mount loop the array and delete one by one
+// 2. content delete request to back and remove the id from localstorage
+// 3. clear localStorage when save btn clicks delete Items in localstoarge ✔️
 </script>
 
 <style scoped>
