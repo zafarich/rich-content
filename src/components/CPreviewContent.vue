@@ -56,7 +56,6 @@
               }"
               @click="!isFullScreen && (activeIndex = index)"
             >
-              content:{{ index }}
               <component
                 :is="ContentComponents[item.content.type]"
                 @updateData="handleDynamicComponentEvents($event)"

@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col gap-12">
     <div v-for="(item, index) in content.block" :key="index">
-      block: {{ index }}
       <div class="flex-center-center">
         <img
           class="w-full h-full object-cover select-none mb-4"
