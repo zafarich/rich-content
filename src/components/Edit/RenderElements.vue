@@ -153,6 +153,10 @@ function updateImage(index: number, e: any): void {
 }
 
 function updateImageInput(event: any, index: number): void {
+  if (event?.target?.value.startsWith("data:")) {
+    return false;
+  }
+
   if (isValidURL(event?.target?.value)) {
     content.value[activeIndex.value].content.block[index].img.src =
       event.target.value;
