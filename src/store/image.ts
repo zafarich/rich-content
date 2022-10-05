@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
 import axios from "@/plugins/axios";
 
@@ -39,6 +38,7 @@ export const useImageStore = defineStore("image", {
 
     async deleteAllImage(): void {
       const ids = JSON.parse(await localStorage.getItem("delete"));
+
       if (ids) {
         let i = 0;
         while (i < ids.length) {

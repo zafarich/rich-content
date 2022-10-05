@@ -118,7 +118,6 @@
       </div>
     </VueDraggableNext>
     <!-- <pre>{{ content }}</pre> -->
-    <pre>{{ getIds() }}</pre>
   </div>
 </template>
 
@@ -161,10 +160,6 @@ watch(activeIndex, (v): void => {
 
 async function deleteLocalStorageIds() {
   await localStorage.removeItem("delete");
-}
-
-function getIds() {
-  return JSON.parse(localStorage.getItem("delete"));
 }
 
 function handleAdd(e): void {
