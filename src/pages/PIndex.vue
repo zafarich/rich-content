@@ -51,9 +51,8 @@ function removeImagesBeforeUnload(evt) {
 // TODO:
 // toggle cards in BlockEdit
 // img size errors image input invalid error
-// prevent img input pasting base64
 // preview corner cases
-// add anchor tag link
+// disable anchor tag in edit mode
 </script>
 
 <style scoped>

@@ -2,12 +2,18 @@
   <div class="flex flex-col gap-12">
     <div v-for="(item, index) in content.block" :key="index">
       <div class="flex-center-center">
-        <img
-          class="w-full h-full object-cover select-none mb-4"
-          :src="item.img.src"
-          :alt="item.img.alt"
-          :class="item.img.position"
-        />
+        <a
+          :href="item.imgLink || ''"
+          target="_blank"
+          :class="{ 'pointer-events-none': !item.imgLink }"
+        >
+          <img
+            class="w-full h-full object-cover select-none mb-4"
+            :src="item.img.src"
+            :alt="item.img.alt"
+            :class="item.img.position"
+          />
+        </a>
       </div>
 
       <CContentInput

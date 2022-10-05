@@ -46,6 +46,15 @@
             </transition>
           </div>
 
+          <CInput
+            v-if="objectHas(item, 'img')"
+            :model-value="content[activeIndex].content.block[index].img.src"
+            @input="updateImageInput($event, index)"
+            v-bind="{
+              label: 'Прямая ссылка на изображение',
+            }"
+          />
+
           <CImageView
             v-if="objectHas(item, 'img')"
             @position="updateImgPosition(index, $event)"
@@ -57,8 +66,8 @@
 
           <CInput
             v-if="objectHas(item, 'imgLink')"
-            :model-value="content[activeIndex].content.block[index].img.src"
-            @input="updateImageInput($event, index)"
+            :model-value="content[activeIndex].content.block[index].imgLink"
+            @input="updateImageLink($event, index)"
             v-bind="{
               label: 'Ссылка по клику на изображение',
             }"
@@ -162,6 +171,20 @@ function updateImageInput(event: any, index: number): void {
       event.target.value;
     content.value[activeIndex.value].content.block[index].img.id = undefined;
   }
+}
+
+function updateImageLink(event: any, index: number): void {
+  if (event?.target?.value.startsWith("data:")) {
+    return false;
+  }
+  let setVal = "";
+
+  if (isValidURL(event?.target?.value)) {
+    setVal = event.target.value;
+  } else {
+    setVal = "";
+  }
+  content.value[activeIndex.value].content.block[index].imgLink = setVal;
 }
 
 function isValidURL(url: string): boolean {
