@@ -34,6 +34,7 @@ export interface Block {
 }
 
 export interface Img {
+  id: string | undefined;
   src: string;
   srcMobile: string;
   alt: string;

@@ -137,9 +137,13 @@ function updateImage(index: number, e: any): void {
   imageStore
     .postImage(formData)
     .then((res) => {
-      if (res.data.success) {
+      const result = res.data;
+      if (result.success) {
         content.value[activeIndex.value].content.block[index].img.src =
-          ENV_CDN + res.data.data.path;
+          ENV_CDN + result.data.path;
+
+        content.value[activeIndex.value].content.block[index].img.id =
+          result.data.id;
       }
     })
     .catch((err) => {
@@ -152,6 +156,7 @@ function updateImageInput(event: any, index: number): void {
   if (isValidURL(event?.target?.value)) {
     content.value[activeIndex.value].content.block[index].img.src =
       event.target.value;
+    content.value[activeIndex.value].content.block[index].img.id = undefined;
   }
 }
 

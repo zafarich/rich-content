@@ -7,7 +7,9 @@ const roll: Content = {
     {
       imgLink: "",
       img: {
-        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633bcc064709f.png",
+        id: undefined,
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        // 111
         srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,
@@ -27,7 +29,8 @@ const billboard: Content = {
     {
       imgLink: "",
       img: {
-        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633bcc064709f.png",
+        id: undefined,
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
         srcMobile: "/src/assets/images/default/640x640.png",
         alt: "Текстовое описание изображения",
         width: 1416,

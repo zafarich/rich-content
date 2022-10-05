@@ -3,6 +3,8 @@ import { ref } from "vue";
 
 import axios from "@/plugins/axios";
 
+import { useStore } from "./index";
+
 export const useImageStore = defineStore("image", {
   state: () => ({}),
 
@@ -36,11 +38,12 @@ export const useImageStore = defineStore("image", {
     },
 
     async deleteAllImage(): void {
-      const ids = JSON.parse(await localStorage.getItem("delete")) || 0;
+      const ids = JSON.parse(await localStorage.getItem("delete"));
       if (ids) {
         let i = 0;
         while (i < ids.length) {
-          await this.deleteImage(ids[i]);
+          // eslint-disable-next-line
+          await this.deleteImage(ids[i]).catch((err) => console.log(err));
           i++;
         }
         await localStorage.removeItem("delete");
@@ -51,6 +54,32 @@ export const useImageStore = defineStore("image", {
       const ids = JSON.parse(await localStorage.getItem("delete")) || [];
       ids.push(id);
       await localStorage.setItem("delete", JSON.stringify(ids));
+    },
+
+    async removeImgIdFromLocalStorage(index: number): void {
+      const contentStore = useStore();
+      const blocks = contentStore.content[index].content.block;
+
+      for (const i in blocks) {
+        const id = blocks[i]?.img?.id;
+
+        if (id) {
+          // eslint-disable-next-line
+          await this.deleteImage(id).catch((err) => console.log(err));
+          // eslint-disable-next-line
+          await this.removeId(id).catch((err) => console.log(err));
+        }
+      }
+    },
+
+    async removeId(id: number): void {
+      const ids = JSON.parse(await localStorage.getItem("delete"));
+
+      if (ids) {
+        const index = ids.findIndex((e) => e == id);
+        ids.splice(index, 1);
+        await localStorage.setItem("delete", JSON.stringify(ids));
+      }
     },
   },
 });

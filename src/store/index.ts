@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+import { useImageStore } from "./image";
+
 export const useStore = defineStore("main", {
   state: () => ({
     content: ref([]),
@@ -14,6 +16,9 @@ export const useStore = defineStore("main", {
       this.isFullScreen = !this.isFullScreen;
     },
     deleteContent(index: number): void {
+      const imageStore = useImageStore();
+      imageStore.removeImgIdFromLocalStorage(index);
+
       this.content.splice(index, 1);
       if (this.activeIndex == index) {
         this.activeIndex = null;
