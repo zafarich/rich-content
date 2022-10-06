@@ -100,14 +100,31 @@
               }"
             />
 
-            <CInput
-              v-if="objectHas(item, 'clickLink')"
-              :model-value="content[activeIndex].content.block[index].clickLink"
-              @input="updateClickLink($event, index)"
-              v-bind="{
-                label: 'Ссылка по клику на изображение',
-              }"
-            />
+            <div class="">
+              <CInput
+                v-if="objectHas(item, 'clickLink')"
+                :model-value="
+                  content[activeIndex].content.block[index].clickLink
+                "
+                @input="updateClickLink($event, index)"
+                v-bind="{
+                  label: 'Ссылка по клику на изображение',
+                }"
+              />
+
+              <transition name="fade">
+                <p
+                  v-if="
+                    content[activeIndex].content.block[index].asset.clickLinkErr
+                  "
+                  class="mt-1.5 text-xs text-red"
+                >
+                  {{
+                    content[activeIndex].content.block[index].asset.clickLinkErr
+                  }}
+                </p>
+              </transition>
+            </div>
 
             <CInput
               :model-value="item.img.alt"
@@ -130,7 +147,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
@@ -147,26 +164,28 @@ const { activeIndex, content } = storeToRefs(store);
 const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
+const getCurrentContent = computed(() => {
+  return content.value[activeIndex.value].content.block;
+});
+
 function getPosition(index: number): void {
-  return content.value[activeIndex.value].content.block[index].img.position;
+  return getCurrentContent.value[index].img.position;
 }
 
 function deleteBlock(index: number): void {
-  content.value[activeIndex.value].content.block.splice(index, 1);
+  getCurrentContent.value.splice(index, 1);
 }
 
 function updateImgPosition(index, event): void {
-  content.value[activeIndex.value].content.block[index].img.position = event;
+  getCurrentContent.value[index].img.position = event;
 }
 
 function updateImgAlt(e: any, index: number): void {
-  content.value[activeIndex.value].content.block[index].img.alt =
-    e.target.value;
+  getCurrentContent.value[index].img.alt = e.target.value;
 }
 
 function updateTextDetails(index: number, e: any): void {
-  content.value[activeIndex.value].content.block[index][e.type][e.item] =
-    e.value;
+  getCurrentContent.value[index][e.type][e.item] = e.value;
 }
 
 function updateImage(index: number, e: any): void {
@@ -186,11 +205,9 @@ function updateImage(index: number, e: any): void {
     .then((res) => {
       const result = res.data;
       if (result.success) {
-        content.value[activeIndex.value].content.block[index].img.src =
-          ENV_CDN + result.data.path;
+        getCurrentContent.value[index].img.src = ENV_CDN + result.data.path;
 
-        content.value[activeIndex.value].content.block[index].img.id =
-          result.data.id;
+        getCurrentContent.value[index].img.id = result.data.id;
       }
     })
     .catch((err) => {
@@ -209,21 +226,29 @@ function updateImageInput(event: any, index: number): void {
     return false;
   }
 
+  let setVal = "";
+
   if (isValidURL(event?.target?.value)) {
-    content.value[activeIndex.value].content.block[index].img.src =
-      event.target.value;
-    content.value[activeIndex.value].content.block[index].img.id = undefined;
+    setVal = event.target.value;
+    getCurrentContent.value[index].img.id = undefined;
   } else {
+    setVal = "";
     updateErrMessage(
       "URL изображения должен быть действительным",
       index,
       "imgLinkErr"
     );
   }
+
+  getCurrentContent.value[index].img.src = setVal;
 }
 
 function updateClickLink(event: any, index: number): void {
+  updateErrMessage("", index, "clickLinkErr");
+
   if (event?.target?.value.startsWith("data:")) {
+    let message = "Тип изображения base64 не допускается";
+    updateErrMessage(message, index, "clickLinkErr");
     return false;
   }
   let setVal = "";
@@ -232,8 +257,13 @@ function updateClickLink(event: any, index: number): void {
     setVal = event.target.value;
   } else {
     setVal = "";
+    updateErrMessage(
+      "URL изображения должен быть действительным",
+      index,
+      "clickLinkErr"
+    );
   }
-  content.value[activeIndex.value].content.block[index].clickLink = setVal;
+  getCurrentContent.value[index].clickLink = setVal;
 }
 
 function isValidURL(url: string): boolean {
@@ -250,12 +280,12 @@ function updateErrMessage(
   index: number,
   target: string
 ): void {
-  content.value[activeIndex.value].content.block[index].asset[target] = message;
+  getCurrentContent.value[index].asset[target] = message;
 }
 
 function toggleBlock(index: number): void {
-  content.value[activeIndex.value].content.block[index].asset.toggle =
-    !content.value[activeIndex.value].content.block[index].asset.toggle;
+  getCurrentContent.value[index].asset.toggle =
+    !getCurrentContent.value[index].asset.toggle;
 }
 </script>
 
