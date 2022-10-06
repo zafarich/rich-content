@@ -23,7 +23,6 @@
           <Icon name="add" />
           <span
             class="text-black-grey delay-100 font-medium tracking-[0.5px] !leading-sm text-[14px] select-none"
-            :class="textClass"
           >
             Добавить
           </span>

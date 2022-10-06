@@ -35,7 +35,7 @@
 <script setup lang="ts">
 export interface Props {
   type?: string;
-  placeholder: string;
+  placeholder?: string;
   modelValue: number | string;
   disabled?: boolean;
   error?: boolean;

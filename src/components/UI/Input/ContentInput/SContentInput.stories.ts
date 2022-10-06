@@ -15,7 +15,7 @@ const Template: Story = (args) => ({
     return { args, input };
   },
   template: `
-      <CContentInput v-model="input" v-bind="args" placeholder="Заголовок" class="mb-2 font-medium text-[20px] leading-[28px] cursor-text" />
+      <CContentInput v-model="input" v-bind="args"  class="mb-2 font-medium text-[20px] leading-[28px] cursor-text" />
       v-model: {{input}} 
     `,
 });

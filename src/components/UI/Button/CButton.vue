@@ -16,13 +16,10 @@
 
 <script setup lang="ts">
 export interface Props {
-  text: string;
-  textClass: string;
+  text?: string;
+  textClass?: string;
 }
-withDefaults(defineProps<Props>(), {
-  text: "",
-  textClass: "",
-});
+withDefaults(defineProps<Props>(), {});
 
 interface Emits {
   (e: "click"): void;

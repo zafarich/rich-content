@@ -2,7 +2,7 @@ import "/src/assets/styles/index.css";
 
 import { app } from "@storybook/vue3";
 
-import definePlugins from "../src/plugins";
+import definePlugins from "@/plugins";
 
 definePlugins(app);
 

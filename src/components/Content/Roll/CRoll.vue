@@ -23,7 +23,12 @@ export interface Props {
   content: Content;
 }
 
+interface Emits {
+  (e: "updateData", data: object);
+}
+
 withDefaults(defineProps<Props>(), {});
+const $emit = defineEmits<Emits>();
 </script>
 
 <style scoped></style>

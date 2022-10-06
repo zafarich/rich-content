@@ -127,6 +127,7 @@ import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
+import CChess from "@/components/Content/CHess/CChess.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
@@ -136,6 +137,7 @@ import useStore from "@/store/index";
 const ContentComponents = {
   roll: CRoll,
   billboard: CBillboard,
+  chess: CChess,
 };
 
 const store = useStore();
