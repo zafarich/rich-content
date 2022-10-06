@@ -13,6 +13,11 @@ const roll: Content = {
         alt: "Текстовое описание изображения",
         position: "w-full h-full",
       },
+      asset: {
+        toggle: true,
+        imgErr: "",
+        imgLinkErr: "",
+      },
     },
   ],
 };
@@ -41,6 +46,11 @@ const billboard: Content = {
         size: "text-sm",
         align: "text-left",
         color: "#F7F7F7",
+      },
+      asset: {
+        toggle: true,
+        imgErr: "",
+        imgLinkErr: "",
       },
     },
   ],

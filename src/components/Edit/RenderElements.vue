@@ -12,7 +12,10 @@
         :key="index"
       >
         <div
-          @click="toggleBlock.set(index, !toggleBlock.get(index))"
+          @click="
+            content[activeIndex].content.block[index].asset.toggle =
+              !content[activeIndex].content.block[index].asset.toggle
+          "
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
           <div class="flex-center gap-[10px]">
@@ -21,7 +24,10 @@
             </h6>
             <Icon
               :class="[
-                { 'rotate-[180deg] transition': toggleBlock.get(index) },
+                {
+                  'rotate-[180deg] transition':
+                    content[activeIndex].content.block[index].asset.toggle,
+                },
                 'transition',
               ]"
               name="arrow_down"
@@ -40,11 +46,7 @@
 
         <transition name="fade">
           <div
-            v-if="
-              toggleBlock.get(index) == undefined
-                ? true
-                : !toggleBlock.get(index)
-            "
+            v-if="content[activeIndex].content.block[index].asset.toggle"
             class="flex flex-col gap-6 transition"
           >
             <div class="">
@@ -126,17 +128,12 @@ const { activeIndex, content } = storeToRefs(store);
 const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
-const toggleBlock = ref(new Map());
-
 function getPosition(index: number): void {
   return content.value[activeIndex.value].content.block[index].img.position;
 }
 
 function deleteBlock(index: number): void {
   content.value[activeIndex.value].content.block.splice(index, 1);
-  const current = toggleBlock.value.get(index);
-  toggleBlock.value.delete(index);
-  toggleBlock.value.set(index, !current);
 }
 
 function updateImgPosition(index, event): void {

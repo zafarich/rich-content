@@ -48,7 +48,7 @@ function showAlertBeforeMount(event: object) {
 
 // TODO:
 // img size errors image input invalid error
-// preview corner cases
+// preview corner cases for NJS
 // disable anchor tag in edit mode
 //
 </script>
