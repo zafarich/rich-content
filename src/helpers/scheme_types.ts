@@ -27,7 +27,7 @@ export interface Content {
 }
 
 export interface Block {
-  imgLink: string;
+  clickLink: string;
   img: Img;
   title?: Text;
   text?: Text;

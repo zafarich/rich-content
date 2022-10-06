@@ -1,11 +1,11 @@
 <template>
   <a
-    :href="item.imgLink || ''"
+    :href="item.clickLink || ''"
     target="_blank"
     v-for="(item, index) in content.block"
     :key="index"
     class="flex-center-center flex-col"
-    :class="{ 'pointer-events-none': !item.imgLink }"
+    :class="{ 'pointer-events-none': !item.clickLink }"
   >
     <img
       class="w-full h-full object-cover"

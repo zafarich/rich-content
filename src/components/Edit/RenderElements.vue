@@ -55,22 +55,41 @@
 
               <transition name="fade">
                 <p
-                  v-if="content[activeIndex].content.block[index].asset.imgErr"
+                  v-if="
+                    content[activeIndex].content.block[index].asset.uploadErr
+                  "
                   class="mt-1.5 text-xs text-red"
                 >
-                  {{ content[activeIndex].content.block[index].asset.imgErr }}
+                  {{
+                    content[activeIndex].content.block[index].asset.uploadErr
+                  }}
                 </p>
               </transition>
             </div>
 
-            <CInput
-              v-if="objectHas(item, 'img')"
-              :model-value="content[activeIndex].content.block[index].img.src"
-              @input="updateImageInput($event, index)"
-              v-bind="{
-                label: 'Прямая ссылка на изображение',
-              }"
-            />
+            <div class="">
+              <CInput
+                v-if="objectHas(item, 'img')"
+                :model-value="content[activeIndex].content.block[index].img.src"
+                @input="updateImageInput($event, index)"
+                v-bind="{
+                  label: 'Прямая ссылка на изображение',
+                }"
+              />
+
+              <transition name="fade">
+                <p
+                  v-if="
+                    content[activeIndex].content.block[index].asset.imgLinkErr
+                  "
+                  class="mt-1.5 text-xs text-red"
+                >
+                  {{
+                    content[activeIndex].content.block[index].asset.imgLinkErr
+                  }}
+                </p>
+              </transition>
+            </div>
 
             <CImageView
               v-if="objectHas(item, 'img')"
@@ -82,9 +101,9 @@
             />
 
             <CInput
-              v-if="objectHas(item, 'imgLink')"
-              :model-value="content[activeIndex].content.block[index].imgLink"
-              @input="updateImageLink($event, index)"
+              v-if="objectHas(item, 'clickLink')"
+              :model-value="content[activeIndex].content.block[index].clickLink"
+              @input="updateClickLink($event, index)"
               v-bind="{
                 label: 'Ссылка по клику на изображение',
               }"
@@ -151,9 +170,9 @@ function updateTextDetails(index: number, e: any): void {
 }
 
 function updateImage(index: number, e: any): void {
-  setImgErr("", index);
+  updateErrMessage("", index, "uploadErr");
   if (e?.file?.size > 1024000) {
-    setImgErr("Размер файла должен быть меньше 1мб", index);
+    updateErrMessage("Размер файла должен быть меньше 1мб", index, "uploadErr");
     invalidSize.value = true;
     return;
   }
@@ -175,14 +194,18 @@ function updateImage(index: number, e: any): void {
       }
     })
     .catch((err) => {
-      setImgErr(err?.response?.data?.errors[0], index);
+      updateErrMessage(err?.response?.data?.errors[0], index, "uploadErr");
       // eslint-disable-next-line
       console.log("ERROR is occured while uploading:", err);
     });
 }
 
 function updateImageInput(event: any, index: number): void {
+  updateErrMessage("", index, "imgLinkErr");
+
   if (event?.target?.value.startsWith("data:")) {
+    let message = "Тип изображения base64 не допускается";
+    updateErrMessage(message, index, "imgLinkErr");
     return false;
   }
 
@@ -190,10 +213,16 @@ function updateImageInput(event: any, index: number): void {
     content.value[activeIndex.value].content.block[index].img.src =
       event.target.value;
     content.value[activeIndex.value].content.block[index].img.id = undefined;
+  } else {
+    updateErrMessage(
+      "URL изображения должен быть действительным",
+      index,
+      "imgLinkErr"
+    );
   }
 }
 
-function updateImageLink(event: any, index: number): void {
+function updateClickLink(event: any, index: number): void {
   if (event?.target?.value.startsWith("data:")) {
     return false;
   }
@@ -204,7 +233,7 @@ function updateImageLink(event: any, index: number): void {
   } else {
     setVal = "";
   }
-  content.value[activeIndex.value].content.block[index].imgLink = setVal;
+  content.value[activeIndex.value].content.block[index].clickLink = setVal;
 }
 
 function isValidURL(url: string): boolean {
@@ -216,8 +245,12 @@ function isValidURL(url: string): boolean {
   }
 }
 
-function setImgErr(message: string, index: number): void {
-  content.value[activeIndex.value].content.block[index].asset.imgErr = message;
+function updateErrMessage(
+  message: string,
+  index: number,
+  target: string
+): void {
+  content.value[activeIndex.value].content.block[index].asset[target] = message;
 }
 
 function toggleBlock(index: number): void {

@@ -2,10 +2,10 @@
   <div class="flex flex-col gap-12">
     <div v-for="(item, index) in content.block" :key="index">
       <a
-        :href="item.imgLink || ''"
+        :href="item.clickLink || ''"
         target="_blank"
         class="w-full h-full flex-center-center"
-        :class="{ 'pointer-events-none': !item.imgLink }"
+        :class="{ 'pointer-events-none': !item.clickLink }"
       >
         <img
           class="w-full h-full object-cover select-none mb-4"

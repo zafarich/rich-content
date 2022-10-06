@@ -5,7 +5,7 @@ const roll: Content = {
   type: "roll",
   block: [
     {
-      imgLink: "",
+      clickLink: "",
       img: {
         id: undefined,
         src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
@@ -15,8 +15,9 @@ const roll: Content = {
       },
       asset: {
         toggle: true,
-        imgErr: "",
+        uploadErr: "",
         imgLinkErr: "",
+        clickLinkErr: "",
       },
     },
   ],
@@ -27,7 +28,7 @@ const billboard: Content = {
   type: "billboard",
   block: [
     {
-      imgLink: "",
+      clickLink: "",
       img: {
         id: undefined,
         src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
@@ -49,8 +50,8 @@ const billboard: Content = {
       },
       asset: {
         toggle: true,
-        imgErr: "",
         imgLinkErr: "",
+        clickLinkErr: "",
       },
     },
   ],
