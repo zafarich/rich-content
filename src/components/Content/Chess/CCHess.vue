@@ -14,7 +14,7 @@
       />
     </a> -->
     <div class="w-1/2 flex-center-center">
-      <span>ASKDJLKASJD</span>
+      <span>CHILL MAN</span>
     </div>
   </div>
 </template>
