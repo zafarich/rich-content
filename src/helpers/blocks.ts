@@ -22,7 +22,7 @@ const blocks: TTypes[] = [
   {
     block_img: "/src/assets/images/blocks/block3.png",
     block_text: "Изображение и текст справа",
-    content: JSON.parse(JSON.stringify(Scheme["billboard"])),
+    content: JSON.parse(JSON.stringify(Scheme["chess"])),
   },
 ];
 

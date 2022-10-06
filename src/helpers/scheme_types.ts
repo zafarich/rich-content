@@ -32,6 +32,7 @@ export interface Block {
   title?: Text;
   text?: Text;
   asset?: Asset;
+  reverse?: boolean;
 }
 
 export interface Img {
