@@ -12,7 +12,7 @@
         :key="index"
       >
         <div
-          @click="handleToggle(index)"
+          @click="toggleBlock.set(index, !toggleBlock.get(index))"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
           <div class="flex-center gap-[10px]">
@@ -35,7 +35,9 @@
         <transition name="fade">
           <div
             v-if="
-              toggleIdxs.get(index) == undefined ? true : !toggleIdxs.get(index)
+              toggleBlock.get(index) == undefined
+                ? true
+                : !toggleBlock.get(index)
             "
             class="flex flex-col gap-6 transition"
           >
@@ -118,11 +120,7 @@ const { activeIndex, content } = storeToRefs(store);
 const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
-const toggleIdxs = ref(new Map());
-
-function handleToggle(index: number): void {
-  toggleIdxs.value.set(index, !toggleIdxs.value.get(index));
-}
+const toggleBlock = ref(new Map());
 
 function getPosition(index: number): void {
   return content.value[activeIndex.value].content.block[index].img.position;
@@ -130,13 +128,9 @@ function getPosition(index: number): void {
 
 function deleteBlock(index: number): void {
   content.value[activeIndex.value].content.block.splice(index, 1);
-
-  console.log(toggleIdxs.value);
-  const current = toggleIdxs.value.get(index);
-  toggleIdxs.value.delete(index);
-  toggleIdxs.value.set(index, !current);
-  console.log(toggleIdxs.value);
-  console.log(index);
+  const current = toggleBlock.value.get(index);
+  toggleBlock.value.delete(index);
+  toggleBlock.value.set(index, !current);
 }
 
 function updateImgPosition(index, event): void {
