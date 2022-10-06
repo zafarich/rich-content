@@ -12,10 +12,7 @@
         :key="index"
       >
         <div
-          @click="
-            content[activeIndex].content.block[index].asset.toggle =
-              !content[activeIndex].content.block[index].asset.toggle
-          "
+          @click="toggleBlock(index)"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
           <div class="flex-center gap-[10px]">
@@ -57,8 +54,11 @@
               />
 
               <transition name="fade">
-                <p v-if="invalidSize" class="mt-1.5 text-xs text-red">
-                  Размер файла должен быть меньше 1мб
+                <p
+                  v-if="content[activeIndex].content.block[index].asset.imgErr"
+                  class="mt-1.5 text-xs text-red"
+                >
+                  {{ content[activeIndex].content.block[index].asset.imgErr }}
                 </p>
               </transition>
             </div>
@@ -151,7 +151,9 @@ function updateTextDetails(index: number, e: any): void {
 }
 
 function updateImage(index: number, e: any): void {
+  setImgErr("", index);
   if (e?.file?.size > 1024000) {
+    setImgErr("Размер файла должен быть меньше 1мб", index);
     invalidSize.value = true;
     return;
   }
@@ -173,6 +175,7 @@ function updateImage(index: number, e: any): void {
       }
     })
     .catch((err) => {
+      setImgErr(err?.response?.data?.errors[0], index);
       // eslint-disable-next-line
       console.log("ERROR is occured while uploading:", err);
     });
@@ -211,6 +214,15 @@ function isValidURL(url: string): boolean {
   } catch (error) {
     return false;
   }
+}
+
+function setImgErr(message: string, index: number): void {
+  content.value[activeIndex.value].content.block[index].asset.imgErr = message;
+}
+
+function toggleBlock(index: number): void {
+  content.value[activeIndex.value].content.block[index].asset.toggle =
+    !content.value[activeIndex.value].content.block[index].asset.toggle;
 }
 </script>
 
