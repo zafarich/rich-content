@@ -34,18 +34,16 @@ const storeImage = useStoreImage();
 const { step, isFullScreen } = storeToRefs(store);
 
 onMounted(() => {
-  window.addEventListener("beforeunload", removeImagesBeforeUnload);
+  window.addEventListener("beforeunload", showAlertBeforeMount);
   storeImage.deleteAllImage();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("beforeunload", removeImagesBeforeUnload);
+  window.removeEventListener("beforeunload", showAlertBeforeMount);
 });
 
-function removeImagesBeforeUnload(evt) {
-  evt.preventDefault();
-  evt.returnValue = "";
-  return null;
+function showAlertBeforeMount(event: object) {
+  event.returnValue = `Are you sure you want to leave?`;
 }
 
 // TODO:
