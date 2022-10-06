@@ -36,12 +36,7 @@ export interface Block {
 export interface Img {
   id: string | undefined;
   src: string;
-  srcMobile: string;
   alt: string;
-  width: number;
-  height: number;
-  widthMobile: number;
-  heightMobile: number;
   position?: ImgPosition;
 }
 

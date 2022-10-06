@@ -51,6 +51,7 @@ function showAlertBeforeMount(event: object) {
 // img size errors image input invalid error
 // preview corner cases
 // disable anchor tag in edit mode
+//
 </script>
 
 <style scoped>
