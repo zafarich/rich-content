@@ -45,12 +45,6 @@ onBeforeUnmount(() => {
 function showAlertBeforeMount(event: object) {
   event.returnValue = `Are you sure you want to leave?`;
 }
-
-// TODO:
-// img size errors image input invalid error
-// preview corner cases for NJS
-// disable anchor tag in edit mode
-//
 </script>
 
 <style scoped>
