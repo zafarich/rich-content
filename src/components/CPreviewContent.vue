@@ -56,6 +56,7 @@
               }"
               @click="!isFullScreen && (activeIndex = index)"
             >
+              {{ item.content.type }}
               <component
                 :is="ContentComponents[item.content.type]"
                 @updateData="handleDynamicComponentEvents($event)"
@@ -127,7 +128,7 @@ import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
-import CChess from "@/components/Content/CHess/CChess.vue";
+import CChess from "@/components/Content/Chess/CChess.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
