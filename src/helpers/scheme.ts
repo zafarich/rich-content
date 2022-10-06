@@ -9,7 +9,6 @@ const roll: Content = {
       img: {
         id: undefined,
         src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
-        // 111
         alt: "Текстовое описание изображения",
         position: "w-full h-full",
       },

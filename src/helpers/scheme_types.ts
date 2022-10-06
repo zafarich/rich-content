@@ -31,6 +31,7 @@ export interface Block {
   img: Img;
   title?: Text;
   text?: Text;
+  asset?: Asset;
 }
 
 export interface Img {
@@ -46,6 +47,13 @@ export interface Text {
   align: TextAlignment;
   color: TextColors;
   content: string[];
+}
+
+export interface Asset {
+  toggle: boolean;
+  uploadErr: string;
+  imgLinkErr: string;
+  clickLinkErr: string;
 }
 
 export default TemplateTypes;

@@ -19,6 +19,11 @@ const blocks: TTypes[] = [
     block_text: "Изображение с текстом",
     content: JSON.parse(JSON.stringify(Scheme["billboard"])),
   },
+  {
+    block_img: "/src/assets/images/blocks/block3.png",
+    block_text: "Изображение и текст справа",
+    content: JSON.parse(JSON.stringify(Scheme["billboard"])),
+  },
 ];
 
 export default blocks;
