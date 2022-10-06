@@ -47,7 +47,6 @@ function showAlertBeforeMount(event: object) {
 }
 
 // TODO:
-// toggle cards in BlockEdit
 // img size errors image input invalid error
 // preview corner cases
 // disable anchor tag in edit mode

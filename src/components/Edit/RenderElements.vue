@@ -130,8 +130,13 @@ function getPosition(index: number): void {
 
 function deleteBlock(index: number): void {
   content.value[activeIndex.value].content.block.splice(index, 1);
-  toggleIdxs.value.delete(index + 1);
+
+  console.log(toggleIdxs.value);
+  const current = toggleIdxs.value.get(index);
   toggleIdxs.value.delete(index);
+  toggleIdxs.value.set(index, !current);
+  console.log(toggleIdxs.value);
+  console.log(index);
 }
 
 function updateImgPosition(index, event): void {
