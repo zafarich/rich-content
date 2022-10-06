@@ -92,7 +92,7 @@
             </div>
 
             <CImageView
-              v-if="objectHas(item, 'img')"
+              v-if="objectHas(item?.img, 'position')"
               @position="updateImgPosition(index, $event)"
               v-bind="{
                 currentPosition: getPosition(index),

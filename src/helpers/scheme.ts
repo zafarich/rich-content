@@ -66,7 +66,6 @@ const chess: Content = {
         id: undefined,
         src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
         alt: "Текстовое описание изображения",
-        position: "w-full h-full",
       },
       title: {
         value: "Заголовок",
