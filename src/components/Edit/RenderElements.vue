@@ -12,6 +12,7 @@
         :key="index"
       >
         <div
+          @click="handleToggle(index)"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
           <div class="flex-center gap-[10px]">
@@ -31,62 +32,68 @@
           </transition>
         </div>
 
-        <div class="flex flex-col gap-6 transition">
-          <div class="">
-            <CUploadImage
+        <transition name="fade">
+          <div
+            v-if="
+              toggleIdxs.get(index) == undefined ? true : !toggleIdxs.get(index)
+            "
+            class="flex flex-col gap-6 transition"
+          >
+            <div class="">
+              <CUploadImage
+                v-if="objectHas(item, 'img')"
+                @uploaded="updateImage(index, $event)"
+                :index="index"
+              />
+
+              <transition name="fade">
+                <p v-if="invalidSize" class="mt-1.5 text-xs text-red">
+                  Размер файла должен быть меньше 1мб
+                </p>
+              </transition>
+            </div>
+
+            <CInput
               v-if="objectHas(item, 'img')"
-              @uploaded="updateImage(index, $event)"
-              :index="index"
+              :model-value="content[activeIndex].content.block[index].img.src"
+              @input="updateImageInput($event, index)"
+              v-bind="{
+                label: 'Прямая ссылка на изображение',
+              }"
             />
 
-            <transition name="fade">
-              <p v-if="invalidSize" class="mt-1.5 text-xs text-red">
-                Размер файла должен быть меньше 1мб
-              </p>
-            </transition>
-          </div>
+            <CImageView
+              v-if="objectHas(item, 'img')"
+              @position="updateImgPosition(index, $event)"
+              v-bind="{
+                currentPosition: getPosition(index),
+                currentImage: item?.img?.src,
+              }"
+            />
 
-          <CInput
-            v-if="objectHas(item, 'img')"
-            :model-value="content[activeIndex].content.block[index].img.src"
-            @input="updateImageInput($event, index)"
-            v-bind="{
-              label: 'Прямая ссылка на изображение',
-            }"
-          />
+            <CInput
+              v-if="objectHas(item, 'imgLink')"
+              :model-value="content[activeIndex].content.block[index].imgLink"
+              @input="updateImageLink($event, index)"
+              v-bind="{
+                label: 'Ссылка по клику на изображение',
+              }"
+            />
 
-          <CImageView
-            v-if="objectHas(item, 'img')"
-            @position="updateImgPosition(index, $event)"
-            v-bind="{
-              currentPosition: getPosition(index),
-              currentImage: item?.img?.src,
-            }"
-          />
+            <CInput
+              :model-value="item.img.alt"
+              @input="updateImgAlt($event, index)"
+              v-if="objectHas(item, 'img')"
+              v-bind="{
+                label: 'Текстовое описание изображения(Alt)',
+              }"
+            />
 
-          <CInput
-            v-if="objectHas(item, 'imgLink')"
-            :model-value="content[activeIndex].content.block[index].imgLink"
-            @input="updateImageLink($event, index)"
-            v-bind="{
-              label: 'Ссылка по клику на изображение',
-            }"
-          />
-
-          <CInput
-            :model-value="item.img.alt"
-            @input="updateImgAlt($event, index)"
-            v-if="objectHas(item, 'img')"
-            v-bind="{
-              label: 'Текстовое описание изображения(Alt)',
-            }"
-          />
-
-          <CTextDetails
-            @update-text="updateTextDetails(index, $event)"
-            v-bind="{ item }"
-          />
-        </div>
+            <CTextDetails
+              @update-text="updateTextDetails(index, $event)"
+              v-bind="{ item }"
+            /></div
+        ></transition>
       </div>
     </div>
   </transition>
@@ -111,12 +118,20 @@ const { activeIndex, content } = storeToRefs(store);
 const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
+const toggleIdxs = ref(new Map());
+
+function handleToggle(index: number): void {
+  toggleIdxs.value.set(index, !toggleIdxs.value.get(index));
+}
+
 function getPosition(index: number): void {
   return content.value[activeIndex.value].content.block[index].img.position;
 }
 
 function deleteBlock(index: number): void {
   content.value[activeIndex.value].content.block.splice(index, 1);
+  toggleIdxs.value.delete(index + 1);
+  toggleIdxs.value.delete(index);
 }
 
 function updateImgPosition(index, event): void {
