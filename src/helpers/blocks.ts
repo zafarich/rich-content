@@ -21,6 +21,11 @@ const blocks: TTypes[] = [
   },
   {
     block_img: "/src/assets/images/blocks/block3.png",
+    block_text: "Изображение и текст слева",
+    content: JSON.parse(JSON.stringify(Scheme["chess"])),
+  },
+  {
+    block_img: "/src/assets/images/blocks/block4.png",
     block_text: "Изображение и текст справа",
     content: JSON.parse(JSON.stringify(Scheme["chess"])),
   },

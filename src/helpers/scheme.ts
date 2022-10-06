@@ -1,3 +1,4 @@
+// leading +10 if 14, else +8
 import { Content } from "@/helpers/scheme_types";
 
 const roll: Content = {
