@@ -190,12 +190,6 @@ function billboardEvent(e) {
 </script>
 
 <style scoped>
-.flip-list-move {
-  transition: transform 0.5s;
-}
-.no-move {
-  transition: transform 0s;
-}
 .ghost {
   opacity: 0.5;
   background: #c8ebfb;

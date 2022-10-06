@@ -30,5 +30,3 @@ interface Emits {
 withDefaults(defineProps<Props>(), {});
 defineEmits<Emits>();
 </script>
-
-<style scoped></style>
