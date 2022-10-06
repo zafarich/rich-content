@@ -19,7 +19,13 @@
             <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
               Карточка # {{ index + 1 }}
             </h6>
-            <Icon name="arrow_down" />
+            <Icon
+              :class="[
+                { 'rotate-[180deg] transition': toggleBlock.get(index) },
+                'transition',
+              ]"
+              name="arrow_down"
+            />
           </div>
           <transition name="fade">
             <Icon
