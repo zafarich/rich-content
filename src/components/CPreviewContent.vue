@@ -12,12 +12,12 @@
       <CTab
         v-if="isFullScreen"
         class="min-w-[100px]"
-        @change="handleDeviceSizeChange"
+        @change="deviceType = $event"
       />
       <CButton
         @click="
           store.toggleIsFullScreen();
-          handleDeviceSizeChange('pc');
+          deviceType = 'pc';
         "
         :text="isFullScreen ? 'Назад' : 'Предпросмотр'"
         :class="[
@@ -39,7 +39,7 @@
       ]"
       v-bind="dragOptions"
       v-model="content"
-      @add="handleAdd"
+      @add="activeIndex = $event.newIndex"
     >
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
@@ -134,16 +134,15 @@ import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
 import useStore from "@/store/index";
 
+const store = useStore();
+const { step, activeIndex, content, isFullScreen } = storeToRefs(store);
+const { deleteContent, upContent, downContent } = store;
+const deviceType = ref("deviceType");
 const ContentComponents = {
   roll: CRoll,
   billboard: CBillboard,
   chess: CChess,
 };
-
-const store = useStore();
-const { step, activeIndex, content, isFullScreen } = storeToRefs(store);
-const { deleteContent, upContent, downContent } = store;
-const deviceType = ref("deviceType");
 
 const dragOptions = ref({
   animation: 500,
@@ -162,14 +161,6 @@ watch(activeIndex, (v): void => {
 
 async function deleteLocalStorageIds() {
   await localStorage.removeItem("delete");
-}
-
-function handleAdd(e): void {
-  activeIndex.value = e.newIndex;
-}
-
-function handleDeviceSizeChange(e): void {
-  deviceType.value = e;
 }
 
 function handleDynamicComponentEvents(event: any) {

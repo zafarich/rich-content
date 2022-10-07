@@ -17,12 +17,10 @@
               Карточка # {{ index + 1 }}
             </h6>
             <Icon
-              :class="[
-                {
-                  'rotate-[180deg] transition': getBlock[index].asset.toggle,
-                },
-                'transition',
-              ]"
+              :class="{
+                'rotate-[180deg] transition': getBlock[index].asset.toggle,
+              }"
+              class="transition"
               name="arrow_down"
             />
           </div>
