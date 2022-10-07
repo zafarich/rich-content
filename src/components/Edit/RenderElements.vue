@@ -164,32 +164,6 @@ const getBlock = computed(() => {
   return content.value[activeIndex.value].content.block;
 });
 
-function updateImage(index: number, e: any): void {
-  updateErrMessage("", index, "uploadErr");
-  if (e?.file?.size > 1024000) {
-    updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
-    invalidSize.value = true;
-    return;
-  }
-
-  invalidSize.value = false;
-  const formData = new FormData();
-  formData.append("upload", e?.file);
-
-  imageStore
-    .postImage(formData)
-    .then((res) => {
-      const result = res.data;
-      if (result.success) {
-        getBlock.value[index].img.src = ENV_CDN + result.data.path;
-        getBlock.value[index].img.id = result.data.id;
-      }
-    })
-    .catch((err) => {
-      updateErrMessage(err?.response?.data?.errors[0], index, "uploadErr");
-    });
-}
-
 function updateImageInput(event: any, index: number): void {
   const value = event?.target?.value || "";
   showErrMessage(value, index);
@@ -229,6 +203,32 @@ function showErrMessage(value: string, index): void {
   if (!isValidURL(value)) {
     updateErrMessage(ErrorList["invalidUrl"], index, "clickLinkErr");
   }
+}
+
+function updateImage(index: number, e: any): void {
+  updateErrMessage("", index, "uploadErr");
+  if (e?.file?.size > 1024000) {
+    updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
+    invalidSize.value = true;
+    return;
+  }
+
+  invalidSize.value = false;
+  const formData = new FormData();
+  formData.append("upload", e?.file);
+
+  imageStore
+    .postImage(formData)
+    .then((res) => {
+      const result = res.data;
+      if (result.success) {
+        getBlock.value[index].img.src = ENV_CDN + result.data.path;
+        getBlock.value[index].img.id = result.data.id;
+      }
+    })
+    .catch((err) => {
+      updateErrMessage(err?.response?.data?.errors[0], index, "uploadErr");
+    });
 }
 </script>
 
