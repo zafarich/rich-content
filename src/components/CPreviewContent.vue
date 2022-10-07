@@ -130,6 +130,7 @@ import { VueDraggableNext } from "vue-draggable-next";
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CChess from "@/components/Content/Chess/CChess.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
+import CThreeRow from "@/components/Content/ThreeRow/CThreeRow.vue";
 import CTwoRow from "@/components/Content/TwoRow/CTwoRow.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
@@ -147,6 +148,7 @@ const ContentComponents = {
   chess: CChess,
   chessReverse: CChess,
   twoRow: CTwoRow,
+  threeRow: CThreeRow,
 };
 
 const dragOptions = ref({

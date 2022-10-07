@@ -180,6 +180,65 @@ const twoRow: Content = {
         clickLinkErr: "",
       },
     },
+  ],
+};
+
+const threeRow: Content = {
+  widgetName: "raShowcase",
+  type: "threeRow",
+  block: [
+    {
+      clickLink: "",
+      img: {
+        id: undefined,
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        alt: "Текстовое описание изображения",
+      },
+      title: {
+        value: "Заголовок",
+        size: "text-lg",
+        align: "text-left",
+        color: "#F7F7F7",
+      },
+      text: {
+        value:
+          "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.",
+        size: "text-sm",
+        align: "text-left",
+        color: "#F7F7F7",
+      },
+      asset: {
+        toggle: true,
+        imgLinkErr: "",
+        clickLinkErr: "",
+      },
+    },
+    {
+      clickLink: "",
+      img: {
+        id: undefined,
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        alt: "Текстовое описание изображения",
+      },
+      title: {
+        value: "Заголовок",
+        size: "text-lg",
+        align: "text-left",
+        color: "#F7F7F7",
+      },
+      text: {
+        value:
+          "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.",
+        size: "text-sm",
+        align: "text-left",
+        color: "#F7F7F7",
+      },
+      asset: {
+        toggle: true,
+        imgLinkErr: "",
+        clickLinkErr: "",
+      },
+    },
     {
       clickLink: "",
       img: {
@@ -215,5 +274,6 @@ const schemes = {
   chess,
   chessReverse,
   twoRow,
+  threeRow,
 };
 export default schemes;

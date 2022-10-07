@@ -34,6 +34,11 @@ const blocks: TTypes[] = [
     block_text: "Две карточки с фото",
     content: JSON.parse(JSON.stringify(Scheme["twoRow"])),
   },
+  {
+    block_img: "/src/assets/images/blocks/block6.png",
+    block_text: "Две карточки с фото",
+    content: JSON.parse(JSON.stringify(Scheme["threeRow"])),
+  },
 ];
 
 export default blocks;
