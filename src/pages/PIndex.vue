@@ -53,6 +53,7 @@ function showAlertBeforeMount(event: object) {
 // storybook refactor
 // chessRight, add not working properly
 // refactor scheme
+// refactor Content components
 </script>
 
 <style scoped>
