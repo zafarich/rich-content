@@ -51,6 +51,8 @@ function showAlertBeforeMount(event: object) {
 // preview aspect ratio
 // text size leading (leading +10 if size 14, else +8)
 // storybook refactor
+// chessRight, add not working properly
+// refactor scheme
 </script>
 
 <style scoped>

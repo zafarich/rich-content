@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-12 overflodsdaw-hidden">
+  <div class="flex flex-col gap-12">
     <div
       v-for="(item, index) in content.block"
       :key="index"

@@ -29,6 +29,11 @@ const blocks: TTypes[] = [
     block_text: "Изображение и текст справа",
     content: JSON.parse(JSON.stringify(Scheme["chessReverse"])),
   },
+  {
+    block_img: "/src/assets/images/blocks/block5.png",
+    block_text: "Две карточки с фото",
+    content: JSON.parse(JSON.stringify(Scheme["twoRow"])),
+  },
 ];
 
 export default blocks;

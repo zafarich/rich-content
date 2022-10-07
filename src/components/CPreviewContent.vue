@@ -56,6 +56,7 @@
               }"
               @click="!isFullScreen && (activeIndex = index)"
             >
+              {{ item.content.type }}
               <component
                 :is="ContentComponents[item.content.type]"
                 @updateData="handleDynamicComponentEvents($event)"
@@ -129,6 +130,7 @@ import { VueDraggableNext } from "vue-draggable-next";
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CChess from "@/components/Content/Chess/CChess.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
+import CTwoRow from "@/components/Content/TwoRow/CTwoRow.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
@@ -138,10 +140,13 @@ const store = useStore();
 const { step, activeIndex, content, isFullScreen } = storeToRefs(store);
 const { deleteContent, upContent, downContent } = store;
 const deviceType = ref("deviceType");
+
 const ContentComponents = {
   roll: CRoll,
   billboard: CBillboard,
   chess: CChess,
+  chessReverse: CChess,
+  twoRow: CTwoRow,
 };
 
 const dragOptions = ref({
