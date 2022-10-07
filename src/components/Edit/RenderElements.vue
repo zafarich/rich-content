@@ -7,10 +7,7 @@
     class="flex flex-col gap-10"
   >
     <div :key="activeIndex">
-      <div
-        v-for="(item, index) in content[activeIndex].content.block"
-        :key="index"
-      >
+      <div v-for="(item, index) in getBlock" :key="index">
         <div
           @click="toggleBlock(index)"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
@@ -22,8 +19,7 @@
             <Icon
               :class="[
                 {
-                  'rotate-[180deg] transition':
-                    content[activeIndex].content.block[index].asset.toggle,
+                  'rotate-[180deg] transition': getBlock[index].asset.toggle,
                 },
                 'transition',
               ]"
@@ -43,9 +39,19 @@
 
         <transition name="fade">
           <div
-            v-if="content[activeIndex].content.block[index].asset.toggle"
+            v-if="getBlock[index].asset.toggle"
             class="flex flex-col gap-6 transition"
           >
+            <div class="">
+              <h6 class="mb-4 font-medium text-[14px] leading-[20px]">
+                Другое
+              </h6>
+              <CReverseSelect
+                @selected="updateReverse(index, $event)"
+                v-bind="{ item }"
+              />
+            </div>
+
             <div class="">
               <CUploadImage
                 v-if="objectHas(item, 'img')"
@@ -55,14 +61,10 @@
 
               <transition name="fade">
                 <p
-                  v-if="
-                    content[activeIndex].content.block[index].asset.uploadErr
-                  "
+                  v-if="getBlock[index].asset.uploadErr"
                   class="mt-1.5 text-xs text-red"
                 >
-                  {{
-                    content[activeIndex].content.block[index].asset.uploadErr
-                  }}
+                  {{ getBlock[index].asset.uploadErr }}
                 </p>
               </transition>
             </div>
@@ -70,7 +72,7 @@
             <div class="">
               <CInput
                 v-if="objectHas(item, 'img')"
-                :model-value="content[activeIndex].content.block[index].img.src"
+                :model-value="getBlock[index].img.src"
                 @input="updateImageInput($event, index)"
                 v-bind="{
                   label: 'Прямая ссылка на изображение',
@@ -79,14 +81,10 @@
 
               <transition name="fade">
                 <p
-                  v-if="
-                    content[activeIndex].content.block[index].asset.imgLinkErr
-                  "
+                  v-if="getBlock[index].asset.imgLinkErr"
                   class="mt-1.5 text-xs text-red"
                 >
-                  {{
-                    content[activeIndex].content.block[index].asset.imgLinkErr
-                  }}
+                  {{ getBlock[index].asset.imgLinkErr }}
                 </p>
               </transition>
             </div>
@@ -103,9 +101,7 @@
             <div class="">
               <CInput
                 v-if="objectHas(item, 'clickLink')"
-                :model-value="
-                  content[activeIndex].content.block[index].clickLink
-                "
+                :model-value="getBlock[index].clickLink"
                 @input="updateClickLink($event, index)"
                 v-bind="{
                   label: 'Ссылка по клику на изображение',
@@ -114,14 +110,10 @@
 
               <transition name="fade">
                 <p
-                  v-if="
-                    content[activeIndex].content.block[index].asset.clickLinkErr
-                  "
+                  v-if="getBlock[index].asset.clickLinkErr"
                   class="mt-1.5 text-xs text-red"
                 >
-                  {{
-                    content[activeIndex].content.block[index].asset.clickLinkErr
-                  }}
+                  {{ getBlock[index].asset.clickLinkErr }}
                 </p>
               </transition>
             </div>
@@ -150,6 +142,7 @@ import { storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
+import CReverseSelect from "@/components/Edit/ReverseSelect/CReverseSelect.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import Icon from "@/components/Icon/Icon.vue";
@@ -164,28 +157,28 @@ const { activeIndex, content } = storeToRefs(store);
 const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
-const getCurrentContent = computed(() => {
+const getBlock = computed(() => {
   return content.value[activeIndex.value].content.block;
 });
 
 function getPosition(index: number): void {
-  return getCurrentContent.value[index].img.position;
+  return getBlock.value[index].img.position;
 }
 
 function deleteBlock(index: number): void {
-  getCurrentContent.value.splice(index, 1);
+  getBlock.value.splice(index, 1);
 }
 
 function updateImgPosition(index, event): void {
-  getCurrentContent.value[index].img.position = event;
+  getBlock.value[index].img.position = event;
 }
 
 function updateImgAlt(e: any, index: number): void {
-  getCurrentContent.value[index].img.alt = e.target.value;
+  getBlock.value[index].img.alt = e.target.value;
 }
 
 function updateTextDetails(index: number, e: any): void {
-  getCurrentContent.value[index][e.type][e.item] = e.value;
+  getBlock.value[index][e.type][e.item] = e.value;
 }
 
 function updateImage(index: number, e: any): void {
@@ -205,9 +198,9 @@ function updateImage(index: number, e: any): void {
     .then((res) => {
       const result = res.data;
       if (result.success) {
-        getCurrentContent.value[index].img.src = ENV_CDN + result.data.path;
+        getBlock.value[index].img.src = ENV_CDN + result.data.path;
 
-        getCurrentContent.value[index].img.id = result.data.id;
+        getBlock.value[index].img.id = result.data.id;
       }
     })
     .catch((err) => {
@@ -230,7 +223,7 @@ function updateImageInput(event: any, index: number): void {
 
   if (isValidURL(event?.target?.value)) {
     setVal = event.target.value;
-    getCurrentContent.value[index].img.id = undefined;
+    getBlock.value[index].img.id = undefined;
   } else {
     setVal = "";
     updateErrMessage(
@@ -240,7 +233,7 @@ function updateImageInput(event: any, index: number): void {
     );
   }
 
-  getCurrentContent.value[index].img.src = setVal;
+  getBlock.value[index].img.src = setVal;
 }
 
 function updateClickLink(event: any, index: number): void {
@@ -263,7 +256,7 @@ function updateClickLink(event: any, index: number): void {
       "clickLinkErr"
     );
   }
-  getCurrentContent.value[index].clickLink = setVal;
+  getBlock.value[index].clickLink = setVal;
 }
 
 function isValidURL(url: string): boolean {
@@ -280,12 +273,15 @@ function updateErrMessage(
   index: number,
   target: string
 ): void {
-  getCurrentContent.value[index].asset[target] = message;
+  getBlock.value[index].asset[target] = message;
 }
 
 function toggleBlock(index: number): void {
-  getCurrentContent.value[index].asset.toggle =
-    !getCurrentContent.value[index].asset.toggle;
+  getBlock.value[index].asset.toggle = !getBlock.value[index].asset.toggle;
+}
+
+function updateReverse(index: number, event: object): void {
+  getBlock.value[index].reverse = event;
 }
 </script>
 
