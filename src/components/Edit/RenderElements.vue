@@ -61,14 +61,12 @@
                 :index="index"
               />
 
-              <transition name="fade">
-                <p
-                  v-if="getBlock[index].asset.uploadErr"
-                  class="mt-1.5 text-xs text-red"
-                >
-                  {{ getBlock[index].asset.uploadErr }}
-                </p>
-              </transition>
+              <CErrorMeassage
+                v-if="getBlock[index]?.asset?.uploadErr"
+                v-bind="{
+                  message: getBlock[index].asset.uploadErr,
+                }"
+              />
             </div>
 
             <div class="">
@@ -81,14 +79,12 @@
                 }"
               />
 
-              <transition name="fade">
-                <p
-                  v-if="getBlock[index].asset.imgLinkErr"
-                  class="mt-1.5 text-xs text-red"
-                >
-                  {{ getBlock[index].asset.imgLinkErr }}
-                </p>
-              </transition>
+              <CErrorMeassage
+                v-if="getBlock[index]?.asset?.imgLinkErr"
+                v-bind="{
+                  message: getBlock[index].asset.imgLinkErr,
+                }"
+              />
             </div>
 
             <CImageView
@@ -110,14 +106,12 @@
                 }"
               />
 
-              <transition name="fade">
-                <p
-                  v-if="getBlock[index].asset.clickLinkErr"
-                  class="mt-1.5 text-xs text-red"
-                >
-                  {{ getBlock[index].asset.clickLinkErr }}
-                </p>
-              </transition>
+              <CErrorMeassage
+                v-if="getBlock[index]?.asset?.clickLinkErr"
+                v-bind="{
+                  message: getBlock[index].asset.clickLinkErr,
+                }"
+              />
             </div>
 
             <CInput
@@ -143,6 +137,7 @@
 import { storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 
+import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CReverseSelect from "@/components/Edit/ReverseSelect/CReverseSelect.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
@@ -205,13 +200,9 @@ function updateImageInput(event: any, index: number): void {
     return false;
   }
 
-  let setVal = "";
-
   if (isValidURL(event?.target?.value)) {
-    setVal = event.target.value;
     getBlock.value[index].img.id = undefined;
   } else {
-    setVal = "";
     updateErrMessage(
       "URL изображения должен быть действительным",
       index,
@@ -219,7 +210,7 @@ function updateImageInput(event: any, index: number): void {
     );
   }
 
-  getBlock.value[index].img.src = setVal;
+  getBlock.value[index].img.src = event?.target?.value;
 }
 
 function updateClickLink(event: any, index: number): void {

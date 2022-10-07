@@ -51,6 +51,7 @@ function showAlertBeforeMount(event: object) {
 // preview aspect ratio
 // errorr component
 // text size leading (leading +10 if size 14, else +8)
+// storybook refactor
 </script>
 
 <style scoped>
