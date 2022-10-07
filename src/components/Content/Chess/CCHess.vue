@@ -1,43 +1,45 @@
 <template>
-  <div
-    v-for="(item, index) in content.block"
-    :key="index"
-    class="flex h-full chess-container"
-    :class="{ 'flex-row-reverse': item.reverse }"
-  >
-    <a
-      class="w-1/2 h-full flex-center"
-      :href="item.clickLink || ''"
-      target="_blank"
-      :class="{ 'pointer-events-none': !item.clickLink }"
+  <div class="flex flex-col gap-12 overflodsdaw-hidden">
+    <div
+      v-for="(item, index) in content.block"
+      :key="index"
+      class="flex-center h-full chess-container"
+      :class="{ 'flex-row-reverse': item.reverse }"
     >
-      <img
-        class="w-full object-cover"
-        :src="item.img.src"
-        :alt="item.img.alt"
-      />
-    </a>
-
-    <div class="flex flex-col w-1/2 p-8">
-      <div class="flex-grow"></div>
-      <div class="">
-        <CContentInput
-          class="mb-2 font-medium text-[20px] leading-[28px] cursor-text whitespace-pre"
-          @updateText="handleText($event, 'title', index)"
-          :model-value="item?.title?.value"
-          :style="`color: ${item.title.color}`"
-          :class="[item.title.align, item.title.size]"
+      <a
+        class="w-1/2 h-full flex-center"
+        :href="item.clickLink || ''"
+        target="_blank"
+        :class="{ 'pointer-events-none': !item.clickLink }"
+      >
+        <img
+          class="w-full object-cover"
+          :src="item.img.src"
+          :alt="item.img.alt"
         />
+      </a>
 
-        <CContentInput
-          class="font-normal text-[14px] leading-[24px] cursor-text whitespace-pre"
-          :model-value="item?.text?.value"
-          @updateText="handleText($event, 'text', index)"
-          :style="`color: ${item.text.color}`"
-          :class="[item.text.align, item.text.size]"
-        />
+      <div class="flex flex-col w-1/2 p-8">
+        <div class="flex-grow"></div>
+        <div class="">
+          <CContentInput
+            class="mb-2 font-medium text-[20px] cursor-text whitespace-pre overflow-hidden"
+            @updateText="handleText($event, 'title', index)"
+            :model-value="item?.title?.value"
+            :style="`color: ${item.title.color}`"
+            :class="[item.title.align, item.title.size]"
+          />
+
+          <CContentInput
+            class="font-normal text-[14px] cursor-text whitespace-pre"
+            :model-value="item?.text?.value"
+            @updateText="handleText($event, 'text', index)"
+            :style="`color: ${item.text.color}`"
+            :class="[item.text.align, item.text.size]"
+          />
+        </div>
+        <div class="flex-grow"></div>
       </div>
-      <div class="flex-grow"></div>
     </div>
   </div>
 </template>

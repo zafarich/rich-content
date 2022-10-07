@@ -16,7 +16,7 @@
       </a>
 
       <CContentInput
-        class="mb-2 font-medium text-[20px] leading-[28px] cursor-text whitespace-pre"
+        class="mb-2 font-medium text-[20px] cursor-text whitespace-pre"
         @updateText="handleText($event, 'title', index)"
         :model-value="item?.title?.value"
         :style="`color: ${item.title.color}`"
@@ -24,7 +24,7 @@
       />
 
       <CContentInput
-        class="font-normal text-[14px] leading-[24px] cursor-text whitespace-pre"
+        class="font-normal text-[14px] cursor-text whitespace-pre"
         :model-value="item?.text?.value"
         @updateText="handleText($event, 'text', index)"
         :style="`color: ${item.text.color}`"

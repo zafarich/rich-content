@@ -45,6 +45,9 @@ onBeforeUnmount(() => {
 function showAlertBeforeMount(event: object) {
   event.returnValue = `Are you sure you want to leave?`;
 }
+
+// TODO:
+// CCOntentInput save as array
 </script>
 
 <style scoped>
