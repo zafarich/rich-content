@@ -49,7 +49,6 @@ function showAlertBeforeMount(event: object) {
 // TODO:
 // CCOntentInput save as array
 // preview aspect ratio
-// errorr component
 // text size leading (leading +10 if size 14, else +8)
 // storybook refactor
 </script>

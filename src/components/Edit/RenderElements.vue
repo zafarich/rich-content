@@ -9,7 +9,7 @@
     <div :key="activeIndex">
       <div v-for="(item, index) in getBlock" :key="index">
         <div
-          @click="toggleBlock(index)"
+          @click="getBlock[index].asset.toggle = !getBlock[index].asset.toggle"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
           <div class="flex-center gap-[10px]">
@@ -124,7 +124,7 @@
             />
 
             <CTextDetails
-              @update-text="updateTextDetails(index, $event)"
+              @update-text="(e) => (getBlock[index][e.type][e.item] = e.value)"
               v-bind="{ item }"
             /></div
         ></transition>
@@ -154,18 +154,20 @@ const { activeIndex, content } = storeToRefs(store);
 const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
+const ErrorList = {
+  lessThan1mb: "Размер файла должен быть меньше 1мб",
+  base64: "Тип изображения base64 не допускается",
+  invalidUrl: "URL изображения должен быть действительным",
+};
+
 const getBlock = computed(() => {
   return content.value[activeIndex.value].content.block;
 });
 
-function updateTextDetails(index: number, e: any): void {
-  getBlock.value[index][e.type][e.item] = e.value;
-}
-
 function updateImage(index: number, e: any): void {
   updateErrMessage("", index, "uploadErr");
   if (e?.file?.size > 1024000) {
-    updateErrMessage("Размер файла должен быть меньше 1мб", index, "uploadErr");
+    updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
     invalidSize.value = true;
     return;
   }
@@ -180,60 +182,25 @@ function updateImage(index: number, e: any): void {
       const result = res.data;
       if (result.success) {
         getBlock.value[index].img.src = ENV_CDN + result.data.path;
-
         getBlock.value[index].img.id = result.data.id;
       }
     })
     .catch((err) => {
       updateErrMessage(err?.response?.data?.errors[0], index, "uploadErr");
-      // eslint-disable-next-line
-      console.log("ERROR is occured while uploading:", err);
     });
 }
 
 function updateImageInput(event: any, index: number): void {
-  updateErrMessage("", index, "imgLinkErr");
-
-  if (event?.target?.value.startsWith("data:")) {
-    let message = "Тип изображения base64 не допускается";
-    updateErrMessage(message, index, "imgLinkErr");
-    return false;
-  }
-
-  if (isValidURL(event?.target?.value)) {
-    getBlock.value[index].img.id = undefined;
-  } else {
-    updateErrMessage(
-      "URL изображения должен быть действительным",
-      index,
-      "imgLinkErr"
-    );
-  }
-
-  getBlock.value[index].img.src = event?.target?.value;
+  const value = event?.target?.value || "";
+  showErrMessage(value, index);
+  getBlock.value[index].img.src = value;
+  getBlock.value[index].img.id = undefined;
 }
 
 function updateClickLink(event: any, index: number): void {
-  updateErrMessage("", index, "clickLinkErr");
-
-  if (event?.target?.value.startsWith("data:")) {
-    let message = "Тип изображения base64 не допускается";
-    updateErrMessage(message, index, "clickLinkErr");
-    return false;
-  }
-  let setVal = "";
-
-  if (isValidURL(event?.target?.value)) {
-    setVal = event.target.value;
-  } else {
-    setVal = "";
-    updateErrMessage(
-      "URL изображения должен быть действительным",
-      index,
-      "clickLinkErr"
-    );
-  }
-  getBlock.value[index].clickLink = setVal;
+  const value = event?.target?.value || "";
+  showErrMessage(value, index);
+  getBlock.value[index].clickLink = value;
 }
 
 function isValidURL(url: string): boolean {
@@ -253,8 +220,15 @@ function updateErrMessage(
   getBlock.value[index].asset[target] = message;
 }
 
-function toggleBlock(index: number): void {
-  getBlock.value[index].asset.toggle = !getBlock.value[index].asset.toggle;
+function showErrMessage(value: string, index): void {
+  updateErrMessage("", index, "clickLinkErr");
+
+  if (value.startsWith("data:")) {
+    updateErrMessage(ErrorList["base64"], index, "clickLinkErr");
+  }
+  if (!isValidURL(value)) {
+    updateErrMessage(ErrorList["invalidUrl"], index, "clickLinkErr");
+  }
 }
 </script>
 
