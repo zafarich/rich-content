@@ -13,8 +13,7 @@
       :reduce="(item) => item.value"
       v-model="getSelected"
     >
-      <!-- @option:selected="emitValue(idx, 'size', $event.size)" -->
-      <template #no-options> Ooops, matn o'lchamlari topilmadi :( </template>
+      <template #no-options> Ooops, rasim joylashuvlari topilmadi :( </template>
       <template #option="{ title }">
         <h3>{{ title }}</h3>
       </template>
@@ -23,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import vSelect from "vue-select";
 
 export interface Props {
@@ -38,15 +37,12 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {});
 const $emit = defineEmits<Emits>();
 
-console.log(props.item.reverse, "props");
-
 const getSelected = computed({
   get() {
     return props.item.reverse;
   },
   set(v) {
     $emit("selected", v);
-    console.log(v, "in set");
   },
 });
 

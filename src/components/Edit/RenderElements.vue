@@ -29,7 +29,7 @@
           <transition name="fade">
             <Icon
               v-if="content[activeIndex]?.content?.block?.length != 1"
-              @click="deleteBlock(index)"
+              @click="getBlock.splice(index, 1)"
               class="cursor-pointer hover:opacity-70 transition"
               name="trash_bin"
               color="#BABAC0"
@@ -49,7 +49,7 @@
               </h6>
               <CReverseSelect
                 v-if="objectHas(item, 'reverse')"
-                @selected="updateReverse(index, $event)"
+                @selected="getBlock[index].reverse = $event"
                 v-bind="{ item }"
               />
             </div>
@@ -93,9 +93,9 @@
 
             <CImageView
               v-if="objectHas(item?.img, 'position')"
-              @position="updateImgPosition(index, $event)"
+              @position="getBlock[index].img.position = $event"
               v-bind="{
-                currentPosition: getPosition(index),
+                currentPosition: getBlock[index].img.position,
                 currentImage: item?.img?.src,
               }"
             />
@@ -122,7 +122,7 @@
 
             <CInput
               :model-value="item.img.alt"
-              @input="updateImgAlt($event, index)"
+              @input="getBlock[index].img.alt = $event.target.value"
               v-if="objectHas(item, 'img')"
               v-bind="{
                 label: 'Текстовое описание изображения(Alt)',
@@ -162,22 +162,6 @@ const ENV_CDN = import.meta.env.VITE_CDN;
 const getBlock = computed(() => {
   return content.value[activeIndex.value].content.block;
 });
-
-function getPosition(index: number): void {
-  return getBlock.value[index].img.position;
-}
-
-function deleteBlock(index: number): void {
-  getBlock.value.splice(index, 1);
-}
-
-function updateImgPosition(index, event): void {
-  getBlock.value[index].img.position = event;
-}
-
-function updateImgAlt(e: any, index: number): void {
-  getBlock.value[index].img.alt = e.target.value;
-}
 
 function updateTextDetails(index: number, e: any): void {
   getBlock.value[index][e.type][e.item] = e.value;
@@ -280,10 +264,6 @@ function updateErrMessage(
 
 function toggleBlock(index: number): void {
   getBlock.value[index].asset.toggle = !getBlock.value[index].asset.toggle;
-}
-
-function updateReverse(index: number, event: object): void {
-  getBlock.value[index].reverse = event;
 }
 </script>
 
