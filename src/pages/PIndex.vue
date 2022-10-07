@@ -63,7 +63,6 @@ function showAlertBeforeMount(event: object) {
 }
 
 .preview-content {
-  /* width: calc(100% - 322px) !important; */
   width: 100%;
 }
 </style>
