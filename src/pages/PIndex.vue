@@ -48,6 +48,7 @@ function showAlertBeforeMount(event: object) {
 
 // TODO:
 // CCOntentInput save as array
+// preview aspect ratio
 </script>
 
 <style scoped>
