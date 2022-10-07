@@ -42,11 +42,13 @@
             v-if="getBlock[index].asset.toggle"
             class="flex flex-col gap-6 transition"
           >
-            <div class="">
+            <!-- TODO: change if check  -->
+            <div class="" v-if="objectHas(item, 'reverse')">
               <h6 class="mb-4 font-medium text-[14px] leading-[20px]">
                 Другое
               </h6>
               <CReverseSelect
+                v-if="objectHas(item, 'reverse')"
                 @selected="updateReverse(index, $event)"
                 v-bind="{ item }"
               />

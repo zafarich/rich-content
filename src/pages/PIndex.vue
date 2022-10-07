@@ -50,6 +50,7 @@ function showAlertBeforeMount(event: object) {
 // CCOntentInput save as array
 // preview aspect ratio
 // errorr component
+// text size leading (leading +10 if size 14, else +8)
 </script>
 
 <style scoped>
