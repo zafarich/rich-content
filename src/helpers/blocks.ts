@@ -27,7 +27,7 @@ const blocks: TTypes[] = [
   {
     block_img: "/src/assets/images/blocks/block4.png",
     block_text: "Изображение и текст справа",
-    content: JSON.parse(JSON.stringify(Scheme["chess"])),
+    content: JSON.parse(JSON.stringify(Scheme["chessReverse"])),
   },
 ];
 

@@ -3,7 +3,6 @@
     <h6 class="mb-4 font-medium text-[14px] leading-[20px]">
       Положение изображения
     </h6>
-    {{ item.reverse }}
     <v-select
       class="mb-2"
       :searchable="false"
