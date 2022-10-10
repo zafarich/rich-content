@@ -9,6 +9,7 @@
     <div :key="activeIndex">
       <div v-for="(item, index) in getBlock" :key="index">
         <div
+          v-if="content[activeIndex]?.content?.add"
           @click="getBlock[index].asset.toggle = !getBlock[index].asset.toggle"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >

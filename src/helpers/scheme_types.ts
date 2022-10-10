@@ -34,7 +34,7 @@ export type ThemeTypes =
   | "#eff3f6";
 
 export type PaddingTypes = "p-0" | "p-10";
-export type GapTypes = "gap-0" | "gap-4";
+export type GapTypes = "mb-2" | "mb-4";
 
 export interface Content {
   widgetName: WidgetType;

@@ -63,7 +63,7 @@ class GenerateBlock {
     }
 
     if (gap) {
-      block.gap = "gap-4";
+      block.gap = "mb-2";
     }
 
     const arr: Block[] = new Array(count).fill(block);
@@ -72,14 +72,14 @@ class GenerateBlock {
 }
 
 const roll: Content = {
-  widgetName: "raShowcase",
   type: "roll",
+  add: true,
   block: new GenerateBlock({ clickLink: true, img: true, asset: true }),
 };
 
 const billboard: Content = {
-  widgetName: "raShowcase",
   type: "billboard",
+  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -90,8 +90,8 @@ const billboard: Content = {
 };
 
 const chess: Content = {
-  widgetName: "raShowcase",
   type: "chess",
+  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -104,8 +104,8 @@ const chess: Content = {
 };
 
 const chessReverse: Content = {
-  widgetName: "raShowcase",
   type: "chessReverse",
+  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -117,8 +117,8 @@ const chessReverse: Content = {
 };
 
 const twoRow: Content = {
-  widgetName: "raShowcase",
   type: "twoRow",
+  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -130,8 +130,8 @@ const twoRow: Content = {
 };
 
 const threeRow: Content = {
-  widgetName: "raShowcase",
   type: "threeRow",
+  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -142,9 +142,21 @@ const threeRow: Content = {
   }),
 };
 
+const video: Content = {
+  type: "video",
+  add: true,
+  block: new GenerateBlock({
+    clickLink: true,
+    img: true,
+    title: true,
+    text: true,
+    asset: true,
+  }),
+};
+
 const text: Content = {
-  widgetName: "raShowcase",
   type: "text",
+  add: false,
   block: new GenerateBlock({
     title: true,
     text: true,
@@ -152,18 +164,6 @@ const text: Content = {
     theme: true,
     padding: true,
     gap: true,
-  }),
-};
-
-const video: Content = {
-  widgetName: "raShowcase",
-  type: "video",
-  block: new GenerateBlock({
-    clickLink: true,
-    img: true,
-    title: true,
-    text: true,
-    asset: true,
   }),
 };
 
