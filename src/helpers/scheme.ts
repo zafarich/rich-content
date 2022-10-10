@@ -15,6 +15,7 @@ class GenerateBlock {
     padding = false,
   }) {
     const block: Block = {};
+
     if (title) {
       block.title = {
         value: "Заголовок",
@@ -73,13 +74,11 @@ class GenerateBlock {
 
 const roll: Content = {
   type: "roll",
-  add: true,
   block: new GenerateBlock({ clickLink: true, img: true, asset: true }),
 };
 
 const billboard: Content = {
   type: "billboard",
-  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -91,7 +90,6 @@ const billboard: Content = {
 
 const chess: Content = {
   type: "chess",
-  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -105,7 +103,6 @@ const chess: Content = {
 
 const chessReverse: Content = {
   type: "chessReverse",
-  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -118,7 +115,6 @@ const chessReverse: Content = {
 
 const twoRow: Content = {
   type: "twoRow",
-  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -131,7 +127,6 @@ const twoRow: Content = {
 
 const threeRow: Content = {
   type: "threeRow",
-  add: true,
   block: new GenerateBlock({
     clickLink: true,
     img: true,
@@ -144,7 +139,6 @@ const threeRow: Content = {
 
 const video: Content = {
   type: "video",
-  add: true,
   block: new GenerateBlock({
     img: true,
     asset: true,
@@ -153,7 +147,6 @@ const video: Content = {
 
 const text: Content = {
   type: "text",
-  add: true,
   block: new GenerateBlock({
     title: true,
     text: true,
@@ -163,6 +156,11 @@ const text: Content = {
     gap: true,
   }),
 };
+
+const list: Content = {
+  type: 'list',
+  // add: 
+}
 
 const schemes = {
   roll,

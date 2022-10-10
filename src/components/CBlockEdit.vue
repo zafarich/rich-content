@@ -17,7 +17,7 @@
       <div class="">
         <RenderElements />
         <CButton
-          v-if="content[activeIndex]?.content?.add"
+          v-if="content[activeIndex]?.content?.type != 'text'"
           @click="addBlock"
           class="!bg-[#FBC1004D] !px-4 flex-center gap-2 mt-10"
         >
