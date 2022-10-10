@@ -56,23 +56,23 @@ const elements = ref([
   {
     type: "title",
     label: "Заголовок",
-    size: "text-xl",
+    size: "text-xl leading-[28px]",
   },
   {
     type: "text",
     label: "Основной текст",
-    size: "text-sm",
+    size: "text-sm leading-[24px]",
   },
 ]);
 
 const sizeClasses = [
-  "text-xs",
-  "text-sm",
-  "text-base",
-  "text-lg",
-  "text-xl",
-  "text-2xl",
-  "text-3xl",
+  "text-xs leading-[22px]",
+  "text-sm leading-[24px]",
+  "text-base leading-[24px]",
+  "text-lg leading-[26px]",
+  "text-xl leading-[28px]",
+  "text-2xl leading-[32px]",
+  "text-3xl leading-[38px]",
 ];
 
 const sizes: { title: string; size: TextSizes }[] = [];

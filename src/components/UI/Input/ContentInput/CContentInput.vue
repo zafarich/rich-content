@@ -5,8 +5,9 @@
     @click="makeEditable"
   >
     <p
-      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-normal"
+      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-normal break-words"
       ref="textbox"
+      @paste="handlePaste"
       :contenteditable="editable"
       @input="handleInput"
       :value="props.modelValue"
@@ -52,6 +53,12 @@ function makeEditable(): void {
     (textbox.value as HTMLParagraphElement).focus();
   }, 100);
   inputText.value = preventXXS(props.modelValue) || "";
+}
+
+function handlePaste(e): void {
+  e.preventDefault();
+  var text = e.clipboardData.getData("text/plain");
+  document.execCommand("insertHTML", false, text);
 }
 
 function makeNormal(): void {
