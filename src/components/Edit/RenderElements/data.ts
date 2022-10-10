@@ -10,7 +10,7 @@ export const imagePosition = [
 ];
 export const videoTypeOptions = [
   {
-    title: "YOUTUBE",
+    title: "YouTube",
     value: "youtube",
   },
   {
