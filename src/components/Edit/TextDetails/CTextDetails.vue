@@ -56,12 +56,12 @@ const elements = ref([
   {
     type: "title",
     label: "Заголовок",
-    size: "text-xl",
+    size: "text-xl leading-[28px]",
   },
   {
     type: "text",
     label: "Основной текст",
-    size: "text-sm",
+    size: "text-sm leading-[24px]",
   },
 ]);
 
