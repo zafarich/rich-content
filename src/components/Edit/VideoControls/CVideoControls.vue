@@ -13,19 +13,27 @@
         }"
       />
     </div>
-    <div v-if="item.video.type === 'youtube'">
+    <template v-if="item.video.type === 'youtube'">
       <CInput
         :model-value="item.video.youtubeId"
         @input="item.video.videoUrl = $event.target.value"
         v-bind="{
-          label: 'Youtube Video ID',
-          placeholder: 'tgbNymZ7vqY',
+          label: 'Ссылка на видео на YouTube',
+          placeholder: 'https://youtu.be/tgbNymZ7vqY',
         }"
       />
-    </div>
-    <div v-else>
+    </template>
+
+    <template v-else>
       <CVideoUpload @uploaded="handleVideoUpload" />
-    </div>
+      <CInput
+        :model-value="item.video.videoUrl"
+        @input="item.video.videoUrl = $event.target.value"
+        v-bind="{
+          label: 'Прямая ссылка на видео',
+        }"
+      />
+    </template>
   </div>
 </template>
 

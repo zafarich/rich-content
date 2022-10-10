@@ -4,9 +4,11 @@
       <iframe
         v-if="item.video.type === 'youtube'"
         class="w-full aspect-video"
-        :src="`https://www.youtube.com/embed/${
-          item.video.videoUrl || 'tgbNymZ7vqY'
-        }`"
+        :src="
+          youTubeLinkToEmbed(
+            item.video.videoUrl || 'https://youtu.be/iKBs9l8jS6Q'
+          )
+        "
       >
       </iframe>
 
@@ -30,6 +32,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+
 import CContentInput from "@/components/UI/Input/ContentInput/CContentInput.vue";
 import { Content } from "@/helpers/scheme_types";
 
@@ -42,15 +46,13 @@ interface Emits {
 }
 
 withDefaults(defineProps<Props>(), {});
-const $emit = defineEmits<Emits>();
 
-function handleText(e: any, target: string, index: number): void {
-  const data = {
-    content_type: "billboard",
-    value: e,
-    target,
-    index,
-  };
-  $emit("updateData", data);
+function youTubeLinkToEmbed(url) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+
+  return match && match[2].length === 11
+    ? "https://www.youtube.com/embed/" + match[2]
+    : null;
 }
 </script>
