@@ -51,7 +51,6 @@ function showAlertBeforeMount(event: object) {
 // preview aspect ratio
 // scheme default text leading fix
 // storybook refactor
-// refactor scheme
 // refactor Content components
 </script>
 
