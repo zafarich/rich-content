@@ -5,20 +5,24 @@
         v-if="item.video.type === 'youtube'"
         class="w-full aspect-video"
         :src="`https://www.youtube.com/embed/${
-          item.video.youtubeId || 'tgbNymZ7vqY'
+          item.video.videoUrl || 'tgbNymZ7vqY'
         }`"
       >
       </iframe>
 
       <video
         v-else
+        :key="item.video.videoUrl"
         controls="controls"
         muted="muted"
         lazy="true"
         class="w-full aspect-video"
       >
         <source
-          src="https://cdn1.ozone.ru/s3/rich-content/video-examples/flower.mp4"
+          :src="
+            item.video.videoUrl ||
+            `https://cdn1.ozone.ru/s3/rich-content/video-examples/flower.webm`
+          "
         />
       </video>
     </div>

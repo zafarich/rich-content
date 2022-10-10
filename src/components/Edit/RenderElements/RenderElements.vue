@@ -91,8 +91,6 @@
               <CVideoControls
                 v-bind="{
                   item,
-                  getBlock,
-                  index,
                   videoTypeOptions,
                 }"
               />
@@ -192,7 +190,7 @@ import { objectHas } from "@/helpers/global";
 import useImageStore from "@/store/image";
 import useStore from "@/store/index";
 
-import { gaps, imagePosition, padding, view } from "./data";
+import { gaps, imagePosition, padding, videoTypeOptions, view } from "./data";
 
 const store = useStore();
 const imageStore = useImageStore();

@@ -4,7 +4,7 @@
     <div class="h-[44px] rounded relative border-2 border-yellow">
       <input
         :id="'file' + index"
-        accept="image/*"
+        accept="video/*"
         type="file"
         name="file"
         class="w-0 h-0 absolute"
@@ -42,6 +42,7 @@ const image = reactive({
 let imageName = ref("");
 
 const handleFile = (event: any) => {
+  console.log(event.target.files[0]);
   if (image.url) {
     image.url = null;
     image.file = null;
@@ -49,14 +50,8 @@ const handleFile = (event: any) => {
 
   image.file = event.target.files[0];
   imageName.value = image.file?.name;
-  const reader = new FileReader();
-  if (event.target.files[0]) {
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (e) => {
-      image.url = e.target?.result;
-    };
-    $emit("uploaded", image);
-  }
+  image.url = URL.createObjectURL(event.target.files[0]);
+  $emit("uploaded", image);
 };
 const getFile = (index: number): void => {
   const input = document.getElementById(`file${index}`);
