@@ -120,7 +120,10 @@
               }"
             />
 
-            <div class='flex flex-col gap-2' v-if="objectHas(item, 'theme', 'padding', 'gap')">
+            <div
+              class="flex flex-col gap-2"
+              v-if="objectHas(item, 'theme', 'padding', 'gap')"
+            >
               <h4 class="font-medium text-[18px] leading-[20px] mb-2">
                 Основные
               </h4>
@@ -129,7 +132,7 @@
                 v-bind="{
                   options: view,
                   default: item.theme,
-                  label: 'Вид'
+                  label: 'Вид',
                 }"
               />
               <CSelect
@@ -137,7 +140,7 @@
                 v-bind="{
                   options: gaps,
                   default: item.gap,
-                  label: 'Отступ между заголовком и текстом'
+                  label: 'Отступ между заголовком и текстом',
                 }"
               />
               <CSelect
@@ -145,7 +148,7 @@
                 v-bind="{
                   options: padding,
                   default: item.padding,
-                  label: 'Отступ'
+                  label: 'Отступ',
                 }"
               />
             </div>

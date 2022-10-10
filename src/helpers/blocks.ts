@@ -52,7 +52,7 @@ const blocks: TTypes[] = [
   {
     block_img: "/src/assets/images/blocks/block9.png",
     block_text: "Список",
-    content: Scheme["text"],
+    content: Scheme["list"],
   },
 ];
 

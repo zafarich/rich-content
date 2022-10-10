@@ -158,9 +158,15 @@ const text: Content = {
 };
 
 const list: Content = {
-  type: 'list',
-  // add: 
-}
+  type: "list",
+  theme: "bullet",
+  block: new GenerateBlock({
+    title: true,
+    text: true,
+    asset: true,
+  }),
+  // add:
+};
 
 const schemes = {
   roll,
@@ -171,5 +177,6 @@ const schemes = {
   threeRow,
   video,
   text,
+  list,
 };
 export default schemes;
