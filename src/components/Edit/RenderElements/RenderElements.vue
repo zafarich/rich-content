@@ -10,7 +10,7 @@
       <div class="hek">
         <CSelect
           v-if="objectHas(getContent, 'theme')"
-          @selected="handleListTheme($event, index)"
+          @selected="handleListTheme"
           v-bind="{
             options: viewList,
             default: getContent?.theme,
@@ -294,17 +294,21 @@ function updateImage(index: number, e: any): void {
     });
 }
 
-function handleListTheme(event: object, index: number): void {
+function handleListTheme(event: object): void {
   getContent.value.theme = event;
 
   if (event == "image") {
-    getBlock.value[index].img = {
-      id: undefined,
-      src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
-      alt: "Текстовое описание изображения",
-    };
+    for (let i of getBlock.value) {
+      i.img = {
+        id: undefined,
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        alt: "Текстовое описание изображения",
+      };
+    }
   } else {
-    delete getBlock.value[index].img;
+    for (let i of getBlock.value) {
+      delete i.img;
+    }
   }
 }
 </script>
