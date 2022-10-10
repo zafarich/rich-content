@@ -7,9 +7,20 @@
     class="flex flex-col gap-10"
   >
     <div :key="activeIndex">
+      <div class="hek">
+        <CSelect
+          v-if="objectHas(getContent, 'theme')"
+          @selected="handleListTheme"
+          v-bind="{
+            options: viewList,
+            default: getContent?.theme,
+            label: 'Вид',
+          }"
+        />
+      </div>
       <div v-for="(item, index) in getBlock" :key="index">
         <div
-          v-if="false && content[activeIndex]?.content?.add"
+          v-if="content[activeIndex]?.content?.type != 'text'"
           @click="getBlock[index].asset.toggle = !getBlock[index].asset.toggle"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
@@ -41,18 +52,6 @@
             v-if="getBlock[index].asset.toggle"
             class="flex flex-col gap-6 transition"
           >
-            <div class="hek">
-              <CSelect
-                v-if="objectHas(getContent, 'theme')"
-                @selected="handleListTheme($event, index)"
-                v-bind="{
-                  options: viewList,
-                  default: getContent?.theme,
-                  label: 'Вид',
-                }"
-              />
-            </div>
-
             <div v-if="objectHas(item, 'reverse')">
               <h6 class="label font-medium mb-4">Другое</h6>
               <CSelect
@@ -199,7 +198,14 @@ import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
 import useImageStore from "@/store/image";
 import useStore from "@/store/index";
-import { imagePosition,  videoTypeOptions, view, gaps, padding, viewList } from "./data";
+import {
+  imagePosition,
+  videoTypeOptions,
+  view,
+  gaps,
+  padding,
+  viewList,
+} from "./data";
 
 const store = useStore();
 const imageStore = useImageStore();
@@ -288,19 +294,21 @@ function updateImage(index: number, e: any): void {
     });
 }
 
-function handleListTheme(event: object, index: number): void {
+function handleListTheme(event: object): void {
   getContent.value.theme = event;
 
   if (event == "image") {
-    getBlock.value[index].img = {
-      id: undefined,
-      src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
-      alt: "Текстовое описание изображения",
-    };
+    for (let i of getBlock.value) {
+      i.img = {
+        id: undefined,
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        alt: "Текстовое описание изображения",
+      };
+    }
   } else {
-    delete getBlock.value[index].img;
+    for (let i of getBlock.value) {
+      delete i.img;
+    }
   }
 }
 </script>
-
-<style scoped></style>

@@ -56,7 +56,20 @@ function handleBack() {
 
 function addBlock(): void {
   let current = content.value[activeIndex.value].content;
+  
   let add = JSON.parse(JSON.stringify(Scheme[current.type].block[0]));
+  
+  if(current.type == 'list' && current.theme == 'image' ) {
+    if(current.theme == 'image') {
+      add.img = {
+        id: undefined,
+        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        alt: "Текстовое описание изображения",
+      };
+    }
+    console.log(add, 'add')
+  }
+  
   current.block.push(add);
 }
 </script>

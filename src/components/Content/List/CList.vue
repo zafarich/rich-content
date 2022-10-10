@@ -19,8 +19,8 @@
           >
             <img
               class="object-cover select-none mb-4 w-[50px] h-[50px]"
-              :src="item.img.src"
-              :alt="item.img.alt"
+              :src="item?.img?.src"
+              :alt="item?.img?.alt"
             />
           </div>
         </div>
