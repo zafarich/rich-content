@@ -66,13 +66,13 @@ const elements = ref([
 ]);
 
 const sizeClasses = [
-  "text-xs",
-  "text-sm",
-  "text-base",
-  "text-lg",
-  "text-xl",
-  "text-2xl",
-  "text-3xl",
+  "text-xs leading-[22px]",
+  "text-sm leading-[24px]",
+  "text-base leading-[24px]",
+  "text-lg leading-[26px]",
+  "text-xl leading-[28px]",
+  "text-2xl leading-[32px]",
+  "text-3xl leading-[38px]",
 ];
 
 const sizes: { title: string; size: TextSizes }[] = [];

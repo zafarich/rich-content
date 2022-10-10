@@ -5,7 +5,7 @@
     @click="makeEditable"
   >
     <p
-      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-normal"
+      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-normal break-words"
       ref="textbox"
       :contenteditable="editable"
       @input="handleInput"

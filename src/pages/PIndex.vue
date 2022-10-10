@@ -49,9 +49,8 @@ function showAlertBeforeMount(event: object) {
 // TODO:
 // CCOntentInput save as array
 // preview aspect ratio
-// text size leading (leading +10 if size 14, else +8)
+// scheme default text leading fix
 // storybook refactor
-// chessRight, add not working properly
 // refactor scheme
 // refactor Content components
 </script>
