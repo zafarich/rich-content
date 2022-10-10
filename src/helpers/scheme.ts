@@ -13,6 +13,7 @@ class GenerateBlock {
     theme = false,
     gap = false,
     padding = false,
+    video = false,
   }) {
     const block: Block = {};
     if (title) {
@@ -45,6 +46,12 @@ class GenerateBlock {
         src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
         alt: "Текстовое описание изображения",
         position: "w-full h-full",
+      };
+    }
+    if (video) {
+      block.video = {
+        type: "youtube",
+        youtubeId: "",
       };
     }
     if (clickLink) {
@@ -146,8 +153,8 @@ const video: Content = {
   type: "video",
   add: true,
   block: new GenerateBlock({
-    img: true,
     asset: true,
+    video: true,
   }),
 };
 
