@@ -39,6 +39,11 @@ const blocks: TTypes[] = [
     block_text: "Две карточки с фото",
     content: Scheme["threeRow"],
   },
+  {
+    block_img: "/src/assets/images/blocks/block7.png",
+    block_text: "Видео",
+    content: Scheme["video"],
+  },
 ];
 
 export default blocks;
