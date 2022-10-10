@@ -146,10 +146,7 @@ const video: Content = {
   type: "video",
   add: true,
   block: new GenerateBlock({
-    clickLink: true,
     img: true,
-    title: true,
-    text: true,
     asset: true,
   }),
 };
