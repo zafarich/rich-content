@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h6 class="mb-2 font-medium text-[14px] leading-[20px]">
-      Положение изображения для настольного представления
-    </h6>
+    <h6 class="label">Положение изображения для настольного представления</h6>
     <div class="flex-center gap-[5px]">
       <div
         class="w-14 cursor-pointer"

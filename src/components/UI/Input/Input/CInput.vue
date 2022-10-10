@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h6 v-if="label" class="mb-2 font-medium text-[14px] leading-[20px]">
+    <h6 v-if="label" class="label">
       {{ label }}
     </h6>
     <div

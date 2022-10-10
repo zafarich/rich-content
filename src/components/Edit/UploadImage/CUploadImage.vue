@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h6 class="mb-2 font-medium text-[14px] leading-[20px]">Изображение</h6>
+    <h6 class="label">Изображение</h6>
     <div class="h-[44px] rounded relative border-2 border-yellow">
       <input
         :id="'file' + index"

@@ -12,4 +12,8 @@
   .flex-center-center {
     @apply flex items-center justify-center;
   }
+
+  .label {
+    @apply mb-2 font-medium text-[14px] leading-[20px];
+  }
 }

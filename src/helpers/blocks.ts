@@ -49,6 +49,11 @@ const blocks: TTypes[] = [
     block_text: "Текст",
     content: Scheme["text"],
   },
+  {
+    block_img: "/src/assets/images/blocks/block9.png",
+    block_text: "Список",
+    content: Scheme["list"],
+  },
 ];
 
 export default blocks;
