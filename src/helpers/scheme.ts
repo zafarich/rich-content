@@ -18,7 +18,7 @@ class GenerateBlock {
     if (title) {
       block.title = {
         value: "Заголовок",
-        size: "text-lg",
+        size: "text-lg leading-[26px]",
         align: "text-left",
         color: "#F7F7F7",
       };
@@ -27,7 +27,7 @@ class GenerateBlock {
       block.text = {
         value:
           "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.",
-        size: "text-sm",
+        size: "text-sm leading-[24px]",
         align: "text-left",
         color: "#F7F7F7",
       };

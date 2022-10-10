@@ -49,10 +49,8 @@ function showAlertBeforeMount(event: object) {
 // TODO:
 // CCOntentInput save as array
 // preview aspect ratio
-// scheme default text leading fix
 // storybook refactor
 // refactor Content components
-// drop after nodata error
 </script>
 
 <style scoped>
