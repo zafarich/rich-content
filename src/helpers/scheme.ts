@@ -10,6 +10,9 @@ class GenerateBlock {
     reverse = false,
     reverseBoolValue = true,
     count = 1,
+    theme = false,
+    gap = false,
+    padding = false,
   }) {
     const block: Block = {};
     if (title) {
@@ -50,6 +53,19 @@ class GenerateBlock {
     if (reverse) {
       block.reverse = reverseBoolValue;
     }
+
+    if (theme) {
+      block.theme = "bg-transparent";
+    }
+
+    if (padding) {
+      block.padding = "p-10";
+    }
+
+    if (gap) {
+      block.gap = "gap-4";
+    }
+
     const arr: Block[] = new Array(count).fill(block);
     return arr;
   }
@@ -83,6 +99,7 @@ const chess: Content = {
     text: true,
     asset: true,
     reverse: true,
+    reverseBoolValue: false,
   }),
 };
 
@@ -98,15 +115,6 @@ const chessReverse: Content = {
     reverse: true,
   }),
 };
-
-const s = new GenerateBlock({
-  clickLink: true,
-  img: true,
-  title: true,
-  text: true,
-  asset: true,
-  count: 2,
-});
 
 const twoRow: Content = {
   widgetName: "raShowcase",
@@ -134,6 +142,19 @@ const threeRow: Content = {
   }),
 };
 
+const text: Content = {
+  widgetName: "raShowcase",
+  type: "text",
+  block: new GenerateBlock({
+    title: true,
+    text: true,
+    asset: true,
+    theme: true,
+    padding: true,
+    gap: true,
+  }),
+};
+
 const schemes = {
   roll,
   billboard,
@@ -141,5 +162,6 @@ const schemes = {
   chessReverse,
   twoRow,
   threeRow,
+  text,
 };
 export default schemes;

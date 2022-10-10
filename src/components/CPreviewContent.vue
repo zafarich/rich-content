@@ -118,7 +118,7 @@
         </div>
       </div>
     </VueDraggableNext>
-    <!-- <pre>{{ content }}</pre> -->
+    <pre>{{ content }}</pre>
   </div>
 </template>
 

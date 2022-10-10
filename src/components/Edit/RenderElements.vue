@@ -41,7 +41,7 @@
             class="flex flex-col gap-6 transition"
           >
             <!-- TODO: change if check  -->
-            <div class="" v-if="objectHas(item, 'reverse')">
+            <div v-if="objectHas(item, 'reverse')">
               <h6 class="mb-4 font-medium text-[14px] leading-[20px]">
                 Другое
               </h6>
@@ -52,9 +52,8 @@
               />
             </div>
 
-            <div class="">
+            <div v-if="objectHas(item, 'img')">
               <CUploadImage
-                v-if="objectHas(item, 'img')"
                 @uploaded="updateImage(index, $event)"
                 :index="index"
               />
@@ -67,9 +66,8 @@
               />
             </div>
 
-            <div class="">
+            <div v-if="objectHas(item, 'img')">
               <CInput
-                v-if="objectHas(item, 'img')"
                 :model-value="getBlock[index].img.src"
                 @input="updateImageInput($event, index)"
                 v-bind="{
@@ -94,9 +92,8 @@
               }"
             />
 
-            <div class="">
+            <div v-if="objectHas(item, 'clickLink')">
               <CInput
-                v-if="objectHas(item, 'clickLink')"
                 :model-value="getBlock[index].clickLink"
                 @input="updateClickLink($event, index)"
                 v-bind="{

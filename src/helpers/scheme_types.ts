@@ -26,6 +26,15 @@ export type TextSizes =
   | "text-2xl leading-[32px]"
   | "text-3xl leading-[38px]";
 
+export type ThemeTypes =
+  | "bg-transparent"
+  | "bg-[#FBC100]"
+  | "bg-[#fff]"
+  | "#eff3f6";
+
+export type PaddingTypes = "p-0" | "p-10";
+export type GapTypes = "gap-0" | "gap-4";
+
 export interface Content {
   widgetName: WidgetType;
   type: ContentType;
@@ -39,6 +48,9 @@ export interface Block {
   text?: Text;
   asset?: Asset;
   reverse?: boolean;
+  theme?: ThemeTypes;
+  padding?: PaddingTypes;
+  gap?: GapTypes;
 }
 
 export interface Img {

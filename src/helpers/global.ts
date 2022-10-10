@@ -9,5 +9,9 @@ export function preventXXS(str: string): string {
 }
 
 export function objectHas(obj: object, item: string): any {
+  if (!obj) {
+    return false;
+  }
+
   return item in obj;
 }
