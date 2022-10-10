@@ -53,6 +53,7 @@ class GenerateBlock {
       block.video = {
         type: "youtube",
         youtubeId: "",
+        videoUrl: "",
       };
     }
     if (clickLink) {
