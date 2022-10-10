@@ -52,6 +52,7 @@ function showAlertBeforeMount(event: object) {
 // scheme default text leading fix
 // storybook refactor
 // refactor Content components
+// drop after nodata error
 </script>
 
 <style scoped>

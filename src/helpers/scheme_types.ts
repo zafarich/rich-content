@@ -31,7 +31,7 @@ export type ThemeTypes =
   | "bg-transparent"
   | "bg-[#FBC100]"
   | "bg-[#fff]"
-  | "#eff3f6";
+  | "bg-[#eff3f6]";
 
 export type PaddingTypes = "p-0" | "p-10";
 export type GapTypes = "mb-2" | "mb-4";

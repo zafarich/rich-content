@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h6 class="mb-4 font-medium text-[14px] leading-[20px]">
-      Положение изображения
+    <h6 v-if="label" class="mb-4 font-medium text-[14px] leading-[20px]">
+      {{ label }}
     </h6>
     <v-select
       class="mb-2"
@@ -27,6 +27,7 @@ import vSelect from "vue-select";
 export interface Props {
   default: any;
   options: any;
+  label?: string;
 }
 
 interface Emits {

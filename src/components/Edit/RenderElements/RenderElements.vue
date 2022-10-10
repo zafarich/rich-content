@@ -43,15 +43,14 @@
           >
             <!-- TODO: change if check  -->
             <div v-if="objectHas(item, 'reverse')">
-              <h6 class="mb-4 font-medium text-[14px] leading-[20px]">
-                Другое
-              </h6>
+              <h6 class="label mb-4">Другое</h6>
               <CSelect
                 v-if="objectHas(item, 'reverse')"
                 @selected="getBlock[index].reverse = $event"
                 v-bind="{
                   options: imagePosition,
                   default: item.reverse,
+                  label: 'Положение изображения',
                 }"
               />
             </div>
@@ -122,6 +121,36 @@
               }"
             />
 
+            <div class='flex flex-col gap-2' v-if="objectHas(item, 'theme', 'padding', 'gap')">
+              <h4 class="font-medium text-[18px] leading-[20px] mb-2">
+                Основные
+              </h4>
+              <CSelect
+                @selected="getBlock[index].theme = $event"
+                v-bind="{
+                  options: view,
+                  default: item.theme,
+                  label: 'Вид'
+                }"
+              />
+              <CSelect
+                @selected="getBlock[index].gap = $event"
+                v-bind="{
+                  options: gaps,
+                  default: item.gap,
+                  label: 'Отступ между заголовком и текстом'
+                }"
+              />
+              <CSelect
+                @selected="getBlock[index].padding = $event"
+                v-bind="{
+                  options: padding,
+                  default: item.padding,
+                  label: 'Отступ'
+                }"
+              />
+            </div>
+
             <CTextDetails
               @update-text="(e) => (getBlock[index][e.type][e.item] = e.value)"
               v-bind="{ item }"
@@ -146,7 +175,7 @@ import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
 import useImageStore from "@/store/image";
 import useStore from "@/store/index";
-import { imagePosition } from "./data";
+import { imagePosition, view, gaps, padding } from "./data";
 
 const store = useStore();
 const imageStore = useImageStore();

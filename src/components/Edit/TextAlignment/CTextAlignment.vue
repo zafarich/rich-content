@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h6 class="mb-2 font-medium text-[14px] leading-[20px]">
-      Выравнивание текста
-    </h6>
+    <h6 class="label">Выравнивание текста</h6>
     <div class="flex-center gap-2">
       <div
         v-for="(item, index) in alignments"

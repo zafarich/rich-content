@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col"
+    class="flex flex-col transition"
     :class="[content.block[0].theme, content.block[0].padding]"
   >
     <div v-for="(item, index) in content.block" :key="index">
