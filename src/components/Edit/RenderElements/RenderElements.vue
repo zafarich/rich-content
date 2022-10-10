@@ -312,5 +312,3 @@ function handleListTheme(event: object): void {
   }
 }
 </script>
-
-<style scoped></style>
