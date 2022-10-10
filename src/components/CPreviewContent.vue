@@ -132,6 +132,7 @@ import CChess from "@/components/Content/Chess/CChess.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
 import CThreeRow from "@/components/Content/ThreeRow/CThreeRow.vue";
 import CTwoRow from "@/components/Content/TwoRow/CTwoRow.vue";
+import CVideo from "@/components/Content/Video/CVideo.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
@@ -149,6 +150,7 @@ const ContentComponents = {
   chessReverse: CChess,
   twoRow: CTwoRow,
   threeRow: CThreeRow,
+  video: CVideo,
 };
 
 const dragOptions = ref({

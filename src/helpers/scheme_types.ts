@@ -9,7 +9,8 @@ export type ContentType =
   | "chess"
   | "chessReverse"
   | "twoRow"
-  | "threeRow";
+  | "threeRow"
+  | "video";
 export type ImgPosition =
   | "w-full h-full"
   | "w-3/4 h-3/4"

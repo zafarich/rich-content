@@ -155,6 +155,18 @@ const text: Content = {
   }),
 };
 
+const video: Content = {
+  widgetName: "raShowcase",
+  type: "video",
+  block: new GenerateBlock({
+    clickLink: true,
+    img: true,
+    title: true,
+    text: true,
+    asset: true,
+  }),
+};
+
 const schemes = {
   roll,
   billboard,
@@ -162,6 +174,7 @@ const schemes = {
   chessReverse,
   twoRow,
   threeRow,
+  video,
   text,
 };
 export default schemes;
