@@ -37,7 +37,7 @@
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
-import RenderElements from "@/components/Edit/RenderElements.vue";
+import RenderElements from "@/components/Edit/RenderElements/RenderElements.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";

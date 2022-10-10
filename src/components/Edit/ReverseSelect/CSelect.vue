@@ -7,12 +7,12 @@
       class="mb-2"
       :searchable="false"
       :clearable="false"
-      :options="imagePosition"
+      :options="options"
       label="title"
       :reduce="(item) => item.value"
       v-model="getSelected"
     >
-      <template #no-options> Ooops, rasim joylashuvlari topilmadi :( </template>
+      <template #no-options> Ooops, malumot topilmadi :( </template>
       <template #option="{ title }">
         <h3>{{ title }}</h3>
       </template>
@@ -25,8 +25,8 @@ import { computed } from "vue";
 import vSelect from "vue-select";
 
 export interface Props {
-  item: object;
-  reverse?: boolean;
+  default: any;
+  options: any;
 }
 
 interface Emits {
@@ -38,23 +38,12 @@ const $emit = defineEmits<Emits>();
 
 const getSelected = computed({
   get() {
-    return props.item.reverse;
+    return props.default;
   },
   set(v) {
     $emit("selected", v);
   },
 });
-
-const imagePosition = [
-  {
-    title: "Справа",
-    value: true,
-  },
-  {
-    title: "Слева",
-    value: false,
-  },
-];
 </script>
 
 <style scoped></style>

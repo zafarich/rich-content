@@ -46,10 +46,13 @@
               <h6 class="mb-4 font-medium text-[14px] leading-[20px]">
                 Другое
               </h6>
-              <CReverseSelect
+              <CSelect
                 v-if="objectHas(item, 'reverse')"
                 @selected="getBlock[index].reverse = $event"
-                v-bind="{ item }"
+                v-bind="{
+                  options: imagePosition,
+                  default: item.reverse,
+                }"
               />
             </div>
 
@@ -135,7 +138,7 @@ import { computed, ref } from "vue";
 
 import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
-import CReverseSelect from "@/components/Edit/ReverseSelect/CReverseSelect.vue";
+import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import Icon from "@/components/Icon/Icon.vue";
@@ -143,6 +146,7 @@ import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
 import useImageStore from "@/store/image";
 import useStore from "@/store/index";
+import { imagePosition } from "./data";
 
 const store = useStore();
 const imageStore = useImageStore();
