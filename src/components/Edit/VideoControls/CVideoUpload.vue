@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h6 class="mb-2 font-medium text-[14px] leading-[20px]">Изображение</h6>
+    <h6 class="mb-2 font-medium text-[14px] leading-[20px]">Загрузить видео</h6>
     <div class="h-[44px] rounded relative border-2 border-yellow">
       <input
         :id="'file' + index"
@@ -18,6 +18,9 @@
         <p class="font-medium text-[14px] leading-[20px]">Загрузить видео</p>
       </div>
     </div>
+    <p class="mt-2">
+      {{ imageName }}
+    </p>
   </div>
 </template>
 <script setup lang="ts">
