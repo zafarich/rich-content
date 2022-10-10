@@ -19,10 +19,9 @@
           >
             <img
               class="object-cover select-none mb-4 w-[50px] h-[50px]"
-              src="https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png"
+              :src="item.img.src"
+              :alt="item.img.alt"
             />
-            <!-- :src="item.img.src"
-              :alt="item.img.alt" -->
           </div>
         </div>
         <div class="">

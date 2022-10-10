@@ -58,3 +58,18 @@ export const padding = [
     value: "p-10",
   },
 ];
+
+export const viewList = [
+  {
+    title: "МАРКЕР",
+    value: "bullet",
+  },
+  {
+    title: "НУМЕРАЦИЯ",
+    value: "number",
+  },
+  {
+    title: "ИЗОБРАЖЕНИЯ",
+    value: "image",
+  },
+];

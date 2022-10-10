@@ -171,6 +171,7 @@ const list: Content = {
     title: true,
     text: true,
     asset: true,
+    count: 3,
   }),
   // add:
 };

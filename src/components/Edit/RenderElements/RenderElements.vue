@@ -36,13 +36,23 @@
           </transition>
         </div>
 
-        {{ item }}
-
         <transition name="fade">
           <div
             v-if="getBlock[index].asset.toggle"
             class="flex flex-col gap-6 transition"
           >
+            <div class="hek">
+              <CSelect
+                v-if="objectHas(getContent, 'theme')"
+                @selected="handleListTheme($event, index)"
+                v-bind="{
+                  options: viewList,
+                  default: getContent?.theme,
+                  label: 'Вид',
+                }"
+              />
+            </div>
+
             <div v-if="objectHas(item, 'reverse')">
               <h6 class="label font-medium mb-4">Другое</h6>
               <CSelect
@@ -189,8 +199,7 @@ import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
 import useImageStore from "@/store/image";
 import useStore from "@/store/index";
-
-import { gaps, imagePosition, padding, videoTypeOptions, view } from "./data";
+import { imagePosition,  videoTypeOptions, view, gaps, padding, viewList } from "./data";
 
 const store = useStore();
 const imageStore = useImageStore();
@@ -206,6 +215,10 @@ const ErrorList = {
 
 const getBlock = computed(() => {
   return content.value[activeIndex.value].content.block;
+});
+
+const getContent = computed(() => {
+  return content?.value[activeIndex?.value]?.content;
 });
 
 function updateImageInput(event: any, index: number): void {
@@ -273,6 +286,20 @@ function updateImage(index: number, e: any): void {
     .catch((err) => {
       updateErrMessage(err?.response?.data?.errors[0], index, "uploadErr");
     });
+}
+
+function handleListTheme(event: object, index: number): void {
+  getContent.value.theme = event;
+
+  if (event == "image") {
+    getBlock.value[index].img = {
+      id: undefined,
+      src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+      alt: "Текстовое описание изображения",
+    };
+  } else {
+    delete getBlock.value[index].img;
+  }
 }
 </script>
 
