@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col">
+  <div
+    class="flex flex-col"
+    :class="[content.block[0].theme, content.block[0].padding]"
+  >
     <div v-for="(item, index) in content.block" :key="index">
       <CContentInput
         class="font-medium text-[20px] cursor-text whitespace-pre"
