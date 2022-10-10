@@ -50,6 +50,7 @@ export interface Block {
   title?: Text;
   text?: Text;
   asset?: Asset;
+  video?: object;
   reverse?: boolean;
   theme?: ThemeTypes;
   padding?: PaddingTypes;

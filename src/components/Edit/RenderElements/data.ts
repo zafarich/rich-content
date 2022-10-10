@@ -8,7 +8,16 @@ export const imagePosition = [
     value: false,
   },
 ];
-
+export const videoTypeOptions = [
+  {
+    title: "YOUTUBE",
+    value: "youtube",
+  },
+  {
+    title: "Загрузить",
+    value: "upload",
+  },
+];
 export const view = [
   {
     title: "Default",

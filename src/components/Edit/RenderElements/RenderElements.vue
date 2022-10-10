@@ -9,7 +9,7 @@
     <div :key="activeIndex">
       <div v-for="(item, index) in getBlock" :key="index">
         <div
-          v-if="content[activeIndex]?.content?.add"
+          v-if="false && content[activeIndex]?.content?.add"
           @click="getBlock[index].asset.toggle = !getBlock[index].asset.toggle"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
@@ -59,7 +59,7 @@
                 v-if="objectHas(item, 'reverse')"
                 @selected="getBlock[index].reverse = $event"
                 v-bind="{
-                  options: imagePosition,
+                  options: videoTypeOptions,
                   default: item.reverse,
                   label: 'Положение изображения',
                 }"
@@ -93,6 +93,15 @@
                 v-if="getBlock[index]?.asset?.imgLinkErr"
                 v-bind="{
                   message: getBlock[index].asset.imgLinkErr,
+                }"
+              />
+            </div>
+
+            <div v-if="objectHas(item, 'video')">
+              <CVideoControls
+                v-bind="{
+                  item,
+                  videoTypeOptions,
                 }"
               />
             </div>
@@ -184,13 +193,13 @@ import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
+import CVideoControls from "@/components/Edit/VideoControls/CVideoControls.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
 import useImageStore from "@/store/image";
 import useStore from "@/store/index";
-import { imagePosition, view, gaps, padding, viewList } from "./data";
-// import { GenerateBlock } from "@/helpers/scheme";
+import { imagePosition,  videoTypeOptions, view, gaps, padding, viewList } from "./data";
 
 const store = useStore();
 const imageStore = useImageStore();
