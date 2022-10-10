@@ -3,7 +3,13 @@ export interface TemplateTypes {
 }
 
 export type WidgetType = "raShowcase" | "raVideo";
-export type ContentType = "roll" | "billboard";
+export type ContentType =
+  | "roll"
+  | "billboard"
+  | "chess"
+  | "chessReverse"
+  | "twoRow"
+  | "threeRow";
 export type ImgPosition =
   | "w-full h-full"
   | "w-3/4 h-3/4"
@@ -23,12 +29,12 @@ export type TextSizes =
 export interface Content {
   widgetName: WidgetType;
   type: ContentType;
-  blocks?: Block[];
+  block?: Block[];
 }
 
 export interface Block {
-  clickLink: string;
-  img: Img;
+  clickLink?: string;
+  img?: Img;
   title?: Text;
   text?: Text;
   asset?: Asset;
@@ -47,12 +53,12 @@ export interface Text {
   size: TextSizes;
   align: TextAlignment;
   color: TextColors;
-  content: string[];
+  content?: string[];
 }
 
 export interface Asset {
   toggle: boolean;
-  uploadErr: string;
+  uploadErr?: string;
   imgLinkErr: string;
   clickLinkErr: string;
 }
