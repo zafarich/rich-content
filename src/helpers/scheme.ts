@@ -156,7 +156,7 @@ const video: Content = {
 
 const text: Content = {
   type: "text",
-  add: false,
+  add: true,
   block: new GenerateBlock({
     title: true,
     text: true,
