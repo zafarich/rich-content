@@ -202,16 +202,15 @@ function tableEvent(e): void {
     body[e.colIdx][e.rowIdx] = e.value;
   } else {
     head[e.colIdx].text.value = e.value;
-    console.log(head[e.colIdx].text.value);
   }
 }
 
 
 function handleAdd(e): void {
-  activeIndex.value = e.newIndex;
+  activeIndex.value = e?.newIndex;
 
 	// add unique id to video type
-  if (content.value[activeIndex.value].content.type === 'video') {
+  if (content?.value[activeIndex.value]?.content?.type === 'video') {
 		content.value[activeIndex.value].content.id = uuidv4()
   }
 }
