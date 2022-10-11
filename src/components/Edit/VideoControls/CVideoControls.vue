@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps , onBeforeUnmount} from "vue";
+import { defineProps, onBeforeUnmount } from "vue";
 
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
@@ -46,38 +46,41 @@ import CInput from "@/components/UI/Input/Input/CInput.vue";
 import CVideoUpload from "./CVideoUpload.vue";
 
 const props = defineProps({
-	videoTypeOptions: Array,
-	item: {
-		type: Object,
-		required: true
-	},
-	imageStore: {
-		type: Object,
-		required: true
-	},
+  videoTypeOptions: Array,
+  item: {
+    type: Object,
+    required: true,
+  },
+  imageStore: {
+    type: Object,
+    required: true,
+  },
 });
 
-const controller = new AbortController()
+const controller = new AbortController();
 
 onBeforeUnmount(() => {
-	controller.abort()
-})
+  controller.abort();
+});
 
-function handleVideoUpload(e:any) {
-	handleProgressBar(0)
+function handleVideoUpload(e: any) {
+  handleProgressBar(0);
   props.item.video.videoUrl = e.url;
   const formData = new FormData();
   formData.append("upload", e?.file);
-  props.imageStore.postImage(formData, handleProgressBar, controller).then((res:any) => {
-    const result = res.data;
-    console.log(result);
-  }).finally(() => handleProgressBar(100));
+  props.imageStore
+    .postImage(formData, handleProgressBar, controller)
+    .then((res: any) => {
+      const result = res.data;
+      console.log(result);
+    })
+    .finally(() => handleProgressBar(100));
 }
 
-function handleProgressBar(progress: number ) {
-	props.item.video.loadState.updateState({progress, isLoading: true})
+function handleProgressBar(progress: number) {
+  props.item.video.loadState.updateState({ progress, isLoading: true });
   if (progress === 100) {
-		props.item.video.loadState.updateState({ isLoading: false})
+    props.item.video.loadState.updateState({ isLoading: false });
   }
 }
 </script>

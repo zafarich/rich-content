@@ -1,13 +1,12 @@
 <template>
   <div class="flex flex-col gap-12">
     <div v-for="(item, index) in content.block" :key="index">
-      
-     <template v-if="item.video.loadState.isLoading">
-				<div class="w-full aspect-video flex justify-center items-center">
-            <CProgressBar :progress="item.video.loadState.progress"/>
-				</div>
-		 </template>
-			
+      <template v-if="item.video.loadState.isLoading">
+        <div class="w-full aspect-video flex justify-center items-center">
+          <CProgressBar :progress="item.video.loadState.progress" />
+        </div>
+      </template>
+
       <template v-else>
         <iframe
           v-if="item.video.type === 'youtube'"
@@ -57,5 +56,4 @@ function youTubeLinkToEmbed(url: string) {
     ? "https://www.youtube.com/embed/" + match[2]
     : null;
 }
-
 </script>

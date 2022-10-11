@@ -4,21 +4,21 @@ import { ref } from "vue";
 import { useImageStore } from "./image";
 
 export const useStore = defineStore("main", {
-	state: () => ({
-		content: ref([]),
-		activeIndex: ref<null | number>(null),
-		isFullScreen: <boolean>false,
-		step: ref<"edit" | "drop">("drop"),
-		assets: [],
-	}),
+  state: () => ({
+    content: ref([]),
+    activeIndex: ref<null | number>(null),
+    isFullScreen: <boolean>false,
+    step: ref<"edit" | "drop">("drop"),
+    assets: [],
+  }),
 
-	actions: {
-		toggleIsFullScreen(): void {
-			this.isFullScreen = !this.isFullScreen;
-		},
-		deleteContent(index: number): void {
-			const imageStore = useImageStore();
-			imageStore.removeImgIdFromLocalStorage(index);
+  actions: {
+    toggleIsFullScreen(): void {
+      this.isFullScreen = !this.isFullScreen;
+    },
+    deleteContent(index: number): void {
+      const imageStore = useImageStore();
+      imageStore.removeImgIdFromLocalStorage(index);
 
       this.content.splice(index, 1);
       if (this.activeIndex == index) {

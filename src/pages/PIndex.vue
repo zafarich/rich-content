@@ -49,10 +49,8 @@ function showAlertBeforeMount(event: object) {
 }
 
 // TODO:
-// CCOntentInput save as array
 // preview aspect ratio
 // storybook refactor
-// refactor Content components
 // handleDynamicComponentEvents preview content
 </script>
 
