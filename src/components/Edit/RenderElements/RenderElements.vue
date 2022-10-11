@@ -180,7 +180,9 @@
       </div>
     </div>
   </transition>
-  <div v-else>Hello</div>
+  <div v-else>
+    {{ content[activeIndex] }}
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -9,7 +9,6 @@ export const useStore = defineStore("main", {
 		activeIndex: ref<null | number>(null),
 		isFullScreen: <boolean>false,
 		step: ref<"edit" | "drop">("drop"),
-		assets: [],
 		axiosControllers: <any>{}
 	}),
 

@@ -163,7 +163,7 @@ const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
-  group: "people",
+  group: "contents",
   pull: "clone",
   sort: false,
 });
@@ -183,24 +183,39 @@ function handleDynamicComponentEvents(event: any) {
     case "billboard":
       billboardEvent(event);
       break;
+    case "table":
+      tableEvent(event);
+      break;
     default:
       break;
   }
 }
-
-function handleAdd(e): void {
-  activeIndex.value = e.newIndex;
-
-	// add unique id to video type
-  if (content.value[activeIndex.value].content.type === 'video') {
-		content.value[activeIndex.value].content.id = uuidv4()
-  }
-}
-
 function billboardEvent(e) {
   content.value[activeIndex.value].content.block[e.index][e.target].value =
     e.value;
 }
+
+function tableEvent(e): void {
+  const { body, head } = content.value[activeIndex.value].content.table;
+
+  if (e.type == 'body') {
+    body[e.colIdx][e.rowIdx] = e.value;
+  } else {
+    head[e.colIdx].text.value = e.value;
+  }
+}
+
+
+function handleAdd(e): void {
+  activeIndex.value = e?.newIndex;
+
+	// add unique id to video type
+  if (content?.value[activeIndex.value]?.content?.type === 'video') {
+		content.value[activeIndex.value].content.id = uuidv4()
+  }
+}
+
+
 </script>
 
 <style scoped>
