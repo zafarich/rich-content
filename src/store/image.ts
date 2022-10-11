@@ -7,28 +7,28 @@ import { useStore } from "./index";
 export const useImageStore = defineStore("image", {
   state: () => ({}),
 
-  actions: {
-    async postImage(data: any, progressCallback: Function) {
-      return await new Promise((resolve, reject) => {
-        axios
-          .post("/files/rich-upload", data, {
-            onUploadProgress: (progressEvent) => {
-              const { loaded, total } = progressEvent;
-              let percent = Math.floor((loaded * 100) / total);
-              console.log(percent);
-              progressCallback && progressCallback(percent);
-            },
-          })
-          .then((res) => {
-            const result = res?.data;
-            result?.success && this.setImgIdToLocalStorage(result?.data?.id);
-            resolve(res);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      });
-    },
+	actions: {
+		async postImage(data: any, progressCallback: Function, abortController: any) {
+			return await new Promise((resolve, reject) => {
+				axios
+					.post("/files/rich-upload", data, {
+						signal: abortController.signal,
+						onUploadProgress: progressEvent => {
+							const { loaded, total } = progressEvent
+							let percent = Math.floor((loaded * 100) / total)
+							progressCallback && progressCallback(percent)
+						}
+					})
+					.then((res) => {
+						const result = res?.data;
+						result?.success && this.setImgIdToLocalStorage(result?.data?.id);
+						resolve(res);
+					})
+					.catch((err) => {
+						reject(err);
+					});
+			});
+		},
 
     async deleteImage(id) {
       return await new Promise((resolve, reject) => {
