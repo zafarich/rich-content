@@ -20,7 +20,7 @@ export const useImageStore = defineStore("image", {
       return await new Promise((resolve, reject) => {
         axios
           .post("/files/rich-upload", data, {
-            signal: abortController.signal,
+            signal: abortController.value.signal,
             onUploadProgress: (progressEvent) => {
               const { loaded, total } = progressEvent;
               let percent = Math.floor((loaded * 100) / total);

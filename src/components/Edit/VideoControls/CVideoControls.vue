@@ -1,7 +1,5 @@
 <template>
   <div class="flex flex-col gap-6">
-    {{ content[activeIndex] }}
-
     <div>
       <h6 class="mb-4 font-medium text-[14px] leading-[20px]">Тип</h6>
       <CSelect
@@ -47,7 +45,7 @@
 // 1. Disable uploading another video while pending is true
 // 2. If video type is changed abort requst
 
-import { defineProps, onBeforeUnmount } from "vue";
+import { defineProps, onBeforeUnmount, watch, ref } from "vue";
 
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
@@ -72,12 +70,21 @@ const props = defineProps({
   },
 });
 
-const controller = new AbortController();
-console.log(content.value[activeIndex.value]);
+const controller = ref();
+
+watch(
+  () => props.item.video.type,
+  (value) => {
+    if (value === "youtube") {
+      controller.value.abort();
+    }
+  }
+);
 
 function handleVideoUpload(e: any) {
   handleProgressBar(0);
-	storeControllerToStore();
+  storeControllerToStore();
+  controller.value = new AbortController();
   const formData = new FormData();
   formData.append("upload", e?.file);
   props.imageStore
@@ -89,9 +96,10 @@ function handleVideoUpload(e: any) {
       }
     })
     .catch((err: object) => {
-			if (err.code === "ERR_CANCELED") return;
+      if (err.code === "ERR_CANCELED") return;
       toast.error("Что-то пошло не так");
-    });
+    })
+    .finally(() => handleProgressBar(100));
 }
 
 function handleProgressBar(progress: number) {
