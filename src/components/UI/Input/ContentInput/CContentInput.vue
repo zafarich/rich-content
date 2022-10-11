@@ -5,7 +5,8 @@
     @click="makeEditable"
   >
     <p
-      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-normal break-words"
+      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-pre-wrap break-words"
+      style="word-break: break-word !important;"
       ref="textbox"
       @paste="handlePaste"
       :contenteditable="editable"
@@ -18,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 import { preventXXS } from "@/helpers/global";
 
@@ -37,14 +38,7 @@ const $emit = defineEmits<Emits>();
 const editable = ref<boolean>(false);
 const textbox = ref<HTMLParagraphElement>();
 const inputText = ref<string>("");
-inputText.value = preventXXS(props.modelValue) || "";
-
-watch(
-  () => props.modelValue,
-  (e) => {
-    inputText.value = e;
-  }
-);
+inputText.value = props.modelValue || "";
 
 function makeEditable(): void {
   editable.value = true;
@@ -66,8 +60,9 @@ function makeNormal(): void {
   inputText.value = preventXXS(props.modelValue);
 }
 
-function handleInput(event) {
+function handleInput(event): void {
   $emit("update:modelValue", event.target.innerText);
   $emit("updateText", event.target.innerText);
 }
+
 </script>
