@@ -1,5 +1,7 @@
 <template>
   <div class="flex flex-col gap-6">
+    {{ content[activeIndex] }}
+
     <div>
       <h6 class="mb-4 font-medium text-[14px] leading-[20px]">Тип</h6>
       <CSelect
@@ -41,13 +43,20 @@
 </template>
 
 <script setup lang="ts">
+// !TODO
+// 1. Disable uploading another video while pending is true
+// 2. If video type is changed abort requst
+
 import { defineProps, onBeforeUnmount } from "vue";
 
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { useToast } from "vue-toastification";
-
 import CVideoUpload from "./CVideoUpload.vue";
+import { storeToRefs } from "pinia";
+import useStore from "@/store/index";
+const store = useStore();
+const { activeIndex, content } = storeToRefs(store);
 
 const toast = useToast();
 const ENV_CDN = import.meta.env.VITE_CDN;
@@ -64,14 +73,11 @@ const props = defineProps({
 });
 
 const controller = new AbortController();
-
-onBeforeUnmount(() => {
-	console.log('unmounted')
-  controller.abort();
-});
+console.log(content.value[activeIndex.value]);
 
 function handleVideoUpload(e: any) {
   handleProgressBar(0);
+	storeControllerToStore();
   const formData = new FormData();
   formData.append("upload", e?.file);
   props.imageStore
@@ -83,7 +89,7 @@ function handleVideoUpload(e: any) {
       }
     })
     .catch((err: object) => {
-      // console.log(err.response.data.message);
+			if (err.code === "ERR_CANCELED") return;
       toast.error("Что-то пошло не так");
     });
 }
@@ -93,5 +99,9 @@ function handleProgressBar(progress: number) {
   if (progress === 100) {
     props.item.video.loadState.updateState({ isLoading: false });
   }
+}
+
+function storeControllerToStore(): void {
+  store.addController(content.value[activeIndex.value].content.id, controller);
 }
 </script>

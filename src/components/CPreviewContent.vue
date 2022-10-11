@@ -1,3 +1,4 @@
+
 <template>
   <div class="">
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
@@ -39,7 +40,7 @@
       ]"
       v-bind="dragOptions"
       v-model="content"
-      @add="activeIndex = $event.newIndex"
+      @add="handleAdd"
     >
       <template v-if="content?.length">
         <transition-group type="transition" name="flip-list">
@@ -99,7 +100,6 @@
                 </transition-group>
               </div>
             </div>
-						
           </div>
         </transition-group>
       </template>
@@ -125,6 +125,7 @@
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
+import { uuidv4 } from '@/helpers/global'
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CChess from "@/components/Content/Chess/CChess.vue";
@@ -184,6 +185,15 @@ function handleDynamicComponentEvents(event: any) {
       break;
     default:
       break;
+  }
+}
+
+function handleAdd(e): void {
+  activeIndex.value = e.newIndex;
+
+	// add unique id to video type
+  if (content.value[activeIndex.value].content.type === 'video') {
+		content.value[activeIndex.value].content.id = uuidv4()
   }
 }
 

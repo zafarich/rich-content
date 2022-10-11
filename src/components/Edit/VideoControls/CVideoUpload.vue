@@ -23,7 +23,6 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { useToast } from "vue-toastification";
-
 import Icon from "@/components/Icon/Icon.vue";
 
 interface Props {
