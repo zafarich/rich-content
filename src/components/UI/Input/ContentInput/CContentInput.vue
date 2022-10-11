@@ -6,7 +6,7 @@
   >
     <p
       class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-pre-wrap break-words"
-      style="word-break: break-word !important;"
+      style="word-break: break-word !important"
       ref="textbox"
       @paste="handlePaste"
       :contenteditable="editable"
@@ -64,5 +64,4 @@ function handleInput(event): void {
   $emit("update:modelValue", event.target.innerText);
   $emit("updateText", event.target.innerText);
 }
-
 </script>

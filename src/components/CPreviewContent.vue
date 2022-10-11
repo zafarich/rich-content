@@ -117,7 +117,7 @@
         </div>
       </div>
     </VueDraggableNext>
-    <!-- <pre>{{ content }}</pre> -->
+    <pre>{{ content }}</pre>
   </div>
 </template>
 
@@ -130,6 +130,7 @@ import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CChess from "@/components/Content/Chess/CChess.vue";
 import CRoll from "@/components/Content/Roll/CRoll.vue";
 import CList from "@/components/Content/List/CList.vue";
+import CTable from "@/components/Content/Table/CTable.vue";
 import CText from "@/components/Content/Text/CText.vue";
 import CThreeRow from "@/components/Content/ThreeRow/CThreeRow.vue";
 import CTwoRow from "@/components/Content/TwoRow/CTwoRow.vue";
@@ -154,6 +155,7 @@ const ContentComponents = {
   video: CVideo,
   text: CText,
   list: CList,
+  table: CTable,
 };
 
 const dragOptions = ref({
