@@ -13,7 +13,6 @@ import "./plugins/JSONFixify";
 export default function definePlugins(app: App): App {
   // Define your plugins here with app.use. It is required for storybook support.
   const pinia = createPinia();
-
   app.use(VueAxios, axios);
   app.provide("axios", app.config.globalProperties.axios); // provide 'axios'
 
