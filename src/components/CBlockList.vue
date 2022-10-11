@@ -14,7 +14,7 @@
     <VueDraggableNext
       class="dragArea list-group w-full flex flex-col gap-8 mt-8"
       :list="blocks"
-      :group="{ name: 'people', pull: 'clone', put: false }"
+      :group="{ name: 'contents', pull: 'clone', put: false }"
       :sort="false"
       :clone="clone"
     >

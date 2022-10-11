@@ -163,7 +163,7 @@ const dragOptions = ref({
   animation: 500,
   disabled: false,
   ghostClass: "ghost",
-  group: "people",
+  group: "contents",
   pull: "clone",
   sort: false,
 });
