@@ -71,5 +71,3 @@ function handleText(e: any, target: string, index: number): void {
   $emit("updateData", data);
 }
 </script>
-
-<style scoped></style>

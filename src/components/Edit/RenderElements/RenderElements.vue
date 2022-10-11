@@ -1,23 +1,21 @@
 <template>
   <transition
-    v-if="content?.length && content[activeIndex]?.content?.block.length"
+    v-if="content?.length && getBlock?.length"
     mode="out-in"
     name="fade"
     tag="div"
     class="flex flex-col gap-10"
   >
     <div :key="activeIndex">
-      <div class="hek">
-        <CSelect
-          v-if="objectHas(getContent, 'theme')"
-          @selected="handleListTheme"
-          v-bind="{
-            options: viewList,
-            default: getContent?.theme,
-            label: 'Вид',
-          }"
-        />
-      </div>
+      <CSelect
+        v-if="objectHas(getContent, 'theme')"
+        @selected="handleListTheme"
+        v-bind="{
+          options: viewList,
+          default: getContent?.theme,
+          label: 'Вид',
+        }"
+      />
       <div v-for="(item, index) in getBlock" :key="index">
         <div
           v-if="content[activeIndex]?.content?.type != 'text'"
@@ -30,7 +28,7 @@
             </h6>
             <Icon
               :class="{
-                'rotate-[180deg] transition': getBlock[index].asset.toggle,
+                'rotate-[180deg] transition': getBlock[index]?.asset?.toggle,
               }"
               class="transition"
               name="arrow_down"
@@ -49,7 +47,7 @@
 
         <transition name="fade">
           <div
-            v-if="getBlock[index].asset.toggle"
+            v-if="getBlock[index]?.asset?.toggle"
             class="flex flex-col gap-6 transition"
           >
             <div v-if="objectHas(item, 'reverse')">
@@ -182,6 +180,7 @@
       </div>
     </div>
   </transition>
+  <div v-else>Hello</div>
 </template>
 
 <script setup lang="ts">
@@ -221,7 +220,7 @@ const ErrorList = {
 };
 
 const getBlock = computed(() => {
-  return content.value[activeIndex.value].content.block;
+  return content?.value[activeIndex?.value]?.content?.block;
 });
 
 const getContent = computed(() => {
