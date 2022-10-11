@@ -10,17 +10,9 @@ export const useStore = defineStore("main", {
 		isFullScreen: <boolean>false,
 		step: ref<"edit" | "drop">("drop"),
 		assets: [],
-		videoUploadState: {
-			isLoading: false,
-			progress: 0
-		}
 	}),
 
 	actions: {
-		updateVideoProgress({ progress = 100, isLoading = true }) {
-			this.videoUploadState.progress = progress
-			this.videoUploadState.isLoading = isLoading
-		},
 		toggleIsFullScreen(): void {
 			this.isFullScreen = !this.isFullScreen;
 		},

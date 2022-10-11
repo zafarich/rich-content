@@ -8,14 +8,14 @@ export const useImageStore = defineStore("image", {
 	state: () => ({}),
 
 	actions: {
-		async postImage(data: any, progressCallback: Function) {
+		async postImage(data: any, progressCallback: Function, abortController: any) {
 			return await new Promise((resolve, reject) => {
 				axios
 					.post("/files/rich-upload", data, {
+						signal: abortController,
 						onUploadProgress: progressEvent => {
 							const { loaded, total } = progressEvent
 							let percent = Math.floor((loaded * 100) / total)
-							console.log(percent)
 							progressCallback && progressCallback(percent)
 						}
 					})

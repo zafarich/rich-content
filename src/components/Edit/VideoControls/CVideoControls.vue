@@ -44,29 +44,34 @@ import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 
 import CVideoUpload from "./CVideoUpload.vue";
-import { useStore } from "@/store/index";
-const store = useStore();
 
 const props = defineProps({
-  item: Object,
-  videoTypeOptions: Array,
-  imageStore: Object,
+	videoTypeOptions: Array,
+	item: {
+		type: Object,
+		required: true
+	},
+	imageStore: {
+		type: Object,
+		required: true
+	},
 });
 
-function handleVideoUpload(e) {
+function handleVideoUpload(e:any) {
+	handleProgressBar(0)
   props.item.video.videoUrl = e.url;
   const formData = new FormData();
   formData.append("upload", e?.file);
-  props.imageStore.postImage(formData, handleProgressBar).then((res) => {
+  props.imageStore.postImage(formData, handleProgressBar).then((res:any) => {
     const result = res.data;
     console.log(result);
-  });
+  }).finally(() => handleProgressBar(100));
 }
 
-function handleProgressBar(progress: number) {
-  console.log(store.updateVideoProgress({ progress, isLoading: true }));
+function handleProgressBar(progress: number ) {
+	props.item.video.loadState.updateState({progress, isLoading: true})
   if (progress === 100) {
-    store.updateVideoProgress({ isLoading: false });
+		props.item.video.loadState.updateState({ isLoading: false})
   }
 }
 </script>
