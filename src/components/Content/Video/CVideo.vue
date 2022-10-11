@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-col gap-12">
     <div v-for="(item, index) in content.block" :key="index">
-      <template v-if="videoUploadState.isLoading">
-			
-			</template>
+      <template v-if="videoUploadState.isLoading"> </template>
       <template v-else>
         <iframe
           v-if="item.video.type === 'youtube'"

@@ -53,6 +53,7 @@ function showAlertBeforeMount(event: object) {
 // preview aspect ratio
 // storybook refactor
 // refactor Content components
+// handleDynamicComponentEvents preview content
 </script>
 
 <style scoped>

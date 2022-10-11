@@ -54,7 +54,7 @@ const props = defineProps({
 });
 
 function handleVideoUpload(e) {
-  props.item.video.videoUrl = e.url;
+  props.item.video.videoUrl = e?.url;
   const formData = new FormData();
   formData.append("upload", e?.file);
   props.imageStore.postImage(formData, handleProgressBar).then((res) => {
