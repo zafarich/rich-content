@@ -181,14 +181,28 @@ function handleDynamicComponentEvents(event: any) {
     case "billboard":
       billboardEvent(event);
       break;
+    case "table":
+      tableEvent(event);
+      break;
     default:
       break;
   }
 }
 
-function billboardEvent(e) {
+function billboardEvent(e): void {
   content.value[activeIndex.value].content.block[e.index][e.target].value =
     e.value;
+}
+
+function tableEvent(e): void {
+  const { body, head } = content.value[activeIndex.value].content.table;
+
+  if (e.type == 'body') {
+    body[e.colIdx][e.rowIdx] = e.value;
+  } else {
+    head[e.colIdx].text.value = e.value;
+    console.log(head[e.colIdx].text.value);
+  }
 }
 </script>
 

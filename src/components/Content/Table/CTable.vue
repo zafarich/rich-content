@@ -11,8 +11,8 @@
             />
             <CContentInput
               class="mx-3 mb-2 font-medium text-[20px] text-left cursor-text whitespace-pre"
-              @updateText="handleText($event, 'text', index)"
               :model-value="item?.text?.value"
+              @updateText="handleBodyText($event, 'head', index)"
             />
           </th>
         </tr>
@@ -23,9 +23,13 @@
           :key="index"
           :class="{ 'bg-grey-light': index % 2 != 0 }"
         >
-          <td v-for="(el, idx) in item" :key='idx' class="py-2 px-3 leading-[24px]">
+          <td
+            v-for="(el, idx) in item"
+            :key="idx"
+            class="py-2 px-3 leading-[24px]"
+          >
             <CContentInput
-              @updateText="handleText($event, 'title', index)"
+              @updateText="handleBodyText($event, 'body', index, idx)"
               :model-value="el"
             />
           </td>
@@ -38,7 +42,7 @@
 <script setup lang="ts">
 import CContentInput from "@/components/UI/Input/ContentInput/CContentInput.vue";
 import { Content } from "@/helpers/scheme_types";
-import {computed } from 'vue'
+import { computed } from "vue";
 
 export interface Props {
   content: Content;
@@ -50,24 +54,24 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {});
 const $emit = defineEmits<Emits>();
+
 const getHead = computed(() => {
-  return props?.content?.table?.head
-})
+  return props?.content?.table?.head;
+});
+
 const getBody = computed(() => {
-  return props?.content?.table?.body
-})
+  return props?.content?.table?.body;
+});
 
-console.log(getBody.value)
-
-console.log(props.content, "content props");
-
-function handleText(e: any, target: string, index: number): void {
+function handleBodyText(event: any, type: 'head' | 'body', colIdx: number, rowIdx: number): void {
   const data = {
-    content_type: "billboard",
-    value: e,
-    target,
-    index,
+    content_type: "table",
+    type,
+    value: event,
+    colIdx,
+    rowIdx,
   };
+
   $emit("updateData", data);
 }
 </script>

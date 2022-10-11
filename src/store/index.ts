@@ -7,7 +7,7 @@ export const useStore = defineStore("main", {
   state: () => ({
     content: ref([]),
     activeIndex: ref<null | number>(null),
-    isFullScreen: <boolean>false,
+    isFullScreen: ref<boolean>(false),
     step: ref<"edit" | "drop">("drop"),
     assets: [],
   }),
