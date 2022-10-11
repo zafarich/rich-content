@@ -58,7 +58,7 @@
                 v-if="objectHas(item, 'reverse')"
                 @selected="getBlock[index].reverse = $event"
                 v-bind="{
-                  options: videoTypeOptions,
+                  options: imagePosition,
                   default: item.reverse,
                   label: 'Положение изображения',
                 }"
@@ -101,6 +101,7 @@
                 v-bind="{
                   item,
                   videoTypeOptions,
+									imageStore
                 }"
               />
             </div>
