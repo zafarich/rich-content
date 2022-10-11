@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps , onBeforeUnmount} from "vue";
 
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
@@ -57,12 +57,18 @@ const props = defineProps({
 	},
 });
 
+const controller = new AbortController()
+
+onBeforeUnmount(() => {
+	controller.abort()
+})
+
 function handleVideoUpload(e:any) {
 	handleProgressBar(0)
   props.item.video.videoUrl = e.url;
   const formData = new FormData();
   formData.append("upload", e?.file);
-  props.imageStore.postImage(formData, handleProgressBar).then((res:any) => {
+  props.imageStore.postImage(formData, handleProgressBar, controller).then((res:any) => {
     const result = res.data;
     console.log(result);
   }).finally(() => handleProgressBar(100));
