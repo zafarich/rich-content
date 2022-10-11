@@ -13,7 +13,7 @@
           class="w-full aspect-video"
           :src="
             youTubeLinkToEmbed(
-              item.video.videoUrl || 'https://youtu.be/iKBs9l8jS6Q'
+              item.video.videoUrl || 'https://youtu.be/xffp8p-vyMY'
             )
           "
         >
@@ -28,8 +28,7 @@
         >
           <source
             :src="
-              item.video.videoUrl ||
-              `https://cdn1.ozone.ru/s3/rich-content/video-examples/flower.webm`
+              item.video.videoUrl
             "
           />
         </video>
@@ -39,6 +38,7 @@
 </template>
 
 <script setup lang="ts">
+
 export interface Props {
   content: Content;
 }
