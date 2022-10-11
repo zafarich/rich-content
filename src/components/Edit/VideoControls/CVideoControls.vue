@@ -44,16 +44,29 @@ import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 
 import CVideoUpload from "./CVideoUpload.vue";
+import { useStore } from "@/store/index";
+const store = useStore();
 
 const props = defineProps({
   item: Object,
-  getBlock: Function,
-  index: Number,
   videoTypeOptions: Array,
+  imageStore: Object,
 });
 
 function handleVideoUpload(e) {
   props.item.video.videoUrl = e.url;
-  console.log(e, "hello");
+  const formData = new FormData();
+  formData.append("upload", e?.file);
+  props.imageStore.postImage(formData, handleProgressBar).then((res) => {
+    const result = res.data;
+    console.log(result);
+  });
+}
+
+function handleProgressBar(progress: number) {
+  console.log(store.updateVideoProgress({ progress, isLoading: true }));
+  if (progress === 100) {
+    store.updateVideoProgress({ isLoading: false });
+  }
 }
 </script>
