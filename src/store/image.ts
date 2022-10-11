@@ -1,3 +1,7 @@
+// !TODO
+// !1 RENAME THE FOLDER AND FUNCTION NAMES TO => MEDIA
+// !2 CHANGE THE NAME OF THE FILE AND FUNCTIONS INSIDE EVERY FILE
+
 import { defineStore } from "pinia";
 
 import axios from "@/plugins/axios";

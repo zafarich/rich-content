@@ -101,7 +101,7 @@
                 v-bind="{
                   item,
                   videoTypeOptions,
-									imageStore
+                  imageStore,
                 }"
               />
             </div>

@@ -18,22 +18,23 @@
         <p class="font-medium text-[14px] leading-[20px]">Загрузить видео</p>
       </div>
     </div>
-    <p class="mt-2">
-      {{ imageName }}
-    </p>
   </div>
 </template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
+import { useToast } from "vue-toastification";
 
 import Icon from "@/components/Icon/Icon.vue";
+
+interface Props {
+  index: number;
+}
 
 interface Emits {
   (e: "uploaded", v: string): void;
 }
-export interface Props {
-  index: number;
-}
+
+const toast = useToast();
 
 const $emit = defineEmits<Emits>();
 withDefaults(defineProps<Props>(), {});
@@ -42,18 +43,22 @@ const image = reactive({
   url: null,
   file: null,
 });
-let imageName = ref("");
 
 const handleFile = (event: any) => {
-  console.log(event.target.files[0]);
+  const file = event.target.files[0];
+  if (file.size > 250000000) {
+    console.log(file, "event");
+    toast.error("Максимальный размер видео 250 мб");
+    return;
+  }
+
   if (image.url) {
     image.url = null;
     image.file = null;
   }
 
-  image.file = event.target.files[0];
-  imageName.value = image.file?.name;
-  image.url = URL.createObjectURL(event.target.files[0]);
+  image.file = file;
+  image.url = URL.createObjectURL(file);
   $emit("uploaded", image);
 };
 const getFile = (index: number): void => {
