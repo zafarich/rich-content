@@ -18,25 +18,20 @@
       />
       <div v-for="(item, index) in getBlock" :key="index">
         <div
-          v-if="content[activeIndex]?.content?.type != 'text'"
-          @click="getBlock[index].asset.toggle = !getBlock[index].asset.toggle"
+          v-if="getContent?.type != 'text'"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
-          <div class="flex-center gap-[10px]">
-            <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
-              Карточка # {{ index + 1 }}
-            </h6>
-            <Icon
-              :class="{
-                'rotate-[180deg] transition': getBlock[index]?.asset?.toggle,
-              }"
-              class="transition"
-              name="arrow_down"
-            />
-          </div>
+          <CAccordion
+            @click="
+              getBlock[index].asset.toggle = !getBlock[index].asset.toggle
+            "
+            :title="`Карточка # ${index + 1}`"
+            :toggle="getBlock[index].asset.toggle"
+          />
+
           <transition name="fade">
             <Icon
-              v-if="content[activeIndex]?.content?.block?.length != 1"
+              v-if="getBlock?.length != 1"
               @click="getBlock.splice(index, 1)"
               class="cursor-pointer hover:opacity-70 transition"
               name="trash_bin"
@@ -181,7 +176,11 @@
     </div>
   </transition>
   <div v-else>
-    {{ content[activeIndex] }}
+    <CTableController
+      v-bind="{
+        item: content[activeIndex]?.content,
+      }"
+    />
   </div>
 </template>
 
@@ -189,12 +188,14 @@
 import { storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 
+import CAccordion from "@/components/Accordion/CAccordion.vue";
 import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
 import CImageView from "@/components/Edit/ImageView/CImageView.vue";
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import CVideoControls from "@/components/Edit/VideoControls/CVideoControls.vue";
+import CTableController from "@/components/Edit/TableController/CTableController.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";

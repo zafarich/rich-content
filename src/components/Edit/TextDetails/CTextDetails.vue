@@ -5,7 +5,7 @@
   >
     <div v-for="(el, idx) in elements" :key="idx" class="">
       <div v-if="objectHas(item, el.type)" class="flex flex-col gap-4">
-        <h4 class="font-medium text-[18px] leading-[20px] mb-2">
+        <h4 v-if='showTitle' class="font-medium text-[18px] leading-[20px] mb-2">
           {{ el.label }}
         </h4>
         <v-select
@@ -42,14 +42,17 @@ import { objectHas } from "@/helpers/global";
 import { TextSizes } from "@/helpers/scheme_types";
 
 export interface Props {
-  item: object;
+  item?: object;
+  showTitle?: boolean;
 }
 
 interface Emits {
   (e: "update-text", v: { type: string; item: string; value: string }): void;
 }
 
-withDefaults(defineProps<Props>(), {});
+withDefaults(defineProps<Props>(), {
+  showTitle: true 
+});
 const $emit = defineEmits<Emits>();
 
 const elements = ref([

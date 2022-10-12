@@ -17,7 +17,9 @@
       <div class="">
         <RenderElements />
         <CButton
-          v-if="!['text', 'video'].includes(content[activeIndex]?.content?.type)"
+          v-if="
+            !['text', 'video'].includes(content[activeIndex]?.content?.type)
+          "
           @click="addBlock"
           class="!bg-[#FBC1004D] !px-4 flex-center gap-2 mt-10"
         >

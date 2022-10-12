@@ -43,9 +43,8 @@
 <script setup lang="ts">
 // !TODO
 // 1. Disable uploading another video while pending is true
-// 2. If video type is changed abort requst
 
-import { defineProps, onBeforeUnmount, watch, ref } from "vue";
+import { defineProps, watch, ref } from "vue";
 
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";

@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in content.block"
       :key="index"
-      class="flex-center h-full chess-container"
+      class="flex flex-center 768:!flex-row flex-col h-full"
       :class="{ 'flex-row-reverse': item.reverse }"
     >
       <a
@@ -69,9 +69,3 @@ function handleText(e: any, target: string, index: number): void {
   $emit("updateData", data);
 }
 </script>
-
-<style scoped>
-.chess-container {
-  @apply 768:flex-col;
-}
-</style>

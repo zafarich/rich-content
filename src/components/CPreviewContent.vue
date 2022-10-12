@@ -1,4 +1,3 @@
-
 <template>
   <div class="">
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
@@ -120,6 +119,10 @@
         </div>
       </div>
     </VueDraggableNext>
+
+    <pre>
+        {{ content[activeIndex]?.content }}
+    </pre>
   </div>
 </template>
 
@@ -127,7 +130,7 @@
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
-import { uuidv4 } from '@/helpers/global'
+import { uuidv4 } from "@/helpers/global";
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CChess from "@/components/Content/Chess/CChess.vue";
@@ -200,31 +203,23 @@ function billboardEvent(e) {
 function tableEvent(e): void {
   const { body, head } = content.value[activeIndex.value].content.table;
 
-  if (e.type == 'body') {
+  if (e.type == "body") {
     body[e.colIdx][e.rowIdx] = e.value;
-  } else {
+  } else if (e.type == "head") {
     head[e.colIdx].text.value = e.value;
+  } else {
+    content.value[activeIndex.value].content.title.value = e.value;
   }
 }
-
 
 function handleAdd(e): void {
   activeIndex.value = e?.newIndex;
 
-	// add unique id to video type
-  if (content?.value[activeIndex.value]?.content?.type === 'video') {
-		content.value[activeIndex.value].content.id = uuidv4()
+  // add unique id to video type
+  if (content?.value[activeIndex.value]?.content?.type === "video") {
+    content.value[activeIndex.value].content.id = uuidv4();
   }
 }
-
-function handle() {
-	if (document.querySelector('html').classList.contains('dark')) {
-		document.querySelector('html').classList.remove('dark')
-		return
-	}
-	document.querySelector('html').classList.add('dark')
-}
-
 </script>
 
 <style scoped>

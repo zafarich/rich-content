@@ -1,5 +1,12 @@
 <template>
   <div>
+    <CContentInput
+      class="mb-4 font-medium text-[20px] leading-[28px] text-left cursor-text whitespace-pre"
+      :model-value="content?.title?.value"
+      @updateText="handleBodyText($event, 'title')"
+      :style="`color: ${content.title.color}`"
+      :class="[content.title.align, content.title.size]"
+    />
     <table class="table-fixed w-full">
       <thead class="bg-grey-light">
         <tr>
@@ -11,7 +18,7 @@
             />
             <CContentInput
               class="mx-3 mb-2 font-medium text-[20px] text-left cursor-text whitespace-pre"
-              :class='getHead[index]?.contentAlign'
+              :class="getHead[index]?.contentAlign"
               :model-value="item?.text?.value"
               @updateText="handleBodyText($event, 'head', index)"
             />
@@ -22,13 +29,13 @@
         <tr
           v-for="(item, index) in getBody"
           :key="index"
-          :class="[{ 'bg-grey-light': index % 2 != 0 }]"
+          :class="{ 'bg-grey-light': index % 2 != 0 }"
         >
           <td
             v-for="(el, idx) in item"
             :key="idx"
             class="py-2 px-3 leading-[24px]"
-            :class='getHead[idx]?.contentAlign'
+            :class="getHead[idx]?.contentAlign"
           >
             <CContentInput
               @updateText="handleBodyText($event, 'body', index, idx)"
@@ -41,9 +48,6 @@
   </div>
 </template>
 
-
-<!-- TODO:  -->
-<!-- 2. Contolers -->
 <script setup lang="ts">
 import CContentInput from "@/components/UI/Input/ContentInput/CContentInput.vue";
 import { Content } from "@/helpers/scheme_types";
@@ -64,13 +68,16 @@ const getHead = computed(() => {
   return props?.content?.table?.head;
 });
 
-console.log(getHead.value)
-
 const getBody = computed(() => {
   return props?.content?.table?.body;
 });
 
-function handleBodyText(event: any, type: 'head' | 'body', colIdx: number, rowIdx: number): void {
+function handleBodyText(
+  event: any,
+  type: "head" | "body" | "title",
+  colIdx: number,
+  rowIdx: number
+): void {
   const data = {
     content_type: "table",
     type,

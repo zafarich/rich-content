@@ -6,7 +6,7 @@ import VueAxios from "vue-axios";
 import draggable from "vuedraggable";
 
 import axios from "@/plugins/axios";
-import toast, { options } from './plugins/toast'
+import toast, { options } from "./plugins/toast";
 
 import router from "./router/index";
 import "./plugins/JSONFixify";
@@ -17,7 +17,7 @@ export default function definePlugins(app: App): App {
   app.use(VueAxios, axios);
   app.provide("axios", app.config.globalProperties.axios); // provide 'axios'
 
-	app.use(toast, options)
+  app.use(toast, options);
   app.use(pinia);
   app.use(router);
   app.use(draggable);
