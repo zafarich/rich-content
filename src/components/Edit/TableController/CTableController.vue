@@ -1,19 +1,36 @@
 <template>
   <div>
-    <CTextDetails
-      @update-text="(e) => (item[e.type][e.item] = e.value)"
-      v-bind="{ item }"
+    <CAccordion
+      class='mb-8'
+      @click="titleToggle = !titleToggle"
+      v-bind="{
+        title: 'Заголовок',
+        toggle:titleToggle 
+      }"
     />
-    {{ item }}
+      <CTextDetails
+        v-if='titleToggle'
+        @update-text="(e) => (item[e.type][e.item] = e.value)"
+        v-bind="{ 
+          item,
+          showTitle: false
+        }"
+      />
+      <!-- {{ item }} -->
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
+import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
+import CAccordion from "@/components/Accordion/CAccordion.vue";
+
 export interface Props {
   item?: object;
 }
+const titleToggle = ref(true);
 
-import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 const props = withDefaults(defineProps<Props>(), {});
 
 console.log(props.item);
