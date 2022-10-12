@@ -5,7 +5,7 @@
     @click="makeEditable"
   >
     <p
-      class="h-full w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-pre-wrap break-words cursor-text"
+      class="h-full min-h-[28px] w-full border-[1px] border-transparent transition focus:border-black-grey focus:border-dotted outline-none whitespace-pre-wrap break-words cursor-text"
       style="word-break: break-word !important"
       ref="textbox"
       @paste="handlePaste"

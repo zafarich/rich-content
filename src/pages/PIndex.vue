@@ -51,9 +51,9 @@ function showAlertBeforeMount(event: object) {
 // TODO:
 // 2. image & video id & video delete & table delete
 // 7. active indexx
-// 8. table controller 
-// 9. CContentInput hidden
+// chess left right
 //  change the state isFullscreen to true when preview closed
+// table delete imgs when content deleted 
 
 // 4. backend
 // 3. storybook
