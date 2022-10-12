@@ -72,6 +72,6 @@ function handleText(e: any, target: string, index: number): void {
 
 <style scoped>
 .chess-container {
-  @apply md:flex-col;
+  @apply 768:flex-col;
 }
 </style>
