@@ -1,6 +1,7 @@
 module.exports = {
   mode: "jit",
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -51,5 +52,11 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-themer')({
+      themes: [
+        {
+          name: 'mobile',
+        }
+      ]
+    })],
 };
