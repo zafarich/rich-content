@@ -49,10 +49,9 @@ function showAlertBeforeMount(event: object) {
 }
 
 // TODO:
-// 1. Preview - Jasur
 // 2. image & video id & video delete & table delete
 // 7. active indexx
-// 8. table controller - Asad
+// 8. table controller 
 // 9. CContentInput hidden
 //  change the state isFullscreen to true when preview closed
 
