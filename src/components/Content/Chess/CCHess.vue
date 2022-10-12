@@ -3,11 +3,11 @@
     <div
       v-for="(item, index) in content.block"
       :key="index"
-      class="flex flex-center 768:!flex-row flex-col h-full"
+      class="flex flex-center 768:flex-row flex-col h-full mobile:block"
       :class="{ 'flex-row-reverse': item.reverse }"
     >
       <a
-        class="w-1/2 h-full flex-center"
+        class="w-1/2 mobile:w-full h-full flex-center"
         :href="item.clickLink || ''"
         target="_blank"
         :class="{ 'pointer-events-none': !item.clickLink }"
@@ -19,7 +19,7 @@
         />
       </a>
 
-      <div class="flex flex-col w-1/2 p-8">
+      <div class="flex flex-col w-1/2 p-8 mobile:p-0 mobile:pt-4 mobile:w-full">
         <div class="flex-grow"></div>
         <div class="">
           <CContentInput
