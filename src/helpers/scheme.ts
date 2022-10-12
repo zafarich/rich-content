@@ -53,7 +53,8 @@ class GenerateBlock {
     if (video) {
       block.video = {
         type: "youtube",
-        videoUrl: "",
+				id: undefined,
+        videoUrl: 'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4',
         loadState: {
           isLoading: false,
           progress: 0,
