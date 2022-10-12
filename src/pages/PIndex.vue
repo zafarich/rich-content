@@ -55,8 +55,8 @@ function showAlertBeforeMount(event: object) {
 // remove id from LS in second times
 
 // TODO:
-// 1. Preview - Jasur // DONE except for Table
-// 2. image & video id // 
+// 1. Preview - Jasur
+// 2. image & video id & video delete & table delete 
 // 7. active indexx
 // 8. table controller - Asad
 // 9. CContentInput hidden

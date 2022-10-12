@@ -17,10 +17,8 @@
       <div class="">
         <RenderElements />
         <CButton
-          v-if="
-            !['text', 'video'].includes(content[activeIndex]?.content?.type)
-          "
-          @click="addBlock"
+          v-if="showAddBlock"
+          @click="handleAddBlock"
           class="!bg-[#FBC1004D] !px-4 flex-center gap-2 mt-10"
         >
           <Icon name="add" />
@@ -37,7 +35,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import RenderElements from "@/components/Edit/RenderElements/RenderElements.vue";
 import Icon from "@/components/Icon/Icon.vue";
@@ -48,18 +46,38 @@ import useStore from "@/store/index";
 
 const store = useStore();
 const { step, activeIndex, content } = storeToRefs(store);
+const addBlockBtn = ref(false);
 
 function handleBack() {
   step.value = "drop";
   activeIndex.value = null;
 }
 
-function addBlock(): void {
+function handleAddBlock(): void {
   let current = content.value[activeIndex.value].content;
 
+  switch (current.type) {
+    case "list":
+      addList(current);
+      break;
+    case "table":
+      addTable(current);
+      break;
+    default:
+      addOthers(current);
+      break;
+  }
+}
+
+function addOthers(current: object): void {
+  const add = JSON.parse(JSON.stringify(Scheme[current.type].block[0]));
+  current.block.push(add);
+}
+
+function addList(current: object): object {
   let add = JSON.parse(JSON.stringify(Scheme[current.type].block[0]));
 
-  if (current.type == "list" && current.theme == "image") {
+  if (current.theme == "image") {
     add.img = {
       id: undefined,
       src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
@@ -69,6 +87,49 @@ function addBlock(): void {
 
   current.block.push(add);
 }
+
+function addTable(current: object): object {
+  const { head, body } = current.table;
+
+  if (head.length == 5) addBlockBtn.value = true;
+
+  const defaultBody =
+    "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
+  const defaultHead = {
+    img: {
+      id: undefined,
+      src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+      alt: "Текстовое описание изображения",
+    },
+    text: {
+      value: "Заголовок",
+    },
+    contentAlign: "text-left",
+    asset: {
+      toggle: true,
+      imgLinkErr: "",
+      uploadErr: "",
+    },
+  };
+
+  head.push(defaultHead);
+
+  for (let i of body) {
+    i.push(defaultBody);
+  }
+}
+
+const showAddBlock = computed(() => {
+  if (
+    ["text", "video"].includes(content.value[activeIndex.value]?.content?.type)
+  ) {
+        return false;
+  }
+
+  if (addBlockBtn.value) return false;
+
+  return true;
+});
 </script>
 
 <style scoped></style>
