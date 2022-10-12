@@ -36,7 +36,7 @@
     <VueDraggableNext
       :class="[
         'dragArea list-group w-full flex flex-col gap-[40px] mt-8',
-        deviceType === 'phone' ? '!max-w-[380px] mx-auto' : 'stuff',
+        deviceType === 'phone' ? '!max-w-[320px] mx-auto' : '',
       ]"
       v-bind="dragOptions"
       v-model="content"
@@ -240,6 +240,7 @@ function handleAdd(e): void {
 }
 
 .preview__content {
-  width: calc(100% - 42px);
+  /* width: calc(100% - 42px); */
+	width: 100%;
 }
 </style>
