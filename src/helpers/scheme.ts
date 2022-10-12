@@ -53,7 +53,6 @@ class GenerateBlock {
     if (video) {
       block.video = {
         type: "youtube",
-				id: undefined,
         videoUrl: "",
         loadState: {
           isLoading: false,
@@ -229,7 +228,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
@@ -245,7 +244,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
@@ -261,7 +260,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
