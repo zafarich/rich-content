@@ -39,6 +39,7 @@ class GenerateBlock {
         toggle: true,
         imgLinkErr: "",
         clickLinkErr: "",
+        uploadErr: "",
       };
     }
     if (img) {

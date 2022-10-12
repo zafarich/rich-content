@@ -113,7 +113,7 @@ const ErrorList = {
 
 function updateImageInput(event: any, index: number): void {
   const value = event?.target?.value || "";
-  showErrMessage(value, index);
+  showErrMessage(value, index, "imgLinkErr");
   getHead.value[index].img.src = value;
   getHead.value[index].img.id = undefined;
 }
@@ -143,14 +143,15 @@ function updateImage(index: number, e: any): void {
     });
 }
 
-function showErrMessage(value: string, index): void {
-  updateErrMessage("", index, "clickLinkErr");
+function showErrMessage(value: string, index: number, target: string): void {
+  console.log(value, "value");
+  updateErrMessage("", index, target);
 
   if (value.startsWith("data:")) {
-    updateErrMessage(ErrorList["base64"], index, "clickLinkErr");
+    updateErrMessage(ErrorList["base64"], index, target);
   }
   if (!isValidURL(value)) {
-    updateErrMessage(ErrorList["invalidUrl"], index, "clickLinkErr");
+    updateErrMessage(ErrorList["invalidUrl"], index, target);
   }
 }
 

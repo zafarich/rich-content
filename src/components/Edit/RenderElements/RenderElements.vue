@@ -231,14 +231,14 @@ const getContent = computed(() => {
 
 function updateImageInput(event: any, index: number): void {
   const value = event?.target?.value || "";
-  showErrMessage(value, index);
+  showErrMessage(value, index, "imgLinkErr");
   getBlock.value[index].img.src = value;
   getBlock.value[index].img.id = undefined;
 }
 
 function updateClickLink(event: any, index: number): void {
   const value = event?.target?.value || "";
-  showErrMessage(value, index);
+  showErrMessage(value, index, "clickLinkErr");
   getBlock.value[index].clickLink = value;
 }
 
@@ -259,14 +259,15 @@ function updateErrMessage(
   getBlock.value[index].asset[target] = message;
 }
 
-function showErrMessage(value: string, index): void {
-  updateErrMessage("", index, "clickLinkErr");
+function showErrMessage(value: string, index: number, target: string): void {
+  updateErrMessage("", index, target);
 
   if (value.startsWith("data:")) {
-    updateErrMessage(ErrorList["base64"], index, "clickLinkErr");
+    updateErrMessage(ErrorList["base64"], index, target);
   }
+
   if (!isValidURL(value)) {
-    updateErrMessage(ErrorList["invalidUrl"], index, "clickLinkErr");
+    updateErrMessage(ErrorList["invalidUrl"], index, target);
   }
 }
 
@@ -286,6 +287,7 @@ function updateImage(index: number, e: any): void {
     .then((res) => {
       const result = res.data;
       if (result.success) {
+        updateErrMessage("", index, "imgLinkErr");
         getBlock.value[index].img.src = ENV_CDN + result.data.path;
         getBlock.value[index].img.id = result.data.id;
       }
