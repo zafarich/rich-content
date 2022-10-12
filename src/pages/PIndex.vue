@@ -56,7 +56,7 @@ function showAlertBeforeMount(event: object) {
 
 // TODO:
 // 1. Preview - Jasur
-// 2. image & video id
+// 2. image & video id & video delete & table delete 
 // 7. active indexx
 // 8. table controller - Asad
 // 9. CContentInput hidden
