@@ -5,7 +5,7 @@
       :key="index"
       class="rounded-[7px] w-full h-[38px] flex-center-center cursor-pointer"
       @click="handleActive(item)"
-      :class="{ 'tab-item ': activeItem == item }"
+      :class="{ 'tab-item ': deviceViewType == item }"
     >
       <Icon :name="item" />
     </div>
@@ -16,25 +16,21 @@
 import { ref } from "vue";
 
 import Icon from "@/components/Icon/Icon.vue";
+import useStore from "@/store/index";
+import { storeToRefs } from "pinia";
 
 interface Emits {
   (e: "change", v: string): void;
 }
+const store = useStore();
+const { deviceViewType } = storeToRefs(store)
 
 const $emit = defineEmits<Emits>();
 const items = ref<string[]>(["pc", "phone"]);
-const activeItem = ref<string>("pc");
-$emit("change", activeItem.value);
 
 function handleActive(item: string): void {
-  activeItem.value = item;
   $emit("change", item);
-
-  if (item === 'phone') {
-    document.documentElement.classList.add("mobile");
-  } else {
-    document.documentElement.classList.remove("mobile");
-  }
+  store.toggleDeviceView(item);
 }
 </script>
 
