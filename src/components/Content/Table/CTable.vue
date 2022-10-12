@@ -37,15 +37,16 @@
             class="py-2 px-3 leading-[24px]"
             :class="getHead[idx]?.contentAlign"
           >
-            <CContentInput
-              @updateText="handleBodyText($event, 'body', index, idx)"
-              :model-value="el"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+              <CContentInput
+                @updateText="handleBodyText($event, 'body', index, idx)"
+                :model-value="el"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
 </template>
 
 <script setup lang="ts">

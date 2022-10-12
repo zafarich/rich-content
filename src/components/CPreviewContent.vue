@@ -8,8 +8,6 @@
       редактируйте текст и содержание каждой секции, а также загружайте свои
       фото.
     </p>
-    <div @click="handle()" class="dark:text-5xl">Dark mode</div>
-    <div class="mobile:text-5xl">mobile mode</div>
     <div class="flex flex-center-between mt-8">
       <CTab v-if="isFullScreen" class="min-w-[100px]" />
       <CButton
@@ -29,7 +27,7 @@
     </div>
     <VueDraggableNext
       :class="[
-        'dragArea list-group w-full flex flex-col gap-[40px] mt-8 mobile:!max-w-[320px] mobile:mx-auto',
+        'dragArea list-group w-full flex flex-col gap-[40px] mt-8 mobile:!max-w-[375px] mobile:mx-auto mobile:gap-[20px]',
       ]"
       v-bind="dragOptions"
       v-model="content"
