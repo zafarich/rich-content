@@ -123,7 +123,7 @@ const showAddBlock = computed(() => {
   if (
     ["text", "video"].includes(content.value[activeIndex.value]?.content?.type)
   ) {
-        return false;
+    return false;
   }
 
   if (addBlockBtn.value) return false;

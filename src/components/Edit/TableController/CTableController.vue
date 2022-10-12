@@ -19,6 +19,28 @@
       />
     </div>
 
+    <div v-if='false' class="!mb-7">
+      <CAccordion
+        class="pb-4"
+        @click="lineToggle = !lineToggle"
+        v-bind="{
+          title: 'Строки',
+          toggle: lineToggle,
+        }"
+      />
+
+      <div class="flex gap-4">
+        <div
+          class="line-action transition cursor-pointer"
+          v-for="i in lineActions"
+          :key="i"
+          @click="handleLineAction(i)"
+        >
+          <Icon :name="i" />
+        </div>
+      </div>
+    </div>
+
     <div class="flex flex-col gap-7">
       <div class="" v-for="(item, index) in item?.table?.head" :key="index">
         <CAccordion
@@ -89,6 +111,7 @@ import CTextAlignment from "@/components/Edit/TextAlignment/CTextAlignment.vue";
 import useImageStore from "@/store/image";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CAccordion from "@/components/Accordion/CAccordion.vue";
+import Icon from "@/components/Icon/Icon.vue";
 
 export interface Props {
   item?: object;
@@ -98,6 +121,9 @@ const titleToggle = ref(true);
 const lineToggle = ref(true);
 const imageStore = useImageStore();
 const ENV_CDN = import.meta.env.VITE_CDN;
+const lineActions = ref(["addBodyTop", "addBodyBottom", "removeBody"]);
+const defaultBodyText =
+  "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
 
 const props = withDefaults(defineProps<Props>(), {});
 
@@ -110,6 +136,40 @@ const ErrorList = {
   base64: "Тип изображения base64 не допускается",
   invalidUrl: "URL изображения должен быть действительным",
 };
+
+function handleLineAction(current: string): void {
+  switch (current) {
+    case "addBodyTop":
+      addBodyTop();
+      break;
+
+    case "addBodyBottom":
+      addBodyTop();
+      break;
+    default:
+      break;
+  }
+  console.log(current);
+}
+
+function addBodyTop(): void {
+  const body = props.item.table.body
+  const row = body[0].length;
+  const arr = new Array(body[0].length).fill(defaultBodyText)
+
+  body.unshift(JSON.parse(JSON.stringify(arr)))
+
+console.log(arr ,'arr')
+console.log(body.length)
+
+
+}
+
+function addBodyBottom(): void {
+  // const body = props.item.table.body;
+  // const arr = new Array(body[0].length).fill(defaultBodyText)
+  // body.push(arr)
+}
 
 function updateImageInput(event: any, index: number): void {
   const value = event?.target?.value || "";
@@ -173,4 +233,9 @@ function isValidURL(url: string): boolean {
 }
 </script>
 
-<style scoped></style>
+<style>
+.line-action:hover svg path {
+  fill: #fbc100 !important;
+  transition: all 0.3s;
+}
+</style>
