@@ -11,7 +11,6 @@
       <thead class="bg-grey-light">
         <tr>
           <th v-for="(item, index) in getHead" :key="index" class="">
-            {{ item?.img?.src }}
             <img
               class="w-24 h-24 my-4 mx-auto object-cover"
               :src="item?.img?.src"
