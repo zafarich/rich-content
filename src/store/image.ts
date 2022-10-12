@@ -18,7 +18,6 @@ export const useImageStore = defineStore("image", {
       progressCallback: Function,
       abortController: any = ref(new AbortController())
     ) {
-      console.log("hello there");
       return await new Promise((resolve, reject) => {
         axios
           .post("/files/rich-upload", data, {

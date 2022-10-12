@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-12 mobile:grid-cols-1 gap-">
+  <div class="grid grid-cols-2 gap-12 mobile:grid-cols-1 mobile:gap-6">
     <div class="" v-for="(item, index) in content.block" :key="index">
       <div class="">
         <a

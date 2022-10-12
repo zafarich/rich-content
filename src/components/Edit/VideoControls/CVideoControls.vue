@@ -81,6 +81,10 @@ watch(
 );
 
 function handleVideoUpload(e: any) {
+  if (
+    content.value[activeIndex.value].content.block[0].video.loadState.isLoading
+  )
+    return;
   handleProgressBar(0);
   storeControllerToStore();
   controller.value = new AbortController();

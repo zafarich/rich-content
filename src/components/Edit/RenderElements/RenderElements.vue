@@ -201,6 +201,7 @@ import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
 import useImageStore from "@/store/image";
 import useStore from "@/store/index";
+import { useToast } from "vue-toastification";
 import {
   imagePosition,
   videoTypeOptions,
@@ -214,6 +215,7 @@ const store = useStore();
 const imageStore = useImageStore();
 const { activeIndex, content } = storeToRefs(store);
 const ENV_CDN = import.meta.env.VITE_CDN;
+const toast = useToast();
 
 const ErrorList = {
   lessThan1mb: "Размер файла должен быть меньше 1мб",
@@ -257,6 +259,7 @@ function updateErrMessage(
   target: string
 ): void {
   getBlock.value[index].asset[target] = message;
+	message && toast.error(message)
 }
 
 function showErrMessage(value: string, index: number, target: string): void {
@@ -277,6 +280,10 @@ function updateImage(index: number, e: any): void {
     updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
     return;
   }
+	if (getBlock.value[index].img.id) {
+		imageStore.deleteImage(getBlock.value[index].img.id)
+		imageStore.removeId(getBlock.value[index].img.id)
+	}
 
   const formData = new FormData();
   formData.append("upload", e?.file);
