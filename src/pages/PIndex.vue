@@ -49,12 +49,6 @@ function showAlertBeforeMount(event: object) {
 }
 
 // TODO:
-// preview aspect ratio
-// storybook refactor
-// handleDynamicComponentEvents preview content
-// remove id from LS in second times
-
-// TODO:
 // 1. Preview - Jasur
 // 2. image & video id & video delete & table delete
 // 7. active indexx
