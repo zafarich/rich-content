@@ -18,7 +18,6 @@ export const useImageStore = defineStore("image", {
       progressCallback: Function,
       abortController: any = ref(new AbortController())
     ) {
-      console.log("hello there");
       return await new Promise((resolve, reject) => {
         axios
           .post("/files/rich-upload", data, {
@@ -78,7 +77,7 @@ export const useImageStore = defineStore("image", {
       const blocks = contentStore.content[index].content.block;
 
       for (const i in blocks) {
-        const id = blocks[i]?.img?.id;
+        const id = blocks[i]?.img?.id || blocks[i]?.video.id;
 
         if (id) {
           // eslint-disable-next-line

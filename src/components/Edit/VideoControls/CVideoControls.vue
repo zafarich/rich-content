@@ -81,6 +81,10 @@ watch(
 );
 
 function handleVideoUpload(e: any) {
+  if (
+    content.value[activeIndex.value].content.block[0].video.loadState.isLoading
+  )
+    return;
   handleProgressBar(0);
   storeControllerToStore();
   controller.value = new AbortController();
@@ -92,6 +96,7 @@ function handleVideoUpload(e: any) {
       const result = res.data;
       if (result.success) {
         props.item.video.videoUrl = ENV_CDN + result.data.path;
+        props.item.video.id =  result.data.id;
       }
     })
     .catch((err: object) => {
