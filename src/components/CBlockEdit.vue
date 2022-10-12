@@ -17,9 +17,7 @@
       <div class="">
         <RenderElements />
         <CButton
-          v-if="
-            !['text', 'video'].includes(content[activeIndex]?.content?.type)
-          "
+          v-if="showAddBlock"
           @click="handleAddBlock"
           class="!bg-[#FBC1004D] !px-4 flex-center gap-2 mt-10"
         >
@@ -37,6 +35,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { computed, ref } from "vue";
 
 import RenderElements from "@/components/Edit/RenderElements/RenderElements.vue";
 import Icon from "@/components/Icon/Icon.vue";
@@ -47,6 +46,7 @@ import useStore from "@/store/index";
 
 const store = useStore();
 const { step, activeIndex, content } = storeToRefs(store);
+const addBlockBtn = ref(false);
 
 function handleBack() {
   step.value = "drop";
@@ -90,6 +90,9 @@ function addList(current: object): object {
 
 function addTable(current: object): object {
   const { head, body } = current.table;
+
+  if (head.length == 5) addBlockBtn.value = true;
+
   const defaultBody =
     "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
   const defaultHead = {
@@ -110,14 +113,23 @@ function addTable(current: object): object {
   };
 
   head.push(defaultHead);
-  
-  for(let i of body) {
-    i.push(defaultBody)
+
+  for (let i of body) {
+    i.push(defaultBody);
   }
-  
-  console.log(head);
-  console.log(body);
 }
+
+const showAddBlock = computed(() => {
+  if (
+    ["text", "video"].includes(content.value[activeIndex.value]?.content?.type)
+  ) {
+        return false;
+  }
+
+  if (addBlockBtn.value) return false;
+
+  return true;
+});
 </script>
 
 <style scoped></style>
