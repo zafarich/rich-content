@@ -199,8 +199,10 @@ function tableEvent(e): void {
 
   if (e.type == "body") {
     body[e.colIdx][e.rowIdx] = e.value;
-  } else {
+  } else if(e.type == 'head'){
     head[e.colIdx].text.value = e.value;
+  } else {
+    content.value[activeIndex.value].content.title = e.value 
   }
 }
 

@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in content.block"
       :key="index"
-      class="flex   flex-center 768:!flex-row flex-col h-full"
+      class="flex flex-center 768:!flex-row flex-col h-full"
       :class="{ 'flex-row-reverse': item.reverse }"
     >
       <a

@@ -1,10 +1,10 @@
 <template>
   <div>
     <CContentInput
-      class="font-medium text-[20px] text-left cursor-text whitespace-pre"
-      :model-value="'hello'"
+      class="mb-4 font-medium text-[20px] leading-[28px] text-left cursor-text whitespace-pre"
+      :model-value="content?.title?.value"
+      @updateText="handleBodyText($event, 'title')"
     />
-    <!-- @updateText="handleBodyText($event, 'head', index)" -->
     <table class="table-fixed w-full">
       <thead class="bg-grey-light">
         <tr>
@@ -74,7 +74,7 @@ const getBody = computed(() => {
 
 function handleBodyText(
   event: any,
-  type: "head" | "body",
+  type: "head" | "body" | 'title',
   colIdx: number,
   rowIdx: number
 ): void {

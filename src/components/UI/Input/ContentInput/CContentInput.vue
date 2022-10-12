@@ -24,7 +24,7 @@ import { ref } from "vue";
 import { preventXXS } from "@/helpers/global";
 
 export interface Props {
-  modelValue: string;
+  modelValue?: string;
 }
 
 interface Emits {
