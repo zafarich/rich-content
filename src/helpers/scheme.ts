@@ -53,6 +53,7 @@ class GenerateBlock {
     if (video) {
       block.video = {
         type: "youtube",
+				id: undefined,
         videoUrl: "",
         loadState: {
           isLoading: false,

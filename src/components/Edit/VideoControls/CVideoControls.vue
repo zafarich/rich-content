@@ -96,6 +96,7 @@ function handleVideoUpload(e: any) {
       const result = res.data;
       if (result.success) {
         props.item.video.videoUrl = ENV_CDN + result.data.path;
+        props.item.video.id =  result.data.id;
       }
     })
     .catch((err: object) => {

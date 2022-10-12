@@ -77,7 +77,7 @@ export const useImageStore = defineStore("image", {
       const blocks = contentStore.content[index].content.block;
 
       for (const i in blocks) {
-        const id = blocks[i]?.img?.id;
+        const id = blocks[i]?.img?.id || blocks[i]?.video.id;
 
         if (id) {
           // eslint-disable-next-line
