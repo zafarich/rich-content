@@ -191,9 +191,7 @@ const table: Content = {
     align: "text-left",
     color: "#F7F7F7",
   },
-  asset: {
-    toggle: true,
-  },
+
   table: {
     body: [
       [
@@ -228,6 +226,9 @@ const table: Content = {
           value: "Заголовок",
         },
         contentAlign: "text-left",
+        asset: {
+          toggle: true,
+        },
       },
       {
         img: {
@@ -238,7 +239,10 @@ const table: Content = {
         text: {
           value: "Заголовок",
         },
-        contentAlign: "text-center",
+        contentAlign: "text-left",
+        asset: {
+          toggle: true,
+        },
       },
       {
         img: {
@@ -249,7 +253,10 @@ const table: Content = {
         text: {
           value: "Заголовок",
         },
-        contentAlign: "text-right",
+        contentAlign: "text-left",
+        asset: {
+          toggle: true,
+        },
       },
     ],
   },

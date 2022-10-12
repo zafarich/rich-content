@@ -21,12 +21,18 @@ import { ref } from "vue";
 import Icon from "@/components/Icon/Icon.vue";
 import { TextAlignment } from "@/helpers/scheme_types";
 
+export interface Props {
+  align?: string;
+}
+
 interface Emits {
   (e: "align", v: TextAlignment): void;
 }
 const $emit = defineEmits<Emits>();
+const props = withDefaults(defineProps<Props>(), {})
 const alignments = ["text-left", "text-center", "text-right"];
-const activeAlign = ref<TextAlignment>("text-left");
+const activeAlign = ref<TextAlignment>("");
+activeAlign.value = props.align || 'text-left'
 
 $emit("align", activeAlign.value);
 function handleAlignment(alignment: TextAlignment) {

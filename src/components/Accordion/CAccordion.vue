@@ -6,15 +6,14 @@
       <h6 class="tracking-[0.2px] text-[18px] leading-[20px] font-bold">
         {{ title }}
       </h6>
-        <Icon
-          :class="{
-            'rotate-[180deg] transition': toggle,
-          }"
-          class="transition"
-          name="arrow_down"
-        />
+      <Icon
+        :class="{
+          'rotate-[180deg] transition': toggle,
+        }"
+        class="transition"
+        name="arrow_down"
+      />
     </div>
-
   </div>
 </template>
 
