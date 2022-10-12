@@ -55,15 +55,15 @@ function showAlertBeforeMount(event: object) {
 // remove id from LS in second times
 
 // TODO:
-// 1. Preview
+// 1. Preview - Jasur
 // 2. image & video id
 // 3. storybook
 // 4. backend
 // 5. texnomart front
 // 6. edit
 // 7. active indexx
-// 8. table controller
-// refactor
+// 8. table controller - Asad
+// refactor depends on mood :)
 </script>
 
 <style scoped>
