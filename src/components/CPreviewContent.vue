@@ -9,6 +9,8 @@
       редактируйте текст и содержание каждой секции, а также загружайте свои
       фото.
     </p>
+		<div @click="handle()" class="dark:text-5xl">Dark mode</div>
+		<div class="mobile:text-5xl">mobile mode</div>
     <div class="flex flex-center-between mt-8">
       <CTab
         v-if="isFullScreen"
@@ -36,7 +38,7 @@
     <VueDraggableNext
       :class="[
         'dragArea list-group w-full flex flex-col gap-[40px] mt-8',
-        deviceType === 'phone' ? '!max-w-[320px] mx-auto' : '',
+        deviceType === 'phone' ? '!max-w-[320px] mx-auto mobile-view' : '',
       ]"
       v-bind="dragOptions"
       v-model="content"
@@ -215,6 +217,13 @@ function handleAdd(e): void {
   }
 }
 
+function handle() {
+	if (document.querySelector('html').classList.contains('dark')) {
+		document.querySelector('html').classList.remove('dark')
+		return
+	}
+	document.querySelector('html').classList.add('dark')
+}
 
 </script>
 
@@ -242,5 +251,7 @@ function handleAdd(e): void {
 .preview__content {
   /* width: calc(100% - 42px); */
 	width: 100%;
+	@apply mobile:p-3 p-3 500:p-4 768:p-6
 }
+
 </style>

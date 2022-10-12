@@ -29,6 +29,12 @@ $emit("change", activeItem.value);
 function handleActive(item: string): void {
   activeItem.value = item;
   $emit("change", item);
+
+  if (item === 'phone') {
+    document.documentElement.classList.add("mobile");
+  } else {
+    document.documentElement.classList.remove("mobile");
+  }
 }
 </script>
 
