@@ -54,7 +54,7 @@ class GenerateBlock {
       block.video = {
         type: "youtube",
 				id: undefined,
-        videoUrl: "",
+        videoUrl: 'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4',
         loadState: {
           isLoading: false,
           progress: 0,
@@ -229,7 +229,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
@@ -245,7 +245,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
@@ -261,7 +261,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
