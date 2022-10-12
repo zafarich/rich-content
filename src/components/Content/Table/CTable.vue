@@ -22,7 +22,7 @@
         <tr
           v-for="(item, index) in getBody"
           :key="index"
-          :class="[{ 'bg-grey-light': index % 2 != 0 }]"
+          :class="{ 'bg-grey-light': index % 2 != 0 }"
         >
           <td
             v-for="(el, idx) in item"
