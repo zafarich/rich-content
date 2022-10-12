@@ -30,7 +30,7 @@ function handleActive(item: string): void {
   activeItem.value = item;
   $emit("change", item);
 
-  if (item === 'phone') {
+  if (item === "phone") {
     document.documentElement.classList.add("mobile");
   } else {
     document.documentElement.classList.remove("mobile");

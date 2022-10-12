@@ -33,7 +33,6 @@
           @align="emitValue(idx, 'align', $event)"
           :align="item[el.type].align"
         />
-        {{ item[el.type].align }}
       </div>
     </div>
   </div>

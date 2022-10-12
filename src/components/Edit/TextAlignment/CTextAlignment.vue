@@ -29,10 +29,10 @@ interface Emits {
   (e: "align", v: TextAlignment): void;
 }
 const $emit = defineEmits<Emits>();
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {});
 const alignments = ["text-left", "text-center", "text-right"];
 const activeAlign = ref<TextAlignment>("");
-activeAlign.value = props.align || 'text-left'
+activeAlign.value = props.align || "text-left";
 
 $emit("align", activeAlign.value);
 function handleAlignment(alignment: TextAlignment) {

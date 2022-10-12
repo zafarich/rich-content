@@ -282,7 +282,7 @@ function updateImage(index: number, e: any): void {
   invalidSize.value = false;
   const formData = new FormData();
   formData.append("upload", e?.file);
-	console.log("asd")
+  console.log("asd");
 
   imageStore
     .postImage(formData)

@@ -8,8 +8,8 @@
       редактируйте текст и содержание каждой секции, а также загружайте свои
       фото.
     </p>
-		<div @click="handle()" class="dark:text-5xl">Dark mode</div>
-		<div class="mobile:text-5xl">mobile mode</div>
+    <div @click="handle()" class="dark:text-5xl">Dark mode</div>
+    <div class="mobile:text-5xl">mobile mode</div>
     <div class="flex flex-center-between mt-8">
       <CTab
         v-if="isFullScreen"
@@ -245,8 +245,7 @@ function handleAdd(e): void {
 
 .preview__content {
   /* width: calc(100% - 42px); */
-	width: 100%;
-	@apply mobile:p-3 p-3 500:p-4 768:p-6
+  width: 100%;
+  @apply mobile:p-3 p-3 500:p-4 768:p-6;
 }
-
 </style>

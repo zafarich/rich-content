@@ -3,7 +3,7 @@
 // !2 CHANGE THE NAME OF THE FILE AND FUNCTIONS INSIDE EVERY FILE
 
 import { defineStore } from "pinia";
-import {ref} from 'vue'
+import { ref } from "vue";
 
 import axios from "@/plugins/axios";
 
@@ -18,7 +18,7 @@ export const useImageStore = defineStore("image", {
       progressCallback: Function,
       abortController: any = ref(new AbortController())
     ) {
-			console.log('hello there')
+      console.log("hello there");
       return await new Promise((resolve, reject) => {
         axios
           .post("/files/rich-upload", data, {
