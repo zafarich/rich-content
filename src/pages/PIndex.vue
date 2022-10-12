@@ -63,6 +63,7 @@ function showAlertBeforeMount(event: object) {
 // 6. edit
 // 7. active indexx
 // 8. table controller - Asad
+// 9. CContentInput hidden
 // refactor depends on mood :)
 </script>
 

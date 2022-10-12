@@ -42,7 +42,7 @@ import { objectHas } from "@/helpers/global";
 import { TextSizes } from "@/helpers/scheme_types";
 
 export interface Props {
-  item: object;
+  item?: object;
 }
 
 interface Emits {

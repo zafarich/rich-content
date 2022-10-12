@@ -4,6 +4,8 @@
       class="mb-4 font-medium text-[20px] leading-[28px] text-left cursor-text whitespace-pre"
       :model-value="content?.title?.value"
       @updateText="handleBodyText($event, 'title')"
+      :style="`color: ${content.title.color}`"
+      :class="[content.title.align, content.title.size]"
     />
     <table class="table-fixed w-full">
       <thead class="bg-grey-light">
@@ -46,8 +48,6 @@
   </div>
 </template>
 
-<!-- TODO:  -->
-<!-- 2. Contolers -->
 <script setup lang="ts">
 import CContentInput from "@/components/UI/Input/ContentInput/CContentInput.vue";
 import { Content } from "@/helpers/scheme_types";
@@ -74,7 +74,7 @@ const getBody = computed(() => {
 
 function handleBodyText(
   event: any,
-  type: "head" | "body" | 'title',
+  type: "head" | "body" | "title",
   colIdx: number,
   rowIdx: number
 ): void {

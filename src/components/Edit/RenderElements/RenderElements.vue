@@ -183,7 +183,7 @@
   <div v-else>
     <CTableController
       v-bind="{
-        item: content[activeIndex],
+        item: content[activeIndex]?.content,
       }"
     />
   </div>

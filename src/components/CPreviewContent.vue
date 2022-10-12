@@ -117,6 +117,10 @@
         </div>
       </div>
     </VueDraggableNext>
+
+    <pre>
+        {{ content[activeIndex]?.content }}
+    </pre>
   </div>
 </template>
 
@@ -199,10 +203,10 @@ function tableEvent(e): void {
 
   if (e.type == "body") {
     body[e.colIdx][e.rowIdx] = e.value;
-  } else if(e.type == 'head'){
+  } else if (e.type == "head") {
     head[e.colIdx].text.value = e.value;
   } else {
-    content.value[activeIndex.value].content.title = e.value 
+    content.value[activeIndex.value].content.title.value = e.value;
   }
 }
 
