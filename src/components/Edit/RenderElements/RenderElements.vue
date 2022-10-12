@@ -213,7 +213,6 @@ import {
 const store = useStore();
 const imageStore = useImageStore();
 const { activeIndex, content } = storeToRefs(store);
-const invalidSize = ref<boolean>(false);
 const ENV_CDN = import.meta.env.VITE_CDN;
 
 const ErrorList = {
@@ -275,14 +274,12 @@ function updateImage(index: number, e: any): void {
   updateErrMessage("", index, "uploadErr");
   if (e?.file?.size > 1024000) {
     updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
-    invalidSize.value = true;
     return;
   }
 
-  invalidSize.value = false;
   const formData = new FormData();
   formData.append("upload", e?.file);
-	console.log("asd")
+  console.log("asd");
 
   imageStore
     .postImage(formData)

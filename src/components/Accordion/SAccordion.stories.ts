@@ -17,6 +17,6 @@ const Template: Story = (args) => ({
 
 export const Accordion = Template.bind({});
 Accordion.args = {
-  title: 'Hello',
-  toggle: true
+  title: "Hello",
+  toggle: true,
 };

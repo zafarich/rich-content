@@ -52,11 +52,13 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-themer')({
+  plugins: [
+    require("tailwindcss-themer")({
       themes: [
         {
-          name: 'mobile',
-        }
-      ]
-    })],
+          name: "mobile",
+        },
+      ],
+    }),
+  ],
 };

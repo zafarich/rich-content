@@ -23,13 +23,14 @@ interface Emits {
   (e: "change", v: string): void;
 }
 const store = useStore();
-const { deviceViewType } = storeToRefs(store)
+const { deviceViewType } = storeToRefs(store);
 
 const $emit = defineEmits<Emits>();
 const items = ref<string[]>(["pc", "phone"]);
 
 function handleActive(item: string): void {
   $emit("change", item);
+
   store.toggleDeviceView(item);
 }
 </script>

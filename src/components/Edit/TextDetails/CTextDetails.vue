@@ -5,7 +5,10 @@
   >
     <div v-for="(el, idx) in elements" :key="idx" class="">
       <div v-if="objectHas(item, el.type)" class="flex flex-col gap-4">
-        <h4 v-if='showTitle' class="font-medium text-[18px] leading-[20px] mb-2">
+        <h4
+          v-if="showTitle"
+          class="font-medium text-[18px] leading-[20px] mb-2"
+        >
           {{ el.label }}
         </h4>
         <v-select
@@ -26,7 +29,10 @@
           </template>
         </v-select>
         <CChooseColor @color="emitValue(idx, 'color', $event)" />
-        <CTextAlignment @align="emitValue(idx, 'align', $event)" />
+        <CTextAlignment
+          @align="emitValue(idx, 'align', $event)"
+          :align="item[el.type].align"
+        />
       </div>
     </div>
   </div>
@@ -51,8 +57,9 @@ interface Emits {
 }
 
 withDefaults(defineProps<Props>(), {
-  showTitle: true 
+  showTitle: true,
 });
+
 const $emit = defineEmits<Emits>();
 
 const elements = ref([
