@@ -26,11 +26,7 @@
           lazy="true"
           class="w-full aspect-video"
         >
-          <source
-            :src="
-              item.video.videoUrl
-            "
-          />
+          <source :src="item.video.videoUrl" />
         </video>
       </template>
     </div>
@@ -38,7 +34,6 @@
 </template>
 
 <script setup lang="ts">
-
 export interface Props {
   content: Content;
 }

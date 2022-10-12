@@ -181,7 +181,11 @@
     </div>
   </transition>
   <div v-else>
-    {{ content[activeIndex] }}
+    <CTableController
+      v-bind="{
+        item: content[activeIndex],
+      }"
+    />
   </div>
 </template>
 
@@ -195,6 +199,7 @@ import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import CVideoControls from "@/components/Edit/VideoControls/CVideoControls.vue";
+import CTableController from "@/components/Edit/TableController/CTableController.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";

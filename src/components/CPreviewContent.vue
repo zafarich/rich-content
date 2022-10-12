@@ -1,4 +1,3 @@
-
 <template>
   <div class="">
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
@@ -125,7 +124,7 @@
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
-import { uuidv4 } from '@/helpers/global'
+import { uuidv4 } from "@/helpers/global";
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CChess from "@/components/Content/Chess/CChess.vue";
@@ -198,24 +197,21 @@ function billboardEvent(e) {
 function tableEvent(e): void {
   const { body, head } = content.value[activeIndex.value].content.table;
 
-  if (e.type == 'body') {
+  if (e.type == "body") {
     body[e.colIdx][e.rowIdx] = e.value;
   } else {
     head[e.colIdx].text.value = e.value;
   }
 }
 
-
 function handleAdd(e): void {
   activeIndex.value = e?.newIndex;
 
-	// add unique id to video type
-  if (content?.value[activeIndex.value]?.content?.type === 'video') {
-		content.value[activeIndex.value].content.id = uuidv4()
+  // add unique id to video type
+  if (content?.value[activeIndex.value]?.content?.type === "video") {
+    content.value[activeIndex.value].content.id = uuidv4();
   }
 }
-
-
 </script>
 
 <style scoped>
@@ -241,6 +237,6 @@ function handleAdd(e): void {
 
 .preview__content {
   /* width: calc(100% - 42px); */
-	width: 100%;
+  width: 100%;
 }
 </style>
