@@ -76,7 +76,7 @@ watch(
   () => props.item.video.type,
   (value) => {
     if (value === "youtube") {
-      controller.value.abort();
+      controller.value?.abort();
     }
   }
 );
