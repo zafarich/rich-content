@@ -57,12 +57,12 @@ function showAlertBeforeMount(event: object) {
 // TODO:
 // 1. Preview - Jasur
 // 2. image & video id
-// 3. storybook
 // 7. active indexx
 // 8. table controller - Asad
 // 9. CContentInput hidden
 
 // 4. backend
+// 3. storybook
 // 5. texnomart front
 // 6. edit
 // refactor depends on mood :)
