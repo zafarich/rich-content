@@ -11,7 +11,7 @@
     </div>
     <div class="">
       <h6 class="font-bold text-[20px] leading-[28px] mb-5">Изображения</h6>
-      <CTab @change="tab = $event" />
+      <CTab />
     </div>
     <div class="mt-8">
       <div class="">
@@ -48,8 +48,6 @@ import useStore from "@/store/index";
 
 const store = useStore();
 const { step, activeIndex, content } = storeToRefs(store);
-
-const tab = ref<"pc" | "phone">("");
 
 function handleBack() {
   step.value = "drop";

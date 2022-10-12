@@ -1,26 +1,28 @@
 <template>
   <div>
-    <CAccordion
-      class="mb-8"
-      @click="titleToggle = !titleToggle"
-      v-bind="{
-        title: 'Заголовок',
-        toggle: titleToggle,
-      }"
-    />
-    <CTextDetails
-      v-if="titleToggle"
-      @update-text="(e) => (item[e.type][e.item] = e.value)"
-      v-bind="{
-        item,
-        showTitle: false,
-      }"
-    />
+    <div class="!mb-7">
+      <CAccordion
+        class="pb-4"
+        @click="titleToggle = !titleToggle"
+        v-bind="{
+          title: 'Заголовок',
+          toggle: titleToggle,
+        }"
+      />
+      <CTextDetails
+        v-if="titleToggle"
+        @update-text="(e) => (item[e.type][e.item] = e.value)"
+        v-bind="{
+          item,
+          showTitle: false,
+        }"
+      />
+    </div>
 
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-7">
       <div class="" v-for="(item, index) in item?.table?.head" :key="index">
         <CAccordion
-          class="mb-8"
+          class="pb-4"
           @click="item.asset.toggle = !item.asset.toggle"
           v-bind="{
             title: `Колонка #${index + 1}`,
@@ -48,7 +50,7 @@
             />
           </div>
 
-          <!-- <div>
+          <div>
             <CInput
               :model-value="item.img.src"
               @input="updateImageInput($event, index)"
@@ -63,7 +65,7 @@
                 message: item.asset.imgLinkErr,
               }"
             />
-          </div> -->
+          </div>
           <CInput
             :model-value="item.img.alt"
             @input="item.img.alt = $event.target.value"
@@ -78,12 +80,13 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from "vue";
+
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
-import { ref } from "vue";
 import CTextAlignment from "@/components/Edit/TextAlignment/CTextAlignment.vue";
-
+import useImageStore from "@/store/image";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CAccordion from "@/components/Accordion/CAccordion.vue";
 
@@ -93,16 +96,52 @@ export interface Props {
 
 const titleToggle = ref(true);
 const lineToggle = ref(true);
+const imageStore = useImageStore();
+const ENV_CDN = import.meta.env.VITE_CDN;
 
 const props = withDefaults(defineProps<Props>(), {});
+
+const getHead = computed(() => {
+  return props.item.table.head;
+});
+
+const ErrorList = {
+  lessThan1mb: "Размер файла должен быть меньше 1мб",
+  base64: "Тип изображения base64 не допускается",
+  invalidUrl: "URL изображения должен быть действительным",
+};
 
 function updateImageInput(event: any, index: number): void {
   const value = event?.target?.value || "";
   showErrMessage(value, index);
-  item.img.src = value;
-  item.img.id = undefined;
+  getHead.value[index].img.src = value;
+  getHead.value[index].img.id = undefined;
 }
 
+function updateImage(index: number, e: any): void {
+  updateErrMessage("", index, "uploadErr");
+
+  if (e?.file?.size > 1024000) {
+    updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("upload", e?.file);
+
+  imageStore
+    .postImage(formData)
+    .then((res) => {
+      const result = res.data;
+      if (result.success) {
+        getHead.value[index].img.src = ENV_CDN + result.data.path;
+        getHead.value[index].img.id = result.data.id;
+      }
+    })
+    .catch((err) => {
+      updateErrMessage(err?.response?.data?.errors[0], index, "uploadErr");
+    });
+}
 
 function showErrMessage(value: string, index): void {
   updateErrMessage("", index, "clickLinkErr");
@@ -120,9 +159,8 @@ function updateErrMessage(
   index: number,
   target: string
 ): void {
-  getBlock.value[index].asset[target] = message;
+  getHead.value[index].asset[target] = message;
 }
-
 
 function isValidURL(url: string): boolean {
   try {
@@ -132,7 +170,6 @@ function isValidURL(url: string): boolean {
     return false;
   }
 }
-
 </script>
 
 <style scoped></style>

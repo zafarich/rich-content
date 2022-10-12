@@ -32,3 +32,11 @@ export function uuidv4() {
     ).toString(16)
   );
 }
+
+export function toggleMobileMode(item) {
+  if (item === "phone") {
+    document.documentElement.classList.add("mobile");
+  } else {
+    document.documentElement.classList.remove("mobile");
+  }
+}

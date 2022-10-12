@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { useImageStore } from "./image";
+import { toggleMobileMode } from "@/helpers/global";
 
 export const useStore = defineStore("main", {
   state: () => ({
@@ -10,9 +11,14 @@ export const useStore = defineStore("main", {
     isFullScreen: <boolean>false,
     step: ref<"edit" | "drop">("drop"),
     axiosControllers: <any>{},
+    deviceViewType: <"pc" | "phone">"pc",
   }),
 
   actions: {
+    toggleDeviceView(val: any) {
+      this.deviceViewType = val;
+      toggleMobileMode(val);
+    },
     addController(id: string, controller: any) {
       this.axiosControllers[id] = controller;
     },
