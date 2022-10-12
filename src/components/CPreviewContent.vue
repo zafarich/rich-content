@@ -27,7 +27,7 @@
     </div>
     <VueDraggableNext
       :class="[
-        'dragArea list-group w-full flex flex-col gap-[40px] mt-8 mobile:!max-w-[320px] mobile:mx-auto',
+        'dragArea list-group w-full flex flex-col gap-[40px] mt-8 mobile:!max-w-[375px] mobile:mx-auto mobile:gap-[20px]',
       ]"
       v-bind="dragOptions"
       v-model="content"
