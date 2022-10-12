@@ -175,7 +175,7 @@
       </div>
     </div>
   </transition>
-  <div v-else>
+  <div v-else-if='getContent?.type == "table"'>
     <CTableController
       v-bind="{
         item: content[activeIndex]?.content,
@@ -230,6 +230,8 @@ const getBlock = computed(() => {
 const getContent = computed(() => {
   return content?.value[activeIndex?.value]?.content;
 });
+
+console.log(getContent)
 
 function updateImageInput(event: any, index: number): void {
   const value = event?.target?.value || "";

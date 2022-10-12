@@ -54,6 +54,9 @@ function showAlertBeforeMount(event: object) {
 // chess left right
 //  change the state isFullscreen to true when preview closed
 // table delete imgs when content deleted 
+// preview pointer evnets none
+// block edit if no activeIndex return step to 'drop'
+// hide toggle if
 
 // 4. backend
 // 3. storybook
