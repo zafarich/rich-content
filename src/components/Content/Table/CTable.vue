@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-auto">
     <CContentInput
       class="mb-4 font-medium text-[20px] leading-[28px] text-left cursor-text whitespace-pre"
       :model-value="content?.title?.value"
@@ -7,10 +7,10 @@
       :style="`color: ${content.title.color}`"
       :class="[content.title.align, content.title.size]"
     />
-    <table class="table-fixed w-full">
+    <table class="table-fixed w-full min-w-[1000px]">
       <thead class="bg-grey-light">
         <tr>
-          <th v-for="(item, index) in getHead" :key="index + item" class="">
+          <th v-for="(item, index) in getHead" :key="index + item" class="min-w-[100px] w-full">
             <img
               class="w-24 h-24 my-4 mx-auto object-cover"
               :src="item?.img?.src"
@@ -18,7 +18,7 @@
             />
             <CContentInput
               :key="index + item?.text?.value"
-              class="mx-3 mb-2 font-medium text-[20px] text-left cursor-text whitespace-pre"
+              class="mx-3 mb-2 font-medium text-[20px] text-left cursor-text whitespace-pre mobile:!text-[12px]"
               :class="getHead[index]?.contentAlign"
               :model-value="item?.text?.value"
               @updateText="handleBodyText($event, 'head', index)"
@@ -30,6 +30,7 @@
         <tr
           v-for="(item, index) in getBody"
           :key="index"
+          class='min-w-[100px] w-full'
           :class="{ 'bg-grey-light': index % 2 != 0 }"
         >
           <td
@@ -40,6 +41,7 @@
             @click="handleBodyText('', 'clicked', index, idx)"
           >
             <CContentInput
+              class='mobile:!text-[12px]'
               @updateText="handleBodyText($event, 'body', index, idx)"
               :model-value="el"
             />
