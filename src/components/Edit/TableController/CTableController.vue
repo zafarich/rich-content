@@ -29,13 +29,13 @@
         }"
       />
 
-      <div class="flex gap-4">
-        {{activeTableRowIdx}}
+      <div v-if='lineToggle' class="flex gap-4">
         <div
           class="line-action transition cursor-pointer"
           v-for="i in lineActions"
           :key="i"
           @click="handleLineAction(i)"
+          :class="{'line-action__disabled': activeTableRowIdx == null && i == 'removeBody'}"
         >
           <Icon :name="i" />
         </div>
@@ -141,6 +141,7 @@ const ErrorList = {
 };
 
 function handleLineAction(current: string): void {
+  if(!activeTableRowIdx.value) return;
   const defaultBodyText =
   "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
   const {body, head} = props.item.table;
@@ -155,6 +156,7 @@ function handleLineAction(current: string): void {
       break;
     default:
       body.splice(activeTableRowIdx.value, 1)
+      activeTableRowIdx.value = null
       break;
   }
 }
@@ -223,7 +225,10 @@ function isValidURL(url: string): boolean {
 
 <style>
 .line-action:hover svg path {
-  fill: #fbc100 !important;
-  transition: all 0.3s;
+  @apply !fill-[#fbc100] transition-all duration-300;
+}
+
+.line-action__disabled {
+  @apply opacity-50 pointer-events-none;
 }
 </style>

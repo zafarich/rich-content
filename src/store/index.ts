@@ -12,8 +12,7 @@ export const useStore = defineStore("main", {
     step: ref<"edit" | "drop">("drop"),
     axiosControllers: <any>{},
     deviceViewType: <"pc" | "phone">"pc",
-    activeTableRowIdx: ref<number>(0),
-    rerenderRowIdx: false
+    activeTableRowIdx: ref<number>(null),
   }),
 
   actions: {
