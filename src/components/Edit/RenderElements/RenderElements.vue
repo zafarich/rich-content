@@ -18,7 +18,7 @@
       />
       <div v-for="(item, index) in getBlock" :key="index">
         <div
-          v-if="getContent?.type != 'text'"
+          v-if="!['text', 'video'].includes(getContent?.type)"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
           <CAccordion

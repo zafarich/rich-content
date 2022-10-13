@@ -51,7 +51,6 @@ function showAlertBeforeMount(event: object) {
 // TODO:
 // 2. image & video id & video delete & table delete
 // table delete imgs when content deleted 
-// hide toggle if
 
 // 4. backend
 // 3. storybook
