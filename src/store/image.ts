@@ -74,17 +74,16 @@ export const useImageStore = defineStore("image", {
 
     async removeImgIdFromLocalStorage(index: number): void {
       const contentStore = useStore();
-      const blocks = contentStore.content[index].content.block;
+      const { block, table } = contentStore.content[index].content;
+      let elements = undefined;
+      elements = block ? block : table?.head;
 
-      for (const i in blocks) {
-        const id = blocks[i]?.img?.id || blocks[i]?.video.id;
+      for (const i in elements) {
+        const id = elements[i]?.img?.id || elements[i]?.video?.id;
 
-        if (id) {
-          // eslint-disable-next-line
-          await this.deleteImage(id).catch((err) => console.log(err));
-          // eslint-disable-next-line
-          await this.removeId(id).catch((err) => console.log(err));
-        }
+        if (!id) continue;
+        await this.deleteImage(id).catch((err) => console.log(err));
+        await this.removeId(id).catch((err) => console.log(err));
       }
     },
 
