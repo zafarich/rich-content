@@ -33,7 +33,7 @@
         >
           <td
             v-for="(el, idx) in item"
-            :key="idx"
+            :key="el + idx"
             class="py-2 px-3 leading-[24px]"
             :class="getHead[idx]?.contentAlign"
             @click="handleBodyText('', 'clicked', index, idx)"

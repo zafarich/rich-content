@@ -47,16 +47,6 @@ onBeforeUnmount(() => {
 function showAlertBeforeMount(event: object) {
   event.returnValue = `Are you sure you want to leave?`;
 }
-
-// TODO:
-// 2. image & video id & video delete & table delete
-// table delete imgs when content deleted
-
-// 4. backend
-// 3. storybook
-// 5. texnomart front
-// 6. edit
-// refactor depends on mood :)
 </script>
 
 <style scoped>

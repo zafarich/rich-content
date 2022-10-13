@@ -40,8 +40,6 @@
 </template>
 
 <script setup lang="ts">
-// !TODO
-
 import { watch, ref } from "vue";
 
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";

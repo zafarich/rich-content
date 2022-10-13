@@ -126,9 +126,6 @@ const lineToggle = ref(true);
 const imageStore = useImageStore();
 const ENV_CDN = import.meta.env.VITE_CDN;
 const lineActions = ref(["addBodyTop", "addBodyBottom", "removeBody"]);
-const defaultBodyText =
-  "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
-
 const props = withDefaults(defineProps<Props>(), {});
 
 const { activeTableRowIdx } = storeToRefs(store);
@@ -144,34 +141,22 @@ const ErrorList = {
 };
 
 function handleLineAction(current: string): void {
+  const defaultBodyText =
+  "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
+  const {body, head} = props.item.table;
+  const arr = new Array(head.length).fill(defaultBodyText)
+
   switch (current) {
     case "addBodyTop":
-      addBodyTop();
+      body.splice(activeTableRowIdx.value, 0, arr)
       break;
-
     case "addBodyBottom":
-      addBodyTop();
+      body.splice(activeTableRowIdx.value + 1, 0, arr)
       break;
     default:
+      body.splice(activeTableRowIdx.value, 1)
       break;
   }
-  console.log(current);
-}
-
-function addBodyTop(): void {
-  console.log(activeTableRowIdx.value, 'activeTableRowIdx')
-  const body = props.item.table.body;
-  const arr = new Array(body[0].length).fill(defaultBodyText)
-  body.splice(activeTableRowIdx.value, 0, arr)
-  console.log(arr, 'arrayh')
-  console.log(body, 'bodies')
-}
-
-function addBodyBottom(): void {
-  console.log(activeTableRowIdx.value, 'activeTableRowIdx')
-  // const body = props.item.table.body;
-  // const arr = new Array(body[0].length).fill(defaultBodyText)
-  // body.push(arr)
 }
 
 function updateImageInput(event: any, index: number): void {
