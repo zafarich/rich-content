@@ -90,6 +90,7 @@ function handleVideoUpload(e: any) {
   controller.value = new AbortController();
   const formData = new FormData();
   formData.append("upload", e?.file);
+	props.item.video.localVideoUrl = e?.url
   props.imageStore
     .postImage(formData, handleProgressBar, controller)
     .then((res: any) => {
