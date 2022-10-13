@@ -50,7 +50,6 @@ export const useStore = defineStore("main", {
 
       if(this.activeIndex == index - 1) {
         this.activeIndex++
-        console.log('hello')
       } else if (this.activeIndex == index) {
         this.activeIndex--;
       }
@@ -58,6 +57,7 @@ export const useStore = defineStore("main", {
     downContent(index: number): void {
       const spliced = this.content.splice(index, 1);
       this.content.splice(index + 1, 0, spliced[0]);
+
       if(this.activeIndex == index + 1) {
         this.activeIndex--;
       } else if (this.activeIndex == index) {
