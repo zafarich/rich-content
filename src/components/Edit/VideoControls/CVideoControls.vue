@@ -95,7 +95,7 @@ function handleVideoUpload(e: any) {
   props.item.video.localVideoUrl = e?.url;
 
   props.imageStore
-    .postImage(formData, handleProgressBar, controller)
+    .postMedia(formData, handleProgressBar, controller)
     .then((res: any) => {
       const result = res.data;
       if (result.success) {

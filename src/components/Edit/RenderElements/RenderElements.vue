@@ -289,7 +289,7 @@ function updateImage(index: number, e: any): void {
   formData.append("upload", e?.file);
 
   imageStore
-    .postImage(formData)
+    .postMedia(formData)
     .then((res) => {
       const result = res.data;
       if (result.success) {

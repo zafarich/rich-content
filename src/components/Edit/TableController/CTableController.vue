@@ -30,7 +30,7 @@
       />
 
       <div class="flex gap-4">
-        {{activeTableRowIdx}}
+        {{ activeTableRowIdx }}
         <div
           class="line-action transition cursor-pointer"
           v-for="i in lineActions"
@@ -142,19 +142,19 @@ const ErrorList = {
 
 function handleLineAction(current: string): void {
   const defaultBodyText =
-  "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
-  const {body, head} = props.item.table;
-  const arr = new Array(head.length).fill(defaultBodyText)
+    "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
+  const { body, head } = props.item.table;
+  const arr = new Array(head.length).fill(defaultBodyText);
 
   switch (current) {
     case "addBodyTop":
-      body.splice(activeTableRowIdx.value, 0, arr)
+      body.splice(activeTableRowIdx.value, 0, arr);
       break;
     case "addBodyBottom":
-      body.splice(activeTableRowIdx.value + 1, 0, arr)
+      body.splice(activeTableRowIdx.value + 1, 0, arr);
       break;
     default:
-      body.splice(activeTableRowIdx.value, 1)
+      body.splice(activeTableRowIdx.value, 1);
       break;
   }
 }
@@ -178,7 +178,7 @@ function updateImage(index: number, e: any): void {
   formData.append("upload", e?.file);
 
   imageStore
-    .postImage(formData)
+    .postMedia(formData)
     .then((res) => {
       const result = res.data;
       if (result.success) {
