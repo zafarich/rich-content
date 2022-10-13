@@ -44,7 +44,7 @@
 // !TODO
 // 1. Disable uploading another video while pending is true
 
-import { defineProps, watch, ref } from "vue";
+import { watch, ref } from "vue";
 
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";

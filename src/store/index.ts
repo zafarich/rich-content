@@ -26,7 +26,7 @@ export const useStore = defineStore("main", {
       this.isFullScreen = !this.isFullScreen;
 			// when clicked NAZAD
 			if (!this.isFullScreen) {
-				toggleMobileMode('pc')
+				this.toggleDeviceView('pc')
 			}
     },
     deleteContent(index: number): void {

@@ -53,7 +53,6 @@ function showAlertBeforeMount(event: object) {
 // 7. active indexx
 // chess left right
 // table delete imgs when content deleted 
-// preview pointer evnets none
 // block edit if no activeIndex return step to 'drop'
 // hide toggle if
 
