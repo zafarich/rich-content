@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { preventXXS } from "@/helpers/global";
+import { preventXSS } from "@/helpers/global";
 
 export interface Props {
   modelValue?: string;
@@ -46,7 +46,7 @@ function makeEditable(): void {
   setTimeout(() => {
     (textbox.value as HTMLParagraphElement).focus();
   }, 100);
-  inputText.value = preventXXS(props.modelValue) || "";
+  inputText.value = preventXSS(props.modelValue) || "";
 }
 
 function handlePaste(e): void {
@@ -57,7 +57,7 @@ function handlePaste(e): void {
 
 function makeNormal(): void {
   editable.value = false;
-  inputText.value = preventXXS(props.modelValue);
+  inputText.value = preventXSS(props.modelValue);
 }
 
 function handleInput(event): void {
