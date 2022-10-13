@@ -83,21 +83,29 @@ watch(
 function handleVideoUpload(e: any) {
   if (
     content.value[activeIndex.value].content.block[0].video.loadState.isLoading
-  )
+  ) {
     return;
+  }
+
+  if (props.item.video.id) {
+    props.imageStore.deleteImage(props.item.video.id);
+    props.imageStore.removeId(props.item.video.id);
+  }
+
   handleProgressBar(0);
   storeControllerToStore();
   controller.value = new AbortController();
   const formData = new FormData();
   formData.append("upload", e?.file);
-	props.item.video.localVideoUrl = e?.url
+  props.item.video.localVideoUrl = e?.url;
+
   props.imageStore
     .postImage(formData, handleProgressBar, controller)
     .then((res: any) => {
       const result = res.data;
       if (result.success) {
         props.item.video.videoUrl = ENV_CDN + result.data.path;
-        props.item.video.id =  result.data.id;
+        props.item.video.id = result.data.id;
       }
     })
     .catch((err: object) => {
