@@ -38,7 +38,7 @@
           @click="handleLineAction(i)"
           :class="{
             'line-action__disabled':
-              activeTableRowIdx == null && i == 'removeBody',
+              activeTableRowIdx === null && i == 'removeBody',
           }"
         >
           <Icon :name="i" />
@@ -160,30 +160,25 @@ const ErrorList = {
 };
 
 function handleDeleteColumn(index: number): void {
-  getHead.value.splice(index, 1)
-  for(let i of getBody.value) {
-    i.splice(index, 1)
+  getHead.value.splice(index, 1);
+  for (let i of getBody.value) {
+    i.splice(index, 1);
   }
 }
 
 function handleLineAction(current: string): void {
-  if (!activeTableRowIdx.value) return;
   const defaultBodyText =
     "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
   const { body, head } = props.item.table;
   const arr = new Array(head.length).fill(defaultBodyText);
 
-  switch (current) {
-    case "addBodyTop":
-      body.splice(activeTableRowIdx.value, 0, arr);
-      break;
-    case "addBodyBottom":
-      body.splice(activeTableRowIdx.value + 1, 0, arr);
-      break;
-    default:
-      body.splice(activeTableRowIdx.value, 1);
-      activeTableRowIdx.value = null;
-      break;
+  if (current == "addBodyTop") {
+    body.splice(activeTableRowIdx.value, 0, arr);
+  } else if (current == "addBodyBottom") {
+    body.splice(activeTableRowIdx.value + 1, 0, arr);
+  } else {
+    body.splice(activeTableRowIdx.value, 1);
+    activeTableRowIdx.value = null;
   }
 }
 
