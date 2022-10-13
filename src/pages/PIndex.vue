@@ -50,7 +50,6 @@ function showAlertBeforeMount(event: object) {
 
 // TODO:
 // 2. image & video id & video delete & table delete
-// 7. active indexx
 // table delete imgs when content deleted 
 // hide toggle if
 
