@@ -110,10 +110,6 @@
         </div>
       </div>
     </VueDraggableNext>
-
-    <pre>
-        {{ content[activeIndex]?.content }}
-    </pre>
   </div>
 </template>
 
