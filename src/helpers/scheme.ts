@@ -55,6 +55,7 @@ class GenerateBlock {
         type: "youtube",
 				id: undefined,
         videoUrl: '',
+				localVideoUrl: '',
         loadState: {
           isLoading: false,
           progress: 0,
