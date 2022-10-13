@@ -56,6 +56,7 @@
                   label: 'Положение изображения',
                 }"
               />
+              {{getBlock[index].reverse}}
             </div>
 
             <div v-if="objectHas(item, 'img')">
@@ -135,8 +136,8 @@
             />
 
             <div
-              class="flex flex-col gap-2"
               v-if="objectHas(item, 'theme', 'padding', 'gap')"
+              class="flex flex-col gap-2"
             >
               <h4 class="font-medium text-[18px] leading-[20px] mb-2">
                 Основные
