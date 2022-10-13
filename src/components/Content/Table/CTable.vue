@@ -10,7 +10,7 @@
     <table class="table-fixed w-full min-w-[1000px]">
       <thead class="bg-grey-light">
         <tr>
-          <th v-for="(item, index) in getHead" :key="index + item" class="min-w-[100px] w-full">
+          <th v-for="(item, index) in getHead" :key="index + item">
             <img
               class="w-24 h-24 my-4 mx-auto object-cover"
               :src="item?.img?.src"
