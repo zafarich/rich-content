@@ -230,7 +230,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
@@ -246,7 +246,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
@@ -262,7 +262,7 @@ const table: Content = {
         },
         contentAlign: "text-left",
         asset: {
-          toggle: false,
+          toggle: true,
           imgLinkErr: "",
           uploadErr: "",
         },
