@@ -33,6 +33,8 @@
 </template>
 
 <script setup lang="ts">
+import { useAttrs } from 'vue'
+
 export interface Props {
   type?: string;
   placeholder?: string;

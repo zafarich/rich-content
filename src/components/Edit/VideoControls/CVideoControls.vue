@@ -31,6 +31,7 @@
         @input="item.video.videoUrl = $event.target.value"
         v-bind="{
           label: 'Прямая ссылка на видео',
+					placeholder: 'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4'
         }"
       />
     </template>
