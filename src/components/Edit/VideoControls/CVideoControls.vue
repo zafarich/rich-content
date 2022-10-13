@@ -28,10 +28,11 @@
       />
       <CInput
         :model-value="item.video.videoUrl"
-        @input="item.video.videoUrl = $event.target.value"
+        @input="handleLinkEnter"
         v-bind="{
           label: 'Прямая ссылка на видео',
-					placeholder: 'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4'
+          placeholder:
+            'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4',
         }"
       />
     </template>
@@ -40,7 +41,6 @@
 
 <script setup lang="ts">
 // !TODO
-// 1. DeleteVideo
 
 import { watch, ref } from "vue";
 
@@ -124,15 +124,28 @@ function storeControllerToStore(): void {
   store.addController(content.value[activeIndex.value].content.id, controller);
 }
 
-function handleVideoTypeChange(event) {
+function handleVideoTypeChange(event: any) {
   if (props.item.video.id) {
-    props.imageStore.deleteImage(props.item.video.id);
-    props.imageStore.removeId(props.item.video.id);
+    deleteMedia();
   }
 
   props.item.video.type = event;
   props.item.video.videoUrl = "";
   props.item.video.localVideoUrl = "";
   props.item.video.id = "";
+}
+
+function handleLinkEnter($event: any) {
+  if (props.item.video.id) {
+    deleteMedia();
+    props.item.video.id = "";
+    props.item.video.localVideoUrl = "";
+  }
+  props.item.video.videoUrl = $event.target.value;
+}
+
+function deleteMedia() {
+  props.imageStore.deleteImage(props.item.video.id);
+  props.imageStore.removeId(props.item.video.id);
 }
 </script>
