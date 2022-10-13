@@ -52,7 +52,6 @@ function showAlertBeforeMount(event: object) {
 // 2. image & video id & video delete & table delete
 // 7. active indexx
 // chess left right
-//  change the state isFullscreen to true when preview closed
 // table delete imgs when content deleted 
 // preview pointer evnets none
 // block edit if no activeIndex return step to 'drop'
