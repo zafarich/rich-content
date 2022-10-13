@@ -33,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+
 export interface Props {
   type?: string;
   placeholder?: string;

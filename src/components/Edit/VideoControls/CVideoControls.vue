@@ -3,10 +3,7 @@
     <div>
       <h6 class="mb-4 font-medium text-[14px] leading-[20px]">Тип</h6>
       <CSelect
-        @selected="
-          item.video.type = $event;
-          item.video.videoUrl = '';
-        "
+        @selected="handleVideoTypeChange"
         v-bind="{
           options: videoTypeOptions,
           default: item.video.type,
@@ -31,9 +28,11 @@
       />
       <CInput
         :model-value="item.video.videoUrl"
-        @input="item.video.videoUrl = $event.target.value"
+        @input="handleLinkEnter"
         v-bind="{
           label: 'Прямая ссылка на видео',
+          placeholder:
+            'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4',
         }"
       />
     </template>
@@ -42,7 +41,6 @@
 
 <script setup lang="ts">
 // !TODO
-// 1. Disable uploading another video while pending is true
 
 import { watch, ref } from "vue";
 
@@ -124,5 +122,30 @@ function handleProgressBar(progress: number) {
 
 function storeControllerToStore(): void {
   store.addController(content.value[activeIndex.value].content.id, controller);
+}
+
+function handleVideoTypeChange(event: any) {
+  if (props.item.video.id) {
+    deleteMedia();
+  }
+
+  props.item.video.type = event;
+  props.item.video.videoUrl = "";
+  props.item.video.localVideoUrl = "";
+  props.item.video.id = "";
+}
+
+function handleLinkEnter($event: any) {
+  if (props.item.video.id) {
+    deleteMedia();
+    props.item.video.id = "";
+    props.item.video.localVideoUrl = "";
+  }
+  props.item.video.videoUrl = $event.target.value;
+}
+
+function deleteMedia() {
+  props.imageStore.deleteImage(props.item.video.id);
+  props.imageStore.removeId(props.item.video.id);
 }
 </script>
