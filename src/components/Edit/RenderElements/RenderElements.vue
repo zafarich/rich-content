@@ -56,7 +56,6 @@
                   label: 'Положение изображения',
                 }"
               />
-              {{getBlock[index].reverse}}
             </div>
 
             <div v-if="objectHas(item, 'img')">

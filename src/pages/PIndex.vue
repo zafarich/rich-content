@@ -51,10 +51,7 @@ function showAlertBeforeMount(event: object) {
 // TODO:
 // 2. image & video id & video delete & table delete
 // 7. active indexx
-// chess left right
 // table delete imgs when content deleted 
-// preview pointer evnets none
-// block edit if no activeIndex return step to 'drop'
 // hide toggle if
 
 // 4. backend
