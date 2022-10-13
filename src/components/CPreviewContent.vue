@@ -138,7 +138,8 @@ import CButton from "@/components/UI/Button/Cbutton.vue";
 import useStore from "@/store/index";
 
 const store = useStore();
-const { step, activeIndex, content, isFullScreen, activeTableRowIdx } = storeToRefs(store);
+const { step, activeIndex, content, isFullScreen, activeTableRowIdx } =
+  storeToRefs(store);
 const { deleteContent, upContent, downContent } = store;
 
 const ContentComponents = {
@@ -200,7 +201,7 @@ function tableEvent(e): void {
   } else if (e.type == "title") {
     content.value[activeIndex.value].content.title.value = e.value;
   } else {
-    activeTableRowIdx.value = e.colIdx
+    activeTableRowIdx.value = e.colIdx;
   }
 }
 

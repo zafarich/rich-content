@@ -9,6 +9,7 @@
           toggle: titleToggle,
         }"
       />
+
       <CTextDetails
         v-if="titleToggle"
         @update-text="(e) => (item[e.type][e.item] = e.value)"
@@ -29,13 +30,16 @@
         }"
       />
 
-      <div v-if='lineToggle' class="flex gap-4">
+      <div v-if="lineToggle" class="flex gap-4">
         <div
           class="line-action transition cursor-pointer"
           v-for="i in lineActions"
           :key="i"
           @click="handleLineAction(i)"
-          :class="{'line-action__disabled': activeTableRowIdx == null && i == 'removeBody'}"
+          :class="{
+            'line-action__disabled':
+              activeTableRowIdx == null && i == 'removeBody',
+          }"
         >
           <Icon :name="i" />
         </div>
@@ -43,15 +47,26 @@
     </div>
 
     <div class="flex flex-col gap-7">
-      <div class="" v-for="(item, index) in item?.table?.head" :key="index">
-        <CAccordion
-          class="pb-4"
-          @click="item.asset.toggle = !item.asset.toggle"
-          v-bind="{
-            title: `Колонка #${index + 1}`,
-            toggle: item.asset.toggle,
-          }"
-        />
+      <div class="" v-for="(item, index) in getHead" :key="index">
+        <div class="flex justify-between items-start">
+          <CAccordion
+            class="pb-4"
+            @click="item.asset.toggle = !item.asset.toggle"
+            v-bind="{
+              title: `Колонка #${index + 1}`,
+              toggle: item.asset.toggle,
+            }"
+          />
+          <transition name="fade">
+            <Icon
+              v-if="getHead?.length != 1"
+              @click="handleDeleteColumn(index)"
+              class="cursor-pointer hover:opacity-70 transition"
+              name="trash_bin"
+              color="#BABAC0"
+            />
+          </transition>
+        </div>
 
         <div v-if="item.asset.toggle" class="flex flex-col gap-5">
           <CTextAlignment
@@ -131,7 +146,11 @@ const props = withDefaults(defineProps<Props>(), {});
 const { activeTableRowIdx } = storeToRefs(store);
 
 const getHead = computed(() => {
-  return props.item.table.head;
+  return props?.item?.table?.head;
+});
+
+const getBody = computed(() => {
+  return props?.item?.table?.body;
 });
 
 const ErrorList = {
@@ -140,8 +159,15 @@ const ErrorList = {
   invalidUrl: "URL изображения должен быть действительным",
 };
 
+function handleDeleteColumn(index: number): void {
+  getHead.value.splice(index, 1)
+  for(let i of getBody.value) {
+    i.splice(index, 1)
+  }
+}
+
 function handleLineAction(current: string): void {
-  if(!activeTableRowIdx.value) return;
+  if (!activeTableRowIdx.value) return;
   const defaultBodyText =
     "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
   const { body, head } = props.item.table;
@@ -155,8 +181,8 @@ function handleLineAction(current: string): void {
       body.splice(activeTableRowIdx.value + 1, 0, arr);
       break;
     default:
-      body.splice(activeTableRowIdx.value, 1)
-      activeTableRowIdx.value = null
+      body.splice(activeTableRowIdx.value, 1);
+      activeTableRowIdx.value = null;
       break;
   }
 }

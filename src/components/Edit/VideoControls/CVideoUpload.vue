@@ -44,7 +44,7 @@ const image = reactive({
 });
 
 const handleFile = (event: any) => {
-	if (!event.target.files[0]) return;
+  if (!event.target.files[0]) return;
 
   const file = event.target.files[0];
   if (file.size > 250000000) {

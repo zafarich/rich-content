@@ -10,13 +10,14 @@
     <table class="table-fixed w-full">
       <thead class="bg-grey-light">
         <tr>
-          <th v-for="(item, index) in getHead" :key="index" class="">
+          <th v-for="(item, index) in getHead" :key="index + item" class="">
             <img
               class="w-24 h-24 my-4 mx-auto object-cover"
               :src="item?.img?.src"
               :alt="item?.img?.alt"
             />
             <CContentInput
+              :key="index + item?.text?.value"
               class="mx-3 mb-2 font-medium text-[20px] text-left cursor-text whitespace-pre"
               :class="getHead[index]?.contentAlign"
               :model-value="item?.text?.value"
