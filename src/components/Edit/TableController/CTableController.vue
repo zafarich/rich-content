@@ -143,16 +143,16 @@ const ErrorList = {
 function handleLineAction(current: string): void {
   if(!activeTableRowIdx.value) return;
   const defaultBodyText =
-  "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
-  const {body, head} = props.item.table;
-  const arr = new Array(head.length).fill(defaultBodyText)
+    "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
+  const { body, head } = props.item.table;
+  const arr = new Array(head.length).fill(defaultBodyText);
 
   switch (current) {
     case "addBodyTop":
-      body.splice(activeTableRowIdx.value, 0, arr)
+      body.splice(activeTableRowIdx.value, 0, arr);
       break;
     case "addBodyBottom":
-      body.splice(activeTableRowIdx.value + 1, 0, arr)
+      body.splice(activeTableRowIdx.value + 1, 0, arr);
       break;
     default:
       body.splice(activeTableRowIdx.value, 1)
@@ -180,7 +180,7 @@ function updateImage(index: number, e: any): void {
   formData.append("upload", e?.file);
 
   imageStore
-    .postImage(formData)
+    .postMedia(formData)
     .then((res) => {
       const result = res.data;
       if (result.success) {
