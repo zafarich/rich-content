@@ -3,10 +3,7 @@
     <div>
       <h6 class="mb-4 font-medium text-[14px] leading-[20px]">Тип</h6>
       <CSelect
-        @selected="
-          item.video.type = $event;
-          item.video.videoUrl = '';
-        "
+        @selected="handleVideoTypeChange"
         v-bind="{
           options: videoTypeOptions,
           default: item.video.type,
@@ -42,7 +39,7 @@
 
 <script setup lang="ts">
 // !TODO
-// 1. Disable uploading another video while pending is true
+// 1. DeleteVideo
 
 import { watch, ref } from "vue";
 
@@ -124,5 +121,17 @@ function handleProgressBar(progress: number) {
 
 function storeControllerToStore(): void {
   store.addController(content.value[activeIndex.value].content.id, controller);
+}
+
+function handleVideoTypeChange(event) {
+  if (props.item.video.id) {
+    props.imageStore.deleteImage(props.item.video.id);
+    props.imageStore.removeId(props.item.video.id);
+  }
+
+  props.item.video.type = event;
+  props.item.video.videoUrl = "";
+  props.item.video.localVideoUrl = "";
+  props.item.video.id = "";
 }
 </script>
