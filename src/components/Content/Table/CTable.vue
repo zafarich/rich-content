@@ -36,6 +36,7 @@
             :key="idx"
             class="py-2 px-3 leading-[24px]"
             :class="getHead[idx]?.contentAlign"
+            @click="handleBodyText('', 'clicked', index, idx)"
           >
             <CContentInput
               @updateText="handleBodyText($event, 'body', index, idx)"
@@ -72,9 +73,11 @@ const getBody = computed(() => {
   return props?.content?.table?.body;
 });
 
+type EmitTypes = "head" | "body" | "title" | "clicked";
+
 function handleBodyText(
   event: any,
-  type: "head" | "body" | "title",
+  type: EmitTypes,
   colIdx: number,
   rowIdx: number
 ): void {

@@ -12,6 +12,8 @@ export const useStore = defineStore("main", {
     step: ref<"edit" | "drop">("drop"),
     axiosControllers: <any>{},
     deviceViewType: <"pc" | "phone">"pc",
+    activeTableRowIdx: ref<number>(0),
+    rerenderRowIdx: false
   }),
 
   actions: {
@@ -24,10 +26,10 @@ export const useStore = defineStore("main", {
     },
     toggleIsFullScreen(): void {
       this.isFullScreen = !this.isFullScreen;
-			// when clicked NAZAD
-			if (!this.isFullScreen) {
-				this.toggleDeviceView('pc')
-			}
+      // when clicked NAZAD
+      if (!this.isFullScreen) {
+        this.toggleDeviceView("pc");
+      }
     },
     deleteContent(index: number): void {
       if (this.content[index].content.type === "video") {
@@ -48,8 +50,8 @@ export const useStore = defineStore("main", {
       const spliced = this.content.splice(index, 1);
       this.content.splice(index - 1, 0, spliced[0]);
 
-      if(this.activeIndex == index - 1) {
-        this.activeIndex++
+      if (this.activeIndex == index - 1) {
+        this.activeIndex++;
       } else if (this.activeIndex == index) {
         this.activeIndex--;
       }
@@ -58,7 +60,7 @@ export const useStore = defineStore("main", {
       const spliced = this.content.splice(index, 1);
       this.content.splice(index + 1, 0, spliced[0]);
 
-      if(this.activeIndex == index + 1) {
+      if (this.activeIndex == index + 1) {
         this.activeIndex--;
       } else if (this.activeIndex == index) {
         this.activeIndex++;
