@@ -175,7 +175,7 @@
       </div>
     </div>
   </transition>
-  <div v-else-if='getContent?.type == "table"'>
+  <div v-else-if="getContent?.type == 'table'">
     <CTableController
       v-bind="{
         item: content[activeIndex]?.content,
@@ -259,7 +259,7 @@ function updateErrMessage(
   target: string
 ): void {
   getBlock.value[index].asset[target] = message;
-	message && toast.error(message)
+  message && toast.error(message);
 }
 
 function showErrMessage(value: string, index: number, target: string): void {
@@ -280,10 +280,10 @@ function updateImage(index: number, e: any): void {
     updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
     return;
   }
-	if (getBlock.value[index].img.id) {
-		imageStore.deleteImage(getBlock.value[index].img.id)
-		imageStore.removeId(getBlock.value[index].img.id)
-	}
+  if (getBlock.value[index].img.id) {
+    imageStore.deleteImage(getBlock.value[index].img.id);
+    imageStore.removeId(getBlock.value[index].img.id);
+  }
 
   const formData = new FormData();
   formData.append("upload", e?.file);

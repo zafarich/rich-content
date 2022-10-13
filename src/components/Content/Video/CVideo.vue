@@ -26,7 +26,13 @@
           lazy="true"
           class="w-full aspect-video"
         >
-          <source :src="item.video.localVideoUrl || item.video.videoUrl || 'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4'" />
+          <source
+            :src="
+              item.video.localVideoUrl ||
+              item.video.videoUrl ||
+              'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4'
+            "
+          />
         </video>
       </template>
     </div>

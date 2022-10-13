@@ -37,7 +37,7 @@
 export interface Props {
   type?: string;
   placeholder?: string;
-  modelValue: number | string;
+  modelValue?: number | string;
   disabled?: boolean;
   error?: boolean;
   maxlength?: number;

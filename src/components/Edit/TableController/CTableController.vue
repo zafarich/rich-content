@@ -19,7 +19,7 @@
       />
     </div>
 
-    <div v-if='false' class="!mb-7">
+    <div class="!mb-7">
       <CAccordion
         class="pb-4"
         @click="lineToggle = !lineToggle"
@@ -30,6 +30,7 @@
       />
 
       <div class="flex gap-4">
+        {{activeTableRowIdx}}
         <div
           class="line-action transition cursor-pointer"
           v-for="i in lineActions"
@@ -102,6 +103,7 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { ref, computed } from "vue";
 
 import CInput from "@/components/UI/Input/Input/CInput.vue";
@@ -112,11 +114,13 @@ import useImageStore from "@/store/image";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CAccordion from "@/components/Accordion/CAccordion.vue";
 import Icon from "@/components/Icon/Icon.vue";
+import useStore from "@/store/index";
 
 export interface Props {
   item?: object;
 }
 
+const store = useStore();
 const titleToggle = ref(true);
 const lineToggle = ref(true);
 const imageStore = useImageStore();
@@ -126,6 +130,8 @@ const defaultBodyText =
   "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
 
 const props = withDefaults(defineProps<Props>(), {});
+
+const { activeTableRowIdx } = storeToRefs(store);
 
 const getHead = computed(() => {
   return props.item.table.head;
@@ -153,19 +159,16 @@ function handleLineAction(current: string): void {
 }
 
 function addBodyTop(): void {
-  const body = props.item.table.body
-  const row = body[0].length;
+  console.log(activeTableRowIdx.value, 'activeTableRowIdx')
+  const body = props.item.table.body;
   const arr = new Array(body[0].length).fill(defaultBodyText)
-
-  body.unshift(JSON.parse(JSON.stringify(arr)))
-
-console.log(arr ,'arr')
-console.log(body.length)
-
-
+  body.splice(activeTableRowIdx.value, 0, arr)
+  console.log(arr, 'arrayh')
+  console.log(body, 'bodies')
 }
 
 function addBodyBottom(): void {
+  console.log(activeTableRowIdx.value, 'activeTableRowIdx')
   // const body = props.item.table.body;
   // const arr = new Array(body[0].length).fill(defaultBodyText)
   // body.push(arr)

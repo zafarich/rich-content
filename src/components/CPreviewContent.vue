@@ -28,7 +28,7 @@
     <VueDraggableNext
       :class="[
         'dragArea list-group even w-full flex flex-col gap-[40px] mt-8 mobile:!max-w-[375px] mobile:mx-auto mobile:gap-[20px]',
-				isFullScreen ? 'pointer-events-none' : ''
+        isFullScreen ? 'pointer-events-none' : '',
       ]"
       v-bind="dragOptions"
       v-model="content"
@@ -112,7 +112,7 @@
     </VueDraggableNext>
 
     <pre>
-        <!-- {{ content[activeIndex]?.content }} -->
+        {{ content[activeIndex]?.content }}
     </pre>
   </div>
 </template>
@@ -138,7 +138,7 @@ import CButton from "@/components/UI/Button/Cbutton.vue";
 import useStore from "@/store/index";
 
 const store = useStore();
-const { step, activeIndex, content, isFullScreen } = storeToRefs(store);
+const { step, activeIndex, content, isFullScreen, activeTableRowIdx } = storeToRefs(store);
 const { deleteContent, upContent, downContent } = store;
 
 const ContentComponents = {
@@ -191,14 +191,16 @@ function billboardEvent(e) {
 }
 
 function tableEvent(e): void {
-  const { body, head } = content.value[activeIndex.value].content.table;
+  const { body, head } = content.value[activeIndex.value]?.content?.table || {};
 
   if (e.type == "body") {
     body[e.colIdx][e.rowIdx] = e.value;
   } else if (e.type == "head") {
     head[e.colIdx].text.value = e.value;
-  } else {
+  } else if (e.type == "title") {
     content.value[activeIndex.value].content.title.value = e.value;
+  } else {
+    activeTableRowIdx.value = e.colIdx
   }
 }
 
