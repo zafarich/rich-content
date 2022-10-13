@@ -18,7 +18,7 @@
       />
       <div v-for="(item, index) in getBlock" :key="index">
         <div
-          v-if="getContent?.type != 'text'"
+          v-if="!['text', 'video'].includes(getContent?.type)"
           class="flex-center-between mb-8 cursor-pointer hover:opacity-70 transition"
         >
           <CAccordion
@@ -231,8 +231,6 @@ const getContent = computed(() => {
   return content?.value[activeIndex?.value]?.content;
 });
 
-console.log(getContent)
-
 function updateImageInput(event: any, index: number): void {
   const value = event?.target?.value || "";
   showErrMessage(value, index, "imgLinkErr");
@@ -289,7 +287,6 @@ function updateImage(index: number, e: any): void {
 
   const formData = new FormData();
   formData.append("upload", e?.file);
-  console.log("asd");
 
   imageStore
     .postImage(formData)
