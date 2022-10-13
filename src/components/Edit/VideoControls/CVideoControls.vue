@@ -86,8 +86,7 @@ function handleVideoUpload(e: any) {
   }
 
   if (props.item.video.id) {
-    props.imageStore.deleteImage(props.item.video.id);
-    props.imageStore.removeId(props.item.video.id);
+    deleteCurrentMedia();
   }
 
   handleProgressBar(0);
@@ -126,7 +125,7 @@ function storeControllerToStore(): void {
 
 function handleVideoTypeChange(event: any) {
   if (props.item.video.id) {
-    deleteMedia();
+    deleteCurrentMedia();
   }
 
   props.item.video.type = event;
@@ -137,14 +136,14 @@ function handleVideoTypeChange(event: any) {
 
 function handleLinkEnter($event: any) {
   if (props.item.video.id) {
-    deleteMedia();
+    deleteCurrentMedia();
     props.item.video.id = "";
     props.item.video.localVideoUrl = "";
   }
   props.item.video.videoUrl = $event.target.value;
 }
 
-function deleteMedia() {
+function deleteCurrentMedia() {
   props.imageStore.deleteImage(props.item.video.id);
   props.imageStore.removeId(props.item.video.id);
 }
