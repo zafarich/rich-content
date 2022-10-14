@@ -159,7 +159,9 @@ const dragOptions = ref({
   pull: "clone",
   sort: false,
 });
-
+watch(content, () => {
+	console.log(content, 'little contentn')
+})
 watch(activeIndex, (v): void => {
   if (v != null) {
     step.value = "edit";
