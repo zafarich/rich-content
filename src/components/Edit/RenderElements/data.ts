@@ -25,7 +25,7 @@ export const view = [
   },
   {
     title: "Primary",
-    value: "bg-[#FBC100]",
+    value: "bg-yellow",
   },
   {
     title: "Secondary",

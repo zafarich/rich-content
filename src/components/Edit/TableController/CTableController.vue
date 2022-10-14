@@ -245,7 +245,7 @@ function isValidURL(url: string): boolean {
 
 <style>
 .line-action:hover svg path {
-  @apply !fill-[#fbc100] transition-all duration-300;
+  @apply !fill-yellow transition-all duration-300;
 }
 
 .line-action__disabled {
