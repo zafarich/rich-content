@@ -215,7 +215,6 @@ function updateImage(index: number, e: any): void {
 }
 
 function showErrMessage(value: string, index: number, target: string): void {
-  console.log(value, "value");
   updateErrMessage("", index, target);
 
   if (value.startsWith("data:")) {

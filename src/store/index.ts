@@ -32,7 +32,6 @@ export const useStore = defineStore("main", {
     },
     deleteContent(index: number): void {
       if (this.content[index].content.type === "video") {
-        console.log(this.axiosControllers[this.content[index].content.id]);
         this.axiosControllers[this.content[index].content.id]?.abort();
       }
 
