@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import {ref} from 'vue';
+import { ref } from "vue";
 
 import CAccordion from "./CAccordion.vue";
 

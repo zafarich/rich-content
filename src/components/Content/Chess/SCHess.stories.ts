@@ -1,21 +1,21 @@
 import { Story } from "@storybook/vue3";
 import Scheme from "@/helpers/scheme";
-import CRoll from "./CRoll.vue";
+import CCHess from "./CCHess.vue";
 
 export default {
   title: "Contents",
-  component: CRoll,
+  component: CCHess,
 };
 
 const Template: Story = (args) => ({
-  components: { CRoll },
+  components: { CCHess },
   setup() {
     return { args };
   },
-  template: '<CRoll v-bind="args" />',
+  template: '<CCHess v-bind="args" />',
 });
 
-export const Roll = Template.bind({});
-Roll.args = {
-  content: Scheme["roll"],
+export const Chess = Template.bind({});
+Chess.args = {
+  content: Scheme["chess"],
 };

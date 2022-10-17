@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-12">
-    <div v-for="(item, index) in content.block" :key="index">
+    <div v-for="(item, index) in content?.block" :key="index">
       <a
         :href="item.clickLink || ''"
         target="_blank"
@@ -19,16 +19,16 @@
         class="mb-2 font-medium text-[20px] cursor-text whitespace-pre"
         @updateText="handleText($event, 'title', index)"
         :model-value="item?.title?.value"
-        :style="`color: ${item.title.color}`"
-        :class="[item.title.align, item.title.size]"
+        :style="`color: ${item?.title?.color}`"
+        :class="[item?.title?.align, item?.title?.size]"
       />
 
       <CContentInput
         class="font-normal text-[14px] cursor-text whitespace-pre"
         :model-value="item?.text?.value"
         @updateText="handleText($event, 'text', index)"
-        :style="`color: ${item.text.color}`"
-        :class="[item.text.align, item.text.size]"
+        :style="`color: ${item?.text?.color}`"
+        :class="[item?.text?.align, item?.text?.size]"
       />
     </div>
   </div>

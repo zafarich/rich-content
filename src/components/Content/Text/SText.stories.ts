@@ -1,21 +1,21 @@
 import { Story } from "@storybook/vue3";
 import Scheme from "@/helpers/scheme";
-import CRoll from "./CRoll.vue";
+import CText from "./CText.vue";
 
 export default {
   title: "Contents",
-  component: CRoll,
+  component: CText,
 };
 
 const Template: Story = (args) => ({
-  components: { CRoll },
+  components: { CText },
   setup() {
     return { args };
   },
-  template: '<CRoll v-bind="args" />',
+  template: '<CText v-bind="args" />',
 });
 
-export const Roll = Template.bind({});
-Roll.args = {
-  content: Scheme["roll"],
+export const Text = Template.bind({});
+Text.args = {
+  content: Scheme["text"],
 };

@@ -1,21 +1,21 @@
 import { Story } from "@storybook/vue3";
 import Scheme from "@/helpers/scheme";
-import CRoll from "./CRoll.vue";
+import CTable from "./CTable.vue";
 
 export default {
   title: "Contents",
-  component: CRoll,
+  component: CTable,
 };
 
 const Template: Story = (args) => ({
-  components: { CRoll },
+  components: { CTable },
   setup() {
     return { args };
   },
-  template: '<CRoll v-bind="args" />',
+  template: '<CTable v-bind="args" />',
 });
 
-export const Roll = Template.bind({});
-Roll.args = {
-  content: Scheme["roll"],
+export const Table = Template.bind({});
+Table.args = {
+  content: Scheme["table"],
 };

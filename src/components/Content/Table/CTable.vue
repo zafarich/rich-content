@@ -30,7 +30,7 @@
         <tr
           v-for="(item, index) in getBody"
           :key="index"
-          class='min-w-[100px] w-full'
+          class="min-w-[100px] w-full"
           :class="{ 'bg-grey-light': index % 2 != 0 }"
         >
           <td
@@ -41,7 +41,7 @@
             @click="handleBodyText('', 'clicked', index, idx)"
           >
             <CContentInput
-              class='mobile:!text-[12px]'
+              class="mobile:!text-[12px]"
               @updateText="handleBodyText($event, 'body', index, idx)"
               :model-value="el"
             />
