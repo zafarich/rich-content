@@ -49,7 +49,6 @@ function showAlertBeforeMount(event: object) {
 }
 
 // TODO:
-// 1. langueage
 // 2. validation
 </script>
 
