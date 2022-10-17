@@ -98,7 +98,7 @@
 
       <div v-else-if="!isFullScreen">
         <div
-          class="rounded-[12px] preview__drop p-6 !select-none cursor-default"
+          class="rounded-[12px] preview__drop p-6 cursor-default"
         >
           <div
             class="border-2 border-grey border-dashed rounded-[10px] h-[708px] flex-center-center select-none"
