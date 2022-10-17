@@ -39,6 +39,7 @@ const image = reactive({
   url: null,
   file: null,
 });
+
 let imageName = ref("");
 
 const handleFile = (event: any) => {

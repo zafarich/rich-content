@@ -46,22 +46,18 @@ activePosition.value = props.currentPosition || "w-full h-full";
 
 const views = reactive([
   {
-    img: "/src/assets/images/default/1416x708.png",
     text: "на всю ширину",
     position: "w-full h-full",
   },
   {
     text: "1/2 ширины",
-    img: "/src/assets/images/default/1416x708.png",
     position: "w-3/4 h-3/4",
   },
   {
-    img: "/src/assets/images/default/1416x708.png",
     text: "1/3 ширины",
     position: "w-2/4 !h-2/4",
   },
   {
-    img: "/src/assets/images/default/1416x708.png",
     text: "1/4 ширины",
     position: "w-1/4 !h-1/4",
   },

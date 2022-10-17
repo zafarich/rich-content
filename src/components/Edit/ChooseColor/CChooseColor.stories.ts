@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-
+import {ref} from 'vue'
 import CChooseColor from "./CChooseColor.vue";
 
 export default {
@@ -10,9 +10,16 @@ export default {
 const Template: Story = (args) => ({
   components: { CChooseColor },
   setup() {
-    return { args };
+    const color = ref('');
+    return { args, color };
   },
-  template: '<CChooseColor v-bind="args" />',
+  template: `
+    <CChooseColor v-bind="args" @color="color = $event" />
+
+    <pre class='mt-3'>
+        selected: {{color}}
+    </pre>
+  `,
 });
 
 export const ChooseColor = Template.bind({});

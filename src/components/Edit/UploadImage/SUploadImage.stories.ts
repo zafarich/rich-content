@@ -12,13 +12,10 @@ const Template: Story = (args) => ({
   components: { CUploadImage },
   setup() {
     const image = ref("");
-    function handleUpload(e) {
-      image.value = e.url;
-    }
-    return { args, handleUpload, image };
+    return { args, image };
   },
   template: `
-    <CUploadImage v-bind="args" @upload="handleUpload" />
+    <CUploadImage v-bind="args" @uploaded="image = $event.url" />
     <img :src='image' />
   `,
 });
