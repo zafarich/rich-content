@@ -131,6 +131,7 @@ import CVideo from "@/components/Content/Video/CVideo.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
+
 import useStore from "@/store/index";
 
 const store = useStore();

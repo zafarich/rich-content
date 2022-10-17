@@ -1,11 +1,11 @@
 <template>
-  <div class="">
+  <div class="mb-10">
     <CHeader />
-    <div class="container">
+    <div class="container h-[calc(100vh-78px)]">
       <div class="my-10 flex gap-8 w-full">
         <div
           v-if="!isFullScreen"
-          class="bg-[#001a34] min-w-[290px] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks sticky h-[95vh] overflow-auto top-5"
+          class="bg-[#001a34] min-w-[290px] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks sticky overflow-auto h-[93vh] top-5"
         >
           <transition name="fade" mode="out-in">
             <div>
