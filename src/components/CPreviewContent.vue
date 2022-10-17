@@ -22,7 +22,7 @@
         @click="deleteLocalStorageIds"
         v-if="!isFullScreen"
         text="Сохранить"
-        class="px-4 rounded"
+        class="px-4 rounded h-11"
       />
     </div>
     <VueDraggableNext
@@ -97,9 +97,7 @@
       </template>
 
       <div v-else-if="!isFullScreen">
-        <div
-          class="rounded-[12px] preview__drop p-6 cursor-default"
-        >
+        <div class="rounded-[12px] preview__drop p-6 cursor-default">
           <div
             class="border-2 border-grey border-dashed rounded-[10px] h-[708px] flex-center-center select-none"
           >
@@ -131,6 +129,7 @@ import CVideo from "@/components/Content/Video/CVideo.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
+import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 
 import useStore from "@/store/index";
 
@@ -160,9 +159,7 @@ const dragOptions = ref({
   pull: "clone",
   sort: false,
 });
-watch(content, () => {
-  console.log(content, "little contentn");
-});
+
 watch(activeIndex, (v): void => {
   if (v != null) {
     step.value = "edit";

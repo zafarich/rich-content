@@ -47,6 +47,10 @@ onBeforeUnmount(() => {
 function showAlertBeforeMount(event: object) {
   event.returnValue = `Are you sure you want to leave?`;
 }
+
+// TODO:
+// 1. langueage
+// 2. validation
 </script>
 
 <style scoped>

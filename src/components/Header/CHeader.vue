@@ -3,13 +3,41 @@
     class="bg-white border-b-[1px] border-b-[#ECECEC] border-solid header !h-[78px] pt-3 pb-6"
   >
     <div class="container">
-      <Icon name="texnomart_logo" />
+      <div class="flex-center-between">
+        <Icon name="texnomart_logo" />
+        <CSelect
+          @selected="currentLang = $event"
+          class="!pb-0"
+          v-bind="{
+            options: langs,
+            default: currentLang,
+          }"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import Icon from "@/components/Icon/Icon.vue";
+import { ref } from "vue";
+import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
+
+const langs = [
+  {
+    title: 'uz',
+    value: 'uz',
+  },
+  {
+    title: 'ru',
+    value: 'ru',
+  },
+  {
+    title: 'en',
+    value: 'en',
+  },
+];
+const currentLang = ref("uz");
 </script>
 
 <style scoped>

@@ -18,5 +18,5 @@ const Template: Story = (args) => ({
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {
-  message: 'Error Message'
+  message: "Error Message",
 };

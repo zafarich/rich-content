@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import {ref} from 'vue'
+import { ref } from "vue";
 import CTextAlignment from "./CTextAlignment.vue";
 
 export default {
@@ -10,7 +10,7 @@ export default {
 const Template: Story = (args) => ({
   components: { CTextAlignment },
   setup() {
-    const align = ref('')
+    const align = ref("");
     return { args, align };
   },
   template: `

@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import {ref} from 'vue'
+import { ref } from "vue";
 import CImageView from "./CImageView.vue";
 
 export default {
@@ -10,7 +10,7 @@ export default {
 const Template: Story = (args) => ({
   components: { CImageView },
   setup() {
-    const view = ref('w-full h-full')
+    const view = ref("w-full h-full");
     return { args, view };
   },
   template: `
@@ -24,6 +24,7 @@ const Template: Story = (args) => ({
 
 export const ImageView = Template.bind({});
 ImageView.args = {
-  currentImage: 'https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png',
-  currentPosition: "w-full h-full"
+  currentImage:
+    "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+  currentPosition: "w-full h-full",
 };

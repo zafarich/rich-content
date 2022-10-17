@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import {ref} from 'vue'
+import { ref } from "vue";
 import CSelect from "./CSelect.vue";
 
 export default {
@@ -41,7 +41,7 @@ Select.args = {
 
 export const Label = Template.bind({});
 Label.args = {
-  label: 'Image position',
+  label: "Image position",
   options,
   default: true,
 };

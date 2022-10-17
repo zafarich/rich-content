@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import {ref} from 'vue'
+import { ref } from "vue";
 import CChooseColor from "./CChooseColor.vue";
 
 export default {
@@ -10,7 +10,7 @@ export default {
 const Template: Story = (args) => ({
   components: { CChooseColor },
   setup() {
-    const color = ref('');
+    const color = ref("");
     return { args, color };
   },
   template: `
