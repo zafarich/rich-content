@@ -1,4 +1,5 @@
 import { Story } from "@storybook/vue3";
+import {ref} from 'vue';
 
 import CAccordion from "./CAccordion.vue";
 
@@ -10,9 +11,13 @@ export default {
 const Template: Story = (args) => ({
   components: { CAccordion },
   setup() {
-    return { args };
+    const show = ref(false);
+    return { args, show };
   },
-  template: '<CAccordion v-bind="args" />',
+  template: `
+    <CAccordion @click="show = !show" v-bind="args" :toggle="show" />
+    <div v-if='show'>SHow me!</div>
+  `,
 });
 
 export const Accordion = Template.bind({});
