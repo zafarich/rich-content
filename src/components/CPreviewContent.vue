@@ -108,7 +108,6 @@
         </div>
       </div>
     </VueDraggableNext>
-    {{content}}
   </div>
 </template>
 
