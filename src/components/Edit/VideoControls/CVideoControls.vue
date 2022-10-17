@@ -59,7 +59,7 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  imageStore: {
+  mediaStore: {
     type: Object,
     required: true,
   },
@@ -94,7 +94,7 @@ function handleVideoUpload(e: any) {
   formData.append("upload", e?.file);
   props.item.video.localVideoUrl = e?.url;
 
-  props.imageStore
+  props.mediaStore
     .postMedia(formData, handleProgressBar, controller)
     .then((res: any) => {
       const result = res.data;
@@ -142,7 +142,7 @@ function handleLinkEnter($event: any) {
 }
 
 function deleteCurrentMedia() {
-  props.imageStore.deleteImage(props.item.video.id);
-  props.imageStore.removeId(props.item.video.id);
+  props.mediaStore.deleteMedia(props.item.video.id);
+  props.mediaStore.removeId(props.item.video.id);
 }
 </script>

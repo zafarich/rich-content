@@ -125,7 +125,7 @@ import CInput from "@/components/UI/Input/Input/CInput.vue";
 import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
 import CUploadImage from "@/components/Edit/UploadImage/CUploadImage.vue";
 import CTextAlignment from "@/components/Edit/TextAlignment/CTextAlignment.vue";
-import useImageStore from "@/store/image";
+import useMediaStore from "@/store/media";
 import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CAccordion from "@/components/Accordion/CAccordion.vue";
 import Icon from "@/components/Icon/Icon.vue";
@@ -138,7 +138,7 @@ export interface Props {
 const store = useStore();
 const titleToggle = ref(true);
 const lineToggle = ref(true);
-const imageStore = useImageStore();
+const mediaStore = useMediaStore();
 const ENV_CDN = import.meta.env.VITE_CDN;
 const lineActions = ref(["addBodyTop", "addBodyBottom", "removeBody"]);
 const props = withDefaults(defineProps<Props>(), {});
@@ -200,7 +200,7 @@ function updateImage(index: number, e: any): void {
   const formData = new FormData();
   formData.append("upload", e?.file);
 
-  imageStore
+  mediaStore
     .postMedia(formData)
     .then((res) => {
       const result = res.data;

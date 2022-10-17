@@ -1,7 +1,3 @@
-// !TODO
-// !1 RENAME THE FOLDER AND FUNCTION NAMES TO => MEDIA
-// !2 CHANGE THE NAME OF THE FILE AND FUNCTIONS INSIDE EVERY FILE
-
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
@@ -9,7 +5,7 @@ import axios from "@/plugins/axios";
 
 import { useStore } from "./index";
 
-export const useImageStore = defineStore("image", {
+export const useMediaStore = defineStore("media", {
   state: () => ({}),
 
   actions: {
@@ -30,7 +26,7 @@ export const useImageStore = defineStore("image", {
           })
           .then((res) => {
             const result = res?.data;
-            result?.success && this.setImgIdToLocalStorage(result?.data?.id);
+            result?.success && this.setMediaIdToLocalStorage(result?.data?.id);
             resolve(res);
           })
           .catch((err) => {
@@ -39,7 +35,7 @@ export const useImageStore = defineStore("image", {
       });
     },
 
-    async deleteImage(id) {
+    async deleteMedia(id) {
       return await new Promise((resolve, reject) => {
         axios
           .delete(`/files/rich-upload/${id}`)
@@ -52,27 +48,27 @@ export const useImageStore = defineStore("image", {
       });
     },
 
-    async deleteAllImage(): void {
+    async deleteAllMedia(): void {
       const ids = JSON.parse(await localStorage.getItem("delete"));
 
       if (ids) {
         let i = 0;
         while (i < ids.length) {
           // eslint-disable-next-line
-          await this.deleteImage(ids[i]).catch((err) => console.log(err));
+          await this.deleteMedia(ids[i]).catch((err) => console.log(err));
           i++;
         }
         await localStorage.removeItem("delete");
       }
     },
 
-    async setImgIdToLocalStorage(id: number): void {
+    async setMediaIdToLocalStorage(id: number): void {
       const ids = JSON.parse(await localStorage.getItem("delete")) || [];
       ids.push(id);
       await localStorage.setItem("delete", JSON.stringify(ids));
     },
 
-    async removeImgIdFromLocalStorage(index: number): void {
+    async removeMediaIdFromLocalStorage(index: number): void {
       const contentStore = useStore();
       const { block, table } = contentStore.content[index].content;
       let elements = undefined;
@@ -82,7 +78,7 @@ export const useImageStore = defineStore("image", {
         const id = elements[i]?.img?.id || elements[i]?.video?.id;
 
         if (!id) continue;
-        await this.deleteImage(id).catch((err) => console.log(err));
+        await this.deleteMedia(id).catch((err) => console.log(err));
         await this.removeId(id).catch((err) => console.log(err));
       }
     },
@@ -99,4 +95,4 @@ export const useImageStore = defineStore("image", {
   },
 });
 
-export default useImageStore;
+export default useMediaStore;

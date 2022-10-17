@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { useImageStore } from "./image";
+import { useMediaStore } from "./media";
 import { toggleMobileMode } from "@/helpers/global";
 
 export const useStore = defineStore("main", {
@@ -25,7 +25,7 @@ export const useStore = defineStore("main", {
     },
     toggleIsFullScreen(): void {
       this.isFullScreen = !this.isFullScreen;
-      // when clicked NAZAD
+
       if (!this.isFullScreen) {
         this.toggleDeviceView("pc");
       }
@@ -35,8 +35,8 @@ export const useStore = defineStore("main", {
         this.axiosControllers[this.content[index].content.id]?.abort();
       }
 
-      const imageStore = useImageStore();
-      imageStore.removeImgIdFromLocalStorage(index);
+      const mediaStore = useMediaStore();
+      mediaStore.removeMediaIdFromLocalStorage(index);
 
       this.content.splice(index, 1);
       if (this.activeIndex == index) {

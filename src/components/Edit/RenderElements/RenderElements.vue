@@ -94,7 +94,7 @@
                 v-bind="{
                   item,
                   videoTypeOptions,
-                  imageStore,
+                  mediaStore,
                 }"
               />
             </div>
@@ -199,7 +199,7 @@ import CTableController from "@/components/Edit/TableController/CTableController
 import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { objectHas } from "@/helpers/global";
-import useImageStore from "@/store/image";
+import useMediaStore from "@/store/media";
 import useStore from "@/store/index";
 import { useToast } from "vue-toastification";
 import {
@@ -212,7 +212,7 @@ import {
 } from "./data";
 
 const store = useStore();
-const imageStore = useImageStore();
+const mediaStore = useMediaStore();
 const { activeIndex, content } = storeToRefs(store);
 const ENV_CDN = import.meta.env.VITE_CDN;
 const toast = useToast();
@@ -281,14 +281,14 @@ function updateImage(index: number, e: any): void {
     return;
   }
   if (getBlock.value[index].img.id) {
-    imageStore.deleteImage(getBlock.value[index].img.id);
-    imageStore.removeId(getBlock.value[index].img.id);
+    mediaStore.deleteMedia(getBlock.value[index].img.id);
+    mediaStore.removeId(getBlock.value[index].img.id);
   }
 
   const formData = new FormData();
   formData.append("upload", e?.file);
 
-  imageStore
+  mediaStore
     .postMedia(formData)
     .then((res) => {
       const result = res.data;

@@ -28,7 +28,7 @@ import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
-import useStoreImage from "@/store/image";
+import useStoreImage from "@/store/media";
 import useStore from "@/store/index";
 
 const store = useStore();
@@ -37,7 +37,7 @@ const { step, isFullScreen } = storeToRefs(store);
 
 onMounted(() => {
   window.addEventListener("beforeunload", showAlertBeforeMount);
-  storeImage.deleteAllImage();
+  storeImage.deleteAllMedia();
 });
 
 onBeforeUnmount(() => {
