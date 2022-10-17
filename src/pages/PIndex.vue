@@ -49,6 +49,7 @@ function showAlertBeforeMount(event: object) {
 }
 
 // TODO:
+// 1. product id layout
 // 2. validation
 </script>
 
