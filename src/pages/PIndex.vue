@@ -14,7 +14,7 @@
             </div>
           </transition>
         </div>
-        <CPreviewContent class="preview-content" />
+        <CPreviewContent class="w-full" />
       </div>
     </div>
   </div>
@@ -53,9 +53,5 @@ function showAlertBeforeMount(event: object) {
 .blocks {
   box-shadow: 0px 4px 30px 1px rgba(0, 0, 0, 0.08);
   background: linear-gradient(0deg, #ffffff, #ffffff), #f7f7f7;
-}
-
-.preview-content {
-  width: 100%;
 }
 </style>
