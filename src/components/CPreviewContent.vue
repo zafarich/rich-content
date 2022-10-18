@@ -207,7 +207,6 @@ function tableEvent(e): void {
     activeTableRowIdx.value = e.colIdx;
   }
 }
-
 function handleAdd(e): void {
   activeIndex.value = e?.newIndex;
 
@@ -216,6 +215,8 @@ function handleAdd(e): void {
     content.value[activeIndex.value].content.id = uuidv4();
   }
 }
+
+console.log(content.value)
 </script>
 
 <style scoped>

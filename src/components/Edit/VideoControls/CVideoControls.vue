@@ -13,7 +13,7 @@
     <template v-if="item.video.type === 'youtube'">
       <CInput
         :model-value="item.video.youtubeId"
-        @input="item.video.videoUrl = $event.target.value"
+        @input="updateClickLink($event, index)"
         v-bind="{
           label: 'Ссылка на видео на YouTube',
           placeholder: 'https://youtu.be/tgbNymZ7vqY',
@@ -66,6 +66,12 @@ const props = defineProps({
 });
 
 const controller = ref();
+
+const ErrorList = {
+  lessThan1mb: "Размер файла должен быть меньше 1мб",
+  base64: "Тип изображения base64 не допускается",
+  invalidUrl: "URL изображения должен быть действительным",
+};
 
 watch(
   () => props.item.video.type,
@@ -144,5 +150,30 @@ function handleLinkEnter($event: any) {
 function deleteCurrentMedia() {
   props.mediaStore.deleteMedia(props.item.video.id);
   props.mediaStore.removeId(props.item.video.id);
+}
+
+function updateClickLink(event: any) {
+  const value = event?.target?.value || "";
+  showErrMessage(value, 0, "clickLinkErr");
+  props.item.video.videoUrl = value;
+}
+
+function showErrMessage(value: string, index: number, target: string): void {
+  updateErrMessage("", index, target);
+
+  if (value.startsWith("data:")) {
+    updateErrMessage(ErrorList["base64"], index, target);
+  }
+
+  // if (!isValidURL(value)) {
+  //   updateErrMessage(ErrorList["invalidUrl"], index, target);
+  // }
+}
+
+function updateErrMessage(
+  message: string,
+  target: string
+): void {
+	props.item.asset[target] = message
 }
 </script>
