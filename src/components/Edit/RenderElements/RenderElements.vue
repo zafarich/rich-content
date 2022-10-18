@@ -198,7 +198,7 @@ import CVideoControls from "@/components/Edit/VideoControls/CVideoControls.vue";
 import CTableController from "@/components/Edit/TableController/CTableController.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
-import { objectHas } from "@/helpers/global";
+import { objectHas, isValidURL } from "@/helpers/global";
 import useMediaStore from "@/store/media";
 import useStore from "@/store/index";
 import { useToast } from "vue-toastification";
@@ -242,15 +242,6 @@ function updateClickLink(event: any, index: number): void {
   const value = event?.target?.value || "";
   showErrMessage(value, index, "clickLinkErr");
   getBlock.value[index].clickLink = value;
-}
-
-function isValidURL(url: string): boolean {
-  try {
-    new URL(url);
-    return true;
-  } catch (error) {
-    return false;
-  }
 }
 
 function updateErrMessage(

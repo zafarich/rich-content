@@ -11,14 +11,22 @@
       />
     </div>
     <template v-if="item.video.type === 'youtube'">
-      <CInput
-        :model-value="item.video.youtubeId"
-        @input="updateClickLink($event, index)"
-        v-bind="{
-          label: 'Ссылка на видео на YouTube',
-          placeholder: 'https://youtu.be/tgbNymZ7vqY',
-        }"
-      />
+			<div>
+				<CInput
+					:model-value="item.video.youtubeId"
+					@input="updateClickLink($event, index)"
+					v-bind="{
+						label: 'Ссылка на видео на YouTube',
+						placeholder: 'https://youtu.be/tgbNymZ7vqY',
+					}"
+				/>
+				<CErrorMeassage
+					v-if="item?.asset?.imgLinkErr"
+					v-bind="{
+						message: item?.asset.imgLinkErr,
+					}"
+				/>
+			</div>
     </template>
 
     <template v-else>
@@ -42,10 +50,12 @@
 <script setup lang="ts">
 import { watch, ref } from "vue";
 
+import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { useToast } from "vue-toastification";
 import CVideoUpload from "./CVideoUpload.vue";
+import { isValidURL } from "@/helpers/global";
 import { storeToRefs } from "pinia";
 import useStore from "@/store/index";
 const store = useStore();
@@ -154,26 +164,23 @@ function deleteCurrentMedia() {
 
 function updateClickLink(event: any) {
   const value = event?.target?.value || "";
-  showErrMessage(value, 0, "clickLinkErr");
+  showErrMessage(value, 0, "imgLinkErr");
   props.item.video.videoUrl = value;
 }
 
 function showErrMessage(value: string, index: number, target: string): void {
-  updateErrMessage("", index, target);
+  updateErrMessage("", target);
 
   if (value.startsWith("data:")) {
-    updateErrMessage(ErrorList["base64"], index, target);
+    updateErrMessage(ErrorList["base64"],target);
   }
 
-  // if (!isValidURL(value)) {
-  //   updateErrMessage(ErrorList["invalidUrl"], index, target);
-  // }
+  if (!isValidURL(value)) {
+    updateErrMessage(ErrorList["invalidUrl"], target);
+  }
 }
 
-function updateErrMessage(
-  message: string,
-  target: string
-): void {
-	props.item.asset[target] = message
+function updateErrMessage(message: string, target: string): void {
+  props.item.asset[target] = message;
 }
 </script>
