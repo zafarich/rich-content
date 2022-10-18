@@ -17,6 +17,7 @@ pnpm-debug.log*
 # Miscellaneous
 .temp
 .cache
+.env
 
 # Editor directories and files
 .idea
