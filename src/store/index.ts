@@ -13,10 +13,15 @@ export const useStore = defineStore("main", {
     axiosControllers: <any>{},
     deviceViewType: <"pc" | "phone">"pc",
     activeTableRowIdx: ref<number | null>(null),
-    invalid: true
+		invalid: true,
+		queryParams: {}
   }),
 
   actions: {
+		setQueryParams(obj: object) {
+			this.queryParams = obj 
+
+		},
     toggleDeviceView(val: any) {
       this.deviceViewType = val;
       toggleMobileMode(val);

@@ -1,7 +1,8 @@
 <template>
   <div class="mb-10">
-    <CHeader />
+		<CHeader />
     <CInfoBanner class="!mt-[32px]" />
+		{{queryParams}}
     <div class="container h-[calc(100vh-78px)]">
       <div class="my-10 flex gap-8 w-full">
         <div
@@ -24,6 +25,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { onBeforeUnmount, onMounted } from "vue";
+import { useRoute } from "vue-router";
 
 import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
@@ -34,8 +36,10 @@ import useStore from "@/store/index";
 import CInfoBanner from "../components/UI/CInfoBanner.vue";
 
 const store = useStore();
+const route = useRoute();
+
 const storeImage = useStoreMedia();
-const { step, isFullScreen } = storeToRefs(store);
+const { step, isFullScreen, queryParams } = storeToRefs(store);
 
 onMounted(() => {
   window.addEventListener("beforeunload", showAlertBeforeMount);
@@ -49,6 +53,11 @@ onBeforeUnmount(() => {
 function showAlertBeforeMount(event: object) {
   event.returnValue = `Are you sure you want to leave?`;
 }
+
+(() => {
+  const { lang, product_id, readonly, token } = route.query;
+  store.setQueryParams(route.query);
+})();
 
 // TODO:
 // 1. product id layout
