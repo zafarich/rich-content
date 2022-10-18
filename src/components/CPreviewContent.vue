@@ -185,7 +185,7 @@ async function saveContent() {
   productStore.postProductOverview({
     product_id: product.id,
     language: lang,
-    overview: "{'aaa':111}",
+    overview: JSON.stringify(content),
   });
 }
 
