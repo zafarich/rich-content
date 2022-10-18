@@ -94,6 +94,9 @@ export const useStore = defineStore("main", {
 				this.activeIndex++;
 			}
 		},
+		addContent(content) {
+			this.content = content
+		}
 	},
 });
 

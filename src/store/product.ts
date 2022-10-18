@@ -1,17 +1,16 @@
 
 import { defineStore } from "pinia";
-
 import axios from "@/plugins/axios";
 import { P } from "@storybook/components";
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
-
+import useStore from "@/store/index";
+const store = useStore();
 
 export const useProduct = defineStore("product", {
 	state: () => ({
 		product: null,
 		lang: 'ru'
 	}),
-
 	actions: {
 		setLanguage(lang: string) {
 			this.lang = lang
@@ -22,6 +21,7 @@ export const useProduct = defineStore("product", {
 					headers
 				}).then((res) => {
 					this.product = res.data
+					store.addContent(JSON.stringify(res.data.overview))
 					resolve(res.data)
 				}).catch((err) => {
 					console.log(err)
