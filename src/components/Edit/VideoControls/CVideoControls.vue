@@ -13,7 +13,7 @@
     <template v-if="item.video.type === 'youtube'">
       <div>
         <CInput
-          :model-value="item.video.youtubeId"
+          :model-value="item.video.videoUrl"
           @input="updateClickLink($event, index)"
           v-bind="{
             label: 'Ссылка на видео на YouTube',

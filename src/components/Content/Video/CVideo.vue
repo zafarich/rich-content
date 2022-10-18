@@ -13,7 +13,7 @@
           class="w-full aspect-video"
           :src="
             youTubeLinkToEmbed(
-              item.video.videoUrl || 'https://youtu.be/xffp8p-vyMY'
+              item.video.videoUrl
             )
           "
         >
