@@ -11,10 +11,10 @@ export const useProduct = defineStore("product", {
 		product: null,
 	}),
 	actions: {
-
-		fetchProduct(id: number, lang: string, token: string) {
+		fetchProduct() {
+			const {product_id, token, lang}  = store.queryParams
 			return new Promise((resolve, reject) => {
-				return axios(VITE_BASE_URL + `/product/get-overview?product_id=${id}`, {
+				return axios(VITE_BASE_URL + `/product/get-overview?product_id=${product_id}`, {
 					headers: {
 						token,
 						'Accept-Language': lang,
@@ -29,11 +29,14 @@ export const useProduct = defineStore("product", {
 				})
 			})
 		},
-		postProductOverview(data: object, headers?: any) {
+		postProductOverview(data: object) {
+			const {product_id, token, lang}  = store.queryParams
 			return new Promise((resolve, reject) => {
 				return axios.post(VITE_BASE_URL + '/product/add-overview', {
-					data,
-					headers
+					headers: {
+						token: store.queryParams.token,
+						'Accept-Language': store.queryParams.lang,
+					}
 				}).then((res: any) => {
 					// this.product = res.data
 					resolve(res.data)
