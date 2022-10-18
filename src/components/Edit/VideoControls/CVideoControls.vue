@@ -11,22 +11,22 @@
       />
     </div>
     <template v-if="item.video.type === 'youtube'">
-			<div>
-				<CInput
-					:model-value="item.video.youtubeId"
-					@input="updateClickLink($event, index)"
-					v-bind="{
-						label: 'Ссылка на видео на YouTube',
-						placeholder: 'https://youtu.be/tgbNymZ7vqY',
-					}"
-				/>
-				<CErrorMeassage
-					v-if="item?.asset?.imgLinkErr"
-					v-bind="{
-						message: item?.asset.imgLinkErr,
-					}"
-				/>
-			</div>
+      <div>
+        <CInput
+          :model-value="item.video.youtubeId"
+          @input="updateClickLink($event, index)"
+          v-bind="{
+            label: 'Ссылка на видео на YouTube',
+            placeholder: 'https://youtu.be/tgbNymZ7vqY',
+          }"
+        />
+        <CErrorMeassage
+          v-if="item?.asset?.imgLinkErr"
+          v-bind="{
+            message: item?.asset.imgLinkErr,
+          }"
+        />
+      </div>
     </template>
 
     <template v-else>
@@ -34,15 +34,25 @@
         @uploaded="handleVideoUpload"
         :index="Math.random() * 1000"
       />
-      <CInput
-        :model-value="item.video.videoUrl"
-        @input="handleLinkEnter"
-        v-bind="{
-          label: 'Прямая ссылка на видео',
-          placeholder:
-            'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4',
-        }"
-      />
+      <div>
+        <!-- @input="updateClickLink($event, index)" -->
+        <CInput
+          :model-value="item.video.videoUrl"
+          @input="handleLinkEnter"
+          v-bind="{
+            label: 'Прямая ссылка на видео',
+            placeholder:
+              'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4',
+          }"
+        />
+
+        <CErrorMeassage
+          v-if="item?.asset?.imgLinkErr"
+          v-bind="{
+            message: item?.asset.imgLinkErr,
+          }"
+        />
+      </div>
     </template>
   </div>
 </template>
@@ -55,7 +65,7 @@ import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import { useToast } from "vue-toastification";
 import CVideoUpload from "./CVideoUpload.vue";
-import { isValidURL } from "@/helpers/global";
+import { isValidURL, isValidYoutubeUrl } from "@/helpers/global";
 import { storeToRefs } from "pinia";
 import useStore from "@/store/index";
 const store = useStore();
@@ -155,6 +165,7 @@ function handleLinkEnter($event: any) {
     props.item.video.localVideoUrl = "";
   }
   props.item.video.videoUrl = $event.target.value;
+  updateClickLink($event);
 }
 
 function deleteCurrentMedia() {
@@ -172,10 +183,13 @@ function showErrMessage(value: string, index: number, target: string): void {
   updateErrMessage("", target);
 
   if (value.startsWith("data:")) {
-    updateErrMessage(ErrorList["base64"],target);
+    updateErrMessage(ErrorList["base64"], target);
   }
 
-  if (!isValidURL(value)) {
+  if (
+    (props.item.video.type === "youtube" && !isValidYoutubeUrl(value)) ||
+    (props.item.video.type !== "youtube" && !isValidURL(value))
+  ) {
     updateErrMessage(ErrorList["invalidUrl"], target);
   }
 }
