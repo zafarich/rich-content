@@ -18,7 +18,7 @@ export const useProduct = defineStore("product", {
 		},
 		fetchProduct(id: number, headers: any) {
 			return new Promise((resolve, reject) => {
-				return axios(VITE_BASE_URL + '/product/get-overview?product_id=104883', {
+				return axios(VITE_BASE_URL + `/product/get-overview?product_id=${id}`, {
 					headers
 				}).then((res) => {
 					this.product = res.data
@@ -28,13 +28,13 @@ export const useProduct = defineStore("product", {
 				})
 			})
 		},
-		postProductOverview(data: object, headers: any) {
+		postProductOverview(data: object, headers?: any) {
 			return new Promise((resolve, reject) => {
 				return axios.post(VITE_BASE_URL + '/product/add-overview', {
 					data,
-					headers
+				 headers
 				}).then((res: any) => {
-					this.product = res.data
+					// this.product = res.data
 					resolve(res.data)
 				}).catch((err) => {
 					reject(err)
