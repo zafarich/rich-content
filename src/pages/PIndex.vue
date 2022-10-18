@@ -1,6 +1,7 @@
 <template>
   <div class="mb-10">
     <CHeader />
+    <CInfoBanner class="!mt-[32px]" />
     <div class="container h-[calc(100vh-78px)]">
       <div class="my-10 flex gap-8 w-full">
         <div
@@ -30,6 +31,7 @@ import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
 import useStoreMedia from "@/store/media";
 import useStore from "@/store/index";
+import CInfoBanner from "../components/UI/CInfoBanner.vue";
 
 const store = useStore();
 const storeImage = useStoreMedia();
