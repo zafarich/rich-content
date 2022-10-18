@@ -28,11 +28,11 @@ import CBlockEdit from "@/components/CBlockEdit.vue";
 import CBlockList from "@/components/CBlockList.vue";
 import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
-import useStoreImage from "@/store/media";
+import useStoreMedia from "@/store/media";
 import useStore from "@/store/index";
 
 const store = useStore();
-const storeImage = useStoreImage();
+const storeImage = useStoreMedia();
 const { step, isFullScreen } = storeToRefs(store);
 
 onMounted(() => {
