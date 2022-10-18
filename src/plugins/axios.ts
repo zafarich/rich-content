@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const ENV_BASE_URL = import.meta.env.VITE_BASE_URL;
+const VITE_FILE_URL = import.meta.env.VITE_FILE_URL;
 
 const $axios = axios.create({
-  baseURL: ENV_BASE_URL,
+	baseURL: VITE_FILE_URL,
+	headers: {
+		"Access-Control-Allow-Origin": "*"
+	}
 });
 
 export default $axios;

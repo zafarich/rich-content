@@ -1,6 +1,6 @@
 <template>
   <div class="mb-10">
-		<CHeader />
+    <CHeader />
     <CInfoBanner class="!mt-[32px]" />
     <div class="container h-[calc(100vh-78px)]">
       <div class="my-10 flex gap-8 w-full">
@@ -32,12 +32,14 @@ import CPreviewContent from "@/components/CPreviewContent.vue";
 import CHeader from "@/components/Header/CHeader.vue";
 import useStoreMedia from "@/store/media";
 import useStore from "@/store/index";
+import useProduct from "@/store/product";
 import CInfoBanner from "../components/UI/CInfoBanner.vue";
 
 const store = useStore();
 const route = useRoute();
 
 const storeImage = useStoreMedia();
+const productStore = useProduct();
 const { step, isFullScreen, queryParams } = storeToRefs(store);
 
 onMounted(() => {
@@ -56,6 +58,9 @@ function showAlertBeforeMount(event: object) {
 (() => {
   const { lang, product_id, readonly, token } = route.query;
   store.setQueryParams(route.query);
+
+  productStore.fetchProduct(104883);
+	console.log('after index')
 })();
 
 // TODO:

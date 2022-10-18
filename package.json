@@ -55,5 +55,11 @@
     "vite": "^2.8.4",
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.31.4"
-  }
+  },
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://dev-backend.texnomart.uz"
+    }
+  ]
 }
