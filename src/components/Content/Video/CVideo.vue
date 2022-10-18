@@ -11,11 +11,7 @@
         <iframe
           v-if="item.video.type === 'youtube'"
           class="w-full aspect-video"
-          :src="
-            youTubeLinkToEmbed(
-              item.video.videoUrl
-            )
-          "
+          :src="youTubeLinkToEmbed(item.video.videoUrl)"
         >
         </iframe>
 

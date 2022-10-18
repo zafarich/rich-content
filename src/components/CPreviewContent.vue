@@ -183,7 +183,7 @@ async function deleteLocalStorageIds() {
 
 async function saveContent() {
   deleteLocalStorageIds();
-  productStore.postProductOverview()
+  productStore.postProductOverview();
 }
 
 function handleDynamicComponentEvents(event: any) {
