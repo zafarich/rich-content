@@ -11,6 +11,7 @@
     <div class="flex flex-center-between mt-8">
       <CTab v-if="isFullScreen" class="min-w-[100px]" />
       <CButton
+        v-if="!queryParams.readonly"
         @click="store.toggleIsFullScreen()"
         :text="isFullScreen ? 'Назад' : 'Предпросмотр'"
         :class="[
@@ -134,8 +135,14 @@ import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import useStore from "@/store/index";
 
 const store = useStore();
-const { step, activeIndex, content, isFullScreen, activeTableRowIdx } =
-  storeToRefs(store);
+const {
+  step,
+  activeIndex,
+  content,
+  isFullScreen,
+  activeTableRowIdx,
+  queryParams,
+} = storeToRefs(store);
 const { deleteContent, upContent, downContent } = store;
 
 const ContentComponents = {
