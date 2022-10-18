@@ -16,26 +16,6 @@ export const useProduct = defineStore("product", {
 			this.lang = lang
 		},
 		fetchProduct(id: number, lang: string, token: string) {
-
-			// console.log(headers, 'headers')
-
-			// fetch(
-			// 	"https://dev-back.texnomart.uz/api/v3/product/get-overview?product_id=104883",
-			// 	{
-			// 		headers: {
-			// 			token: "kOuj37tRSe0f9uhRkN5-aVcFEebPnJM6",
-			// 		},
-			// 	}
-			// )
-			// 	.then((res) => {
-			// 		const data = res.json();
-			// 		console.log(data, "RESPONSE");
-			// 	})
-			// 	.catch((err) => {
-			// 		console.log(err, "ERRRORRRR");
-			// 	});
-
-
 			return new Promise((resolve, reject) => {
 				return axios(VITE_BASE_URL + `/product/get-overview?product_id=${id}`, {
 					headers: {

@@ -1,5 +1,6 @@
 <template>
   <div class="">
+    {{ product.id }}
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
       {{ isFullScreen ? "Предпросмотр рич-контента" : "Конструктор контента" }}
     </h2>
@@ -182,6 +183,7 @@ async function deleteLocalStorageIds() {
 
 async function saveContent() {
   deleteLocalStorageIds();
+  console.log(product.id, product);
   productStore.postProductOverview({
     product_id: product.id,
     language: lang,
