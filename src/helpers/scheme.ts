@@ -54,7 +54,7 @@ class GenerateBlock {
       block.video = {
         type: "youtube",
         id: undefined,
-        videoUrl: 'https://youtu.be/xffp8p-vyMY',
+        videoUrl: "https://youtu.be/xffp8p-vyMY",
         localVideoUrl: "",
         loadState: {
           isLoading: false,
