@@ -9,12 +9,9 @@ const store = useStore();
 export const useProduct = defineStore("product", {
 	state: () => ({
 		product: null,
-		lang: 'ru'
 	}),
 	actions: {
-		setLanguage(lang: string) {
-			this.lang = lang
-		},
+
 		fetchProduct(id: number, lang: string, token: string) {
 			return new Promise((resolve, reject) => {
 				return axios(VITE_BASE_URL + `/product/get-overview?product_id=${id}`, {
