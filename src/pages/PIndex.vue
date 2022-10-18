@@ -67,12 +67,10 @@ function showAlertBeforeMount(event: object) {
 (() => {
   const { lang, product_id, readonly, token } = route.query;
   store.setQueryParams(route.query);
+  console.log(token, "token");
 
   productStore.setLanguage(lang);
-  productStore.fetchProduct(product_id, {
-    token,
-    "Accept-Language": lang,
-  });
+  productStore.fetchProduct(product_id, lang, token);
 })();
 
 // TODO:
