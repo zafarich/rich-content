@@ -2,7 +2,6 @@
   <div class="mb-10">
 		<CHeader />
     <CInfoBanner class="!mt-[32px]" />
-		{{queryParams}}
     <div class="container h-[calc(100vh-78px)]">
       <div class="my-10 flex gap-8 w-full">
         <div
