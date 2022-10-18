@@ -1,7 +1,15 @@
 <template>
   <div class="mb-10">
     <CHeader />
-    <CInfoBanner class="!mt-[32px]" />
+    <CInfoBanner
+      v-if="product"
+      class="!mt-[32px]"
+      v-bind="{
+        title: product?.name,
+        id: product.id,
+        lang: lang,
+      }"
+    />
     <div class="container h-[calc(100vh-78px)]">
       <div class="my-10 flex gap-8 w-full">
         <div
@@ -41,6 +49,7 @@ const route = useRoute();
 const storeImage = useStoreMedia();
 const productStore = useProduct();
 const { step, isFullScreen, queryParams } = storeToRefs(store);
+const { product, lang } = storeToRefs(productStore);
 
 onMounted(() => {
   window.addEventListener("beforeunload", showAlertBeforeMount);
@@ -59,8 +68,11 @@ function showAlertBeforeMount(event: object) {
   const { lang, product_id, readonly, token } = route.query;
   store.setQueryParams(route.query);
 
-  productStore.fetchProduct(104883);
-	console.log('after index')
+  productStore.setLanguage(lang);
+  productStore.fetchProduct(product_id, {
+    token,
+    "Accept-Language": lang,
+  });
 })();
 
 // TODO:
