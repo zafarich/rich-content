@@ -24,9 +24,22 @@ export const useProduct = defineStore("product", {
 
 			})
 		},
-		postProduct() {
+		postProductOverview(data: object) {
+			return new Promise((resolve, reject) => {
+				return axios.post(VITE_BASE_URL + '/product/add-overview', {
+					data,
+					headers: {
+						token: 'bkOuj37tRSe0f9uhRkN5-aVcFEebPnJM61',
+					}
+				})
+			}).then((res) => {
+				console.log(res)
+			}).catch((err) => {
+				console.log(err)
+			})
+		},
+		
 
-		}
 	},
 });
 
