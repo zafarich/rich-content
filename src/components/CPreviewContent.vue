@@ -118,6 +118,7 @@ import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import { uuidv4 } from "@/helpers/global";
+import { useToast } from "vue-toastification";
 
 import CBillboard from "@/components/Content/Billboard/CBillboard.vue";
 import CChess from "@/components/Content/Chess/CChess.vue";
@@ -137,6 +138,7 @@ import useStore from "@/store/index";
 import useProduct from "@/store/product";
 
 const store = useStore();
+const toast = useToast();
 const productStore = useProduct();
 const {
   step,
@@ -183,7 +185,15 @@ async function deleteLocalStorageIds() {
 
 async function saveContent() {
   deleteLocalStorageIds();
-  productStore.postProductOverview();
+  productStore.postProductOverview().then(res => {
+    if(res.success) {
+      toast.success(res.message);
+    } else {
+      toast.warning(res.message);
+    }
+  }).catch(err => {
+    toast.error(err.message);
+  });
 }
 
 function handleDynamicComponentEvents(event: any) {
