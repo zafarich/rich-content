@@ -20,7 +20,7 @@
         ]"
       />
       <CButton
-        @click="deleteLocalStorageIds"
+        @click="saveContent"
         v-if="!isFullScreen"
         text="Сохранить"
         class="px-4 rounded h-11"
@@ -133,8 +133,10 @@ import CButton from "@/components/UI/Button/Cbutton.vue";
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 
 import useStore from "@/store/index";
+import useProduct from "@/store/product";
 
 const store = useStore();
+const productStore = useProduct();
 const {
   step,
   activeIndex,
@@ -144,6 +146,7 @@ const {
   queryParams,
 } = storeToRefs(store);
 const { deleteContent, upContent, downContent } = store;
+const { product, lang } = productStore;
 
 const ContentComponents = {
   roll: CRoll,
@@ -175,6 +178,15 @@ watch(activeIndex, (v): void => {
 
 async function deleteLocalStorageIds() {
   await localStorage.removeItem("delete");
+}
+
+async function saveContent() {
+  deleteLocalStorageIds();
+  productStore.postProductOverview({
+    product_id: product.id,
+    language: lang,
+    overview: "{'aaa':111}",
+  });
 }
 
 function handleDynamicComponentEvents(event: any) {
@@ -216,7 +228,7 @@ function handleAdd(e): void {
   }
 }
 
-console.log(content.value)
+console.log(content.value);
 </script>
 
 <style scoped>

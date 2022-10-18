@@ -13,7 +13,7 @@ export const useProduct = defineStore("product", {
 	}),
 
 	actions: {
-		setLanguage(lang) {
+		setLanguage(lang: string) {
 			this.lang = lang
 		},
 		fetchProduct(id: number, headers: any) {
@@ -21,7 +21,8 @@ export const useProduct = defineStore("product", {
 				return axios(VITE_BASE_URL + '/product/get-overview?product_id=104883', {
 					headers
 				}).then((res) => {
-					console.log(res, 'resons;lk')
+					this.product = res.data
+					resolve(res.data)
 				}).catch((err) => {
 					console.log(err)
 				})
