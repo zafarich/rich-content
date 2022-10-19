@@ -7,9 +7,9 @@ void (function () {
         return value.toString();
       }
 
-      if (key === 'localVideoUrl') {
-				return undefined 
-	    }
+      if (key === "localVideoUrl") {
+        return undefined;
+      }
 
       return value;
     });

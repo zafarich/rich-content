@@ -27,7 +27,7 @@ export const useMediaStore = defineStore("media", {
           .then((res) => {
             const result = res?.data;
             result?.success && this.setMediaIdToLocalStorage(result?.data?.id);
-						progressCallback && progressCallback(100);
+            progressCallback && progressCallback(100);
             resolve(res);
           })
           .catch((err) => {

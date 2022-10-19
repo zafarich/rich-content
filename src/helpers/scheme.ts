@@ -14,6 +14,7 @@ class GenerateBlock {
     gap = false,
     padding = false,
     video = false,
+    position = false,
   }) {
     const block: Block = {};
 
@@ -47,9 +48,13 @@ class GenerateBlock {
         id: undefined,
         src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
         alt: "Текстовое описание изображения",
-        position: "w-full h-full",
       };
     }
+
+    if (position) {
+      block.img.position = "w-full h-full";
+    }
+
     if (video) {
       block.video = {
         type: "youtube",
@@ -92,7 +97,12 @@ class GenerateBlock {
 
 const roll: Content = {
   type: "roll",
-  block: new GenerateBlock({ clickLink: true, img: true, asset: true }),
+  block: new GenerateBlock({
+    clickLink: true,
+    img: true,
+    asset: true,
+    position: true,
+  }),
 };
 
 const billboard: Content = {
@@ -103,6 +113,7 @@ const billboard: Content = {
     title: true,
     text: true,
     asset: true,
+    position: true,
   }),
 };
 

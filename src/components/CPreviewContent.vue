@@ -42,14 +42,17 @@
             v-for="(item, index) in content"
             :key="index"
             class="list-group-item flex gap-[10px] w-full"
-            :class="{'!gap-14' : isFullScreen}"
+            :class="{ '!gap-14': isFullScreen }"
           >
             <div
               class="bg-white border-grey border-[1px] rounded-[12px] p-6 preview__content transition"
-              :class="[{
-                '!border-yellow transition':
-                  index == activeIndex && !isFullScreen,
-              }, {'!border-none' : isFullScreen}]"
+              :class="[
+                {
+                  '!border-yellow transition':
+                    index == activeIndex && !isFullScreen,
+                },
+                { '!border-none': isFullScreen },
+              ]"
               @click="!isFullScreen && (activeIndex = index)"
             >
               <component

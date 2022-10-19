@@ -19,10 +19,7 @@
       :clone="clone"
     >
       <div v-for="(item, index) in blocks" :key="index" class="selectDisable">
-        <img
-          :src="item.block_img"
-          class="!max-w-full !w-full select-none"
-        />
+        <img :src="item.block_img" class="!max-w-full !w-full select-none" />
         <p class="mt-[10px] text-[14px] leading-[20px] font-medium">
           {{ item.block_text }}
         </p>

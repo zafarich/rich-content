@@ -15,7 +15,8 @@ export const useProduct = defineStore("product", {
 
       return new Promise((resolve, reject) => {
         return axios(
-          VITE_BASE_URL + `/application/product/detail-main?product_id=${product_id}`,
+          VITE_BASE_URL +
+            `/application/product/detail-main?product_id=${product_id}`,
           {
             headers: {
               token,
@@ -38,8 +39,8 @@ export const useProduct = defineStore("product", {
       const { product_id, token, lang } = store.queryParams;
 
       return new Promise((resolve, reject) => {
-				console.log(store.content)
-				console.log(JSON.stringify(store.content))
+        console.log(store.content);
+        console.log(JSON.stringify(store.content));
         return axios
           .post(
             VITE_BASE_URL + "/v3/product/add-overview",

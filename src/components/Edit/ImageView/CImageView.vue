@@ -14,11 +14,7 @@
           }"
           class="flex-center-center rounded border-[2px] border-solid border-grey w-14 h-14 transition !overflow-hidden"
         >
-          <img
-            :class="item.position"
-            class="transition"
-            :src="currentImage"
-          />
+          <img :class="item.position" class="transition" :src="currentImage" />
         </div>
         <p class="text-center text-[12px] leading-[16px] mt-1">
           {{ item.text }}
