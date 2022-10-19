@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import { ref } from "vue";
+import { ref, inject } from "vue";
 
 import CUploadImage from "./CUploadImage.vue";
 
@@ -12,11 +12,12 @@ const Template: Story = (args) => ({
   components: { CUploadImage },
   setup() {
     const image = ref("");
-    return { args, image };
+    const cdn = inject("cdn");
+    return { args, image, cdn };
   },
   template: `
     <CUploadImage v-bind="args" @uploaded="image = $event.url" />
-    <img :src='image' />
+    <img :src='cdn + image' />
   `,
 });
 

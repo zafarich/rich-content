@@ -14,7 +14,11 @@
           }"
           class="flex-center-center rounded border-[2px] border-solid border-grey w-14 h-14 transition !overflow-hidden"
         >
-          <img :class="item.position" class="transition" :src="currentImage" />
+          <img
+            :class="item.position"
+            class="transition"
+            :src="$CDN + currentImage"
+          />
         </div>
         <p class="text-center text-[12px] leading-[16px] mt-1">
           {{ item.text }}
@@ -25,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref, inject } from "vue";
 
 import { ImgPosition } from "@/helpers/scheme_types";
 
@@ -40,6 +44,7 @@ export interface Props {
 
 const $emit = defineEmits<Emits>();
 const props = withDefaults(defineProps<Props>(), {});
+const $CDN = inject("cdn");
 
 const activePosition = ref<ImgPosition>("");
 activePosition.value = props.currentPosition || "w-full h-full";

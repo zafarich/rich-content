@@ -184,16 +184,19 @@ async function deleteLocalStorageIds() {
 }
 
 async function saveContent() {
-  productStore.postProductOverview().then(res => {
-    if(res.success) {
-      toast.success(res.message);
-      deleteLocalStorageIds();
-    } else {
-      toast.warning(res.message);
-    }
-  }).catch(err => {
-    toast.error(err.message);
-  });
+  productStore
+    .postProductOverview()
+    .then((res) => {
+      if (res.success) {
+        toast.success(res.message);
+        deleteLocalStorageIds();
+      } else {
+        toast.warning(res.message);
+      }
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    });
 }
 
 function handleDynamicComponentEvents(event: any) {
