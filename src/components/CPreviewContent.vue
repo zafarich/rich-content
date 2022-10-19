@@ -184,10 +184,10 @@ async function deleteLocalStorageIds() {
 }
 
 async function saveContent() {
-  deleteLocalStorageIds();
   productStore.postProductOverview().then(res => {
     if(res.success) {
       toast.success(res.message);
+      deleteLocalStorageIds();
     } else {
       toast.warning(res.message);
     }
