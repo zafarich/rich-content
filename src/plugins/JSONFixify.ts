@@ -5,9 +5,12 @@ void (function () {
     return JSON.__proto__.stringify(obj, function (key, value) {
       if (typeof value === "function") {
         return value.toString();
-			} else if (typeof key === 'localVideoUrl') {
+			} 
+
+      if (key === 'localVideoUrl') {
 				return undefined
 			}
+
       return value;
     });
   };

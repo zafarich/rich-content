@@ -170,7 +170,7 @@ const dragOptions = ref({
   ghostClass: "ghost",
   group: "contents",
   pull: "clone",
-  sort: false,
+  sort: true,
 });
 
 watch(activeIndex, (v): void => {
