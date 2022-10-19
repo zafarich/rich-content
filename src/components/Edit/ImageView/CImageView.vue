@@ -17,7 +17,7 @@
           <img
             :class="item.position"
             class="transition"
-            :src="$CDN + currentImage"
+            :src="currentImage"
           />
         </div>
         <p class="text-center text-[12px] leading-[16px] mt-1">
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, inject } from "vue";
+import { reactive, ref } from "vue";
 
 import { ImgPosition } from "@/helpers/scheme_types";
 
@@ -44,7 +44,6 @@ export interface Props {
 
 const $emit = defineEmits<Emits>();
 const props = withDefaults(defineProps<Props>(), {});
-const $CDN = inject("cdn");
 
 const activePosition = ref<ImgPosition>("");
 activePosition.value = props.currentPosition || "w-full h-full";

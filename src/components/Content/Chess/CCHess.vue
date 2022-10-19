@@ -14,7 +14,7 @@
       >
         <img
           class="w-full object-cover"
-          :src="$CDN + item.img.src"
+          :src="item.img.src"
           :alt="item.img.alt"
         />
       </a>
@@ -47,7 +47,6 @@
 <script setup lang="ts">
 import CContentInput from "@/components/UI/Input/ContentInput/CContentInput.vue";
 import { Content } from "@/helpers/scheme_types";
-import { inject } from "vue";
 
 export interface Props {
   content: Content;
@@ -59,7 +58,6 @@ interface Emits {
 
 withDefaults(defineProps<Props>(), {});
 const $emit = defineEmits<Emits>();
-const $CDN = inject("cdn");
 
 function handleText(e: any, target: string, index: number): void {
   const data = {
