@@ -5,11 +5,11 @@ void (function () {
     return JSON.__proto__.stringify(obj, function (key, value) {
       if (typeof value === "function") {
         return value.toString();
-			} 
+      }
 
-      if (key === 'localVideoUrl') {
-				return undefined
-			}
+      if (key === "localVideoUrl") {
+        return undefined;
+      }
 
       return value;
     });

@@ -17,6 +17,8 @@ export default function definePlugins(app: App): App {
   app.use(VueAxios, axios);
   app.provide("axios", app.config.globalProperties.axios); // provide 'axios'
 
+  app.provide("cdn", import.meta.env.VITE_CDN); // provide 'axios'
+
   app.use(toast, options);
   app.use(pinia);
   app.use(router);

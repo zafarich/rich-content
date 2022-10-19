@@ -285,7 +285,7 @@ function updateImage(index: number, e: any): void {
       const result = res.data;
       if (result.success) {
         updateErrMessage("", index, "imgLinkErr");
-        getBlock.value[index].img.src = ENV_CDN + result.data.path;
+        getBlock.value[index].img.src = result.data.path;
         getBlock.value[index].img.id = result.data.id;
       }
     })
@@ -301,7 +301,7 @@ function handleListTheme(event: object): void {
     for (let i of getBlock.value) {
       i.img = {
         id: undefined,
-        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        src: "/uploads/rich/content/default1416x708_633d63646f747.png",
         alt: "Текстовое описание изображения",
       };
     }

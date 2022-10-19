@@ -45,7 +45,7 @@ class GenerateBlock {
     if (img) {
       block.img = {
         id: undefined,
-        src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+        src: "/uploads/rich/content/default1416x708_633d63646f747.png",
         alt: "Текстовое описание изображения",
         position: "w-full h-full",
       };
@@ -222,7 +222,7 @@ const table: Content = {
       {
         img: {
           id: undefined,
-          src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+          src: "/uploads/rich/content/default1416x708_633d63646f747.png",
           alt: "Текстовое описание изображения",
         },
         text: {
@@ -238,7 +238,7 @@ const table: Content = {
       {
         img: {
           id: undefined,
-          src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+          src: "/uploads/rich/content/default1416x708_633d63646f747.png",
           alt: "Текстовое описание изображения",
         },
         text: {
@@ -254,7 +254,7 @@ const table: Content = {
       {
         img: {
           id: undefined,
-          src: "https://files.techno-mart.uz/storage/uploads/rich/content/default1416x708_633d63646f747.png",
+          src: "/uploads/rich/content/default1416x708_633d63646f747.png",
           alt: "Текстовое описание изображения",
         },
         text: {
