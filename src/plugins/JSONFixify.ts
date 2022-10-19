@@ -8,8 +8,8 @@ void (function () {
 			} 
 
       if (key === 'localVideoUrl') {
-				return undefined
-			}
+				return undefined 
+	    }
 
       return value;
     });

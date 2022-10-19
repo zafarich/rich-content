@@ -39,6 +39,7 @@ export const useProduct = defineStore("product", {
 
       return new Promise((resolve, reject) => {
 				console.log(store.content)
+				console.log(JSON.stringify(store.content))
         return axios
           .post(
             VITE_BASE_URL + "/product/add-overview",
