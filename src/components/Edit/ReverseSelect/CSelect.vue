@@ -9,7 +9,7 @@
       :clearable="false"
       :options="options"
       label="title"
-      :reduce="(item) => (item.value ? item.value : item)"
+      :reduce="(item) => item.value"
       v-model="getSelected"
     >
       <template #no-options> Ooops, malumot topilmadi :( </template>

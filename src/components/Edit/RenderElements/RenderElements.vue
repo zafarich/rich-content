@@ -47,6 +47,7 @@
           >
             <div v-if="objectHas(item, 'reverse')">
               <h6 class="label font-medium mb-4">Другое</h6>
+              
               <CSelect
                 v-if="objectHas(item, 'reverse')"
                 @selected="getBlock[index].reverse = $event"
