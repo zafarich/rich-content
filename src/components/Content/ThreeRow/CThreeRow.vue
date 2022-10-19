@@ -5,11 +5,11 @@
         <a
           :href="item.clickLink || ''"
           target="_blank"
-          class="w-full h-full flex-center-center"
+          class="w-full h-[200px] flex-center-center"
           :class="{ 'pointer-events-none': !item.clickLink }"
         >
           <img
-            class="w-full h-full object-cover select-none mb-4"
+            class="w-full h-full object-contain select-none mb-4"
             :src="item.img.src"
             :alt="item.img.alt"
             :class="item.img.position"
