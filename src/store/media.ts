@@ -20,13 +20,14 @@ export const useMediaStore = defineStore("media", {
             signal: abortController.value.signal,
             onUploadProgress: (progressEvent) => {
               const { loaded, total } = progressEvent;
-              let percent = Math.floor((loaded * 100) / total);
+              let percent = Math.floor((loaded * 99) / total);
               progressCallback && progressCallback(percent);
             },
           })
           .then((res) => {
             const result = res?.data;
             result?.success && this.setMediaIdToLocalStorage(result?.data?.id);
+						progressCallback && progressCallback(100);
             resolve(res);
           })
           .catch((err) => {
