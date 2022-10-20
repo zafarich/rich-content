@@ -47,7 +47,7 @@
           >
             <div v-if="objectHas(item, 'reverse')">
               <h6 class="label font-medium mb-4">Другое</h6>
-              
+
               <CSelect
                 v-if="objectHas(item, 'reverse')"
                 @selected="getBlock[index].reverse = $event"
@@ -251,7 +251,6 @@ function updateErrMessage(
   target: string
 ): void {
   getBlock.value[index].asset[target] = message;
-  message && toast.error(message);
 }
 
 function showErrMessage(value: string, index: number, target: string): void {
@@ -262,6 +261,7 @@ function showErrMessage(value: string, index: number, target: string): void {
   }
 
   if (!isValidURL(value)) {
+    console.log('invaluid')
     updateErrMessage(ErrorList["invalidUrl"], index, target);
   }
 }

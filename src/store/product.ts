@@ -25,9 +25,9 @@ export const useProduct = defineStore("product", {
           }
         )
           .then((res) => {
-            const data = res.data.data.product;
+            const data = res?.data?.data?.product;
             this.product = data;
-            store.addContent(JSON.parse(data.overview));
+            store.addContent(JSON.parse(data?.overview || '[]'));
             resolve(data);
           })
           .catch((err) => {
@@ -39,8 +39,6 @@ export const useProduct = defineStore("product", {
       const { product_id, token, lang } = store.queryParams;
 
       return new Promise((resolve, reject) => {
-        console.log(store.content);
-        console.log(JSON.stringify(store.content));
         return axios
           .post(
             VITE_BASE_URL + "/v3/product/add-overview",

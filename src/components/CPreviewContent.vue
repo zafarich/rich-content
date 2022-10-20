@@ -136,7 +136,6 @@ import CVideo from "@/components/Content/Video/CVideo.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CTab from "@/components/Tab/CTab.vue";
 import CButton from "@/components/UI/Button/Cbutton.vue";
-import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 
 import useStore from "@/store/index";
 import useProduct from "@/store/product";
@@ -188,19 +187,37 @@ async function deleteLocalStorageIds() {
 }
 
 async function saveContent() {
-  productStore
-    .postProductOverview()
-    .then((res) => {
-      if (res.success) {
-        toast.success(res.message);
-        deleteLocalStorageIds();
-      } else {
-        toast.warning(res.message);
+  if (isContentsValid()) {
+    productStore
+      .postProductOverview()
+      .then((res) => {
+        if (res.success) {
+          toast.success(res.message);
+          deleteLocalStorageIds();
+        } else {
+          toast.warning(res.message);
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  }
+}
+
+function isContentsValid(): boolean {
+  for (let i in content.value) {
+    for (let k in content.value[i].content.block) {
+      let curr = content.value[i].content.block[k].asset;
+      for (let j in curr) {
+        if (j.endsWith("Err") && curr[j]) {
+          toast.warning(curr[j])
+          return false;
+        }
       }
-    })
-    .catch((err) => {
-      toast.error(err.message);
-    });
+    }
+  }
+
+  return true;
 }
 
 function handleDynamicComponentEvents(event: any) {
