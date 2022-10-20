@@ -261,7 +261,7 @@ function showErrMessage(value: string, index: number, target: string): void {
   }
 
   if (!isValidURL(value)) {
-    console.log('invaluid')
+    console.log("invaluid");
     updateErrMessage(ErrorList["invalidUrl"], index, target);
   }
 }

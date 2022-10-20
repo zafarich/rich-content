@@ -4,6 +4,13 @@ import { ref } from "vue";
 import { useMediaStore } from "./media";
 import { toggleMobileMode } from "@/helpers/global";
 
+interface QueryParams {
+  readonly: boolean;
+  product_id: number;
+  token: string;
+  lang: string;
+}
+
 export const useStore = defineStore("main", {
   state: () => ({
     content: ref([]),
@@ -14,14 +21,7 @@ export const useStore = defineStore("main", {
     deviceViewType: <"pc" | "phone">"pc",
     activeTableRowIdx: ref<number | null>(null),
     invalid: true,
-    queryParams: <
-      {
-        readonly: boolean;
-        product_id: number;
-        token: string;
-        lang: string;
-      }
-    >{
+    queryParams: <QueryParams>{
       readonly: false,
     },
   }),

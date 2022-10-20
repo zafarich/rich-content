@@ -91,13 +91,12 @@ const ErrorList = {
   lessThan1mb: "Размер файла должен быть меньше 1мб",
   base64: "Тип изображения base64 не допускается",
   invalidUrl: "URL изображения должен быть действительным",
-  videoLoading: 'Подождите, видео загружается'
+  videoLoading: "Подождите, видео загружается",
 };
 
-
 const getVideo = computed(() => {
-  return props.item.video 
-})
+  return props.item.video;
+});
 
 watch(
   () => getVideo.value.type,
@@ -107,7 +106,6 @@ watch(
     }
   }
 );
-
 
 function handleVideoUpload(e: any) {
   if (
@@ -120,7 +118,7 @@ function handleVideoUpload(e: any) {
     deleteCurrentMedia();
   }
 
-  updateErrMessage(ErrorList['videoLoading'], 'imgLinkErr');
+  updateErrMessage(ErrorList["videoLoading"], "imgLinkErr");
 
   handleProgressBar(0);
   storeControllerToStore();
@@ -133,8 +131,8 @@ function handleVideoUpload(e: any) {
     .postMedia(formData, handleProgressBar, controller)
     .then((res: any) => {
       const result = res.data;
-      
-      updateErrMessage('', 'imgLinkErr'); 
+
+      updateErrMessage("", "imgLinkErr");
 
       if (result.success) {
         getVideo.value.videoUrl = ENV_CDN + result.data.path;

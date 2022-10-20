@@ -210,7 +210,7 @@ function isContentsValid(): boolean {
       let curr = content.value[i].content.block[k].asset;
       for (let j in curr) {
         if (j.endsWith("Err") && curr[j]) {
-          toast.warning(curr[j])
+          toast.warning(curr[j]);
           return false;
         }
       }
