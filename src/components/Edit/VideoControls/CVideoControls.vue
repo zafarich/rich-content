@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, ref } from "vue";
+import { watch, ref, computed } from "vue";
 
 import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
 import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
@@ -91,16 +91,23 @@ const ErrorList = {
   lessThan1mb: "Размер файла должен быть меньше 1мб",
   base64: "Тип изображения base64 не допускается",
   invalidUrl: "URL изображения должен быть действительным",
+  videoLoading: 'Подождите, видео загружается'
 };
 
+
+const getVideo = computed(() => {
+  return props.item.video 
+})
+
 watch(
-  () => props.item.video.type,
+  () => getVideo.value.type,
   (value) => {
     if (value === "youtube") {
       controller.value?.abort();
     }
   }
 );
+
 
 function handleVideoUpload(e: any) {
   if (
@@ -109,24 +116,29 @@ function handleVideoUpload(e: any) {
     return;
   }
 
-  if (props.item.video.id) {
+  if (getVideo.value.id) {
     deleteCurrentMedia();
   }
+
+  updateErrMessage(ErrorList['videoLoading'], 'imgLinkErr');
 
   handleProgressBar(0);
   storeControllerToStore();
   controller.value = new AbortController();
   const formData = new FormData();
   formData.append("upload", e?.file);
-  props.item.video.localVideoUrl = e?.url;
+  getVideo.value.localVideoUrl = e?.url;
 
   props.mediaStore
     .postMedia(formData, handleProgressBar, controller)
     .then((res: any) => {
       const result = res.data;
+      
+      updateErrMessage('', 'imgLinkErr'); 
+
       if (result.success) {
-        props.item.video.videoUrl = ENV_CDN + result.data.path;
-        props.item.video.id = result.data.id;
+        getVideo.value.videoUrl = ENV_CDN + result.data.path;
+        getVideo.value.id = result.data.id;
       }
     })
     .catch((err: object) => {
@@ -137,9 +149,9 @@ function handleVideoUpload(e: any) {
 }
 
 function handleProgressBar(progress: number) {
-  props.item.video.loadState.updateState({ progress, isLoading: true });
+  getVideo.value.loadState.updateState({ progress, isLoading: true });
   if (progress === 100) {
-    props.item.video.loadState.updateState({ isLoading: false });
+    getVideo.value.loadState.updateState({ isLoading: false });
   }
 }
 
@@ -148,35 +160,35 @@ function storeControllerToStore(): void {
 }
 
 function handleVideoTypeChange(event: any) {
-  if (props.item.video.id) {
+  if (getVideo.value.id) {
     deleteCurrentMedia();
   }
 
-  props.item.video.type = event;
-  props.item.video.videoUrl = "";
-  props.item.video.localVideoUrl = "";
-  props.item.video.id = "";
+  getVideo.value.type = event;
+  getVideo.value.videoUrl = "";
+  getVideo.value.localVideoUrl = "";
+  getVideo.value.id = "";
 }
 
 function handleLinkEnter($event: any) {
-  if (props.item.video.id) {
+  if (getVideo.value.id) {
     deleteCurrentMedia();
-    props.item.video.id = "";
-    props.item.video.localVideoUrl = "";
+    getVideo.value.id = "";
+    getVideo.value.localVideoUrl = "";
   }
-  props.item.video.videoUrl = $event.target.value;
+  getVideo.value.videoUrl = $event.target.value;
   updateClickLink($event);
 }
 
 function deleteCurrentMedia() {
-  props.mediaStore.deleteMedia(props.item.video.id);
-  props.mediaStore.removeId(props.item.video.id);
+  props.mediaStore.deleteMedia(getVideo.value.id);
+  props.mediaStore.removeId(getVideo.value.id);
 }
 
 function updateClickLink(event: any) {
   const value = event?.target?.value || "";
   showErrMessage(value, 0, "imgLinkErr");
-  props.item.video.videoUrl = value;
+  getVideo.value.videoUrl = value;
 }
 
 function showErrMessage(value: string, index: number, target: string): void {
@@ -187,8 +199,8 @@ function showErrMessage(value: string, index: number, target: string): void {
   }
 
   if (
-    (props.item.video.type === "youtube" && !isValidYoutubeUrl(value)) ||
-    (props.item.video.type !== "youtube" && !isValidURL(value))
+    (getVideo.value.type === "youtube" && !isValidYoutubeUrl(value)) ||
+    (getVideo.value.type !== "youtube" && !isValidURL(value))
   ) {
     updateErrMessage(ErrorList["invalidUrl"], target);
   }

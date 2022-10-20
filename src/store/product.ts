@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import axios from "@/plugins/axios";
-import { P } from "@storybook/components";
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 import useStore from "@/store/index";
 const store = useStore();

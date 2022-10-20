@@ -36,12 +36,12 @@
 </template>
 
 <script setup lang="ts">
+import { Content } from "@/helpers/scheme_types";
+import CProgressBar from "@/components/UI/CProgressBar.vue";
+
 export interface Props {
   content: Content;
 }
-
-import { Content } from "@/helpers/scheme_types";
-import CProgressBar from "@/components/UI/CProgressBar.vue";
 
 withDefaults(defineProps<Props>(), {});
 
