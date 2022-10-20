@@ -27,7 +27,7 @@ export const useProduct = defineStore("product", {
           .then((res) => {
             const data = res?.data?.data?.product;
             this.product = data;
-            store.addContent(JSON.parse(data?.overview || '[]'));
+            data?.overview && store.addContent(JSON.parse(data?.overview));
             resolve(data);
           })
           .catch((err) => {
