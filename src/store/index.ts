@@ -69,7 +69,7 @@ export const useStore = defineStore("main", {
         this.axiosControllers[this.content[index].content.id]?.abort();
       }
 
-      mediaStore.removeMediaIdFromLocalStorage(index);
+      mediaStore.addMediaLocalStorage(index);
 
       this.content.splice(index, 1);
 

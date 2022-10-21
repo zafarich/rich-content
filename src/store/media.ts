@@ -88,7 +88,7 @@ export const useMediaStore = defineStore("media", {
       }
     },
 
-    async removeMediaIdFromLocalStorage(index: number): void {
+    async addMediaLocalStorage(index: number): void {
       localStorage.setItem("saved", false);
       const contentStore = useStore();
       const { block, table } = contentStore.content[index].content;

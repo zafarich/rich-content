@@ -138,11 +138,9 @@ import CButton from "@/components/UI/Button/Cbutton.vue";
 
 import useStore from "@/store/index";
 import useProduct from "@/store/product";
-import useMedia from "@/store/media";
 
 const store = useStore();
 const toast = useToast();
-const mediaStore = useMedia();
 const productStore = useProduct();
 const {
   step,
@@ -183,10 +181,6 @@ watch(activeIndex, (v): void => {
   }
 });
 
-async function deleteLocalStorageIds() {
-  await localStorage.removeItem("delete");
-}
-
 async function saveContent() {
   if (isContentsValid()) {
     productStore
@@ -194,9 +188,8 @@ async function saveContent() {
       .then(async (res) => {
         if (res.success) {
           await localStorage.setItem("saved", true);
-          await localStorage.removeItem('upload')
+          await localStorage.removeItem('upload');
           toast.success(res.message);
-          // deleteLocalStorageIds();
         } else {
           toast.warning(res.message);
         }

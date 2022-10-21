@@ -32,7 +32,7 @@
           <transition name="fade">
             <Icon
               v-if="getBlock?.length != 1"
-              @click="getBlock.splice(index, 1)"
+              @click="handleDelete(index)"
               class="cursor-pointer hover:opacity-70 transition"
               name="trash_bin"
               color="#BABAC0"
@@ -310,5 +310,10 @@ function handleListTheme(event: object): void {
       delete i.img;
     }
   }
+}
+
+function handleDelete(index: number): void {
+  mediaStore.setDelete(getBlock.value[index].img.id)
+  getBlock.value.splice(index, 1) 
 }
 </script>
