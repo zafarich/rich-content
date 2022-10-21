@@ -1,10 +1,5 @@
 <template>
   <div class="">
-    upload: {{ mediaStore.upload }}
-    <br />
-    delete: {{ mediaStore.delete }}
-    <br />
-    <br />
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
       {{ isFullScreen ? "Предпросмотр рич-контента" : "Конструктор контента" }}
     </h2>
