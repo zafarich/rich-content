@@ -5,12 +5,8 @@ import axios from "@/plugins/axios";
 
 import { useStore } from "./index";
 
-
 export const useMediaStore = defineStore("media", {
-  state: () => ({
-    delete: [],
-    upload: [],
-  }),
+  state: () => ({}),
 
   actions: {
     async postMedia(
