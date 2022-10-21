@@ -273,8 +273,7 @@ function updateImage(index: number, e: any): void {
     return;
   }
   if (getBlock.value[index].img.id) {
-    mediaStore.deleteMedia(getBlock.value[index].img.id);
-    mediaStore.removeId(getBlock.value[index].img.id);
+    mediaStore.setDelete(getBlock.value[index].img.id);
   }
 
   const formData = new FormData();

@@ -1,6 +1,10 @@
 <template>
   <div class="">
-    <!-- {{ product.id }} -->
+    upload: {{ mediaStore.upload }}
+    <br />
+    delete: {{ mediaStore.delete }}
+    <br />
+    <br />
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
       {{ isFullScreen ? "Предпросмотр рич-контента" : "Конструктор контента" }}
     </h2>
@@ -139,9 +143,11 @@ import CButton from "@/components/UI/Button/Cbutton.vue";
 
 import useStore from "@/store/index";
 import useProduct from "@/store/product";
+import useMedia from "@/store/media";
 
 const store = useStore();
 const toast = useToast();
+const mediaStore = useMedia();
 const productStore = useProduct();
 const {
   step,
@@ -190,10 +196,12 @@ async function saveContent() {
   if (isContentsValid()) {
     productStore
       .postProductOverview()
-      .then((res) => {
+      .then(async (res) => {
         if (res.success) {
+          await localStorage.setItem("saved", true);
+          await localStorage.removeItem('upload')
           toast.success(res.message);
-          deleteLocalStorageIds();
+          // deleteLocalStorageIds();
         } else {
           toast.warning(res.message);
         }

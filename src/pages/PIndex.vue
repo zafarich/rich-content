@@ -53,7 +53,15 @@ const { product } = storeToRefs(productStore);
 
 onMounted(() => {
   window.addEventListener("beforeunload", showAlertBeforeMount);
-  storeImage.deleteAllMedia();
+
+  let saved = JSON.parse(localStorage.getItem("saved"));
+
+  if (saved == null) {
+    localStorage.setItem("saved", false);
+  } else {
+    let type = saved ? "remove" : "upload";
+    storeImage.deleteItems(type);
+  }
 });
 
 onBeforeUnmount(() => {

@@ -179,8 +179,7 @@ function handleLinkEnter($event: any) {
 }
 
 function deleteCurrentMedia() {
-  props.mediaStore.deleteMedia(getVideo.value.id);
-  props.mediaStore.removeId(getVideo.value.id);
+  props.mediaStore.setDelete(getVideo.value.id);
 }
 
 function updateClickLink(event: any) {

@@ -6,7 +6,10 @@ import axios from "@/plugins/axios";
 import { useStore } from "./index";
 
 export const useMediaStore = defineStore("media", {
-  state: () => ({}),
+  state: () => ({
+    delete: [],
+    upload: [],
+  }),
 
   actions: {
     async postMedia(
@@ -14,6 +17,8 @@ export const useMediaStore = defineStore("media", {
       progressCallback: Function,
       abortController: any = ref(new AbortController())
     ) {
+      await localStorage.setItem("saved", false);
+
       return await new Promise((resolve, reject) => {
         axios
           .post("/files/rich-upload", data, {
@@ -26,7 +31,7 @@ export const useMediaStore = defineStore("media", {
           })
           .then((res) => {
             const result = res?.data;
-            result?.success && this.setMediaIdToLocalStorage(result?.data?.id);
+            result?.success && this.setUpload(result?.data?.id);
             progressCallback && progressCallback(100);
             resolve(res);
           })
@@ -37,6 +42,7 @@ export const useMediaStore = defineStore("media", {
     },
 
     async deleteMedia(id) {
+      await localStorage.setItem("saved", false);
       return await new Promise((resolve, reject) => {
         axios
           .delete(`/files/rich-upload/${id}`)
@@ -49,24 +55,40 @@ export const useMediaStore = defineStore("media", {
       });
     },
 
-    async deleteAllMedia(): void {
-      const ids = JSON.parse(await localStorage.getItem("delete"));
+    async setUpload(id: number): void {
+      const ids = JSON.parse(await localStorage.getItem("upload")) || [];
+      ids.push(id);
+      await localStorage.setItem("upload", JSON.stringify(ids));
+    },
+
+    async deleteUpload(id: number): void {
+      const ids = JSON.parse(await localStorage.getItem("upload"));
+
+      if (ids) {
+        const index = ids.findIndex((e) => e == id);
+        ids.splice(index, 1);
+        await localStorage.setItem("upload", JSON.stringify(ids));
+      }
+    },
+
+    async setDelete(id: number): void {
+      this.deleteUpload(id)
+      const ids = JSON.parse(await localStorage.getItem("remove")) || [];
+      !ids.includes(id) && ids.push(id);
+      await localStorage.setItem("remove", JSON.stringify(ids));
+    },
+
+    async deleteItems(type: "remove" | "upload"): void {
+      const ids = JSON.parse(await localStorage.getItem(type));
 
       if (ids) {
         let i = 0;
         while (i < ids.length) {
-          // eslint-disable-next-line
           await this.deleteMedia(ids[i]).catch((err) => console.log(err));
           i++;
         }
-        await localStorage.removeItem("delete");
+        await localStorage.removeItem(type);
       }
-    },
-
-    async setMediaIdToLocalStorage(id: number): void {
-      const ids = JSON.parse(await localStorage.getItem("delete")) || [];
-      ids.push(id);
-      await localStorage.setItem("delete", JSON.stringify(ids));
     },
 
     async removeMediaIdFromLocalStorage(index: number): void {
@@ -79,8 +101,7 @@ export const useMediaStore = defineStore("media", {
         const id = elements[i]?.img?.id || elements[i]?.video?.id;
 
         if (!id) continue;
-        await this.deleteMedia(id).catch((err) => console.log(err));
-        await this.removeId(id).catch((err) => console.log(err));
+        this.setDelete(id)
       }
     },
 

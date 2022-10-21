@@ -71,6 +71,7 @@ export const useStore = defineStore("main", {
       mediaStore.removeMediaIdFromLocalStorage(index);
 
       this.content.splice(index, 1);
+
       if (this.activeIndex == index) {
         this.activeIndex = null;
         this.step = "drop";
