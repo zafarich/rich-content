@@ -4,7 +4,7 @@
     <div class="h-[44px] rounded relative border-2 border-yellow">
       <input
         :id="'file' + index"
-        accept="image/*"
+        accept="image/webp"
         type="file"
         name="file"
         class="w-0 h-0 absolute"

@@ -4,7 +4,7 @@
     <div class="h-[44px] rounded relative border-2 border-yellow">
       <input
         :id="'file' + index"
-        accept="video/*"
+        accept="video/mp4"
         type="file"
         name="file"
         class="w-0 h-0 absolute"
@@ -21,7 +21,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import { useToast } from "vue-toastification";
 import Icon from "@/components/Icon/Icon.vue";
 
@@ -47,8 +47,8 @@ const handleFile = (event: any) => {
   if (!event.target.files[0]) return;
 
   const file = event.target.files[0];
-  if (file.size > 250000000) {
-    toast.error("Максимальный размер видео 250 мб");
+  if (file.size > 10000000) {
+    toast.error("Максимальный размер видео 10мб");
     return;
   }
 
