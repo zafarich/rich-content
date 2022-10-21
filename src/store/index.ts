@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { useMediaStore } from "./media";
+import useMediaStore from "./media";
 import { toggleMobileMode } from "@/helpers/global";
 
 interface QueryParams {
@@ -10,6 +10,8 @@ interface QueryParams {
   token: string;
   lang: string;
 }
+
+const mediaStore = useMediaStore();
 
 export const useStore = defineStore("main", {
   state: () => ({
@@ -67,7 +69,6 @@ export const useStore = defineStore("main", {
         this.axiosControllers[this.content[index].content.id]?.abort();
       }
 
-      const mediaStore = useMediaStore();
       mediaStore.removeMediaIdFromLocalStorage(index);
 
       this.content.splice(index, 1);
@@ -99,6 +100,7 @@ export const useStore = defineStore("main", {
     },
     addContent(content) {
       this.content = content;
+      mediaStore.inRemove()
     },
   },
 });

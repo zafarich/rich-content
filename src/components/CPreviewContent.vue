@@ -266,8 +266,6 @@ function handleAdd(e): void {
     content.value[activeIndex.value].content.id = uuidv4();
   }
 }
-
-console.log(content.value);
 </script>
 
 <style scoped>

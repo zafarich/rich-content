@@ -5,6 +5,7 @@ import axios from "@/plugins/axios";
 
 import { useStore } from "./index";
 
+
 export const useMediaStore = defineStore("media", {
   state: () => ({
     delete: [],
@@ -92,6 +93,7 @@ export const useMediaStore = defineStore("media", {
     },
 
     async removeMediaIdFromLocalStorage(index: number): void {
+      localStorage.setItem("saved", false);
       const contentStore = useStore();
       const { block, table } = contentStore.content[index].content;
       let elements = undefined;
@@ -99,20 +101,32 @@ export const useMediaStore = defineStore("media", {
 
       for (const i in elements) {
         const id = elements[i]?.img?.id || elements[i]?.video?.id;
-
         if (!id) continue;
-        this.setDelete(id)
+        await this.setDelete(id)
       }
     },
 
-    async removeId(id: number): void {
-      const ids = JSON.parse(await localStorage.getItem("delete"));
+    async inRemove() {
+      const contentStore = useStore();
+      const removes = JSON.parse(localStorage.getItem("remove"));
+      const content = contentStore.content
 
-      if (ids) {
-        const index = ids.findIndex((e) => e == id);
-        ids.splice(index, 1);
-        await localStorage.setItem("delete", JSON.stringify(ids));
+      for(let i in  content) {
+        const { block, table } = content[i].content;
+        let elements = undefined;
+        elements = block ? block : table?.head;
+
+        for(let k in elements) {
+          const id = elements[k]?.img?.id || elements[k]?.video?.id;
+
+          if(removes?.includes(id)) {
+            let idx = removes.findIndex(e => e == id)
+            await removes.splice(idx, 1)
+          } 
+        }
       }
+
+      await localStorage.setItem("remove", JSON.stringify(removes));
     },
   },
 });
