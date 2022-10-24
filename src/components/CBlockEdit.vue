@@ -54,7 +54,8 @@ function handleBack() {
 }
 
 function handleAddBlock(): void {
-  let current = content.value[activeIndex.value].content;
+  let current = content?.value[activeIndex?.value].content;
+  if(!current) return; 
 
   switch (current.type) {
     case "list":

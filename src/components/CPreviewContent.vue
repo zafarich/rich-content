@@ -50,7 +50,7 @@
                   '!border-yellow transition':
                     index == activeIndex && !isFullScreen,
                 },
-                { '!border-none': isFullScreen },
+                { '!border-none !p-0': isFullScreen },
               ]"
               @click="!isFullScreen && (activeIndex = index)"
             >
