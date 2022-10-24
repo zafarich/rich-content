@@ -23,6 +23,8 @@
           class="w-full aspect-video"
         >
           <source
+            type="video/mp4"
+
             :src="
               item.video.localVideoUrl ||
               item.video.videoUrl ||
