@@ -25,15 +25,15 @@ export const view = [
   },
   {
     title: "Primary",
-    value: "bg-yellow",
+    value: "bg-gold-1",
   },
   {
     title: "Secondary",
-    value: "bg-[#fff]",
+    value: "bg-white",
   },
   {
     title: "Tertiary",
-    value: "bg-[#eff3f6]",
+    value: "bg-gray-12",
   },
 ];
 

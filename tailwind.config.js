@@ -19,6 +19,8 @@ module.exports = {
           200: "#EFF3F6",
           300: "#E9EBEF",
         },
+        "gold-1": "#FBC100",
+        "gray-12": "#eff3f6",
         yellow: {
           DEFAULT: "#FBC100",
         },

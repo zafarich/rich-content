@@ -29,9 +29,9 @@ export type TextSizes =
 
 export type ThemeTypes =
   | "bg-transparent"
-  | "bg-[#FBC100]"
-  | "bg-[#fff]"
-  | "bg-[#eff3f6]";
+  | "bg-gold-1"
+  | "bg-white"
+  | "bg-gray-12";
 
 export type PaddingTypes = "p-0" | "p-10";
 export type GapTypes = "mb-2" | "mb-4";
