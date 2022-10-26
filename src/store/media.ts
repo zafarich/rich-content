@@ -69,7 +69,7 @@ export const useMediaStore = defineStore("media", {
     },
 
     async setDelete(id: number): void {
-      this.deleteUpload(id)
+      this.deleteUpload(id);
       const ids = JSON.parse(await localStorage.getItem("remove")) || [];
       !ids.includes(id) && ids.push(id);
       await localStorage.setItem("remove", JSON.stringify(ids));
@@ -98,27 +98,27 @@ export const useMediaStore = defineStore("media", {
       for (const i in elements) {
         const id = elements[i]?.img?.id || elements[i]?.video?.id;
         if (!id) continue;
-        await this.setDelete(id)
+        await this.setDelete(id);
       }
     },
 
     async inRemove() {
       const contentStore = useStore();
       const removes = JSON.parse(localStorage.getItem("remove"));
-      const content = contentStore.content
+      const content = contentStore.content;
 
-      for(let i in  content) {
+      for (let i in content) {
         const { block, table } = content[i].content;
         let elements = undefined;
         elements = block ? block : table?.head;
 
-        for(let k in elements) {
+        for (let k in elements) {
           const id = elements[k]?.img?.id || elements[k]?.video?.id;
 
-          if(removes?.includes(id)) {
-            let idx = removes.findIndex(e => e == id)
-            await removes.splice(idx, 1)
-          } 
+          if (removes?.includes(id)) {
+            let idx = removes.findIndex((e) => e == id);
+            await removes.splice(idx, 1);
+          }
         }
       }
 

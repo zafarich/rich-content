@@ -100,7 +100,7 @@ export const useStore = defineStore("main", {
     },
     addContent(content) {
       this.content = content;
-      mediaStore.inRemove()
+      mediaStore.inRemove();
     },
   },
 });

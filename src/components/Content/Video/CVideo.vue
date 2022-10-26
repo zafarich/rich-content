@@ -22,15 +22,7 @@
           lazy="true"
           class="w-full aspect-video"
         >
-          <source
-            type="video/mp4"
-
-            :src="
-              item.video.localVideoUrl ||
-              item.video.videoUrl ||
-              'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4'
-            "
-          />
+          <source type="video/mp4" :src="getVideo(item)" />
         </video>
       </template>
     </div>
@@ -40,12 +32,14 @@
 <script setup lang="ts">
 import { Content } from "@/helpers/scheme_types";
 import CProgressBar from "@/components/UI/CProgressBar.vue";
+import { inject } from "vue";
 
 export interface Props {
   content: Content;
 }
 
 withDefaults(defineProps<Props>(), {});
+const $CDN = inject("cdn");
 
 function youTubeLinkToEmbed(url: string) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -54,5 +48,14 @@ function youTubeLinkToEmbed(url: string) {
   return match && match[2].length === 11
     ? "https://www.youtube.com/embed/" + match[2]
     : null;
+}
+
+function getVideo(item: object): string {
+  if (item.video.localVideoUrl) return item.video.localVideoUrl;
+
+  return (
+    $CDN +
+    (item.video.videoUrl || "uploads/rich/content/flower_6346b2fa4ae62.mp4")
+  );
 }
 </script>

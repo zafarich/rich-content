@@ -63,7 +63,6 @@ onMounted(() => {
     let type = saved ? "remove" : "upload";
     storeImage.deleteItems(type);
   }
-
 });
 
 onBeforeUnmount(() => {

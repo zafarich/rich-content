@@ -188,7 +188,7 @@ async function saveContent() {
       .then(async (res) => {
         if (res.success) {
           await localStorage.setItem("saved", true);
-          await localStorage.removeItem('upload');
+          await localStorage.removeItem("upload");
           toast.success(res.message);
         } else {
           toast.warning(res.message);

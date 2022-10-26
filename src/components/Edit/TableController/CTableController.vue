@@ -139,7 +139,6 @@ const store = useStore();
 const titleToggle = ref(true);
 const lineToggle = ref(true);
 const mediaStore = useMediaStore();
-const ENV_CDN = import.meta.env.VITE_CDN;
 const lineActions = ref(["addBodyTop", "addBodyBottom", "removeBody"]);
 const props = withDefaults(defineProps<Props>(), {});
 
@@ -205,7 +204,7 @@ function updateImage(index: number, e: any): void {
     .then((res) => {
       const result = res.data;
       if (result.success) {
-        getHead.value[index].img.src = ENV_CDN + result.data.path;
+        getHead.value[index].img.src = result.data.path;
         getHead.value[index].img.id = result.data.id;
       }
     })

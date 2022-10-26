@@ -9,7 +9,7 @@
   >
     <img
       class="w-full h-full object-cover"
-      :src="item.img.src"
+      :src="$CDN + item.img.src"
       :alt="item.img.alt"
       :class="item.img.position"
     />
@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { Content } from "@/helpers/scheme_types";
+import { inject } from "vue";
 
 export interface Props {
   content: Content;
@@ -29,4 +30,6 @@ interface Emits {
 
 withDefaults(defineProps<Props>(), {});
 defineEmits<Emits>();
+
+const $CDN = inject("cdn");
 </script>

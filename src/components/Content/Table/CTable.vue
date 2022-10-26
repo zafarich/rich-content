@@ -13,7 +13,7 @@
           <th v-for="(item, index) in getHead" :key="index + item">
             <img
               class="w-24 h-24 my-4 mx-auto object-cover"
-              :src="item?.img?.src"
+              :src="$CDN + item?.img?.src"
               :alt="item?.img?.alt"
             />
             <CContentInput
@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import CContentInput from "@/components/UI/Input/ContentInput/CContentInput.vue";
 import { Content } from "@/helpers/scheme_types";
-import { computed } from "vue";
+import { computed, inject } from "vue";
 
 export interface Props {
   content: Content;
@@ -67,6 +67,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {});
 const $emit = defineEmits<Emits>();
+const $CDN = inject("cdn");
 
 const getHead = computed(() => {
   return props?.content?.table?.head;

@@ -41,8 +41,7 @@
           @input="handleLinkEnter"
           v-bind="{
             label: 'Прямая ссылка на видео',
-            placeholder:
-              'https://files.techno-mart.uz/storage/uploads/rich/content/flower_6346b2fa4ae62.mp4',
+            placeholder: 'uploads/rich/content/flower_6346b2fa4ae62.mp4',
           }"
         />
 
@@ -72,7 +71,6 @@ const store = useStore();
 const { activeIndex, content } = storeToRefs(store);
 
 const toast = useToast();
-const ENV_CDN = import.meta.env.VITE_CDN;
 const props = defineProps({
   videoTypeOptions: Array,
   item: {
@@ -135,7 +133,7 @@ function handleVideoUpload(e: any) {
       updateErrMessage("", "imgLinkErr");
 
       if (result.success) {
-        getVideo.value.videoUrl = ENV_CDN + result.data.path;
+        getVideo.value.videoUrl = result.data.path;
         getVideo.value.id = result.data.id;
       }
     })
