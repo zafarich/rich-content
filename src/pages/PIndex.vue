@@ -1,3 +1,4 @@
+<!-- ?lang=uz&product_id=104883&token=kOuj37tRSe0f9uhRkN5-aVcFEebPnJM6&readonly=false TEST -->
 <template>
   <div class="mb-10">
     <CHeader />
