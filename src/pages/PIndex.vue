@@ -77,11 +77,6 @@ function showAlertBeforeMount(event: object) {
   store.setQueryParams(route.query);
   productStore.fetchProduct();
 })();
-
-// TODOS: 
-// 1. media link paste 
-// 2. texnomart site responsive
-
 </script>
 
 <style scoped>
