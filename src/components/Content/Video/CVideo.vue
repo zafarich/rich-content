@@ -32,14 +32,13 @@
 <script setup lang="ts">
 import { Content } from "@/helpers/scheme_types";
 import CProgressBar from "@/components/UI/CProgressBar.vue";
-import { inject } from "vue";
+import { checkSrc } from '@/helpers/global'
 
 export interface Props {
   content: Content;
 }
 
 withDefaults(defineProps<Props>(), {});
-const $CDN = inject("cdn");
 
 function youTubeLinkToEmbed(url: string) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -53,9 +52,6 @@ function youTubeLinkToEmbed(url: string) {
 function getVideo(item: object): string {
   if (item.video.localVideoUrl) return item.video.localVideoUrl;
 
-  return (
-    $CDN +
-    (item.video.videoUrl || "uploads/rich/content/flower_6346b2fa4ae62.mp4")
-  );
+  return checkSrc(item.video.videoUrl || "/uploads/rich/content/flower_6346b2fa4ae62.mp4");
 }
 </script>

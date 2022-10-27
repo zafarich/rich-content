@@ -81,7 +81,7 @@ function addList(current: object): object {
   if (current.theme == "image") {
     add.img = {
       id: undefined,
-      src: "uploads/rich/content/default1416x708_633d63646f747.png",
+      src: "/uploads/rich/content/default1416x708_633d63646f747.png",
       alt: "Текстовое описание изображения",
     };
   }
@@ -99,7 +99,7 @@ function addTable(current: object): object {
   const defaultHead = {
     img: {
       id: undefined,
-      src: "uploads/rich/content/default1416x708_633d63646f747.png",
+      src: "/uploads/rich/content/default1416x708_633d63646f747.png",
       alt: "Текстовое описание изображения",
     },
     text: {

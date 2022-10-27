@@ -75,7 +75,7 @@
 
             <div v-if="objectHas(item, 'img')">
               <CInput
-                :model-value="getBlock[index].img.src"
+                :model-value="checkSrc(getBlock[index].img.src)"
                 @input="updateImageInput($event, index)"
                 v-bind="{
                   label: 'Прямая ссылка на изображение',
@@ -187,7 +187,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { computed } from "vue";
+import { computed, inject } from "vue";
 
 import CAccordion from "@/components/Accordion/CAccordion.vue";
 import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
@@ -199,7 +199,7 @@ import CVideoControls from "@/components/Edit/VideoControls/CVideoControls.vue";
 import CTableController from "@/components/Edit/TableController/CTableController.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import CInput from "@/components/UI/Input/Input/CInput.vue";
-import { objectHas, isValidURL } from "@/helpers/global";
+import { objectHas, isValidURL, checkSrc } from "@/helpers/global";
 import useMediaStore from "@/store/media";
 import useStore from "@/store/index";
 import { useToast } from "vue-toastification";
@@ -215,7 +215,7 @@ import {
 const store = useStore();
 const mediaStore = useMediaStore();
 const { activeIndex, content } = storeToRefs(store);
-const ENV_CDN = import.meta.env.VITE_CDN;
+const $CDN = inject('cdn');
 const toast = useToast();
 
 const ErrorList = {
@@ -233,7 +233,9 @@ const getContent = computed(() => {
 });
 
 function updateImageInput(event: any, index: number): void {
-  const value = event?.target?.value || "";
+  let value = event?.target?.value || "";
+  if(value.startsWith($CDN)) value = value.replace($CDN, '')
+  console.log(value, 'value')
   showErrMessage(value, index, "imgLinkErr");
   getBlock.value[index].img.src = value;
   getBlock.value[index].img.id = undefined;
@@ -261,7 +263,6 @@ function showErrMessage(value: string, index: number, target: string): void {
   }
 
   if (!isValidURL(value)) {
-    console.log("invaluid");
     updateErrMessage(ErrorList["invalidUrl"], index, target);
   }
 }
@@ -285,7 +286,7 @@ function updateImage(index: number, e: any): void {
       const result = res.data;
       if (result.success) {
         updateErrMessage("", index, "imgLinkErr");
-        getBlock.value[index].img.src = result.data.path;
+        getBlock.value[index].img.src = '/' + result.data.path;
         getBlock.value[index].img.id = result.data.id;
       }
     })
@@ -301,7 +302,7 @@ function handleListTheme(event: object): void {
     for (let i of getBlock.value) {
       i.img = {
         id: undefined,
-        src: "uploads/rich/content/default1416x708_633d63646f747.png",
+        src: "/uploads/rich/content/default1416x708_633d63646f747.png",
         alt: "Текстовое описание изображения",
       };
     }

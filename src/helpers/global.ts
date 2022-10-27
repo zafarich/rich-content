@@ -56,3 +56,5 @@ export function isValidYoutubeUrl(url) {
   }
   return false;
 }
+
+export const checkSrc = (str: string): string => str.startsWith('/') ? import.meta.env.VITE_CDN + str : str;

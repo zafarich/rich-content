@@ -24,6 +24,6 @@ const Template: Story = (args) => ({
 
 export const ImageView = Template.bind({});
 ImageView.args = {
-  currentImage: "uploads/rich/content/default1416x708_633d63646f747.png",
+  currentImage: "/uploads/rich/content/default1416x708_633d63646f747.png",
   currentPosition: "w-full h-full",
 };
