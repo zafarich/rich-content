@@ -235,7 +235,6 @@ const getContent = computed(() => {
 function updateImageInput(event: any, index: number): void {
   let value = event?.target?.value || "";
   if(value.startsWith($CDN)) value = value.replace($CDN, '')
-  console.log(value, 'value')
   showErrMessage(value, index, "imgLinkErr");
   getBlock.value[index].img.src = value;
   getBlock.value[index].img.id = undefined;

@@ -41,6 +41,7 @@ export function toggleMobileMode(item) {
   }
 }
 export function isValidURL(url: string): boolean {
+  if(url.startsWith('/')) return true;
   try {
     new URL(url);
     return true;

@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col gap-12">
     <div v-for="(item, index) in content?.block" :key="index">
+        {{item.img.src}}
       <a
         :href="item.clickLink || ''"
         target="_blank"

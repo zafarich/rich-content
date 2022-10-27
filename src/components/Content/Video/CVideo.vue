@@ -51,7 +51,6 @@ function youTubeLinkToEmbed(url: string) {
 
 function getVideo(item: object): string {
   if (item.video.localVideoUrl) return item.video.localVideoUrl;
-
   return checkSrc(item.video.videoUrl || "/uploads/rich/content/flower_6346b2fa4ae62.mp4");
 }
 </script>
