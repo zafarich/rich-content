@@ -87,7 +87,6 @@ const props = defineProps({
 const controller = ref();
 
 const ErrorList = {
-  lessThan1mb: "Размер файла должен быть меньше 1мб",
   base64: "Тип изображения base64 не допускается",
   invalidUrl: "URL изображения должен быть действительным",
   videoLoading: "Подождите, видео загружается",

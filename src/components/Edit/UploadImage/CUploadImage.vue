@@ -23,6 +23,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 
+import { useToast } from "vue-toastification";
 import Icon from "@/components/Icon/Icon.vue";
 
 interface Emits {
@@ -34,6 +35,7 @@ export interface Props {
 
 const $emit = defineEmits<Emits>();
 withDefaults(defineProps<Props>(), {});
+const toast = useToast();
 
 const image = reactive({
   url: null,
@@ -43,21 +45,33 @@ const image = reactive({
 let imageName = ref("");
 
 const handleFile = (event: any) => {
+  if (!event.target.files[0]) return;
+
+  const file = event.target.files[0];
+
+  if(file.type != 'image/webp') {
+    toast.warning('Тип изображения должен быть webp')
+    return;
+  };
+  
+  if (file.size > 200000) {
+    toast.error("Размер файла должен быть меньше 200КБ");
+    return;
+  }
+
   if (image.url) {
     image.url = null;
     image.file = null;
   }
 
-  image.file = event.target.files[0];
-  imageName.value = image.file?.name;
+  image.file = file 
+  imageName.value = image.file.name;
   const reader = new FileReader();
-  if (event.target.files[0]) {
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (e) => {
-      image.url = e.target?.result;
-    };
-    $emit("uploaded", image);
-  }
+  reader.readAsDataURL(event.target.files[0]);
+  reader.onload = (e) => {
+    image.url = e.target?.result;
+  };
+  $emit("uploaded", image);
 };
 const getFile = (index: number): void => {
   const input = document.getElementById(`file${index}`);

@@ -219,7 +219,6 @@ const $CDN = inject('cdn');
 const toast = useToast();
 
 const ErrorList = {
-  lessThan1mb: "Размер файла должен быть меньше 200КБ",
   base64: "Тип изображения base64 не допускается",
   invalidUrl: "URL изображения должен быть действительным",
 };
@@ -268,10 +267,7 @@ function showErrMessage(value: string, index: number, target: string): void {
 
 function updateImage(index: number, e: any): void {
   updateErrMessage("", index, "uploadErr");
-  if (e?.file?.size > 200000) {
-    updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
-    return;
-  }
+
   if (getBlock.value[index].img.id) {
     mediaStore.setDelete(getBlock.value[index].img.id);
   }
