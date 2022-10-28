@@ -67,6 +67,7 @@ import CVideoUpload from "./CVideoUpload.vue";
 import { isValidURL, isValidYoutubeUrl, checkSrc } from "@/helpers/global";
 import { storeToRefs } from "pinia";
 import useStore from "@/store/index";
+
 const store = useStore();
 const { activeIndex, content } = storeToRefs(store);
 
@@ -188,7 +189,7 @@ function updateClickLink(event: any) {
   getVideo.value.videoUrl = value;
 }
 
-function showErrMessage(value: string, index: number, target: string): void {
+function showErrMessage(value: string, target: string): void {
   updateErrMessage("", target);
 
   if (value.startsWith("data:")) {

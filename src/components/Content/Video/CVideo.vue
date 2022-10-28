@@ -11,7 +11,7 @@
         <iframe
           v-if="item.video.type === 'youtube'"
           class="w-full aspect-video"
-          :src="youTubeLinkToEmbed(item.video.videoUrl)"
+          :src="youTubeLinkToEmbed(item.video.videoUrl || 'https://youtu.be/xffp8p-vyMY') "
         >
         </iframe>
 
@@ -41,6 +41,7 @@ export interface Props {
 withDefaults(defineProps<Props>(), {});
 
 function youTubeLinkToEmbed(url: string) {
+
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
 
