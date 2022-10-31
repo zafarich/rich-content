@@ -18,7 +18,7 @@ export const useMediaStore = defineStore("media", {
 
       return await new Promise((resolve, reject) => {
         axios
-          .post("/files/rich-upload", data, {
+          .post("/rich", data, {
             signal: abortController.value.signal,
             onUploadProgress: (progressEvent) => {
               const { loaded, total } = progressEvent;
@@ -42,7 +42,7 @@ export const useMediaStore = defineStore("media", {
       await localStorage.setItem("saved", false);
       return await new Promise((resolve, reject) => {
         axios
-          .delete(`/files/rich-upload/${id}`)
+          .delete(`/rich/${id}`)
           .then((res) => {
             resolve(res);
           })

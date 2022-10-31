@@ -42,6 +42,7 @@
 import { ref } from "vue";
 import vSelect from "vue-select";
 
+import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CChooseColor from "@/components/Edit/ChooseColor/CChooseColor.vue";
 import CTextAlignment from "@/components/Edit/TextAlignment/CTextAlignment.vue";
 import { objectHas } from "@/helpers/global";
@@ -56,9 +57,11 @@ interface Emits {
   (e: "update-text", v: { type: string; item: string; value: string }): void;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   showTitle: true,
 });
+
+console.log(props.item, 'item')
 
 const $emit = defineEmits<Emits>();
 

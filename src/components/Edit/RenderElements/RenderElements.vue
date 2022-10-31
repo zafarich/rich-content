@@ -273,7 +273,7 @@ function updateImage(index: number, e: any): void {
   }
 
   const formData = new FormData();
-  formData.append("upload", e?.file);
+  formData.append("file", e?.file);
 
   mediaStore
     .postMedia(formData)
@@ -281,7 +281,7 @@ function updateImage(index: number, e: any): void {
       const result = res.data;
       if (result.success) {
         updateErrMessage("", index, "imgLinkErr");
-        getBlock.value[index].img.src = '/' + result.data.path;
+        getBlock.value[index].img.src = '/' + result.data.url;
         getBlock.value[index].img.id = result.data.id;
       }
     })
@@ -297,7 +297,7 @@ function handleListTheme(event: object): void {
     for (let i of getBlock.value) {
       i.img = {
         id: undefined,
-        src: "/uploads/rich/content/default1416x708_633d63646f747.png",
+        src: "/bBh/default_image.webp.webp?view",
         alt: "Текстовое описание изображения",
       };
     }
