@@ -46,7 +46,7 @@ class GenerateBlock {
     if (img) {
       block.img = {
         id: undefined,
-        src: "/uploads/rich/content/default1416x708_633d63646f747.png",
+        src: "/bBh/default_image.webp.webp?view",
         alt: "Текстовое описание изображения",
       };
     }
@@ -233,7 +233,7 @@ const table: Content = {
       {
         img: {
           id: undefined,
-          src: "/uploads/rich/content/default1416x708_633d63646f747.png",
+          src: "/bBh/default_image.webp.webp?view",
           alt: "Текстовое описание изображения",
         },
         text: {
@@ -249,7 +249,7 @@ const table: Content = {
       {
         img: {
           id: undefined,
-          src: "/uploads/rich/content/default1416x708_633d63646f747.png",
+          src: "/bBh/default_image.webp.webp?view",
           alt: "Текстовое описание изображения",
         },
         text: {
@@ -265,7 +265,7 @@ const table: Content = {
       {
         img: {
           id: undefined,
-          src: "/uploads/rich/content/default1416x708_633d63646f747.png",
+          src: "/bBh/default_image.webp.webp?view",
           alt: "Текстовое описание изображения",
         },
         text: {

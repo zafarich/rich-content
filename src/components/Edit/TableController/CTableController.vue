@@ -197,14 +197,14 @@ function updateImage(index: number, e: any): void {
   }
 
   const formData = new FormData();
-  formData.append("upload", e?.file);
+  formData.append("file", e?.file);
 
   mediaStore
     .postMedia(formData)
     .then((res) => {
       const result = res.data;
       if (result.success) {
-        getHead.value[index].img.src = '/' + result.data.path;
+        getHead.value[index].img.src = '/' + result.data.url;
         getHead.value[index].img.id = result.data.id;
       }
     })

@@ -41,7 +41,7 @@
           @input="handleLinkEnter"
           v-bind="{
             label: 'Прямая ссылка на видео',
-            placeholder: 'https://texnomart.com/uploads/rich/content/flower_6346b2fa4ae62.mp4',
+            placeholder: 'https://texnomart.com/bBh/default_image.webp.webp?view',
           }"
         />
 
@@ -123,7 +123,7 @@ function handleVideoUpload(e: any) {
   storeControllerToStore();
   controller.value = new AbortController();
   const formData = new FormData();
-  formData.append("upload", e?.file);
+  formData.append("file", e?.file);
   getVideo.value.localVideoUrl = e?.url;
 
   props.mediaStore
@@ -134,7 +134,7 @@ function handleVideoUpload(e: any) {
       updateErrMessage("", "imgLinkErr");
 
       if (result.success) {
-        getVideo.value.videoUrl = '/' + result.data.path;
+        getVideo.value.videoUrl = '/' + result.data.url;
         getVideo.value.id = result.data.id;
       }
     })
