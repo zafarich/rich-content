@@ -36,7 +36,7 @@ const blocks: TTypes[] = [
   },
   {
     block_img: "/images/blocks/block6.png",
-    block_text: "Две карточки с фото",
+    block_text: "Три карточки с фото",
     content: Scheme["threeRow"],
   },
   {
