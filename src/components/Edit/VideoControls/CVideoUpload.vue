@@ -53,7 +53,6 @@ const handleFile = (event: any) => {
     return;
   };
   
-  console.log(file.size, 'file.size')
   if (file.size > 10485760 ) {
     toast.error("Максимальный размер видео 10мб");
     return;
