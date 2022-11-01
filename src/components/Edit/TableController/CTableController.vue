@@ -39,6 +39,7 @@
           :class="{
             'line-action__disabled':
               activeTableRowIdx === null && i == 'removeBody',
+              
           }"
         >
           <Icon :name="i" />
@@ -170,14 +171,16 @@ function handleLineAction(current: string): void {
     "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
   const { body, head } = props.item.table;
   const arr = new Array(head.length).fill(defaultBodyText);
+  let rowIdx = activeTableRowIdx.value
 
   if (current == "addBodyTop") {
-    body.splice(activeTableRowIdx.value, 0, arr);
+    body.splice((rowIdx || 0), 0, arr);
   } else if (current == "addBodyBottom") {
-    body.splice(activeTableRowIdx.value + 1, 0, arr);
+    rowIdx && body.splice(rowIdx + 1, 0, arr);
+    rowIdx == null && body.splice(body.length, 0, arr)
   } else {
-    body.splice(activeTableRowIdx.value, 1);
-    activeTableRowIdx.value = null;
+    body.splice(rowIdx, 1);
+    rowIdx = null;
   }
 }
 

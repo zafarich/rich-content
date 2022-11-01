@@ -45,12 +45,13 @@ import Scheme from "@/helpers/scheme";
 import useStore from "@/store/index";
 
 const store = useStore();
-const { step, activeIndex, content } = storeToRefs(store);
+const { step, activeIndex, content, activeTableRowIdx } = storeToRefs(store);
 const addBlockBtn = ref(false);
 
 function handleBack() {
   step.value = "drop";
   activeIndex.value = null;
+  activeTableRowIdx.value = null;
 }
 
 function handleAddBlock(): void {
