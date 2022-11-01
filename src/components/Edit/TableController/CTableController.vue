@@ -91,7 +91,7 @@
 
           <div>
             <CInput
-              :model-value="item.img.src"
+              :model-value="checkSrc(item.img.src)"
               @input="updateImageInput($event, index)"
               v-bind="{
                 label: 'Прямая ссылка на изображение',
@@ -120,7 +120,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 
 import CInput from "@/components/UI/Input/Input/CInput.vue";
 import CErrorMeassage from "@/components/Edit/ErrorMessage/CErrorMessage.vue";
@@ -131,11 +131,14 @@ import CTextDetails from "@/components/Edit/TextDetails/CTextDetails.vue";
 import CAccordion from "@/components/Accordion/CAccordion.vue";
 import Icon from "@/components/Icon/Icon.vue";
 import useStore from "@/store/index";
+import { checkSrc, isValidURL } from "@/helpers/global";
+
 
 export interface Props {
   item?: object;
 }
 
+const $CDN = inject('cdn');
 const store = useStore();
 const titleToggle = ref(true);
 const lineToggle = ref(true);
@@ -185,7 +188,8 @@ function handleLineAction(current: string): void {
 }
 
 function updateImageInput(event: any, index: number): void {
-  const value = event?.target?.value || "";
+  let value = event?.target?.value || "";
+  if(value.startsWith($CDN)) value = value.replace($CDN, '')
   showErrMessage(value, index, "imgLinkErr");
   getHead.value[index].img.src = value;
   getHead.value[index].img.id = undefined;
@@ -207,6 +211,7 @@ function updateImage(index: number, e: any): void {
     .then((res) => {
       const result = res.data;
       if (result.success) {
+        updateErrMessage("", index, "imgLinkErr");
         getHead.value[index].img.src = '/' + result.data.url;
         getHead.value[index].img.id = result.data.id;
       }
@@ -233,15 +238,6 @@ function updateErrMessage(
   target: string
 ): void {
   getHead.value[index].asset[target] = message;
-}
-
-function isValidURL(url: string): boolean {
-  try {
-    new URL(url);
-    return true;
-  } catch (error) {
-    return false;
-  }
 }
 </script>
 
