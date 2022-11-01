@@ -39,11 +39,11 @@ export const view = [
 
 export const gaps = [
   {
-    title: "M",
+    title: "S",
     value: "mb-2",
   },
   {
-    title: "S",
+    title: "M",
     value: "mb-4",
   },
 ];
