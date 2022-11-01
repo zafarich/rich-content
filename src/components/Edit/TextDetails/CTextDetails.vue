@@ -59,10 +59,6 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   showTitle: true,
 });
-console.log(props.item)
-
-console.log(props.item, 'item')
-
 const $emit = defineEmits<Emits>();
 
 const elements = ref([

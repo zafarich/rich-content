@@ -55,11 +55,11 @@ const views = reactive([
   },
   {
     text: "1/3 ширины",
-    position: "w-2/4 !h-2/4",
+    position: "w-2/4 h-2/4",
   },
   {
     text: "1/4 ширины",
-    position: "w-1/4 !h-1/4",
+    position: "w-1/4 h-1/4",
   },
 ]);
 
