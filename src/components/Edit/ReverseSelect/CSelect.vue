@@ -13,9 +13,9 @@
       v-model="getSelected"
     >
       <template #no-options> Ooops, malumot topilmadi :( </template>
-      <template #option="{ title }">
-        <h3>{{ title }}</h3>
-      </template>
+        <template #option="{ title }">
+          <h3>{{ title }}</h3>
+        </template>
     </v-select>
   </div>
 </template>

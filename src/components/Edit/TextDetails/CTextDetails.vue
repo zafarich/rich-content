@@ -28,7 +28,7 @@
             <h3 :class="size">{{ title }}</h3>
           </template>
         </v-select>
-        <CChooseColor @color="emitValue(idx, 'color', $event)" />
+        <CChooseColor @color="emitValue(idx, 'color', $event)" :color="item[el.type].color" />
         <CTextAlignment
           @align="emitValue(idx, 'align', $event)"
           :align="item[el.type].align"
@@ -42,7 +42,6 @@
 import { ref } from "vue";
 import vSelect from "vue-select";
 
-import CSelect from "@/components/Edit/ReverseSelect/CSelect.vue";
 import CChooseColor from "@/components/Edit/ChooseColor/CChooseColor.vue";
 import CTextAlignment from "@/components/Edit/TextAlignment/CTextAlignment.vue";
 import { objectHas } from "@/helpers/global";
@@ -60,6 +59,7 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   showTitle: true,
 });
+console.log(props.item)
 
 console.log(props.item, 'item')
 
@@ -69,14 +69,16 @@ const elements = ref([
   {
     type: "title",
     label: "Заголовок",
-    size: "text-xl leading-[28px]",
+    size: props.item?.title?.size || "text-xl leading-[28px]",
   },
   {
     type: "text",
     label: "Основной текст",
-    size: "text-sm leading-[24px]",
+    size: props.item?.text?.size || "text-sm leading-[24px]",
   },
 ]);
+
+
 
 const sizeClasses = [
   "text-xs leading-[22px]",

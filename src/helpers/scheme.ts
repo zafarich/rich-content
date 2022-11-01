@@ -21,9 +21,9 @@ class GenerateBlock {
     if (title) {
       block.title = {
         value: "Заголовок",
-        size: "text-lg leading-[26px]",
+        size: "text-xl leading-[28px]",
         align: "text-left",
-        color: "#F7F7F7",
+        color: "#333333",
       };
     }
     if (text) {
@@ -32,7 +32,7 @@ class GenerateBlock {
           "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.",
         size: "text-sm leading-[24px]",
         align: "text-left",
-        color: "#F7F7F7",
+        color: "#333333",
       };
     }
     if (asset) {
@@ -203,7 +203,7 @@ const table: Content = {
     value: "Заголовок",
     size: "text-lg leading-[26px]",
     align: "text-left",
-    color: "#F7F7F7",
+    color: "#333333",
   },
 
   table: {
