@@ -181,7 +181,7 @@ watch(activeIndex, (v): void => {
   }
 });
 
-async function saveContent() {
+async function saveContent(): void {
   if (isContentsValid()) {
     productStore
       .postProductOverview()
@@ -202,8 +202,10 @@ async function saveContent() {
 
 function isContentsValid(): boolean {
   for (let i in content.value) {
-    for (let k in content.value[i].content.block) {
-      let curr = content.value[i].content.block[k].asset;
+    let arr = content.value[i]?.content?.table?.head || content.value[i]?.content?.block 
+
+    for (let k in arr) {
+      let curr = arr[k].asset;
       for (let j in curr) {
         if (j.endsWith("Err") && curr[j]) {
           toast.warning(curr[j]);
