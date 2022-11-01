@@ -198,11 +198,10 @@ function updateImageInput(event: any, index: number): void {
 function updateImage(index: number, e: any): void {
   updateErrMessage("", index, "uploadErr");
 
-  if (e?.file?.size > 200000) {
-    updateErrMessage(ErrorList["lessThan1mb"], index, "uploadErr");
-    return;
+  if (getHead.value[index].img.id) {
+    mediaStore.setDelete(getHead.value[index].img.id);
   }
-
+  
   const formData = new FormData();
   formData.append("file", e?.file);
 
