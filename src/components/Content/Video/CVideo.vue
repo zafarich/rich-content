@@ -7,8 +7,6 @@
         </div>
       </template>
       <template v-else>
-{{getVideoType}}
-        {{finished}}
         <iframe
           v-if="item.video.type === 'youtube'"
           class="w-full aspect-video"
