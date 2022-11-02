@@ -48,22 +48,20 @@ const handleFile = (event: any) => {
 
   const file = event.target.files[0];
 
-  if(file.type != 'video/mp4') {
-    toast.warning('Тип видео должен быть mp4')
-    return;
-  };
-  
-  if (file.size > 10485760 ) {
-    toast.error("Максимальный размер видео 10мб");
+  if (file.type != "video/mp4") {
+    toast.warning("Тип видео должен быть mp4");
     return;
   }
 
+  if (file.size > 10485760) {
+    toast.error("Максимальный размер видео 10мб");
+    return;
+  }
 
   if (image.url) {
     image.url = null;
     image.file = null;
   }
-
 
   image.file = file;
   image.url = URL.createObjectURL(file);

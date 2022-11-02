@@ -39,7 +39,6 @@
           :class="{
             'line-action__disabled':
               activeTableRowIdx === null && i == 'removeBody',
-              
           }"
         >
           <Icon :name="i" />
@@ -133,12 +132,11 @@ import Icon from "@/components/Icon/Icon.vue";
 import useStore from "@/store/index";
 import { checkSrc, isValidURL } from "@/helpers/global";
 
-
 export interface Props {
   item?: object;
 }
 
-const $CDN = inject('cdn');
+const $CDN = inject("cdn");
 const store = useStore();
 const titleToggle = ref(true);
 const lineToggle = ref(true);
@@ -174,13 +172,13 @@ function handleLineAction(current: string): void {
     "Пожалуйста, замените этот текст Вашим собственным. Просто кликните по тексту, чтобы добавить свой текст. Настройте стиль текста в левой колонке.";
   const { body, head } = props.item.table;
   const arr = new Array(head.length).fill(defaultBodyText);
-  let rowIdx = activeTableRowIdx.value
+  let rowIdx = activeTableRowIdx.value;
 
   if (current == "addBodyTop") {
-    body.splice((rowIdx || 0), 0, arr);
+    body.splice(rowIdx || 0, 0, arr);
   } else if (current == "addBodyBottom") {
     rowIdx && body.splice(rowIdx + 1, 0, arr);
-    rowIdx == null && body.splice(body.length, 0, arr)
+    rowIdx == null && body.splice(body.length, 0, arr);
   } else {
     body.splice(rowIdx, 1);
     rowIdx = null;
@@ -189,7 +187,7 @@ function handleLineAction(current: string): void {
 
 function updateImageInput(event: any, index: number): void {
   let value = event?.target?.value || "";
-  if(value.startsWith($CDN)) value = value.replace($CDN, '')
+  if (value.startsWith($CDN)) value = value.replace($CDN, "");
   showErrMessage(value, index, "imgLinkErr");
   getHead.value[index].img.src = value;
   getHead.value[index].img.id = undefined;
@@ -201,7 +199,7 @@ function updateImage(index: number, e: any): void {
   if (getHead.value[index].img.id) {
     mediaStore.setDelete(getHead.value[index].img.id);
   }
-  
+
   const formData = new FormData();
   formData.append("file", e?.file);
 
@@ -211,7 +209,7 @@ function updateImage(index: number, e: any): void {
       const result = res.data;
       if (result.success) {
         updateErrMessage("", index, "imgLinkErr");
-        getHead.value[index].img.src = '/' + result.data.url;
+        getHead.value[index].img.src = "/" + result.data.url;
         getHead.value[index].img.id = result.data.id;
       }
     })

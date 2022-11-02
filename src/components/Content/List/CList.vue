@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import CContentInput from "@/components/UI/Input/ContentInput/CContentInput.vue";
 import { Content } from "@/helpers/scheme_types";
-import { checkSrc } from '@/helpers/global'
+import { checkSrc } from "@/helpers/global";
 
 export interface Props {
   content: Content;

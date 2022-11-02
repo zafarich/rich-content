@@ -216,7 +216,7 @@ import {
 const store = useStore();
 const mediaStore = useMediaStore();
 const { activeIndex, content } = storeToRefs(store);
-const $CDN = inject('cdn');
+const $CDN = inject("cdn");
 const toast = useToast();
 
 const ErrorList = {
@@ -234,7 +234,7 @@ const getContent = computed(() => {
 
 function updateImageInput(event: any, index: number): void {
   let value = event?.target?.value || "";
-  if(value.startsWith($CDN)) value = value.replace($CDN, '')
+  if (value.startsWith($CDN)) value = value.replace($CDN, "");
   showErrMessage(value, index, "imgLinkErr");
   getBlock.value[index].img.src = value;
   getBlock.value[index].img.id = undefined;
@@ -282,7 +282,7 @@ function updateImage(index: number, e: any): void {
       const result = res.data;
       if (result.success) {
         updateErrMessage("", index, "imgLinkErr");
-        getBlock.value[index].img.src = '/' + result.data.url;
+        getBlock.value[index].img.src = "/" + result.data.url;
         getBlock.value[index].img.id = result.data.id;
       }
     })

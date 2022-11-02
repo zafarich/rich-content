@@ -41,7 +41,8 @@
           @input="handleLinkEnter"
           v-bind="{
             label: 'Прямая ссылка на видео',
-            placeholder: 'https://texnomart.com/bBh/default_image.webp.webp?view',
+            placeholder:
+              'https://texnomart.com/bBh/default_image.webp.webp?view',
           }"
         />
 
@@ -72,7 +73,7 @@ const store = useStore();
 const { activeIndex, content } = storeToRefs(store);
 
 const toast = useToast();
-const $CDN = inject('cdn');
+const $CDN = inject("cdn");
 const props = defineProps({
   videoTypeOptions: Array,
   item: {
@@ -134,7 +135,7 @@ function handleVideoUpload(e: any) {
       updateErrMessage("", "imgLinkErr");
 
       if (result.success) {
-        getVideo.value.videoUrl = '/' + result.data.url;
+        getVideo.value.videoUrl = "/" + result.data.url;
         getVideo.value.id = result.data.id;
       }
     })
@@ -174,7 +175,7 @@ function handleLinkEnter($event: any) {
     getVideo.value.localVideoUrl = "";
   }
   let value = $event.target.value;
-  if(value.startsWith($CDN)) value = value.replace($CDN, '')
+  if (value.startsWith($CDN)) value = value.replace($CDN, "");
   getVideo.value.videoUrl = value;
   updateClickLink($event);
 }

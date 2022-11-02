@@ -29,7 +29,7 @@ interface Emits {
   (e: "color", v: TextColors): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {});
 const $emit = defineEmits<Emits>();
 const colors = ["#F7F7F7", "#333333", "#BABAC0", "#767676"];
 const activeColor = ref<TextColors>(props.color || "#333333");

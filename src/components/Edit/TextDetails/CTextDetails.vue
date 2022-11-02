@@ -28,7 +28,10 @@
             <h3 :class="size">{{ title }}</h3>
           </template>
         </v-select>
-        <CChooseColor @color="emitValue(idx, 'color', $event)" :color="item[el.type].color" />
+        <CChooseColor
+          @color="emitValue(idx, 'color', $event)"
+          :color="item[el.type].color"
+        />
         <CTextAlignment
           @align="emitValue(idx, 'align', $event)"
           :align="item[el.type].align"
@@ -73,8 +76,6 @@ const elements = ref([
     size: props.item?.text?.size || "text-sm leading-[24px]",
   },
 ]);
-
-
 
 const sizeClasses = [
   "text-xs leading-[22px]",

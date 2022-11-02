@@ -49,11 +49,11 @@ const handleFile = (event: any) => {
 
   const file = event.target.files[0];
 
-  if(file.type != 'image/webp') {
-    toast.warning('Тип изображения должен быть webp')
+  if (file.type != "image/webp") {
+    toast.warning("Тип изображения должен быть webp");
     return;
-  };
-  
+  }
+
   if (file.size > 200000) {
     toast.error("Размер файла должен быть меньше 200КБ");
     return;
@@ -64,7 +64,7 @@ const handleFile = (event: any) => {
     image.file = null;
   }
 
-  image.file = file 
+  image.file = file;
   imageName.value = image.file.name;
   const reader = new FileReader();
   reader.readAsDataURL(event.target.files[0]);

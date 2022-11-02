@@ -59,6 +59,7 @@
                 @updateData="handleDynamicComponentEvents($event)"
                 v-bind="{
                   content: item.content,
+                  contentIndex: index
                 }"
               />
             </div>
@@ -202,7 +203,9 @@ async function saveContent(): void {
 
 function isContentsValid(): boolean {
   for (let i in content.value) {
-    let arr = content.value[i]?.content?.table?.head || content.value[i]?.content?.block 
+    let arr =
+      content.value[i]?.content?.table?.head ||
+      content.value[i]?.content?.block;
 
     for (let k in arr) {
       let curr = arr[k].asset;

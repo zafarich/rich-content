@@ -1,16 +1,16 @@
-import { Story } from "@storybook/vue3"
+import { Story } from "@storybook/vue3";
 
-import CPreloader, { Props } from "./CPreloader.vue"
+import CPreloader, { Props } from "./CPreloader.vue";
 
 export default {
   title: "Trash/Form/CPreloader",
   component: CPreloader,
-}
+};
 
 const Template: Story<Props> = (args) => ({
   components: { CPreloader },
   setup() {
-    return { args }
+    return { args };
   },
   template: `
     <div>
@@ -19,9 +19,9 @@ const Template: Story<Props> = (args) => ({
       </block-preloader>
     </div>
   `,
-})
+});
 
-export const KPreloader = Template.bind({})
+export const KPreloader = Template.bind({});
 KPreloader.args = {
   loading: true,
-}
+};

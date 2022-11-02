@@ -41,7 +41,7 @@ export function toggleMobileMode(item) {
   }
 }
 export function isValidURL(url: string): boolean {
-  if(url.startsWith('/')) return true;
+  if (url.startsWith("/")) return true;
   try {
     new URL(url);
     return true;
@@ -58,4 +58,5 @@ export function isValidYoutubeUrl(url) {
   return false;
 }
 
-export const checkSrc = (str: string): string => str.startsWith('/') ? import.meta.env.VITE_CDN + str : str;
+export const checkSrc = (str: string): string =>
+  str.startsWith("/") ? import.meta.env.VITE_CDN + str : str;
