@@ -18,6 +18,7 @@ pnpm-debug.log*
 .temp
 .cache
 .env
+package-lock.json
 
 # Editor directories and files
 .idea

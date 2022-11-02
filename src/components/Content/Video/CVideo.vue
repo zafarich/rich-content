@@ -7,19 +7,19 @@
         </div>
       </template>
       <template v-else>
-{{getVideoType}}
-        {{finished}}
-        <iframe
+        <YouTube
+          width="100%"
+          height="100%"
+          :id="'youtube' + content.id"
           v-if="item.video.type === 'youtube'"
-          class="w-full aspect-video"
           :src="
             youTubeLinkToEmbed(
               item.video.videoUrl || 'https://youtu.be/xffp8p-vyMY'
             )
           "
-        >
-        </iframe>
-
+          class="w-full aspect-video"
+          ref="youtube"
+        />
         <div v-else class="relative">
           <div
             v-if="finished"
@@ -53,7 +53,18 @@ import { Content } from "@/helpers/scheme_types";
 import CProgressBar from "@/components/UI/CProgressBar.vue";
 import { checkSrc } from "@/helpers/global";
 import Icon from "@/components/Icon/Icon.vue";
-import {ref, computed, watchEffect} from 'vue'
+import {
+  ref,
+  computed,
+  watchEffect,
+  defineComponent,
+  watchPostEffect,
+} from "vue";
+import YouTube from "vue3-youtube";
+
+defineComponent({
+  components: { YouTube },
+});
 
 export interface Props {
   content: Content;
@@ -61,26 +72,48 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {});
-let finished = ref(false)
+let finished = ref(false);
+const youtube = ref(null);
 
 const getVideoType = computed(() => {
-  return props.content.block[0].video.type
-})
+  return props.content.block[0].video.type;
+});
 
 watchEffect(async () => {
-  if(getVideoType.value == 'youtube') return; 
-  let video = await document.getElementsByTagName('video') 
-  let item = video.item(0) 
-  if(!item) return;
-  item.addEventListener('ended', () => finished.value = true, false)
-})
+  if (getVideoType.value == "youtube") return;
+  let video = await document.getElementsByTagName("video");
+  let item = video.item(0);
+  if (!item) return;
+  item.addEventListener("ended", () => (finished.value = true), false);
+});
+
+watchPostEffect(() => {
+  const el = document.querySelector("#youtube" + props.content.id);
+  const observer = new window.IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        return;
+      }
+      stopVideo();
+    },
+    {
+      root: null,
+      threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+    }
+  );
+
+  observer.observe(el);
+});
 
 function youTubeLinkToEmbed(url: string) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
 
   return match && match[2].length === 11
-    ? "https://www.youtube.com/embed/" + match[2]
+    ? "https://www.youtube.com/embed/" +
+        match[2] +
+        "&origin=" +
+        window.location.href
     : null;
 }
 
@@ -92,11 +125,15 @@ function getVideo(item: object): string {
 }
 
 async function handleRepeat(): void {
-  let video = await document.getElementsByTagName('video') 
-  let item = video.item(0) 
-  if(!item) return;
-  item.play() 
+  let video = await document.getElementsByTagName("video");
+  let item = video.item(0);
+  if (!item) return;
+  item.play();
   finished.value = false;
+}
+
+function stopVideo(index = 0) {
+  youtube.value?.[index]?.pauseVideo();
 }
 </script>
 
