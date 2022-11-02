@@ -4,7 +4,7 @@
     <CHeader />
     <CInfoBanner
       v-if="product"
-      class="!mt-[32px]"
+      class="!mt-[110px]"
       v-bind="{
         title: product.name,
         id: queryParams.product_id,

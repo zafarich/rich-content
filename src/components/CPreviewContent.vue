@@ -8,24 +8,6 @@
       редактируйте текст и содержание каждой секции, а также загружайте свои
       фото.
     </p>
-    <div class="flex flex-center-between mt-8">
-      <CTab v-if="isFullScreen" class="min-w-[100px]" />
-      <CButton
-        v-if="!queryParams.readonly"
-        @click="store.toggleIsFullScreen()"
-        :text="isFullScreen ? 'Назад' : 'Предпросмотр'"
-        :class="[
-          'px-4  border-2 rounded min-w-[106px]',
-          isFullScreen ? 'border-transparent ' : '!bg-white border-yellow',
-        ]"
-      />
-      <CButton
-        @click="saveContent"
-        v-if="!isFullScreen"
-        text="Сохранить"
-        class="px-4 rounded h-11"
-      />
-    </div>
     <VueDraggableNext
       :class="[
         'dragArea list-group even w-full flex flex-col gap-[40px] mt-8 mobile:!max-w-[375px] mobile:mx-auto mobile:gap-[20px]',
@@ -59,7 +41,7 @@
                 @updateData="handleDynamicComponentEvents($event)"
                 v-bind="{
                   content: item.content,
-                  contentIndex: index
+                  contentIndex: index,
                 }"
               />
             </div>
@@ -134,25 +116,21 @@ import CThreeRow from "@/components/Content/ThreeRow/CThreeRow.vue";
 import CTwoRow from "@/components/Content/TwoRow/CTwoRow.vue";
 import CVideo from "@/components/Content/Video/CVideo.vue";
 import Icon from "@/components/Icon/Icon.vue";
-import CTab from "@/components/Tab/CTab.vue";
-import CButton from "@/components/UI/Button/Cbutton.vue";
 
 import useStore from "@/store/index";
-import useProduct from "@/store/product";
 
 const store = useStore();
 const toast = useToast();
-const productStore = useProduct();
+
 const {
   step,
   activeIndex,
   content,
   isFullScreen,
   activeTableRowIdx,
-  queryParams,
 } = storeToRefs(store);
+
 const { deleteContent, upContent, downContent } = store;
-const { product, lang } = productStore;
 
 const ContentComponents = {
   roll: CRoll,
@@ -181,45 +159,6 @@ watch(activeIndex, (v): void => {
     step.value = "edit";
   }
 });
-
-async function saveContent(): void {
-  if (isContentsValid()) {
-    productStore
-      .postProductOverview()
-      .then(async (res) => {
-        if (res.success) {
-          await localStorage.setItem("saved", true);
-          await localStorage.removeItem("upload");
-          toast.success(res.message);
-        } else {
-          toast.warning(res.message);
-        }
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
-  }
-}
-
-function isContentsValid(): boolean {
-  for (let i in content.value) {
-    let arr =
-      content.value[i]?.content?.table?.head ||
-      content.value[i]?.content?.block;
-
-    for (let k in arr) {
-      let curr = arr[k].asset;
-      for (let j in curr) {
-        if (j.endsWith("Err") && curr[j]) {
-          toast.warning(curr[j]);
-          return false;
-        }
-      }
-    }
-  }
-
-  return true;
-}
 
 function handleDynamicComponentEvents(event: any) {
   switch (event.content_type) {

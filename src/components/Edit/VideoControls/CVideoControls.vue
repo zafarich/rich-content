@@ -39,7 +39,6 @@
         <CInput
           :model-value="checkSrc(item.video.videoUrl)"
           @input="handleLinkEnter"
-          
           v-bind="{
             label: 'Прямая ссылка на видео',
             placeholder:
@@ -177,9 +176,9 @@ function handleLinkEnter($event: any) {
   }
   let value = $event.target.value;
 
-  if(value.includes('youtu')) {
-    getVideo.value.type = 'youtube'
-    getVideo.value.videoUrl = value 
+  if (value.includes("youtu")) {
+    getVideo.value.type = "youtube";
+    getVideo.value.videoUrl = value;
     return;
   }
 
