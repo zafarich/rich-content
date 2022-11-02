@@ -10,7 +10,7 @@
         <YouTube
           width="100%"
           height="100%"
-          :id="'youtube' + content.id"
+          :id="'youtube' + contentIndex"
           v-if="item.video.type === 'youtube'"
           :src="
             youTubeLinkToEmbed(
@@ -88,7 +88,7 @@ watchEffect(async () => {
 });
 
 watchPostEffect(() => {
-  const el = document.querySelector("#youtube" + props.content.id);
+  const el = document.querySelector("#youtube" + props.contentIndex);
   const observer = new window.IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
