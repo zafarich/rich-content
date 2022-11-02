@@ -102,7 +102,7 @@ watchPostEffect(() => {
     }
   );
 
-  observer.observe(el);
+  el && observer.observe(el);
 });
 
 function youTubeLinkToEmbed(url: string) {
