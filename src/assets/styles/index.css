@@ -73,3 +73,7 @@ pre {
   font-family: monospace;
   white-space: pre-wrap;
 }
+
+button {
+  cursor: pointer;
+}

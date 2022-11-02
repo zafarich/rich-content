@@ -89,20 +89,20 @@ watchEffect(async () => {
 
 watchPostEffect(() => {
   const el = document.querySelector("#youtube" + props.content.id);
-  const observer = new window.IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        return;
-      }
-      stopVideo();
-    },
-    {
-      root: null,
-      threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
-    }
-  );
+  // const observer = new window.IntersectionObserver(
+  //   ([entry]) => {
+  //     if (entry.isIntersecting) {
+  //       return;
+  //     }
+  //     stopVideo();
+  //   },
+  //   {
+  //     root: null,
+  //     threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+  //   }
+  // );
 
-  observer.observe(el);
+  // observer.observe(el);
 });
 
 function youTubeLinkToEmbed(url: string) {

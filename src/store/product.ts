@@ -36,7 +36,6 @@ export const useProduct = defineStore("product", {
     },
     postProductOverview(data: object) {
       const { product_id, token, lang } = store.queryParams;
-			console.log(store.content, 'content store ')
 
       return new Promise((resolve, reject) => {
         return axios
