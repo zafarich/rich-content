@@ -10,14 +10,13 @@
     <table class="table-fixed w-full min-w-[1000px]">
       <thead class="bg-grey-light">
         <tr>
-          <th v-for="(item, index) in getHead" :key="index + item">
+          <th v-for="(item, index) in getHead" :key="item + getHead.length">
             <img
               class="w-24 h-24 my-4 mx-auto object-cover"
               :src="checkSrc(item?.img?.src)"
               :alt="item?.img?.alt"
             />
             <CContentInput
-              :key="index + item?.text?.value"
               class="mx-3 mb-2 font-medium text-[20px] text-left cursor-text whitespace-pre mobile:!text-[12px]"
               :class="getHead[index]?.contentAlign"
               :model-value="item?.text?.value"
@@ -29,13 +28,13 @@
       <tbody>
         <tr
           v-for="(item, index) in getBody"
-          :key="index"
+          :key="index + getBody.length"
           class="min-w-[100px] w-full"
           :class="{ 'bg-grey-light': index % 2 != 0 }"
         >
           <td
             v-for="(el, idx) in item"
-            :key="el + idx"
+            :key="item + getBody.length"
             class="py-2 px-3 leading-[24px]"
             :class="getHead[idx]?.contentAlign"
             @click="handleBodyText('', 'clicked', index, idx)"

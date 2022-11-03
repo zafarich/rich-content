@@ -310,7 +310,7 @@ function handleListTheme(event: object): void {
 }
 
 function handleDelete(index: number): void {
-  mediaStore.setDelete(getBlock.value[index].img.id);
-  getBlock.value.splice(index, 1);
+  const [deleted] = getBlock.value.splice(index, 1);
+  mediaStore.setDelete(deleted.img.id);
 }
 </script>
