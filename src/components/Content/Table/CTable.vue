@@ -28,13 +28,13 @@
       <tbody>
         <tr
           v-for="(item, index) in getBody"
-          :key="index + getBody.length"
+          :key="index"
           class="min-w-[100px] w-full"
           :class="{ 'bg-grey-light': index % 2 != 0 }"
         >
           <td
             v-for="(el, idx) in item"
-            :key="item + getBody.length"
+            :key="getBody.length"
             class="py-2 px-3 leading-[24px]"
             :class="getHead[idx]?.contentAlign"
             @click="handleBodyText('', 'clicked', index, idx)"
