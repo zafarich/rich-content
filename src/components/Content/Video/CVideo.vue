@@ -37,7 +37,7 @@
             :key="item.video.videoUrl"
             controls
             lazy="true"
-            :class="contentIndex + 'rvideo'"
+            :id="'video' + contentIndex"
             class="w-full aspect-video"
           >
             <source type="video/mp4" :src="getVideo(item)" />
@@ -88,13 +88,19 @@ watchEffect(async () => {
 });
 
 watchPostEffect(() => {
-  const el = document.querySelector("#youtube" + props.contentIndex);
+  const youtube = document.querySelector("#youtube" + props.contentIndex);
+  const video = document.querySelector("#video" + props.contentIndex);
+
   const observer = new window.IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
         return;
       }
-      stopVideo();
+      if(getVideoType.value == 'youtube') {
+              stopVideo();
+      } else {
+        video.pause()
+      }
     },
     {
       root: null,
@@ -102,7 +108,8 @@ watchPostEffect(() => {
     }
   );
 
-  el && observer.observe(el);
+  youtube && observer.observe(youtube);
+  video && observer.observe(video)
 });
 
 function youTubeLinkToEmbed(url: string) {
