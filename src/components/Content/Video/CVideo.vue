@@ -36,6 +36,7 @@
           <video
             :key="item.video.videoUrl"
             controls
+            controlsList="nofullscreen"
             lazy="true"
             :id="'video' + contentIndex"
             class="w-full aspect-video"
