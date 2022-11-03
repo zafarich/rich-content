@@ -97,8 +97,8 @@ watchPostEffect(() => {
       if (entry.isIntersecting) {
         return;
       }
-      if(getVideoType.value == 'youtube') {
-              stopVideo();
+      if(youtube) {
+        stopVideo();
       } else {
         video.pause()
       }
