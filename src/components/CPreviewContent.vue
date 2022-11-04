@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="mb-20">
     <h2 class="font-bold text-[24px] leading-[32px] mb-3">
       {{ isFullScreen ? "Предпросмотр рич-контента" : "Конструктор контента" }}
     </h2>
