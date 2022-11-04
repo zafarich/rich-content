@@ -162,8 +162,8 @@ const ErrorList = {
 
 function handleDeleteColumn(index: number): void {
   const [deleted] = getHead.value.splice(index, 1);
-  console.log(deleted)
-  mediaStore.setDelete(deleted.img.id)
+  console.log(deleted);
+  mediaStore.setDelete(deleted.img.id);
   for (let i of getBody.value) {
     i.splice(index, 1);
   }

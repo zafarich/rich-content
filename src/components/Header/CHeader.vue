@@ -41,7 +41,7 @@ import useProduct from "@/store/product";
 const store = useStore();
 const toast = useToast();
 const productStore = useProduct();
-const { queryParams, isFullScreen, content, } = storeToRefs(store);
+const { queryParams, isFullScreen, content } = storeToRefs(store);
 
 async function saveContent(): void {
   if (isContentsValid()) {

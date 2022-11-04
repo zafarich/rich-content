@@ -2,29 +2,31 @@
 <template>
   <div class="mb-10">
     <CHeader />
-    <CInfoBanner
-      v-if="product"
-      class="!mt-[110px]"
-      v-bind="{
-        title: product.name,
-        id: queryParams.product_id,
-        lang: queryParams.lang,
-      }"
-    />
-    <div class="container h-[calc(100vh-78px)]">
-      <div class="my-10 flex gap-8 w-full">
-        <div
-          v-if="!isFullScreen"
-          class="bg-[#001a34] min-w-[290px] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks sticky overflow-auto h-[93vh] top-5"
-        >
-          <transition name="fade" mode="out-in">
-            <div>
-              <CBlockList v-show="step == 'drop'" />
-              <CBlockEdit v-show="step == 'edit'" />
-            </div>
-          </transition>
+    <div class="!mt-[110px]">
+      <CInfoBanner
+        v-if="product"
+        class=""
+        v-bind="{
+          title: product.name,
+          id: queryParams.product_id,
+          lang: queryParams.lang,
+        }"
+      />
+      <div class="container h-[calc(100vh-78px)]">
+        <div class="my-10 flex gap-8 w-full">
+          <div
+            v-if="!isFullScreen"
+            class="bg-[#001a34] min-w-[290px] w-[290px] p-6 border-[1px] border-[#ECECEC] border-solid rounded-[12px] blocks sticky overflow-auto h-[93vh] top-5"
+          >
+            <transition name="fade" mode="out-in">
+              <div>
+                <CBlockList v-show="step == 'drop'" />
+                <CBlockEdit v-show="step == 'edit'" />
+              </div>
+            </transition>
+          </div>
+          <CPreviewContent class="w-full" />
         </div>
-        <CPreviewContent class="w-full" />
       </div>
     </div>
   </div>

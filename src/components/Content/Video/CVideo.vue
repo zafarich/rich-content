@@ -97,10 +97,10 @@ watchPostEffect(() => {
       if (entry.isIntersecting) {
         return;
       }
-      if(youtube) {
+      if (youtube) {
         stopVideo();
       } else {
-        video.pause()
+        video.pause();
       }
     },
     {
@@ -110,7 +110,7 @@ watchPostEffect(() => {
   );
 
   youtube && observer.observe(youtube);
-  video && observer.observe(video)
+  video && observer.observe(video);
 });
 
 function youTubeLinkToEmbed(url: string) {

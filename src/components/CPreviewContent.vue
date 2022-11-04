@@ -122,13 +122,8 @@ import useStore from "@/store/index";
 const store = useStore();
 const toast = useToast();
 
-const {
-  step,
-  activeIndex,
-  content,
-  isFullScreen,
-  activeTableRowIdx,
-} = storeToRefs(store);
+const { step, activeIndex, content, isFullScreen, activeTableRowIdx } =
+  storeToRefs(store);
 
 const { deleteContent, upContent, downContent } = store;
 
