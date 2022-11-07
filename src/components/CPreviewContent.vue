@@ -198,7 +198,6 @@ function handleAdd(e): void {
 <style scoped>
 .ghost {
   opacity: 0.5;
-  background: #c8ebfb;
 }
 .list-group {
   min-height: 20px;
