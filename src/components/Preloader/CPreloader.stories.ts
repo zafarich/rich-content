@@ -3,7 +3,7 @@ import { Story } from "@storybook/vue3";
 import CPreloader, { Props } from "./CPreloader.vue";
 
 export default {
-  title: "Trash/Form/CPreloader",
+  title: "UI/CPreloader",
   component: CPreloader,
 };
 
@@ -21,7 +21,7 @@ const Template: Story<Props> = (args) => ({
   `,
 });
 
-export const KPreloader = Template.bind({});
-KPreloader.args = {
+export const Preloader = Template.bind({});
+Preloader.args = {
   loading: true,
 };

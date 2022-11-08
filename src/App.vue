@@ -1,6 +1,5 @@
 <template>
-  <div class="">
-    <!-- https://app.quicktype.io/ -->
+  <div>
     <router-view />
   </div>
 </template>
