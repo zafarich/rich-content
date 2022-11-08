@@ -4,7 +4,6 @@ import { Content } from "@/helpers/scheme_types";
 interface TTypes {
   block_img: string;
   block_text: string;
-  edit: string[];
   content: Partial<Content>;
 }
 

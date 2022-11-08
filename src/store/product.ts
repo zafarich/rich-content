@@ -15,7 +15,7 @@ export const useProduct = defineStore("product", {
       return new Promise((resolve, reject) => {
         return axios(
           VITE_BASE_URL +
-            `/application/product/detail-main?product_id=${product_id}`,
+          `/application/product/detail-main?product_id=${product_id}`,
           {
             headers: {
               token,

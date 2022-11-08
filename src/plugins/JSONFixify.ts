@@ -2,7 +2,7 @@ void (function () {
   window.JSON = Object.create(JSON);
 
   JSON.stringify = function (obj) {
-    return Object.getPrototypeOf(JSON).stringify(obj, function (key, value) {
+    return Object.getPrototypeOf(JSON).stringify(obj, function (key: string, value: string) {
       if (typeof value === "function") {
         return value.toString();
       }
@@ -16,7 +16,7 @@ void (function () {
   };
 
   JSON.parse = function (obj) {
-    return Object.getPrototypeOf(JSON).parse(obj, function (key, value) {
+    return Object.getPrototypeOf(JSON).parse(obj, function (key: string, value: string) {
       if (typeof value === "string" && value.slice(0, 8) == "function") {
         return Function("return " + value)();
       }
